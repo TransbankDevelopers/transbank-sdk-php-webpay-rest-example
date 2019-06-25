@@ -8,13 +8,7 @@ use Transbank\Webpay\WebpayPlus;
 class Webpay extends Controller
 {
 
-    public function createTransaction(Request $request)
-    {
-
-    }
-
-
-    public function createdTransactionResult(Request $request)
+    public function createdTransaction(Request $request)
     {
         $req = $request->all();
         $resp = WebpayPlus::create($req["buy_order"], $req["session_id"], $req["amount"], $req["return_url"]);

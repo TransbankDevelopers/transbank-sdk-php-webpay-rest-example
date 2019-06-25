@@ -20,4 +20,4 @@ Route::get('/webpayplus/create', function () {
     return view('webpayplus/create');
 });
 
-Route::post('/webpayplus/create/', 'Webpay@createdTransactionResult');
+Route::post('/webpayplus/create/', 'Webpay@createdTransaction');
