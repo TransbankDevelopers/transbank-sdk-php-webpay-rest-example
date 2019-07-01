@@ -14,25 +14,30 @@
 </head>
 
     <body>
+
         <div class="main_content">
             <h1 class="header">
                 Ejemplos Webpay
             </h1>
 
             <div class="examples_container">
-                <span class="operation_title">
+                <span class="operation_title" style="border: 1px solid black; padding: 5px">
                     Transacción Simple
                 </span>
-                <span class="operation_link">
+                <span class="operation_link" style="border: 1px solid black; padding: 5px">
                     <a href="webpayplus/create">Webpay plus normal</a>
                 </span>
 
-                <span class="operation_nullify">
-                    <a href="#">Webpay plus normal anulación</a>
+                <span class="operation_nullify" style="border: 1px solid black; padding: 5px">
+                    <a href="webpayplus/refund">Webpay plus normal anulación</a>
+                </span>
+
+                <span>
+                    <a href="webpayplus/transactionStatus">Webpay plus normal estado de la transacción</a>
                 </span>
             </div>
-
         </div>
+
 
     </body>
 

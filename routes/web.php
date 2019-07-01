@@ -21,3 +21,11 @@ Route::get('/webpayplus/create', function () {
 });
 
 Route::post('/webpayplus/create/', 'Webpay@createdTransaction');
+
+Route::post('/webpayplus/returnUrl', 'Webpay@commitTransaction');
+
+Route::get('/webpayplus/refund', 'Webpay@showRefund');
+Route::post('/webpayplus/refund', 'Webpay@refundTransaction');
+
+Route::get('/webpayplus/transactionStatus', 'Webpay@showGetStatus');
+Route::post('/webpayplus/transactionStatus', 'Webpay@getTransactionStatus');

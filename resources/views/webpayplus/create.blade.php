@@ -44,7 +44,7 @@
         <label for="return_url">
             URL de retorno
         </label>
-        <input id="return_url" name="return_url" value="http://0.0.0.0/8000"/>
+        <input id="return_url" name="return_url" value="http://0.0.0.0:8000/webpayplus/returnUrl"/>
 
         <button type="submit">Aceptar</button>
     </form>
