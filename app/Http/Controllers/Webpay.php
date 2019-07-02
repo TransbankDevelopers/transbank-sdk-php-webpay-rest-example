@@ -51,4 +51,17 @@ class Webpay extends Controller
         return view('webpayplus/transaction_status', ["resp" => $resp, "req" => $req]);
     }
 
+
+    public function createdMallTransaction(Request $request)
+    {
+
+
+
+/*        [amount] = 1200, [commerceCode] = 597044444402, [buyOrder] = 236281296,*/
+
+        $req = $request->all();
+        $resp = WebpayPlus\Transaction::createMall($req["buy_order"], $req["session_id"], $req["amount"], $req["return_url"]);
+
+        return view('webpayplus/transaction_created', [ "params" => $req,"response" => $resp]);
+    }
 }
