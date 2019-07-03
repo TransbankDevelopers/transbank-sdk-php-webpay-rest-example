@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Transbank\Webpay\Options;
 use Transbank\Webpay\WebpayPlus;
 
 class Webpay extends Controller
@@ -51,17 +52,66 @@ class Webpay extends Controller
         return view('webpayplus/transaction_status', ["resp" => $resp, "req" => $req]);
     }
 
+    public function createMall(Request $request)
+    {
+        return view('webpayplus/mall_create');
+    }
 
     public function createdMallTransaction(Request $request)
     {
 
-
-
-/*        [amount] = 1200, [commerceCode] = 597044444402, [buyOrder] = 236281296,*/
-
         $req = $request->all();
-        $resp = WebpayPlus\Transaction::createMall($req["buy_order"], $req["session_id"], $req["amount"], $req["return_url"]);
+        $commerceCode = 597055555535;
+        $apiKey = WebpayPlus::getApiKey();
+        $options = new Options($apiKey, $commerceCode);
+
+        $resp = WebpayPlus\Transaction::createMall($req["buy_order"], $req["session_id"],  $req["return_url"], $req["detail"], $options);
 
         return view('webpayplus/transaction_created', [ "params" => $req,"response" => $resp]);
+
     }
+
+
+    public function commitmallTransaction(Request $request)
+    {
+        $req = $request->all();
+        $token = $req["token_ws"];
+        $commerceCode = 597055555535;
+        $apiKey = WebpayPlus::getApiKey();
+        $options = new Options($apiKey, $commerceCode);
+        $resp = WebpayPlus\Transaction::commitMall($token, $options);
+
+
+        return view('webpayplus/mall_transaction_committed', ["params" => $req, "response" => $resp]);
+
+    }
+
+    public function getMallTransactionStatus(Request $request)
+    {
+        $req = $request->all();
+        $token = $req["token"];
+        $commerceCode = 597055555535;
+        $apiKey = WebpayPlus::getApiKey();
+        $options = new Options($apiKey, $commerceCode);
+        $resp = WebpayPlus\Transaction::getMallStatus($token, $options);
+
+        return view('webpayplus/mall_transaction_status', ["resp" => $resp, "req" => $req]);
+
+    }
+
+    public function refundMallTransaction(Request $request)
+    {
+        $req = $request->all();
+        $token = $req["token"];
+        $commerceCode = 597055555535;
+        $apiKey = WebpayPlus::getApiKey();
+
+        $options = new Options($apiKey, $commerceCode);
+        $resp = WebpayPlus\Transaction::refundMall($token, $req["buy_order"],$req["commerce_code"], $req["amount"], $options);
+
+        dd($resp);
+        return view('webpayplus/mall_refund_success', ["req" => $req,"resp" => $resp]);
+    }
+
+
 }

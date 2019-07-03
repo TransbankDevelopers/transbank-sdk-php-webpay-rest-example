@@ -33,10 +33,11 @@ Route::post('/webpayplus/transactionStatus', 'Webpay@getTransactionStatus');
 
 # Webpay Plus Mall
 
-Route::get('/webpayplus/createMall', 'webpayplus/createMall');
-Route::post('/webpayplus/createMall', 'webpayplus/createdMall');
+Route::get('/webpayplus/createMall', 'Webpay@createMall');
+Route::post('/webpayplus/createMall', 'Webpay@createdMallTransaction');
 
-Route::post('/webpayplus/returnUrl', 'Webpay@commitMallTransaction');
+Route::post('/webpayplus/mallReturnUrl', 'Webpay@commitMallTransaction');
 
-Route::get('/webpayplus/refund', 'Webpay@showMallRefund');
-Route::post('/webpayplus/refund', 'Webpay@refundMallTransaction');
+Route::get('/webpayplus/mallRefund', 'Webpay@showMallRefund');
+Route::post('/webpayplus/mallRefund', 'Webpay@refundMallTransaction');
+Route::post('/webpayplus/mallTransactionStatus', 'Webpay@getMallTransactionStatus');

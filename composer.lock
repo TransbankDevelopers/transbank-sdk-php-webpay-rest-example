@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "09ab74a298839fe6447aaafde034781e",
+    "content-hash": "bdd548f1089593011fa7e292708bc954",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -467,16 +467,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.8.26",
+            "version": "v5.8.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1d8ec9afdedc79314c18715056b8143d7e1fac31"
+                "reference": "f1dccffb96f614895393e27e4667105a05407af5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1d8ec9afdedc79314c18715056b8143d7e1fac31",
-                "reference": "1d8ec9afdedc79314c18715056b8143d7e1fac31",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f1dccffb96f614895393e27e4667105a05407af5",
+                "reference": "f1dccffb96f614895393e27e4667105a05407af5",
                 "shasum": ""
             },
             "require": {
@@ -610,7 +610,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-06-25T16:20:51+00:00"
+            "time": "2019-07-02T13:43:47+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2825,16 +2825,16 @@
         },
         {
             "name": "transbank/transbank-sdk",
-            "version": "dev-feat/webpay_rest_webpay_plus",
+            "version": "dev-feat/webpay_rest_webpay_plus_mall",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TransbankDevelopers/transbank-sdk-php.git",
-                "reference": "48fb1f9c50be4a5cffdb793ddbf5bd1c3c6b65e3"
+                "reference": "36035b838808a29f14b770fb7d803f5676c75009"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/48fb1f9c50be4a5cffdb793ddbf5bd1c3c6b65e3",
-                "reference": "48fb1f9c50be4a5cffdb793ddbf5bd1c3c6b65e3",
+                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/36035b838808a29f14b770fb7d803f5676c75009",
+                "reference": "36035b838808a29f14b770fb7d803f5676c75009",
                 "shasum": ""
             },
             "require": {
@@ -2886,10 +2886,10 @@
                 "transbank"
             ],
             "support": {
-                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/feat/webpay_rest_webpay_plus",
+                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/feat/webpay_rest_webpay_plus_mall",
                 "issues": "https://github.com/TransbankDevelopers/transbank-sdk-php/issues"
             },
-            "time": "2019-07-01T16:13:53+00:00"
+            "time": "2019-07-03T16:40:33+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

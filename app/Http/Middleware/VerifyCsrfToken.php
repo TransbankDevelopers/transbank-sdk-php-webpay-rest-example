@@ -20,6 +20,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        "/webpayplus/returnUrl"
+        "/webpayplus/returnUrl",
+        "/webpayplus/mallReturnUrl"
     ];
 }
