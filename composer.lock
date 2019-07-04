@@ -2829,12 +2829,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TransbankDevelopers/transbank-sdk-php.git",
-                "reference": "36035b838808a29f14b770fb7d803f5676c75009"
+                "reference": "f4d384c9aaa35b70e4521160e7e3e465837af632"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/36035b838808a29f14b770fb7d803f5676c75009",
-                "reference": "36035b838808a29f14b770fb7d803f5676c75009",
+                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/f4d384c9aaa35b70e4521160e7e3e465837af632",
+                "reference": "f4d384c9aaa35b70e4521160e7e3e465837af632",
                 "shasum": ""
             },
             "require": {
@@ -2889,7 +2889,7 @@
                 "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/feat/webpay_rest_webpay_plus_mall",
                 "issues": "https://github.com/TransbankDevelopers/transbank-sdk-php/issues"
             },
-            "time": "2019-07-03T16:40:33+00:00"
+            "time": "2019-07-04T14:04:18+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3064,16 +3064,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.4.0",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "1a1a1044ad00e285bd2825fac4c3a0443d90ad33"
+                "reference": "6fb502c23885701a991b0bba974b1a8eb6673577"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/1a1a1044ad00e285bd2825fac4c3a0443d90ad33",
-                "reference": "1a1a1044ad00e285bd2825fac4c3a0443d90ad33",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/6fb502c23885701a991b0bba974b1a8eb6673577",
+                "reference": "6fb502c23885701a991b0bba974b1a8eb6673577",
                 "shasum": ""
             },
             "require": {
@@ -3121,7 +3121,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2019-06-23T09:00:00+00:00"
+            "time": "2019-07-04T09:00:00+00:00"
         },
         {
             "name": "fzaninotto/faker",
