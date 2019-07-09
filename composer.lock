@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bdd548f1089593011fa7e292708bc954",
+    "content-hash": "787dc4b15376b8ae2f442053ddd20992",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -467,16 +467,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.8.27",
+            "version": "v5.8.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f1dccffb96f614895393e27e4667105a05407af5"
+                "reference": "341fb54bea9693cada2a5b8d398621a57f82862d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f1dccffb96f614895393e27e4667105a05407af5",
-                "reference": "f1dccffb96f614895393e27e4667105a05407af5",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/341fb54bea9693cada2a5b8d398621a57f82862d",
+                "reference": "341fb54bea9693cada2a5b8d398621a57f82862d",
                 "shasum": ""
             },
             "require": {
@@ -610,7 +610,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-07-02T13:43:47+00:00"
+            "time": "2019-07-09T14:00:02+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2825,16 +2825,16 @@
         },
         {
             "name": "transbank/transbank-sdk",
-            "version": "dev-feat/webpay_rest_webpay_plus_mall",
+            "version": "dev-feat/webpay_rest_webpay_oneclick",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TransbankDevelopers/transbank-sdk-php.git",
-                "reference": "f4d384c9aaa35b70e4521160e7e3e465837af632"
+                "reference": "59102e1278efaea1347078a5ec2ca930788062fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/f4d384c9aaa35b70e4521160e7e3e465837af632",
-                "reference": "f4d384c9aaa35b70e4521160e7e3e465837af632",
+                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/59102e1278efaea1347078a5ec2ca930788062fa",
+                "reference": "59102e1278efaea1347078a5ec2ca930788062fa",
                 "shasum": ""
             },
             "require": {
@@ -2886,10 +2886,10 @@
                 "transbank"
             ],
             "support": {
-                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/feat/webpay_rest_webpay_plus_mall",
+                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/feat/webpay_rest_webpay_oneclick",
                 "issues": "https://github.com/TransbankDevelopers/transbank-sdk-php/issues"
             },
-            "time": "2019-07-04T14:04:18+00:00"
+            "time": "2019-07-09T18:42:24+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3920,16 +3920,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "3.0.1",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "c99e3be9d3e85f60646f152f9002d46ed7770d18"
+                "reference": "c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/c99e3be9d3e85f60646f152f9002d46ed7770d18",
-                "reference": "c99e3be9d3e85f60646f152f9002d46ed7770d18",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c",
+                "reference": "c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c",
                 "shasum": ""
             },
             "require": {
@@ -3965,7 +3965,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2018-10-30T05:52:18+00:00"
+            "time": "2019-07-08T05:24:54+00:00"
         },
         {
             "name": "phpunit/phpunit",
