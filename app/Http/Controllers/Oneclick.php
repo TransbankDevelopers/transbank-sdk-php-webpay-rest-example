@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Transbank\Webpay\Oneclick as Oclick;
+use Transbank\Webpay\Oneclick\MallInscription;
 
 class Oneclick extends Controller
 {
@@ -16,12 +16,23 @@ class Oneclick extends Controller
         $email = $req["email"];
         $responseUrl = $req["response_url"];
 
-        $resp = \Transbank\Webpay\Oneclick\MallInscription::start($userName, $email, $responseUrl);
+        $resp = MallInscription::start($userName, $email, $responseUrl);
 
-        dd($resp);
+        return view('oneclick/inscription_successful', ['resp' => $resp, 'req' => $req]);
+    }
 
+    public function finishInscription(Request $request)
+    {
+
+        $req = $request->all();
+        $token = $req["TBK_TOKEN"];
+
+        $resp = MallInscription::finish($token);
+
+        return view('oneclick/inscription_finished', ["resp" => $resp, "req" => $req]);
 
     }
+
 
 
 }

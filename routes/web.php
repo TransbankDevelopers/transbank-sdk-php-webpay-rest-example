@@ -75,5 +75,8 @@ Route::post('/webpayplus/mallTransactionStatus', 'Webpay@getMallTransactionStatu
 Route::get('/oneclick/startInscription', function() {
     return view('oneclick/start_inscription');
 });
-    Route::post('/oneclick/startInscription', 'Oneclick@startInscription');
+Route::post('/oneclick/startInscription', 'Oneclick@startInscription');
+
+
+Route::post('/oneclick/responseUrl', 'Oneclick@finishInscription');
 
