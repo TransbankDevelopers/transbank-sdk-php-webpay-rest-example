@@ -65,16 +65,28 @@
 
             <div class="examples_container" style="padding: 10px;">
                 <span class="operation_title" style="border: 1px solid black; padding: 5px">
+                    Transaction Mall Diferido
+                </span>
+                <span class="operation_link" style="border: 1px solid black; padding: 5px">
+                    <a href="webpayplus/mall/diferido/create">Webpay Plus Mall diferido</a>
+                </span>
+
+            </div>
+
+
+            <div class="examples_container" style="padding: 10px;">
+                <span class="operation_title" style="border: 1px solid black; padding: 5px">
                     Oneclick
                 </span>
                 <span class="operation_link" style="border: 1px solid black; padding: 5px">
                     <a href="oneclick/startInscription">Inscribir</a>
                 </span>
 
-                <span class="operation_link" style="border: 1px solid black; padding: 5px">
-                    <a href="oneclick/authorizeTransaction">Autorizar transacción</a>
-                </span>
             </div>
+
+
+
+
 
         </div>
 

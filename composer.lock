@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1780356b80f2064ed515200ca294a78",
+    "content-hash": "4463ac0a6861b03b4aa20bb86adfc511",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -654,16 +654,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.8.28",
+            "version": "v5.8.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "341fb54bea9693cada2a5b8d398621a57f82862d"
+                "reference": "489ae2218c7eb138caac780de584d8df9fe8160b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/341fb54bea9693cada2a5b8d398621a57f82862d",
-                "reference": "341fb54bea9693cada2a5b8d398621a57f82862d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/489ae2218c7eb138caac780de584d8df9fe8160b",
+                "reference": "489ae2218c7eb138caac780de584d8df9fe8160b",
                 "shasum": ""
             },
             "require": {
@@ -797,7 +797,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-07-09T14:00:02+00:00"
+            "time": "2019-07-16T14:05:28+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1026,16 +1026,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.21.0",
+            "version": "2.21.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "da6410b77f74eecd98d24ffb6dfecefccf3ca17f"
+                "reference": "a8bfb6631e3bc982427406d13ad817fc45d47b61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/da6410b77f74eecd98d24ffb6dfecefccf3ca17f",
-                "reference": "da6410b77f74eecd98d24ffb6dfecefccf3ca17f",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/a8bfb6631e3bc982427406d13ad817fc45d47b61",
+                "reference": "a8bfb6631e3bc982427406d13ad817fc45d47b61",
                 "shasum": ""
             },
             "require": {
@@ -1089,7 +1089,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-07-14T17:06:46+00:00"
+            "time": "2019-07-17T07:49:05+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3109,16 +3109,16 @@
         },
         {
             "name": "transbank/transbank-sdk",
-            "version": "dev-feat/add_guzzle",
+            "version": "dev-feat/add_webpay_plus_mall_diferido",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TransbankDevelopers/transbank-sdk-php.git",
-                "reference": "79206724e58a41af462783cd24684bdf52087145"
+                "reference": "7e1da07f7f5a48bde60ce6b1c4c5ef9a92bace44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/79206724e58a41af462783cd24684bdf52087145",
-                "reference": "79206724e58a41af462783cd24684bdf52087145",
+                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/7e1da07f7f5a48bde60ce6b1c4c5ef9a92bace44",
+                "reference": "7e1da07f7f5a48bde60ce6b1c4c5ef9a92bace44",
                 "shasum": ""
             },
             "require": {
@@ -3171,10 +3171,10 @@
                 "transbank"
             ],
             "support": {
-                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/feat/add_guzzle",
+                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/feat/add_webpay_plus_mall_diferido",
                 "issues": "https://github.com/TransbankDevelopers/transbank-sdk-php/issues"
             },
-            "time": "2019-07-15T21:33:39+00:00"
+            "time": "2019-07-17T15:04:28+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

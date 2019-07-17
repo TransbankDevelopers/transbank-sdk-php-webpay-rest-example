@@ -67,16 +67,51 @@ Route::post('/webpayplus/mallTransactionStatus', 'Webpay@getMallTransactionStatu
 
 
 # Webpay Plus Mall diferido
+Route::get('/webpayplus/mall/diferido/create', function () {
+    return view('webpayplus/mall/diferido/create');
+});
+Route::post('/webpayplus/mall/diferido/create', 'Webpay@createMallDiferido');
 
-#...TODO need commerce code
+Route::post('/webpayplus/mall/diferido/returnUrl', 'Webpay@commitMallDiferido');
 
-# Oneclick
+Route::get('/webpayplus/mall/diferido/capture', function () {
+    return view('webpayplus/mall/diferido/capture');
+});
+Route::post('/webpayplus/mall/diferido/capture', 'Webpay@captureMallDiferido');
+
+
+Route::get('/webpayplus/mall/diferido/refund', function () {
+    return view('webpayplus/mall/diferido/refund');
+});
+Route::post('/webpayplus/mall/diferido/refund', 'Webpay@refundMallDiferido');
+
+Route::post('/webpayplus/mall/diferido/transactionStatus', 'Webpay@statusMallDiferido');
+
+
+
+
+
+
+# Oneclick Mall
 
 Route::get('/oneclick/startInscription', function() {
     return view('oneclick/start_inscription');
 });
 Route::post('/oneclick/startInscription', 'Oneclick@startInscription');
 
+Route::delete('/oneclick/inscription', 'Oneclick@deleteInscription');
+Route::get('/oneclick/inscription', 'Oneclick@deleteInscription');
 
 Route::post('/oneclick/responseUrl', 'Oneclick@finishInscription');
+
+Route::get('/oneclick/mall/authorizeTransaction', function () {
+
+    return view('/oneclick/authorize_mall');
+
+});
+Route::post('/oneclick/mall/authorizeTransaction', 'Oneclick@authorizeMall');
+
+Route::post('/oneclick/mall/transactionStatus', 'Oneclick@transactionStatus');
+
+Route::post('/oneclick/mall/refund', 'Oneclick@refund');
 
