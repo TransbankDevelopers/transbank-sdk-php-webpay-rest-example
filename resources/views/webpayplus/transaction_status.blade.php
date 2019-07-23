@@ -1,4 +1,4 @@
-<h2> Status de la transacciòn Webpay plus</h2>
+<h2> Status de la transacción Webpay Plus</h2>
 <h4> Request </h4>
 {{ var_dump($req) }}
 

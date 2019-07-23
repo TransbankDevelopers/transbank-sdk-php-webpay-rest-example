@@ -88,10 +88,6 @@ Route::post('/webpayplus/mall/diferido/refund', 'Webpay@refundMallDiferido');
 Route::post('/webpayplus/mall/diferido/transactionStatus', 'Webpay@statusMallDiferido');
 
 
-
-
-
-
 # Oneclick Mall
 
 Route::get('/oneclick/startInscription', function() {
@@ -115,3 +111,12 @@ Route::post('/oneclick/mall/transactionStatus', 'Oneclick@transactionStatus');
 
 Route::post('/oneclick/mall/refund', 'Oneclick@refund');
 
+# PatPass by Webpay
+Route::get('/patpass_by_webpay/create', function () {
+
+    return view('/patpass_by_webpay/create_transaction');
+});
+
+Route::post('/patpass_by_webpay/create', 'PatpassByWebpay@create');
+
+Route::post('/patpass_by_webpay/returnUrl', 'PatpassByWebpay@commitTransaction');

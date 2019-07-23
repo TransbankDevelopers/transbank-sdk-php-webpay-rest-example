@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4463ac0a6861b03b4aa20bb86adfc511",
+    "content-hash": "654dd915167c40ac25338753a0cc7ba6",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -222,16 +222,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.9",
+            "version": "2.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "128cc721d771ec2c46ce59698f4ca42b73f71b25"
+                "reference": "a6c8d7101b19a451c1707b1b79bbbc56e4bdb7ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/128cc721d771ec2c46ce59698f4ca42b73f71b25",
-                "reference": "128cc721d771ec2c46ce59698f4ca42b73f71b25",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/a6c8d7101b19a451c1707b1b79bbbc56e4bdb7ec",
+                "reference": "a6c8d7101b19a451c1707b1b79bbbc56e4bdb7ec",
                 "shasum": ""
             },
             "require": {
@@ -241,7 +241,8 @@
             "require-dev": {
                 "dominicsayers/isemail": "dev-master",
                 "phpunit/phpunit": "^4.8.35||^5.7||^6.0",
-                "satooshi/php-coveralls": "^1.0.1"
+                "satooshi/php-coveralls": "^1.0.1",
+                "symfony/phpunit-bridge": "^4.4@dev"
             },
             "suggest": {
                 "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
@@ -275,7 +276,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2019-06-23T10:14:27+00:00"
+            "time": "2019-07-19T20:52:08+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -1026,16 +1027,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.21.2",
+            "version": "2.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "a8bfb6631e3bc982427406d13ad817fc45d47b61"
+                "reference": "58bdbbfab17ccd2ec7347b99e997f18232def4dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/a8bfb6631e3bc982427406d13ad817fc45d47b61",
-                "reference": "a8bfb6631e3bc982427406d13ad817fc45d47b61",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/58bdbbfab17ccd2ec7347b99e997f18232def4dc",
+                "reference": "58bdbbfab17ccd2ec7347b99e997f18232def4dc",
                 "shasum": ""
             },
             "require": {
@@ -1089,7 +1090,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-07-17T07:49:05+00:00"
+            "time": "2019-07-18T18:47:28+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3109,16 +3110,16 @@
         },
         {
             "name": "transbank/transbank-sdk",
-            "version": "dev-feat/add_webpay_plus_mall_diferido",
+            "version": "dev-feat/add_patpass_by_webpay",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TransbankDevelopers/transbank-sdk-php.git",
-                "reference": "7e1da07f7f5a48bde60ce6b1c4c5ef9a92bace44"
+                "reference": "241caf7703b2d1a6cdab98e0b34e8101a3427367"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/7e1da07f7f5a48bde60ce6b1c4c5ef9a92bace44",
-                "reference": "7e1da07f7f5a48bde60ce6b1c4c5ef9a92bace44",
+                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/241caf7703b2d1a6cdab98e0b34e8101a3427367",
+                "reference": "241caf7703b2d1a6cdab98e0b34e8101a3427367",
                 "shasum": ""
             },
             "require": {
@@ -3171,10 +3172,10 @@
                 "transbank"
             ],
             "support": {
-                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/feat/add_webpay_plus_mall_diferido",
+                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/feat/add_patpass_by_webpay",
                 "issues": "https://github.com/TransbankDevelopers/transbank-sdk-php/issues"
             },
-            "time": "2019-07-17T15:04:28+00:00"
+            "time": "2019-07-23T20:21:31+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

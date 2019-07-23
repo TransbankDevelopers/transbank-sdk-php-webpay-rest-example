@@ -11,7 +11,7 @@
     @csrf
 
     <label for="username">Nombre de usuario</label>
-    <input id="username" name="username" value="{{ $_SESSION["user_name"] }}"/>
+    <input id="username" name="username" value="{{ isset($_SESSION["user_name"]) ? $_SESSION["user_name"] : ''}}"/>
 
     <label for="tbk_user">Codigo de usuario</label>
     <input id="tbk_user" name="tbk_user" value="{{ $resp->getTbkUser() }}"/>

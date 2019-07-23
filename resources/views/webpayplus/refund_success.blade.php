@@ -1,4 +1,4 @@
-<h1>Anulacion exitosa!</h1>
+<h1>Webpay Plus Anulacion exitosa!</h1>
 
 
-{{ dd($resp)  }}
+{{ var_dump($resp)  }}
