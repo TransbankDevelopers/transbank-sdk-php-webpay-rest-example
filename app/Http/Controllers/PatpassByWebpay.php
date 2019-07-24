@@ -21,16 +21,8 @@ class PatpassByWebpay extends Controller
     {
         \Transbank\Webpay\PatPassByWebpay::configureForTesting();
         $req = $request->all();
-        if (isset($req['token_ws'])) {
-            $token = $req['token_ws'];
-        } elseif (isset($req['TBK_TOKEN'])) {
-            $token = $req['TBK_TOKEN'];
-        }
-
-
+        $token = $req['token_ws'];
         $resp = Transaction::commit($token);
-
-
 
         return view('patpass_by_webpay/transaction_committed', ['req' => $req, 'resp' => $resp]);
 
