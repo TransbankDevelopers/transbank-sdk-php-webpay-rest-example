@@ -86,6 +86,16 @@
 
             <div class="examples_container" style="padding: 10px;">
                 <span class="operation_title" style="border: 1px solid black; padding: 5px">
+                    Oneclick mall diferido
+                </span>
+                <span class="operation_link" style="border: 1px solid black; padding: 5px">
+                    <a href="oneclick/diferido/startInscription">Inscribir</a>
+                </span>
+
+            </div>
+
+            <div class="examples_container" style="padding: 10px;">
+                <span class="operation_title" style="border: 1px solid black; padding: 5px">
                     PatPass by Webpay
                 </span>
                 <span class="operation_link" style="border: 1px solid black; padding: 5px">
