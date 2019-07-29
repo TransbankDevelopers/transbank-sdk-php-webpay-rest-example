@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Transbank\Webpay\PatPassByWebpay\Transaction;
+use \Transbank\Patpass;
+use Transbank\Patpass\PatpassByWebpay;
+use \Transbank\Patpass\PatpassByWebpay\Transaction;
 
-class PatpassByWebpay extends Controller
+
+class PatpassWebpay extends Controller
 {
     public function create(Request $request)
     {
-        \Transbank\Webpay\PatPassByWebpay::configureForTesting();
+       PatpassByWebpay::configureForTesting();
 
         $req = $request->all();
         $resp = Transaction::create($req["buy_order"], $req["session_id"], $req["amount"], $req["return_url"], $req["details"]);
@@ -19,7 +22,7 @@ class PatpassByWebpay extends Controller
 
     public function commitTransaction(Request $request)
     {
-        \Transbank\Webpay\PatPassByWebpay::configureForTesting();
+        \Transbank\Patpass\PatpassByWebpay::configureForTesting();
         $req = $request->all();
         $token = $req['token_ws'];
         $resp = Transaction::commit($token);
@@ -30,7 +33,7 @@ class PatpassByWebpay extends Controller
 
     public function getTransactionStatus(Request $request)
     {
-        \Transbank\Webpay\PatPassByWebpay::configureForTesting();
+        \Transbank\Patpass\PatpassByWebpay::configureForTesting();
         $req = $request->all();
         $token = $req['token'];
 

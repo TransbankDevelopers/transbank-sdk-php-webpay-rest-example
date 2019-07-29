@@ -1,4 +1,4 @@
-<h1> Ejemplo Transacción PatPass By Webpay</h1>
+<h1> Ejemplo Transacción Patpass By Webpay</h1>
 
 <h3>Parametros recibidos:</h3>
 <pre>
