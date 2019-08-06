@@ -18,7 +18,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "transbank/transbank-sdk": "dev-feat/webpay_rest_webpay_plus_mall"
+        "transbank/transbank-sdk": "dev-feat/add-rest-support"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
