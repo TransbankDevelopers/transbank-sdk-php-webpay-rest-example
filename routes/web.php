@@ -11,8 +11,6 @@
 |
 */
 
-use function foo\func;
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -115,3 +113,27 @@ Route::post('/oneclick/mall/transactionStatus', 'Oneclick@transactionStatus');
 
 Route::post('/oneclick/mall/refund', 'Oneclick@refund');
 
+
+
+# Transaccion Completa
+Route::get('/transaccion_completa/create', function () {
+    return view('transaccion_completa/create');
+});
+
+Route::post('/transaccion_completa/create', 'TransaccionCompleta@createTransaction');
+
+Route::post('/transaccion_completa/installments', 'TransaccionCompleta@installments');
+
+Route::get('/transaccion_completa/transaction_commit', function () {
+    return view('transaccion_completa/transaction_commit');
+});
+
+Route::post('/transaccion_completa/transaction_commit', 'TransaccionCompleta@commit');
+
+Route::get('/transaccion_completa/transaction_status', function () {
+    return view('transaccion_completa/transaction_status');
+});
+
+Route::post('/transaccion_completa/transaction_status', 'TransaccionCompleta@status');
+
+Route::post('/transaccion_completa/refund', 'TransaccionCompleta@refund');
