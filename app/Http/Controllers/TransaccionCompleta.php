@@ -18,7 +18,7 @@ class TransaccionCompleta extends Controller
 {
     public function createTransaction(Request $request)
     {
-       // \Transbank\TransaccionCompleta\Options::defaultConfig();
+        \Transbank\TransaccionCompleta\Options::defaultConfig();
 
         $req = $request->all();
         $res = Transaction::create(
