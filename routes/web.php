@@ -65,3 +65,28 @@ Route::get('/transaccion_completa/transaction_status', function () {
 Route::post('/transaccion_completa/transaction_status', 'TransaccionCompleta@status');
 
 Route::post('/transaccion_completa/refund', 'TransaccionCompleta@refund');
+
+# transaccion completa mall
+
+Route::get('/transaccion_completa/mall_create', function () {
+    return view('transaccion_completa/mall_create');
+});
+
+
+Route::post('/transaccion_completa/mall_create', 'TransaccionCompletaMall@mallCreate');
+
+Route::post('/transaccion_completa/mall_installments', 'TransaccionCompletaMall@mallInstallments');
+
+Route::get('/transaccion_completa/mall_commit', function () {
+    return view('transaccion_completa/mall_commit');
+});
+
+Route::post('/transaccion_completa/mall_commit', 'TransaccionCompletaMall@mallCommit');
+
+Route::get('/transaccion_completa/mall_status', function () {
+    return view('transaccion_completa/mall_status');
+});
+
+Route::post('/transaccion_completa/mall_status', 'TransaccionCompletaMall@mallStatus');
+
+Route::post('/transaccion_completa/mall_refund', 'TransaccionCompletaMall@mallRefund');
