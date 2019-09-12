@@ -48,7 +48,7 @@
             </div>
             <div class="examples_container" style="padding: 10px;">
                 <span class="operation_title" style="border: 1px solid black; padding: 5px">
-                    Transaction Completa
+                    Transacción Completa
                 </span>
                 <span class="operation_link" style="border: 1px solid black; padding: 5px">
                     <a href="transaccion_completa/create">Crear Transaccion</a>
@@ -59,7 +59,7 @@
 
             <div class="examples_container" style="padding: 10px;">
                 <span class="operation_title" style="border: 1px solid black; padding: 5px">
-                    Transaction Completa Mall
+                    Transacción Completa Mall
                 </span>
                 <span class="operation_link" style="border: 1px solid black; padding: 5px">
                     <a href="transaccion_completa/mall_create">Crear Transaccion</a>
