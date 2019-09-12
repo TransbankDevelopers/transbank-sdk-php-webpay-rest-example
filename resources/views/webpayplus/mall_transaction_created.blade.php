@@ -1,4 +1,4 @@
-<h1> Ejemplo Webpay Plus Transacción Normal</h1>
+<h1> Ejemplo Webpay Plus Transacción Mall</h1>
 
 <h3>Parametros recibidos:</h3>
 <pre>

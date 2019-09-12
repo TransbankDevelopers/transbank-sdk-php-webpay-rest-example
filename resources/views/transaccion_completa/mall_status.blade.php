@@ -34,21 +34,26 @@
     {{ print_r($res)  }}
 </pre>
 
-<form class="webpay_form" method="post" action="/transaccion_completa/installments" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
+<br>
+<a href="/"><h1>Volver</h1></a>
+
+<form action="/transaccion_completa/mall_refund" method="post" class="webpay_form">
     @csrf
-    <label for="installments_number">
-        Cuotas
-    </label>
-    <input id="installments_number" name="installments_number" value="10"/>
     <label for="token_ws">
         Token
     </label>
-    <input name="token_ws" value={{ $res->getToken() }} />
+    <input type="text" name="token_ws" value={{ $req["token_ws"] }}>
+    <label for="amount">
+        Monto
+    </label>
+    <input type="number" name="amount" value="1000">
+    <label for="commerce_code">Codigo de Comercio</label>
+    <input type="text" name="commerce_code" value="597026008905">
 
-    <button type="submit">Enviar datos</button>
+    <label for="buy_order">Orden de Compra</label>
+    <input type="text" name="buy_order" value="123456789" />
+    <button type="submit"> Solicitar Reembolso</button>
 </form>
-
-
 </body>
 
 

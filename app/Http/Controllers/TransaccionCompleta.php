@@ -13,12 +13,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Transbank\TransaccionCompleta\Transaction;
+use Transbank\TransaccionCompleta as TransaccionNormalCompleta;
 
 class TransaccionCompleta extends Controller
 {
     public function createTransaction(Request $request)
     {
-        \Transbank\TransaccionCompleta\Options::defaultConfig();
+        TransaccionNormalCompleta::configureForTesting();
 
         $req = $request->all();
         $res = Transaction::create(
@@ -38,7 +39,7 @@ class TransaccionCompleta extends Controller
 
     public function installments(Request $request)
     {
-        \Transbank\TransaccionCompleta\Options::defaultConfig();
+        TransaccionNormalCompleta::configureForTesting();
 
         $req = $request->all();
 
@@ -56,7 +57,7 @@ class TransaccionCompleta extends Controller
 
     public function commit(Request $request)
     {
-        \Transbank\TransaccionCompleta\Options::defaultConfig();
+        TransaccionNormalCompleta::configureForTesting();
 
         $req = $request->all();
 
@@ -75,7 +76,7 @@ class TransaccionCompleta extends Controller
 
     public function status(Request $request)
     {
-        \Transbank\TransaccionCompleta\Options::defaultConfig();
+        TransaccionNormalCompleta::configureForTesting();
 
         $req = $request->all();
 
@@ -92,7 +93,7 @@ class TransaccionCompleta extends Controller
 
     public function refund(Request $request)
     {
-        \Transbank\TransaccionCompleta\Options::defaultConfig();
+        TransaccionNormalCompleta::configureForTesting();
 
         $req = $request->all();
 
