@@ -28,12 +28,12 @@
     <label for="buy_order">
         Ordern de Compra
     </label>
-    <input type="text" name="buy_order" value="ordenCompra12345678" />
+    <input type="text" name="buy_order" value="{{ '123456' . rand(1,1000) }}" />
 
     <label for="session_id">
         Id de Session
     </label>
-    <input type="text" name="session_id" value="sesion1234564"/>
+    <input type="text" name="session_id" value="{{ '123456' . rand(1,1000) }}"/>
 
     <label for="card_number">
         Numero de Tarjeta
@@ -52,7 +52,7 @@
     <input type="text" name="detail[0][commerce_code]" value="597026008905">
 
     <label for="merchant_1_buy_order">Orden de compra comercio Hijo 1</label>
-    <input type="text" name="detail[0][buy_order]" value="123456789" />
+    <input type="text" name="detail[0][buy_order]" value="{{ '123456' . rand(1,1000) }}" />
 
     <label for="merchant_1_amount">Monto Merchant 2</label>
     <input type="text" id="merchant_2_amount" name="details[1][amount]" value="10000" />
@@ -61,7 +61,7 @@
     <input type="text" name="detail[1][commerce_code]" value="597026008913">
 
     <label for="merchant_2_buy_order">Orden de compra comercio Hijo 1</label>
-    <input type="text" name="detail[1][buy_order]" value="123456789" />
+    <input type="text" name="detail[1][buy_order]" value="{{ '123456' . rand(1,1000) }}" />
 
     <button type="submit">Aceptar</button>
 </form>
