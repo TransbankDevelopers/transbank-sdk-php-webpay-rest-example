@@ -162,3 +162,7 @@ Route::get('/transaccion_completa/mall_status', function () {
 Route::post('/transaccion_completa/mall_status', 'TransaccionCompletaMall@mallStatus');
 
 Route::post('/transaccion_completa/mall_refund', 'TransaccionCompletaMall@mallRefund');
+
+
+Route::get('/patpass_comercio/inscription_start', 'PatpassComercio@Create');
+Route::get('/patpass_comercio/inscription_status', 'PatpassComercio@Status');
