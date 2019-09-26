@@ -41,3 +41,7 @@ Route::post('/webpayplus/mallReturnUrl', 'Webpay@commitMallTransaction');
 Route::get('/webpayplus/mallRefund', 'Webpay@showMallRefund');
 Route::post('/webpayplus/mallRefund', 'Webpay@refundMallTransaction');
 Route::post('/webpayplus/mallTransactionStatus', 'Webpay@getMallTransactionStatus');
+
+
+Route::get('/patpass_comercio/inscription_start', 'PatpassComercio@Create');
+Route::get('/patpass_comercio/inscription_status', 'PatpassComercio@Status');
