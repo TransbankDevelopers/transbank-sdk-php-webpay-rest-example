@@ -64,6 +64,14 @@ Route::post('/webpayplus/mallRefund', 'Webpay@refundMallTransaction');
 Route::post('/webpayplus/mallTransactionStatus', 'Webpay@getMallTransactionStatus');
 
 
+Route::get('/patpass_comercio/create-form', function () {
+
+    return view('patpass_comercio/create_form');
+});
+Route::post('/patpass_comercio/create-form/', 'PatpassComercio@startTransaction');
+Route::post('/patpass_comercio/returnUrl', 'PatpassComercio@finishStartTransaction');
+Route::post('/patpass_comercio/status', 'PatpassComercio@status');
+Route::post('/patpass_comercio/voucherUrl', 'PatpassComercio@displayVoucher');
 # Webpay Plus Mall diferido
 Route::get('/webpayplus/mall/diferido/create', function () {
     return view('webpayplus/mall/diferido/create');

@@ -92,7 +92,7 @@
                 <span class="operation_title" style="border: 1px solid black; padding: 5px">Patpass Comercio</span>
 
                 <span class="operation_link" style="border: 1px solid black; padding: 5px">
-                    <a href="patpass_comercio/inscription_start"></a>
+                    <a href="patpass_comercio/create-form">Request Form</a>
                 </span>
 
             </div>

@@ -1,6 +1,14 @@
-<h2> Status de la Inscripción</h2>
-<h4> Request </h4>
-{{ var_dump($req) }}
+<h1> Ejemplo Patpass Comercio</h1>
 
-<h4> Respuesta </h4>
-{{ var_dump($resp) }}
+<h3>Obtener Status:</h3>
+<pre>
+  {{ $req["j_token"] }}
+</pre>
+
+<form method="post" action="/patpass_comercio/status">
+    @csrf
+    <input name="tokenComercio" type="hidden" value="{{ $req["j_token"] }}"/>
+
+    <button type="submit">Obtener Status</button>
+</form>
+
