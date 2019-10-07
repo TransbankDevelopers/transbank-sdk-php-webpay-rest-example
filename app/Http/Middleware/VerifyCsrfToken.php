@@ -21,6 +21,8 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         "/webpayplus/returnUrl",
-        "/webpayplus/mallReturnUrl"
+        "/webpayplus/mallReturnUrl",
+        "/patpass_comercio/returnUrl",
+        "/patpass_comercio/voucherUrl"
     ];
 }

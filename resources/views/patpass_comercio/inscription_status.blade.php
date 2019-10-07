@@ -1,6 +1,21 @@
-<h2> Status de la Inscripción</h2>
-<h4> Request </h4>
-{{ var_dump($req) }}
+<h1> Ejemplo Patpass Comercio - Status</h1>
 
-<h4> Respuesta </h4>
-{{ var_dump($resp) }}
+<h3>Parametros recibidos:</h3>
+<pre>
+    {{ print_r($params) }}
+</pre>
+
+
+<h3>Respuesta:</h3>
+<pre>
+    {{ print_r($response)  }}
+</pre>
+
+<form method="post" action={{  $response->getUrlVoucher() }}>
+    <input type="hidden" name="tokenComercio" value={{ $params["tokenComercio"] }} />
+
+    <button type="submit">Obtener Voucher</button>
+</form>
+
+
+
