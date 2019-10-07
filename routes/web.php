@@ -90,3 +90,14 @@ Route::get('/transaccion_completa/mall_status', function () {
 Route::post('/transaccion_completa/mall_status', 'TransaccionCompletaMall@mallStatus');
 
 Route::post('/transaccion_completa/mall_refund', 'TransaccionCompletaMall@mallRefund');
+
+# Patpass comercio
+
+Route::get('/patpass_comercio/create-form', function () {
+
+    return view('patpass_comercio/create_form');
+});
+Route::post('/patpass_comercio/create-form/', 'PatpassComercio@startTransaction');
+Route::post('/patpass_comercio/returnUrl', 'PatpassComercio@finishStartTransaction');
+Route::post('/patpass_comercio/status', 'PatpassComercio@status');
+Route::post('/patpass_comercio/voucherUrl', 'PatpassComercio@displayVoucher');
