@@ -50,7 +50,7 @@ Route::get('/webpayplus/diferido/refund', function () {
 });
 Route::post('/webpayplus/diferido/refund', 'Webpay@refundDiferido');
 
-Route::post('/webpayplus/diferido/transactionStatus', 'Webpay@statusDiferido');
+Route::post('/webpayplus/diferido/status', 'Webpay@statusDiferido');
 
 # Webpay Plus Mall
 

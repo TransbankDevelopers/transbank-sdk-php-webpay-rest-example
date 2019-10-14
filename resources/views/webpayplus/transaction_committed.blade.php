@@ -24,10 +24,10 @@
                value="{{ $req["token_ws"] }}"
                name="token">
         <input type="hidden"
-                value="{{ $resp["amount"] }}"
+                value="{{ $resp->getAmount() }}"
                 name="amount">
         <div> Token: {{ $req["token_ws"] }}</div>
-        <div> Monto: {{ $resp["amount"] }}</div>
+        <div> Monto: {{ $resp->getAmount() }}</div>
         <button type="submit">Obtener reembolso</button>
     </form>
 

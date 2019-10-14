@@ -23,7 +23,7 @@
 <body>
 <h1>Ejemplo Webpay Plus Transaccion diferido</h1>
 
-<form class="webpay_form" action="/webpayplus/mall/diferido/create" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
+<form class="webpay_form" action="/webpayplus/diferido/create" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
     @csrf
     <label for="buy_order">
         Orden de compra
@@ -44,7 +44,7 @@
     <label for="return_url">
         URL de retorno
     </label>
-    <input id="return_url" name="return_url" value="http://0.0.0.0:8000/webpayplus/mall/diferido/returnUrl"/>
+    <input id="return_url" name="return_url" value="http://0.0.0.0:8000/webpayplus/diferido/returnUrl"/>
 
     <button type="submit">Aceptar</button>
 </form>
