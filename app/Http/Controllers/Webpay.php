@@ -211,7 +211,7 @@ class Webpay extends Controller
         $childCommerceCode = $req["commerce_code"];
         $buyOrder = $req["buy_order"];
         $authCode = $req["authorization_code"];
-        $amount = (int)$req["capture_amount"];
+        $amount = $req["capture_amount"];
         $commerceCode = 597055555544;
         $apiKey = WebpayPlus::getApiKey();
         $options = new Options($apiKey, $commerceCode);
