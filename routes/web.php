@@ -89,9 +89,7 @@ Route::post('/transaccion_completa/refund', 'TransaccionCompleta@refund');
 
 # transaccion completa mall
 
-Route::get('/transaccion_completa/mall_create', function () {
-    return view('transaccion_completa/mall_create');
-});
+Route::get('/transaccion_completa/mall_create', 'TransaccionCompletaMall@showMallCreate');
 
 
 Route::post('/transaccion_completa/mall_create', 'TransaccionCompletaMall@mallCreate');

@@ -13,9 +13,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Transbank\TransaccionCompleta\MallTransaction;
 use Transbank\TransaccionCompleta\MallTransaccionCompleta;
+use Transbank\TransaccionCompleta\Options;
 
 class TransaccionCompletaMall
 {
+
+    public function showMallCreate(Request $request)
+    {
+        $childCommerceCodes = Options::DEFAULT_TRANSACCION_COMPLETA_MALL_CHILD_COMMERCE_CODE;
+        return view('transaccion_completa/mall_create',["childCommerceCodes" => $childCommerceCodes ]);
+    }
+
+
     public function mallCreate(Request $request) {
         MallTransaccionCompleta::configureForTesting();
 
@@ -28,9 +37,11 @@ class TransaccionCompletaMall
             $req["details"]
         );
 
+
         return view('transaccion_completa/mall_created', [
-            "req" => $req,
-            "res" => $res,
+                "req" => $req,
+                "res" => $res,
+                "details" => $req["details"]
         ]);
     }
 
@@ -41,25 +52,24 @@ class TransaccionCompletaMall
         $req = $request->all();
         $res = MallTransaction::installments(
             $req["token_ws"],
-            $req["commerce_code"],
-            $req["buy_order"],
-            $req["installments_number"]
+            $req["details"]
         );
 
         return view('transaccion_completa/mall_installments', [
             "req" => $req,
             "res" => $res,
+            "details" => $req["details"]
         ]);
 
     }
 
-    public function commit(Request $request)
+    public function mallCommit(Request $request)
     {
         MallTransaccionCompleta::configureForTesting();
 
         $req = $request->all();
         $res = MallTransaction::commit(
-            $req["token_ws"],
+            $req["token"],
             $req["details"]
         );
 
@@ -74,10 +84,10 @@ class TransaccionCompletaMall
     {
         MallTransaccionCompleta::configureForTesting();
 
-        $req = $request->all();
 
+        $req = $request->all();
         $res = MallTransaction::getStatus(
-            $req["token_Ws"]
+            $req["token_ws"]
         );
 
         return view('transaccion_completa/mall_status', [
