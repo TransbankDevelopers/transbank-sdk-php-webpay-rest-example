@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<h1> Ejemplo Transacción Completa</h1>
+<h1> Ejemplo Transacción Completa Status</h1>
 
 <h3>Parametros recibidos:</h3>
 <pre>
@@ -36,20 +36,6 @@
 
 <br>
 <a href="/"><h1>Volver</h1></a>
-
-<form action="/transaccion_completa/refund" method="post" class="webpay_form">
-    @csrf
-    <label for="token_ws">
-        Token
-    </label>
-    <input type="text" name="token_ws" value={{ $req["token_ws"] }}>
-    <label for="amount">
-        Monto
-    </label>
-    <input type="number" name="amount" value="1000">
-    <button type="submit"> Solicitar Reembolso</button>
-</form>
-</body>
 
 
 

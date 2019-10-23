@@ -22,7 +22,7 @@
 
 </head>
 <body>
-<h1>Transaccion Completa</h1>
+<h1>Ejemplo Transaccion Completa Mall</h1>
 <form action="mall_create" method="post" class="webpay_form" style="">
     @csrf
     <label for="buy_order">
