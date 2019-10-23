@@ -21,11 +21,12 @@
 </head>
 
 <body>
-<h1> Ejemplo Transacción Completa</h1>
+<h1> Ejemplo Transacción Completa Mall Status </h1>
 
 <h3>Parametros recibidos:</h3>
 <pre>
     {{ print_r($req) }}
+    Token: {{ $token }}
 </pre>
 
 
@@ -33,30 +34,3 @@
 <pre>
     {{ print_r($res)  }}
 </pre>
-
-<br>
-<a href="/"><h1>Volver</h1></a>
-
-<form action="/transaccion_completa/mall_refund" method="post" class="webpay_form">
-    @csrf
-    <label for="token_ws">
-        Token
-    </label>
-    <input type="text" name="token_ws" value={{ $req["token_ws"] }}>
-    <label for="amount">
-        Monto
-    </label>
-    <input type="number" name="amount" value="1000">
-    <label for="commerce_code">Codigo de Comercio</label>
-    <input type="text" name="commerce_code" value="597026008905">
-
-    <label for="buy_order">Orden de Compra</label>
-    <input type="text" name="buy_order" value="123456789" />
-    <button type="submit"> Solicitar Reembolso</button>
-</form>
-</body>
-
-
-
-
-

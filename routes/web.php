@@ -102,11 +102,7 @@ Route::get('/transaccion_completa/mall_commit', function () {
 
 Route::post('/transaccion_completa/mall_commit', 'TransaccionCompletaMall@mallCommit');
 
-Route::get('/transaccion_completa/mall_status', function () {
-    return view('transaccion_completa/mall_status');
-});
-
-Route::post('/transaccion_completa/mall_status', 'TransaccionCompletaMall@mallStatus');
+Route::get('/transaccion_completa/mall_status/{token}', 'TransaccionCompletaMall@mallStatus');
 
 Route::post('/transaccion_completa/mall_refund', 'TransaccionCompletaMall@mallRefund');
 

@@ -75,41 +75,39 @@ class TransaccionCompletaMall
 
         return view('transaccion_completa/mall_commit', [
             "req" => $req,
-            "res" => $res,
+            "res" => $res
         ]);
 
     }
 
-    public function status(Request $request)
+    public function mallStatus($token, Request $request)
     {
         MallTransaccionCompleta::configureForTesting();
 
-
         $req = $request->all();
-        $res = MallTransaction::getStatus(
-            $req["token_ws"]
-        );
+        $res = MallTransaction::getStatus($token);
 
         return view('transaccion_completa/mall_status', [
             "req" => $req,
-            "res" => $res
+            "res" => $res,
+            "token" => $token
         ]);
     }
 
-    public function refund(Request $request)
+    public function mallRefund(Request $request)
     {
         MallTransaccionCompleta::configureForTesting();
 
         $req = $request->all();
 
         $res = MallTransaction::refund(
-          $req["token_ws"],
-          $req["buy_order"],
-          $req["commerce_code"],
+          $req["token"],
+          $req["child_buy_order"],
+          $req["child_commerce_code"],
           $req["amount"]
         );
 
-        return view('transaccion_completa/refund', [
+        return view('transaccion_completa/mall_refund', [
             "req" => $req,
             "res" => $res
         ]);
