@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<h1> Ejemplo Transacción Completa</h1>
+<h1> Ejemplo Transacción Completa Refund</h1>
 
 <h3>Parametros recibidos:</h3>
 <pre>
