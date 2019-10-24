@@ -71,7 +71,6 @@
     <h2>Reembolsar la transacción</h2>
     <h3>Transaccion 1</h3>
     <form method="post" action="/webpayplus/mall/diferido/refund" style="display: flex; flex-direction: column; width: 20%;">
-        {{--        $token, $buyOrder, $childCommerceCode, $amount--}}
         @csrf
         <input type="hidden" name="token" value="{{ $req["token_ws"] }}">
 
@@ -89,7 +88,6 @@
 
     <h3>Transaccion 2</h3>
     <form method="post" action="/webpayplus/mall/diferido/refund" style="display:flex; flex-direction: column; width: 20%;">
-        {{--        $token, $buyOrder, $childCommerceCode, $amount--}}
         @csrf
         <input type="hidden" name="token" value="{{ $req["token_ws"] }}">
 
