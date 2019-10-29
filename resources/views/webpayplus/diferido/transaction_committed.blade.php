@@ -20,7 +20,7 @@
 
     <h2>Obtener status de la transacción</h2>
 
-    <form method="post" action="/webpayplus/diferido/transactionStatus">
+    <form method="post" action="/webpayplus/diferido/status">
         @csrf
         <input type="hidden"
                value="{{ $req["token_ws"] }}"
