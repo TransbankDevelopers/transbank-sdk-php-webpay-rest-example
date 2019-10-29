@@ -74,7 +74,7 @@
                     Transacción Completa
                 </span>
                 <span class="operation_link" style="border: 1px solid black; padding: 5px">
-                    <a href="transaccion_completa/create">Crear Transaccion</a>
+                    <a href="transaccion_completa/create">Crear Transacción</a>
                 </span>
 
 
@@ -85,7 +85,7 @@
                     Transacción Completa Mall
                 </span>
                 <span class="operation_link" style="border: 1px solid black; padding: 5px">
-                    <a href="transaccion_completa/mall_create">Crear Transaccion</a>
+                    <a href="transaccion_completa/mall_create">Crear Transacción</a>
                 </span>
 
 
@@ -100,6 +100,14 @@
 
             </div>
 
+            <div class="examples_container" style="padding: 10px">
+                <span class="operation_title" style="border: 1px solid black; padding: 5px">Patpass Comercio</span>
+
+                <span class="operation_link" style="border: 1px solid black; padding: 5px">
+                    <a href="patpass_comercio/create-form">Request Form</a>
+                </span>
+
+            </div>
         </div>
 
 
