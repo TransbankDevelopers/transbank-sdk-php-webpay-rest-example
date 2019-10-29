@@ -21,19 +21,9 @@
 </head>
 
 <body>
-<h1> Ejemplo Transacción Completa</h1>
+<h1>Ejemplo transacción completa mall Reembolso de la transacción</h1>
 
-<h3>Parametros recibidos:</h3>
-<pre>
-    {{ print_r($req) }}
-</pre>
-
-
-<h3>Respuesta:</h3>
-<pre>
-    {{ print_r($res)  }}
-</pre>
-
-<br>
-<a href="/"><h1>Volver</h1></a>
-</body>
+<h2>Request</h2>
+{{ print_r($req) }}
+<h2>Response</h2>
+{{ print_r($res) }}

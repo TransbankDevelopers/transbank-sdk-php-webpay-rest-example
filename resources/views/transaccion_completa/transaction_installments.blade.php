@@ -22,6 +22,8 @@
 
 <body>
 
+<h1>Ejemplo Transaccion Completa Cuotas consultadas</h1>
+
 <h3>Parametros recibidos:</h3>
 <pre>
     {{ print_r($req) }}
@@ -38,11 +40,11 @@
     <label for="token_ws">
         Token
     </label>
-    <input type="text" name="token_ws" value={{ $req["token_ws"] }}>
+    <input type="text" name="token_ws" value="{{ $req["token_ws"] }}">
     <label for="id_query_installments">
         Id de cuotas
     </label>
-    <input type="text" name="id_query_installments" value={{ $res->getIdQueryInstallments() }} />
+    <input type="text" name="id_query_installments" value="{{ $res->getIdQueryInstallments() }}" />
     <label for="deferred_period_index">
         Cantidad de periodo diferido
     </label>

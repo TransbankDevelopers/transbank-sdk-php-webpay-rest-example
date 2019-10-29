@@ -50,7 +50,7 @@ Route::get('/webpayplus/diferido/refund', function () {
 });
 Route::post('/webpayplus/diferido/refund', 'Webpay@refundDiferido');
 
-Route::post('/webpayplus/diferido/transactionStatus', 'Webpay@statusDiferido');
+Route::post('/webpayplus/diferido/status', 'Webpay@statusDiferido');
 
 # Webpay Plus Mall
 
@@ -64,6 +64,50 @@ Route::post('/webpayplus/mallRefund', 'Webpay@refundMallTransaction');
 Route::post('/webpayplus/mallTransactionStatus', 'Webpay@getMallTransactionStatus');
 
 
+# Transaccion Completa
+Route::get('/transaccion_completa/create', function () {
+    return view('transaccion_completa/create');
+});
+
+Route::post('/transaccion_completa/create', 'TransaccionCompleta@createTransaction');
+
+Route::post('/transaccion_completa/installments', 'TransaccionCompleta@installments');
+
+Route::get('/transaccion_completa/transaction_commit', function () {
+    return view('transaccion_completa/transaction_commit');
+});
+
+Route::post('/transaccion_completa/transaction_commit', 'TransaccionCompleta@commit');
+
+Route::get('/transaccion_completa/transaction_status', function () {
+    return view('transaccion_completa/transaction_status');
+});
+
+Route::post('/transaccion_completa/transaction_status', 'TransaccionCompleta@status');
+
+Route::post('/transaccion_completa/refund', 'TransaccionCompleta@refund');
+
+# transaccion completa mall
+
+Route::get('/transaccion_completa/mall_create', 'TransaccionCompletaMall@showMallCreate');
+
+
+Route::post('/transaccion_completa/mall_create', 'TransaccionCompletaMall@mallCreate');
+
+Route::post('/transaccion_completa/mall_installments', 'TransaccionCompletaMall@mallInstallments');
+
+Route::get('/transaccion_completa/mall_commit', function () {
+    return view('transaccion_completa/mall_commit');
+});
+
+Route::post('/transaccion_completa/mall_commit', 'TransaccionCompletaMall@mallCommit');
+
+Route::get('/transaccion_completa/mall_status/{token}', 'TransaccionCompletaMall@mallStatus');
+
+Route::post('/transaccion_completa/mall_refund', 'TransaccionCompletaMall@mallRefund');
+
+# Patpass comercio
+
 Route::get('/patpass_comercio/create-form', function () {
 
     return view('patpass_comercio/create_form');
@@ -72,6 +116,8 @@ Route::post('/patpass_comercio/create-form/', 'PatpassComercio@startTransaction'
 Route::post('/patpass_comercio/returnUrl', 'PatpassComercio@finishStartTransaction');
 Route::post('/patpass_comercio/status', 'PatpassComercio@status');
 Route::post('/patpass_comercio/voucherUrl', 'PatpassComercio@displayVoucher');
+
+
 # Webpay Plus Mall diferido
 Route::get('/webpayplus/mall/diferido/create', function () {
     return view('webpayplus/mall/diferido/create');
@@ -121,56 +167,3 @@ Route::post('/oneclick/mall/transactionStatus', 'Oneclick@transactionStatus');
 
 Route::post('/oneclick/mall/refund', 'Oneclick@refund');
 
-
-
-# Transaccion Completa
-Route::get('/transaccion_completa/create', function () {
-    return view('transaccion_completa/create');
-});
-
-Route::post('/transaccion_completa/create', 'TransaccionCompleta@createTransaction');
-
-Route::post('/transaccion_completa/installments', 'TransaccionCompleta@installments');
-
-Route::get('/transaccion_completa/transaction_commit', function () {
-    return view('transaccion_completa/transaction_commit');
-});
-
-Route::post('/transaccion_completa/transaction_commit', 'TransaccionCompleta@commit');
-
-Route::get('/transaccion_completa/transaction_status', function () {
-    return view('transaccion_completa/transaction_status');
-});
-
-Route::post('/transaccion_completa/transaction_status', 'TransaccionCompleta@status');
-
-Route::post('/transaccion_completa/refund', 'TransaccionCompleta@refund');
-
-# transaccion completa mall
-
-Route::get('/transaccion_completa/mall_create', function () {
-    return view('transaccion_completa/mall_create');
-});
-
-
-Route::post('/transaccion_completa/mall_create', 'TransaccionCompletaMall@mallCreate');
-
-Route::post('/transaccion_completa/mall_installments', 'TransaccionCompletaMall@mallInstallments');
-
-Route::get('/transaccion_completa/mall_commit', function () {
-    return view('transaccion_completa/mall_commit');
-});
-
-Route::post('/transaccion_completa/mall_commit', 'TransaccionCompletaMall@mallCommit');
-
-Route::get('/transaccion_completa/mall_status', function () {
-    return view('transaccion_completa/mall_status');
-});
-
-Route::post('/transaccion_completa/mall_status', 'TransaccionCompletaMall@mallStatus');
-
-Route::post('/transaccion_completa/mall_refund', 'TransaccionCompletaMall@mallRefund');
-
-
-Route::get('/patpass_comercio/inscription_start', 'PatpassComercio@Create');
-Route::get('/patpass_comercio/inscription_status', 'PatpassComercio@Status');
