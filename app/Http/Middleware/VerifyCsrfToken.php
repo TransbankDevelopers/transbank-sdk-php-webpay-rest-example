@@ -25,6 +25,8 @@ class VerifyCsrfToken extends Middleware
         "/webpayplus/diferido/returnUrl",
         "/webpayplus/mall/diferido/returnUrl",
         "/oneclick/responseUrl",
+        "/patpass_comercio/returnUrl",
+        "/patpass_comercio/voucherUrl",
         "/patpass_by_webpay/returnUrl"
     ];
 }

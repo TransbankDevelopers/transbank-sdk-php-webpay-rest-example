@@ -22,7 +22,7 @@
 
 <h2>Estado de la transacción</h2>
 
-<form method="post" action="/webpayplus/diferido/transactionStatus">
+<form method="post" action="/webpayplus/diferido/status">
     @csrf
     <input name="amount" type="hidden" value={{ $resp->getCapturedAmount() }}>
     <input name="token" type="hidden" value={{ $req["token"] }}>

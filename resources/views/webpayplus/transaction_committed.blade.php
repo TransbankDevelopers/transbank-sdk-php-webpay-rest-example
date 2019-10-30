@@ -18,17 +18,17 @@
     </form>
 
     <h2>Reembolso de la transacción</h2>
-    <form method="post" action="/webpayplus/refund" style="display:flex; flex-direction: column; width: 30%">
+    <form method="post" action="/webpayplus/refund">
         @csrf
         <input type="hidden"
                value="{{ $req["token_ws"] }}"
                name="token">
+        <input type="hidden"
+                value="{{ $resp->getAmount() }}"
+                name="amount">
         <div> Token: {{ $req["token_ws"] }}</div>
-
-        <label>Monto</label>
-        <input value="{{ $resp->getAmount() }}" name="amount" />
-        <button type="submit">Reembolsar</button>
-
+        <div> Monto: {{ $resp->getAmount() }}</div>
+        <button type="submit">Obtener reembolso</button>
     </form>
 
 </div>
