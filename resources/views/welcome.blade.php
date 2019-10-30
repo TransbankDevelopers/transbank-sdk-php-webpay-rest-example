@@ -77,6 +77,15 @@
                     <a href="transaccion_completa/create">Crear Transacción</a>
                 </span>
 
+            <div class="examples_container" style="padding: 10px;">
+                <span class="operation_title" style="border: 1px solid black; padding: 5px">
+                    PatPass by Webpay
+                </span>
+                <span class="operation_link" style="border: 1px solid black; padding: 5px">
+                    <a href="patpass_by_webpay/create">Crear Transacción</a>
+                </span>
+
+            </div>
 
             </div>
 

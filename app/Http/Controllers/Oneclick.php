@@ -36,7 +36,6 @@ class Oneclick extends Controller
         $token = $req["TBK_TOKEN"];
 
         $resp = MallInscription::finish($token);
-
         return view('oneclick/inscription_finished', ["resp" => $resp, "req" => $req]);
 
     }
