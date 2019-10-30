@@ -84,23 +84,6 @@
             <option value="true">True</option>
             <option value="false" selected="true">False</option>
         </select>
-
-
-
-        {{--
-                "wpm_detail": {
-                "service_id": "123345567",
-                "card_holder_id": "12345",
-                "card_holder_name": "Juan",
-                "card_holder_last_name1": "Perez",
-                "card_holder_last_name2": "Gonzalez",
-                "card_holder_mail": "juan.perez@gmail.com",
-                "cellphone_number": "9912345678",
-                "expiration_date": "2019-03-20T20:18:20Z",
-                "commerce_mail": "contacto@comercio.cl",
-                "uf_flag": false
-                }--}}
-
         <button type="submit">Aceptar</button>
     </form>
 
