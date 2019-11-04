@@ -1,10 +1,10 @@
 
 <h1>Request</h1>
-{{ var_dump($req) }}
+<pre> {{  var_dump($req) }} </pre>
 
 
 <h1>Response</h1>
-{{ var_dump($resp) }}
+<pre> {{  var_dump($resp) }} </pre>
 
 
 <h2>Estado de la transacción</h2>

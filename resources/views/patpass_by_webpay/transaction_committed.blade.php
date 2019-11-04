@@ -2,9 +2,9 @@
 
 <div>
 
-    <div>
+    <pre>
         {{ var_dump($resp) }}
-    </div>
+    </pre>
 
 
     <h2>Estado de la transacción</h2>

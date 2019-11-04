@@ -4,9 +4,9 @@
 
     <div>
         <h2>Parametros</h2>
-        {{ var_dump($req) }}
+        <pre> {{  var_dump($req) }} </pre>
         <h2>Respuesta</h2>
-        {{ var_dump($resp) }}
+        <pre> {{  var_dump($resp) }} </pre>
     </div>
 
     <h2>Obtener status de la transacción</h2>

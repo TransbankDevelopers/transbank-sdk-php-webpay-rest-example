@@ -1,10 +1,10 @@
 <h1> Oneclick mall inscripción finalizada</h1>
 
 <h2>Request</h2>
-{{ var_dump($req) }}
+<pre>{{ var_dump($req) }}</pre>
 
 <h2>Respuesta</h2>
-{{ var_dump($resp) }}
+<pre>{{ var_dump($resp) }}</pre>
 
 <h2>Autorizar transacción</h2>
 <form method="post" action="/oneclick/mall/authorizeTransaction" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">

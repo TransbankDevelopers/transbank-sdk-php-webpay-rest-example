@@ -3,7 +3,7 @@
 <div>
 
     <div>
-        {{ var_dump($resp) }}
+        <pre> {{  var_dump($resp) }} </pre>
     </div>
 
     <h2>Obtener status de la transacción</h2>

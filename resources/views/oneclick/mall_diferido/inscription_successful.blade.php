@@ -2,7 +2,7 @@
 
 
 <h3>Datos de la respuesta</h3>
-{{ var_dump($resp) }}
+<pre> {{  var_dump($resp) }} </pre>
 
 <h3>Enviar datos a Transbank</h3>
 <form method="post" action={{ $resp->getUrlWebpay() }}>

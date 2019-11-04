@@ -1,17 +1,17 @@
 <h1> Oneclick mall inscripción finalizada</h1>
 
 <h2>Request</h2>
-{{ var_dump($req) }}
+<pre> {{  var_dump($req) }} </pre>
 
 <h2>Respuesta</h2>
-{{ var_dump($resp) }}
+<pre> {{  var_dump($resp) }} </pre>
 
 <h2>Autorizar transacción</h2>
 <form method="post" action="/oneclick/mall/authorizeTransaction" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
     @csrf
 
     <label for="username">Nombre de usuario</label>
-    <input id="username" name="username" value="{{ isset($_SESSION["user_name"]) ? $_SESSION["user_name"] : ''}}"/>
+    <input id="username" name="username" value="{{ $username }}"/>
 
     <label for="tbk_user">Codigo de usuario</label>
     <input id="tbk_user" name="tbk_user" value="{{ $resp->getTbkUser() }}"/>
@@ -49,7 +49,7 @@
 <form method="delete" action="/oneclick/inscription" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
 
     <label>Nombre de usuario</label>
-    <input name="user_name" value="{{ $_SESSION["user_name"] }}"/>
+    <input name="user_name" value="{{ $username}}"/>
 
     <label>Id de usuario</label>
     <input name="tbk_user" value="{{ $resp->getTbkUser() }}"/>

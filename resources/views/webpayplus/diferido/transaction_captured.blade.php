@@ -1,10 +1,10 @@
 <h1>Webpay Transacción diferida capturada</h1>
 
 <h2>Request</h2>
-{{ var_dump($req) }}
+<pre> {{  var_dump($req) }} </pre>
 
 <h2> Response </h2>
-{{ var_dump($resp) }}
+<pre> {{  var_dump($resp) }} </pre>
 
 
 
