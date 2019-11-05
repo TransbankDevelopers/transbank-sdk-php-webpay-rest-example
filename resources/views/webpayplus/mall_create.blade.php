@@ -58,7 +58,7 @@
     <label for="return_url">
         URL de retorno
     </label>
-    <input id="return_url" name="return_url" value="http://0.0.0.0:8000/webpayplus/mallReturnUrl"/>
+    <input id="return_url" name="return_url" value="http://{{ $_SERVER['HTTP_HOST'] }}/webpayplus/mallReturnUrl"/>
 
     <button type="submit">Aceptar</button>
 </form>

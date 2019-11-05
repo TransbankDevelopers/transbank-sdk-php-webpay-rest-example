@@ -3,7 +3,7 @@
 <div>
 
     <div>
-        {{ var_dump($resp) }}
+        <pre> {{  var_dump($resp) }} </pre>
     </div>
 
 

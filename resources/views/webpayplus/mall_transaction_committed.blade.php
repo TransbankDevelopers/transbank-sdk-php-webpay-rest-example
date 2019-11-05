@@ -1,4 +1,4 @@
-<h1>Transacción confirmada</h1>
+<h1>Webpay Plus Mall Transacción confirmada</h1>
 
 <div>
 

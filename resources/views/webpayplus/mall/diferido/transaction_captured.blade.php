@@ -4,7 +4,7 @@
 {{ var_dump($req) }}
 
 <h2> Response </h2>
-{{ var_dump($resp) }}
+<pre> {{  var_dump($resp) }} </pre>
 
 
 <h2>Reembolsar la transacción</h2>

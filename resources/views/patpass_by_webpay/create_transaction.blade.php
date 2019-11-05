@@ -44,7 +44,7 @@
         <label for="return_url">
             URL de retorno
         </label>
-        <input id="return_url" name="return_url" value="http://0.0.0.0:8000/patpass_by_webpay/returnUrl"/>
+        <input id="return_url" name="return_url" value="http://{{ $_SERVER['HTTP_HOST'] }}/patpass_by_webpay/returnUrl"/>
 
 
 
@@ -84,6 +84,7 @@
             <option value="true">True</option>
             <option value="false" selected="true">False</option>
         </select>
+
         <button type="submit">Aceptar</button>
     </form>
 

@@ -21,7 +21,6 @@ class Webpay extends Controller
     {
 
         $req = $request->all();
-
         $resp = WebpayPlus\Transaction::commit($req["token_ws"]);
 
         return view('webpayplus/transaction_committed', ["resp" => $resp, 'req' => $req]);

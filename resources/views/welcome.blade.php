@@ -6,9 +6,7 @@
 
     <title>Laravel</title>
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
 
 
 </head>
@@ -62,13 +60,24 @@
 
             <div class="examples_container" style="padding: 10px;">
                 <span class="operation_title" style="border: 1px solid black; padding: 5px">
-                    Oneclick
+                    Oneclick mall
                 </span>
                 <span class="operation_link" style="border: 1px solid black; padding: 5px">
                     <a href="oneclick/startInscription">Inscribir</a>
                 </span>
 
             </div>
+
+            <div class="examples_container" style="padding: 10px;">
+                <span class="operation_title" style="border: 1px solid black; padding: 5px">
+                    Oneclick mall diferido
+                </span>
+                <span class="operation_link" style="border: 1px solid black; padding: 5px">
+                    <a href="oneclick/diferido/startInscription">Inscribir</a>
+                </span>
+
+            </div>
+
             <div class="examples_container" style="padding: 10px;">
                 <span class="operation_title" style="border: 1px solid black; padding: 5px">
                     Transacción Completa
@@ -76,17 +85,6 @@
                 <span class="operation_link" style="border: 1px solid black; padding: 5px">
                     <a href="transaccion_completa/create">Crear Transacción</a>
                 </span>
-
-            <div class="examples_container" style="padding: 10px;">
-                <span class="operation_title" style="border: 1px solid black; padding: 5px">
-                    PatPass by Webpay
-                </span>
-                <span class="operation_link" style="border: 1px solid black; padding: 5px">
-                    <a href="patpass_by_webpay/create">Crear Transacción</a>
-                </span>
-
-            </div>
-
             </div>
 
             <div class="examples_container" style="padding: 10px;">
@@ -96,9 +94,20 @@
                 <span class="operation_link" style="border: 1px solid black; padding: 5px">
                     <a href="transaccion_completa/mall_create">Crear Transacción</a>
                 </span>
+            </div>
 
+            <div class="examples_container" style="padding: 10px;">
+                <span class="operation_title" style="border: 1px solid black; padding: 5px">
+                    Patpass by Webpay
+                </span>
+                <span class="operation_link" style="border: 1px solid black; padding: 5px">
+                    <a href="patpass_by_webpay/create">Crear Transacción</a>
+                </span>
 
             </div>
+
+
+
 
             <div class="examples_container" style="padding: 10px">
                 <span class="operation_title" style="border: 1px solid black; padding: 5px">Patpass Comercio</span>
@@ -109,14 +118,6 @@
 
             </div>
 
-            <div class="examples_container" style="padding: 10px">
-                <span class="operation_title" style="border: 1px solid black; padding: 5px">Patpass Comercio</span>
-
-                <span class="operation_link" style="border: 1px solid black; padding: 5px">
-                    <a href="patpass_comercio/create-form">Request Form</a>
-                </span>
-
-            </div>
         </div>
 
 

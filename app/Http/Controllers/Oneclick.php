@@ -36,7 +36,8 @@ class Oneclick extends Controller
         $token = $req["TBK_TOKEN"];
 
         $resp = MallInscription::finish($token);
-        return view('oneclick/inscription_finished', ["resp" => $resp, "req" => $req]);
+        $userName = array_key_exists("user_name", $_SESSION) ? $_SESSION["user_name"] : '';
+        return view('oneclick/inscription_finished', ["resp" => $resp, "req" => $req, "username" => $userName]);
 
     }
 

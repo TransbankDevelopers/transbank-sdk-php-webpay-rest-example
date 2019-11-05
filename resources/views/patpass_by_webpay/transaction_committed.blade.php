@@ -2,9 +2,16 @@
 
 <div>
 
-    <div>
-        {{ dd($resp) }}
-    </div>
+    <pre>
+        {{ var_dump($resp) }}
+    </pre>
 
+
+    <h2>Estado de la transacción</h2>
+    <form method="get" action="/patpass_by_webpay/transactionStatus" >
+        <input name="token" value="{{ $req['token_ws'] }}" />
+
+        <button type="submit">Enviar</button>
+    </form>
 
 </div>
