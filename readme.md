@@ -19,7 +19,7 @@ docker-compose run web composer install
 ```
 Finalmente, para correr el proyecto de ejemplo:
 ```
-docker-compose run --service-ports web php artisan serve --host=0.0.0.0 --port=8000
+docker-compose up
 ```
 También puedes iniciar el proyecto simplemente ejecutando el archivo `run.sh` en la raíz del proyecto
 
