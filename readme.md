@@ -9,24 +9,38 @@ Para ejecutar el proyecto es necesario tener:
  ```docker``` y ```docker-compose``` ([como instalar Docker](https://docs.docker.com/install/))
 
 ## Ejecutar ejemplo
-Con el código fuente del proyecto en tu computador, puedes ejecutar en la raíz del proyecto el comando para construir el contenedor docker, si es la primera vez que ejecutas el proyecto:
+Para iniciar el proyecto, se usa `docker` y `docker-compose`. Para simplificar el proceso se crearon algunos scripts. 
+
+### Iniciar proyecto
+Este comando construirá el contenedor la primera vez que se ejecute, además de iniciar el proyecto.
 ```bash
-docker-compose build
+./start
 ```
-Luego, es necesario instalar las dependencias:
+
+### Detener proyecto
 ```bash
-docker-compose run web composer install
+./stop
 ```
-Finalmente, para correr el proyecto de ejemplo:
+
+### Otros comandos
+
+#### Detener y eliminar las imágenes
+```bash
+./purge
 ```
-docker-compose up
+
+#### Entrar a la máquina 
+```bash
+./shell
 ```
-También puedes iniciar el proyecto simplemente ejecutando el archivo `run.sh` en la raíz del proyecto
 
-En ambos casos el proyecto se ejecutará en http://localhost:8000 (y fallará en caso de que el puerto 8000 no esté disponible)
+#### Instalar dependencias de composer
+```bash
+./update
+```
 
-Es posible ver las operaciones del SDK implementadas en la clase TransactionController,
-la cual esta en [Webpay.php](./app/Http/Controllers/Webpay.php)
 
+Esto levantará el servidor de prueba en [http://localhost:8000](http://localhost:8000) (y fallará en caso de que el puerto 8000 no esté disponible)
 
-TODO: mostrar capturas con ejemplos
+Es posible ver las operaciones del SDK implementadas en la clase los controladores ubicados en `app/Http/Controllers/`. 
+

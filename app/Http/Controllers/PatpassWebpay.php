@@ -22,7 +22,7 @@ class PatpassWebpay extends Controller
 
     public function commitTransaction(Request $request)
     {
-        \Transbank\Patpass\PatpassByWebpay::configureForTesting();
+        PatpassByWebpay::configureForTesting();
         $req = $request->all();
         $token = $req['token_ws'];
         $resp = Transaction::commit($token);
@@ -33,7 +33,7 @@ class PatpassWebpay extends Controller
 
     public function getTransactionStatus(Request $request)
     {
-        \Transbank\Patpass\PatpassByWebpay::configureForTesting();
+        PatpassByWebpay::configureForTesting();
         $req = $request->all();
         $token = $req['token'];
 

@@ -17,7 +17,6 @@ Route::get('/', function () {
 
 # Webpay Plus
 Route::get('/webpayplus/create', function () {
-
     return view('webpayplus/create');
 });
 
