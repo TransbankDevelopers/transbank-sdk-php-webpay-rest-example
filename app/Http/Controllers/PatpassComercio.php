@@ -20,6 +20,9 @@ class PatpassComercio extends Controller
 {
   public function startTransaction(Request $request) {
 
+      \Transbank\Patpass\PatpassComercio::setCommerceCode('27911951');
+      \Transbank\Patpass\PatpassComercio::setApiKey('SwKV09tHYw43yOTV0njc');
+      \Transbank\Patpass\PatpassComercio::setIntegrationType('LIVE');
     $req = $request->all();
 
       $res = Inscription::start(  $req['url'],
