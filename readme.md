@@ -12,8 +12,9 @@ Para ejecutar el proyecto es necesario tener:
 Para iniciar el proyecto, se usa `docker` y `docker-compose`. Para simplificar el proceso se crearon algunos scripts. 
 
 ### Iniciar proyecto
-Este comando construirá el contenedor la primera vez que se ejecute, además de iniciar el proyecto.
+Estos comandos construirán el contenedor la primera vez que se ejecute, además de iniciar el proyecto.
 ```bash
+./update
 ./start
 ```
 
