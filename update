@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
 docker-compose run web composer install
+docker-compose run web php artisan key:generate
+docker-compose stop
