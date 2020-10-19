@@ -1,11 +1,5 @@
 {
     "name": "laravel/laravel",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/TransbankDevelopers/transbank-sdk-php"
-        }
-    ],
     "type": "project",
     "description": "The Laravel Framework.",
     "keywords": [
@@ -18,7 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "transbank/transbank-sdk": "dev-feat/implement_mall_installments_correctly"
+        "transbank/transbank-sdk": "@dev"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -27,11 +21,6 @@
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^7.5"
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
     },
     "extra": {
         "laravel": {
@@ -52,6 +41,15 @@
             "Tests\\": "tests/"
         }
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/Users/gonzunigad/code/transbank-sdk-php/",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {

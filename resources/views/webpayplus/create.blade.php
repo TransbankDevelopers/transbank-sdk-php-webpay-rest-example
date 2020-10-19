@@ -1,26 +1,6 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout')
+@section('content')
 
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-<style>
-    .webpay_form input {
-        font-size: 20px;
-
-    }
-
-
-</style>
-
-</head>
-
-<body>
     <h1>Ejemplo Webpay Plus Transaccion normal</h1>
 
     <form class="webpay_form" action="create" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
@@ -48,7 +28,4 @@
 
         <button type="submit">Aceptar</button>
     </form>
-
-</body>
-
-</html>
+@endsection

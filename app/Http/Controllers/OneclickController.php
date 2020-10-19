@@ -9,7 +9,7 @@ use Transbank\Webpay\Oneclick\MallInscription;
 use Transbank\Webpay\Oneclick\MallTransaction;
 use Transbank\Webpay\WebpayPlus;
 
-class Oneclick extends Controller
+class OneclickController extends Controller
 {
 
     public function startInscription(Request $request)

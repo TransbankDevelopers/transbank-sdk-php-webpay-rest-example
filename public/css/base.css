@@ -1,0 +1,59 @@
+body {
+    background: #eee;
+}
+h1 {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 5px 10px;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    min-width: 250px;
+    font-size: 0.8em;
+}
+
+button {
+    background: green;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+a {
+    color: blue;
+    text-decoration: underline;
+}
+
+code {
+    padding: 5px;
+    background: #eee;
+    border: solid 1px #aaa;
+    border-radius: 5px;
+}
+
+.response {
+    border-top: solid 1px #ccc;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+.examples_container {
+    border-bottom: solid 1px #ccc;
+    padding: 5px;
+}
+.operation_title {
+    padding-right: 20px;
+}
+.operation_link {
+    float: right;
+}
+.operation_link i {
+    opacity: 0;
+}
+
+.operation_link:hover i {
+    opacity: 1;
+}
