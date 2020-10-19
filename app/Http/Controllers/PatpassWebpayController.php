@@ -8,7 +8,7 @@ use Transbank\Patpass\PatpassByWebpay;
 use \Transbank\Patpass\PatpassByWebpay\Transaction;
 
 
-class PatpassWebpay extends Controller
+class PatpassWebpayController extends Controller
 {
     public function create(Request $request)
     {

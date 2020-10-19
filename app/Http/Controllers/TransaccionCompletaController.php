@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 use Transbank\TransaccionCompleta\Transaction;
 use Transbank\TransaccionCompleta as TransaccionNormalCompleta;
 
-class TransaccionCompleta extends Controller
+class TransaccionCompletaController extends Controller
 {
     public function createTransaction(Request $request)
     {
