@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "345edcbe94c5e3a8d087b598b12c8268",
+    "content-hash": "b0b521638ef6c556cb553c7a8ac18ec1",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4205,7 +4205,7 @@
         },
         {
             "name": "transbank/transbank-sdk",
-            "version": "dev-master",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TransbankDevelopers/transbank-sdk-php.git",
@@ -4231,7 +4231,6 @@
                 "satooshi/php-coveralls": "~0.6.1",
                 "squizlabs/php_codesniffer": "~2.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -6322,9 +6321,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "transbank/transbank-sdk": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
