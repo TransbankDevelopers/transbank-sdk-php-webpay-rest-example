@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b0b521638ef6c556cb553c7a8ac18ec1",
+    "content-hash": "17fb103e10fca37828e7bb0d0ad82ee0",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4205,17 +4205,11 @@
         },
         {
             "name": "transbank/transbank-sdk",
-            "version": "1.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/TransbankDevelopers/transbank-sdk-php.git",
-                "reference": "ce3a21f751b68dc6d1f629c03d3d588b3586a6ad"
-            },
+            "version": "dev-master",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/ce3a21f751b68dc6d1f629c03d3d588b3586a6ad",
-                "reference": "ce3a21f751b68dc6d1f629c03d3d588b3586a6ad",
-                "shasum": ""
+                "type": "path",
+                "url": "/Users/gonzunigad/code/transbank-sdk-php",
+                "reference": "ce3a21f751b68dc6d1f629c03d3d588b3586a6ad"
             },
             "require": {
                 "ext-curl": "*",
@@ -4235,7 +4229,8 @@
             "autoload": {
                 "files": [
                     "lib/webpay_rest/oneclick/Oneclick.php",
-                    "lib/patpass/patpass_comercio/PatpassComercio.php"
+                    "lib/patpass/patpass_comercio/PatpassComercio.php",
+                    "lib/transaccion_completa/TransaccionCompleta.php"
                 ],
                 "psr-4": {
                     "Transbank\\": [
@@ -4309,7 +4304,6 @@
                     ]
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -4320,11 +4314,9 @@
                 "sdk",
                 "transbank"
             ],
-            "support": {
-                "issues": "https://github.com/TransbankDevelopers/transbank-sdk-php/issues",
-                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/1.8.0"
-            },
-            "time": "2020-10-20T13:45:22+00:00"
+            "transport-options": {
+                "relative": false
+            }
         },
         {
             "name": "vlucas/phpdotenv",
@@ -6321,7 +6313,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "transbank/transbank-sdk": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
