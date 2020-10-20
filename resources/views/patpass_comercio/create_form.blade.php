@@ -55,17 +55,17 @@
     <input id="finalUrl" name="finalUrl" value="http://{{ $_SERVER['HTTP_HOST'] }}/patpass_comercio/voucherUrl" />
 
     <label for="montoMaximo">
-        Monto Maximo
+        Monto Máximo
     </label>
     <input id="montoMaximo" name="montoMaximo" value="1000" />
 
     <label for="telefonoFijo">
-        Telefono Fijo
+        Teléfono Fijo
     </label>
     <input id="telefonoFijo" name="telefonoFijo" value="+5622000000" />
 
     <label for="telefonoCelular">
-        Telefono Celular
+        Teléfono Celular
     </label>
     <input id="telefonoCelular" name="telefonoCelular" value="+56900000000" />
 
@@ -85,7 +85,7 @@
     <input id="correoComercio" name="correoComercio" value="comercio@continuum.cl" />
 
     <label for="direccion">
-        Direccion
+        Dirección
     </label>
     <input id="direccion" name="direccion" value="huerfanos 101" />
 

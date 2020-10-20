@@ -15,7 +15,7 @@ use Transbank\TransaccionCompleta\MallTransaction;
 use Transbank\TransaccionCompleta\MallTransaccionCompleta;
 use Transbank\TransaccionCompleta\Options;
 
-class TransaccionCompletaMall
+class TransaccionCompletaMallController
 {
 
     public function showMallCreate(Request $request)

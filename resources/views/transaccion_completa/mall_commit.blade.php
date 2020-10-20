@@ -1,10 +1,10 @@
 <h1>Ejemplo Transaccion Completa Mall transacción confirmada</h1>
 
 <h2>Request</h2>
-{{ print_r($req) }}
+<pre>@php print_r($req) @endphp</pre>
 
 <h2>Response</h2>
-{{ print_r($res) }}
+<pre>@php print_r($res) @endphp</pre>
 
 <h1>Obtener status de la transacción</h1>
 <form class="transaccion_completa_form" action="/transaccion_completa/mall_status/{{ $req['token'] }}" method="get" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
@@ -19,7 +19,7 @@
     <label for="token">Token</label>
     <input name="token" id="token" value="{{ $req['token'] }}">
 
-    <label for="child_commerce_code">Codigo de comercio (hijo)</label>
+    <label for="child_commerce_code">Código de comercio (hijo)</label>
     <input name="child_commerce_code" value="{{ $res->getDetails()[0]['commerce_code'] }}">
 
     <label for="child_buy_order">Codigo de comercio (hijo)</label>

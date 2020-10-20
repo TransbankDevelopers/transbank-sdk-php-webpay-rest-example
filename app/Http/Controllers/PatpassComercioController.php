@@ -16,7 +16,7 @@ use Transbank\Patpass\PatpassComercio\Inscription;
 
 
 
-class PatpassComercio extends Controller
+class PatpassComercioController extends Controller
 {
   public function startTransaction(Request $request) {
 
