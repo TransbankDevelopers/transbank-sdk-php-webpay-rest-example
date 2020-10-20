@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "345edcbe94c5e3a8d087b598b12c8268",
+    "content-hash": "b0b521638ef6c556cb553c7a8ac18ec1",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4205,16 +4205,16 @@
         },
         {
             "name": "transbank/transbank-sdk",
-            "version": "dev-master",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TransbankDevelopers/transbank-sdk-php.git",
-                "reference": "56f8203c0728bd9812842aa3c0817ae5968ca2a5"
+                "reference": "ce3a21f751b68dc6d1f629c03d3d588b3586a6ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/56f8203c0728bd9812842aa3c0817ae5968ca2a5",
-                "reference": "56f8203c0728bd9812842aa3c0817ae5968ca2a5",
+                "url": "https://api.github.com/repos/TransbankDevelopers/transbank-sdk-php/zipball/ce3a21f751b68dc6d1f629c03d3d588b3586a6ad",
+                "reference": "ce3a21f751b68dc6d1f629c03d3d588b3586a6ad",
                 "shasum": ""
             },
             "require": {
@@ -4231,7 +4231,6 @@
                 "satooshi/php-coveralls": "~0.6.1",
                 "squizlabs/php_codesniffer": "~2.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -4323,9 +4322,9 @@
             ],
             "support": {
                 "issues": "https://github.com/TransbankDevelopers/transbank-sdk-php/issues",
-                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/master"
+                "source": "https://github.com/TransbankDevelopers/transbank-sdk-php/tree/1.8.0"
             },
-            "time": "2020-10-19T19:55:43+00:00"
+            "time": "2020-10-20T13:45:22+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -4547,16 +4546,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.8.0",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "fa50d9db1c0c2fae99cf988d27023effda5524a3"
+                "reference": "2ec31f3adc54c71a59c5e3c2143d7a0e2f8899f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/fa50d9db1c0c2fae99cf988d27023effda5524a3",
-                "reference": "fa50d9db1c0c2fae99cf988d27023effda5524a3",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/2ec31f3adc54c71a59c5e3c2143d7a0e2f8899f8",
+                "reference": "2ec31f3adc54c71a59c5e3c2143d7a0e2f8899f8",
                 "shasum": ""
             },
             "require": {
@@ -4606,9 +4605,9 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.8.0"
+                "source": "https://github.com/filp/whoops/tree/2.9.0"
             },
-            "time": "2020-10-17T09:00:00+00:00"
+            "time": "2020-10-20T12:00:00+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -6322,9 +6321,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "transbank/transbank-sdk": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
