@@ -88,12 +88,12 @@ Route::post('/transaccion_completa/refund', 'TransaccionCompletaController@refun
 
 # transaccion completa mall
 
-Route::get('/transaccion_completa/mall_create', 'TransaccionCompletaMall@shoControllerwMallCreate');
+Route::get('/transaccion_completa/mall_create', 'TransaccionCompletaMallController@showMallCreate');
 
 
 Route::post('/transaccion_completa/mall_create', 'TransaccionCompletaMallController@mallCreate');
 
-Route::post('/transaccion_completa/mall_installments', 'TransaccionCompletaMall@mallIControllernstallments');
+Route::post('/transaccion_completa/mall_installments', 'TransaccionCompletaMallController@mallInstallments');
 
 Route::get('/transaccion_completa/mall_commit', function () {
     return view('transaccion_completa/mall_commit');
@@ -111,10 +111,10 @@ Route::get('/patpass_comercio/create-form', function () {
 
     return view('patpass_comercio/create_form');
 });
-Route::post('/patpass_comercio/create-form/', 'PatpassComercio@startTransaction');
-Route::post('/patpass_comercio/returnUrl', 'PatpassComercio@finishStartTransaction');
-Route::post('/patpass_comercio/status', 'PatpassComercio@status');
-Route::post('/patpass_comercio/voucherUrl', 'PatpassComercio@displayVoucher');
+Route::post('/patpass_comercio/create-form/', 'PatpassComercioController@startTransaction');
+Route::post('/patpass_comercio/returnUrl', 'PatpassComercioController@finishStartTransaction');
+Route::post('/patpass_comercio/status', 'PatpassComercioController@status');
+Route::post('/patpass_comercio/voucherUrl', 'PatpassComercioController@displayVoucher');
 
 
 # Webpay Plus Mall diferido
