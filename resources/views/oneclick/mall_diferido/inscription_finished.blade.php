@@ -21,8 +21,8 @@
 
     <label for="details_commerce_code">Detalles de transacción</label>
     <select id="details_commerce_code" name="details[0][commerce_code]" value="597055555548">
-        <option value="597055555548">Comercio 1 - Codigo 597055555548</option>
-        <option value="597055555549">Comercio 2 - Codigo 597055555549</option>
+        <option value="597055555548">Comercio 1 - Código 597055555548</option>
+        <option value="597055555549">Comercio 2 - Código 597055555549</option>
     </select>
 
 
