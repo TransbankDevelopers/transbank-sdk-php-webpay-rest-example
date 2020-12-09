@@ -7,7 +7,7 @@
 <pre>{{ var_dump($resp) }}</pre>
 
 <h2>Autorizar transacción</h2>
-<form method="post" action="/oneclick/mall/authorizeTransaction" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
+<form method="post" action="/oneclick/mall/diferido/authorizeTransaction" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
     @csrf
 
     <label for="username">Nombre de usuario</label>
@@ -20,9 +20,9 @@
     <input id="parent_buy_order" name="buy_order" value="{{"123456".rand(1, 100)}}"/>
 
     <label for="details_commerce_code">Detalles de transacción</label>
-    <select id="details_commerce_code" name="details[0][commerce_code]" value="597055555543">
-        <option value="597055555542"> Comercio 1 - Codigo 597055555542</option>
-        <option value="597055555543">Comercio 2 - Codigo 597055555543</option>
+    <select id="details_commerce_code" name="details[0][commerce_code]" value="597055555548">
+        <option value="597055555548">Comercio 1 - Código 597055555548</option>
+        <option value="597055555549">Comercio 2 - Código 597055555549</option>
     </select>
 
 
@@ -46,7 +46,7 @@
 </form>
 
 <h2>Eliminar inscripcion</h2>
-<form method="delete" action="/oneclick/inscription" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
+<form method="delete" action="/oneclick/diferido/inscription" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
 
     <label>Nombre de usuario</label>
     <input name="user_name" value="{{ $_SESSION["user_name"] }}"/>
