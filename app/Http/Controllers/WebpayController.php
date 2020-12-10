@@ -19,7 +19,6 @@ class WebpayController extends Controller
 
     public function commitTransaction(Request $request)
     {
-
         $req = $request->except('_token');
         $resp = WebpayPlus\Transaction::commit($req["token_ws"]);
 

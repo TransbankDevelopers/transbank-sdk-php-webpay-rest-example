@@ -1,4 +1,6 @@
-<h1>Oneclick Mall Inscripción realizada</h1>
+@extends('layout')
+@section('content')
+    <h1>Oneclick Mall Inscripción realizada</h1>
 
 
 <h3>Datos de la respuesta</h3>
@@ -14,3 +16,4 @@
 </form>
 
 
+@endsection
