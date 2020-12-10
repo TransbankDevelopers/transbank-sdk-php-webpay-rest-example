@@ -14,10 +14,10 @@
 
 </head>
 
-<body>
+<body class="p-0 m-0">
    <div class="container min-h-screen mx-auto flex items-center justify-center">
-       <div class="box shadow-lg p-10 bg-white">
-           <nav class="border-b  w-full mb-5 py-1">
+       <div class="box shadow-lg p-10 bg-white" style="min-width: 50%;">
+           <nav class="border-b w-full mb-5 py-1">
                <a class="text-gray-800 no-underline" href="{{ url('/') }}"><i class="fa fa-home"></i> Inicio</a>
                @stack('nav')
            </nav>

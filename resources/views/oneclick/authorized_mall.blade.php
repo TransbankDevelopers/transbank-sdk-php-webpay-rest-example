@@ -1,4 +1,5 @@
-
+@extends('layout')
+@section('content')
 <h1>Request</h1>
 <pre> {{  var_dump($req) }} </pre>
 
@@ -35,3 +36,4 @@
 
     <button type="submit">Enviar</button>
 </form>
+@endsection

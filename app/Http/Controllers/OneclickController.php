@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Transbank\Webpay\Oneclick;
 use Transbank\Webpay\Options;
 use Transbank\Webpay\authorize;
 use Transbank\Webpay\Oneclick\MallInscription;
@@ -17,10 +18,11 @@ class OneclickController extends Controller
 
         session_start();
 
-        $req = $request->all();
+        $req = $request->except('_token');
         $userName = $req["user_name"];
         $email = $req["email"];
         $responseUrl = $req["response_url"];
+
 
         $resp = MallInscription::start($userName, $email, $responseUrl);
 
@@ -32,7 +34,7 @@ class OneclickController extends Controller
     public function finishInscription(Request $request)
     {
         session_start();
-        $req = $request->all();
+        $req = $request->except('_token');
         $token = $req["TBK_TOKEN"];
 
         $resp = MallInscription::finish($token);
@@ -44,7 +46,7 @@ class OneclickController extends Controller
     public function authorizeMall(Request $request)
     {
         session_start();
-        $req = $request->all();
+        $req = $request->except('_token');
 
         $userName = $req["username"];
         $tbkUser = $req["tbk_user"];
@@ -75,7 +77,7 @@ class OneclickController extends Controller
 
     public function transactionStatus(Request $request)
     {
-        $req = $request->all();
+        $req = $request->except('_token');
         $buyOrder = $req["buy_order"];
 
         $apiKey = \Transbank\Webpay\Oneclick::getApiKey();
@@ -89,7 +91,7 @@ class OneclickController extends Controller
 
     public function refund(Request $request)
     {
-        $req = $request->all();
+        $req = $request->except('_token');
         $buyOrder = $req["parent_buy_order"];
         $childCommerceCode = $req["commerce_code"];
         $childBuyOrder = $req["child_buy_order"];
@@ -105,7 +107,7 @@ class OneclickController extends Controller
 
     public function deleteInscription(Request $request)
     {
-        $req = $request->all();
+        $req = $request->except('_token');
         $tbkUser = $req["tbk_user"];
         $userName = $req["user_name"];
 

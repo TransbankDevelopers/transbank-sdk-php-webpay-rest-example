@@ -1,4 +1,6 @@
-<h1>Oneclick Mall Autorización realizada</h1>
+@extends('layout')
+@section('content')
+    <h1>Oneclick Mall Autorización realizada</h1>
 
 <h1>Request</h1>
 <pre> {{  var_dump($req) }} </pre>
@@ -22,3 +24,4 @@
 
     <button type="submit">Enviar datos</button>
 </form>
+@endsection

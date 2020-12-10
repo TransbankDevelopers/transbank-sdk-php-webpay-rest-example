@@ -34,7 +34,12 @@ code {
     border: solid 1px #aaa;
     border-radius: 5px;
 }
-
+pre {
+    padding: 10px;
+    background: #efefef;
+    border: solid 1px #aaa;
+    border-radius: 5px;
+}
 .response {
     border-top: solid 1px #ccc;
     padding-top: 20px;

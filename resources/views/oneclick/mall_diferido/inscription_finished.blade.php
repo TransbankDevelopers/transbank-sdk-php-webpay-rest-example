@@ -1,4 +1,6 @@
-<h1> Oneclick mall inscripción finalizada</h1>
+@extends('layout')
+@section('content')
+    <h1> Oneclick mall inscripción finalizada</h1>
 
 <h2>Request</h2>
 <pre>{{ var_dump($req) }}</pre>
@@ -58,3 +60,4 @@
 
 
 </form>
+@endsection

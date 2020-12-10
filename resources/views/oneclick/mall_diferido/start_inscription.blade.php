@@ -1,3 +1,5 @@
+@extends('layout')
+@section('content')
 <h1>Oneclick inscripción</h1>
 
 
@@ -16,3 +18,4 @@
 
     <button type="submit">Enviar datos</button>
 </form>
+@endsection

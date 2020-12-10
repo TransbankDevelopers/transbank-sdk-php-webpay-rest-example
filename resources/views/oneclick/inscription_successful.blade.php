@@ -1,8 +1,10 @@
+@extends('layout')
+@section('content')
 <h1>Oneclick Mall Inscripción realizada</h1>
 
 
 <h3>Datos de la respuesta</h3>
-<pre> {{  var_dump($resp) }} </pre>
+<pre> {{  print_r($resp, true) }} </pre>
 
 <h3>Enviar datos a Transbank</h3>
 <form method="post" action={{ $resp->getUrlWebpay() }}>
@@ -12,5 +14,5 @@
 
     <button type="submit">Enviar datos</button>
 </form>
-
+@endsection
 
