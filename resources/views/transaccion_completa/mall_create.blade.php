@@ -45,23 +45,34 @@
     </label>
     <input type="text" name="card_expiration_date" value="22/10" />
 
-    <label for="merchant_1_amount">Monto Merchant 1</label>
-    <input type="text" id="merchant_1_amount" name="details[0][amount]" value="10000" />
+    @if (app()->environment('production'))
+        <label for="merchant_1_amount">Monto Merchant 1</label>
+        <input type="text" id="merchant_1_amount" name="details[0][amount]" value="10000" />
 
-    <label for="merchant_1_commerce_code">Codigo de comercio Hijo 1</label>
-    <input type="text" name="details[0][commerce_code]" value="{{ $childCommerceCodes[0] }}">
+        <label for="merchant_1_commerce_code">Codigo de comercio Hijo 1</label>
+        <input type="text" name="details[0][commerce_code]" value="{{ config('services.transbank.transaccion_completa_mall_child_cc') }}">
 
-    <label for="merchant_1_buy_order">Orden de compra comercio Hijo 1</label>
-    <input type="text" name="details[0][buy_order]" value="{{ '123456' . rand(1,1000) }}" />
+        <label for="merchant_1_buy_order">Orden de compra comercio Hijo 1</label>
+        <input type="text" name="details[0][buy_order]" value="{{ '123456' . rand(1,1000) }}" />
+    @else
+        <label for="merchant_1_amount">Monto Merchant 1</label>
+        <input type="text" id="merchant_1_amount" name="details[0][amount]" value="10000" />
 
-    <label for="merchant_1_amount">Monto Merchant 2</label>
-    <input type="text" id="merchant_2_amount" name="details[1][amount]" value="10000" />
+        <label for="merchant_1_commerce_code">Codigo de comercio Hijo 1</label>
+        <input type="text" name="details[0][commerce_code]" value="{{ $childCommerceCodes[0] }}">
 
-    <label for="merchant_2_commerce_code">Codigo de comercio Hijo 2</label>
-    <input type="text" name="details[1][commerce_code]" value="{{ $childCommerceCodes[1] }}">
+        <label for="merchant_1_buy_order">Orden de compra comercio Hijo 1</label>
+        <input type="text" name="details[0][buy_order]" value="{{ '123456' . rand(1,1000) }}" />
 
-    <label for="merchant_2_buy_order">Orden de compra comercio Hijo 1</label>
-    <input type="text" name="details[1][buy_order]" value="{{ '123456' . rand(1,1000) }}" />
+        <label for="merchant_2_amount">Monto Merchant 2</label>
+        <input type="text" id="merchant_2_amount" name="details[1][amount]" value="10000" />
+
+        <label for="merchant_2_commerce_code">Codigo de comercio Hijo 2</label>
+        <input type="text" name="details[1][commerce_code]" value="{{ $childCommerceCodes[1] }}">
+
+        <label for="merchant_2_buy_order">Orden de compra comercio Hijo 1</label>
+        <input type="text" name="details[1][buy_order]" value="{{ '123456' . rand(1,1000) }}" />
+    @endif
 
     <button type="submit">Aceptar</button>
 </form>

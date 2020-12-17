@@ -13,6 +13,16 @@ use Transbank\Webpay\WebpayPlus;
 class OneclickDeferredController extends Controller
 {
 
+    public function __construct(){
+        if (app()->environment('production')) {
+            Oneclick::setCommerceCode(config('services.transbank.oneclick_mall_deferred_cc'));
+            Oneclick::setApiKey(config('services.transbank.oneclick_mall_deferred_api_key'));
+            Oneclick::setIntegrationType('LIVE');
+        } else {
+            Oneclick::configureOneclickMallDeferredForTesting();
+        }
+    }
+
     public function startInscription(Request $request)
     {
         session_start();
