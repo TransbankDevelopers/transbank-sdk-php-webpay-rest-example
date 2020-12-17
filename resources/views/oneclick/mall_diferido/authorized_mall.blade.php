@@ -3,10 +3,10 @@
     <h1>Oneclick Mall Autorización realizada</h1>
 
 <h1>Request</h1>
-<pre> {{  var_dump($req) }} </pre>
+<pre> {{  print_r($req, true) }} </pre>
 
 <h1>Response</h1>
-<pre> {{  var_dump($resp) }} </pre>
+<pre> {{  print_r($resp, true) }} </pre>
 
 <h2>Capturar transacción</h2>
 <form action="/oneclick/mall/diferido/capture" method="post">
@@ -20,7 +20,7 @@
     <label for="amount">Monto</label>
     <input type="text" name="amount" value="1000">
 
-    <input type="hidden" name="parent_buy_order" value="{{ $resp->getBuyOrder() }}">
+    <input type="text" name="parent_buy_order" value="{{ $resp->getBuyOrder() }}">
 
     <button type="submit">Enviar datos</button>
 </form>

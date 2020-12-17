@@ -13,7 +13,7 @@
 
     <form method="post" action="/webpayplus/mallTransactionStatus">
         @csrf
-        <input type="hidden"
+        <input type="text"
                value="{{ $params["token_ws"] }}"
                name="token">
         <div> Token: {{ $params["token_ws"] }}</div>
@@ -24,7 +24,7 @@
     <h3>Transaccion 1</h3>
     <form method="post" action="/webpayplus/mallRefund" style="display: flex; flex-direction: column; width: 20%;">
         @csrf
-        <input type="hidden" name="token" value="{{ $params["token_ws"] }}">
+        <input type="text" name="token" value="{{ $params["token_ws"] }}">
 
         <label for="buy_order_1">Buy Order</label>
         <input id="buy_order_1" name="buy_order" value="{{ $response->getDetails()[0]["buy_order"]  }}" >
@@ -41,7 +41,7 @@
     <h3>Transaccion 2</h3>
     <form method="post" action="/webpayplus/mallRefund" style="display:flex; flex-direction: column; width: 20%;">
         @csrf
-        <input type="hidden" name="token" value="{{ $params["token_ws"] }}">
+        <input type="text" name="token" value="{{ $params["token_ws"] }}">
 
         <label for="buy_order_1">Buy Order</label>
         <input id="buy_order_1" name="buy_order" value="{{ $response->getDetails()[1]["buy_order"]  }}" >

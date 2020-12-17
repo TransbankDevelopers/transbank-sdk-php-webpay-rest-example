@@ -1,18 +1,18 @@
 @extends('layout')
 @section('content')
 <h1>Request</h1>
-<pre> {{  var_dump($req) }} </pre>
+<pre> {{  print_r($req, true) }} </pre>
 
 
 <h1>Response</h1>
-<pre> {{  var_dump($resp) }} </pre>
+<pre> {{  print_r($resp, true) }} </pre>
 
 
 <h2>Estado de la transacción</h2>
 <form method="post" action="/oneclick/mall/transactionStatus" >
     @csrf
     <label>Buy order: {{ $resp->getBuyOrder() }}</label>
-    <input type="hidden" name="buy_order" value="{{  $resp->getBuyOrder() }}">
+    <input type="text" name="buy_order" value="{{  $resp->getBuyOrder() }}">
 
     <button type="submit">Enviar datos</button>
 </form>

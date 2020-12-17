@@ -1,16 +1,16 @@
 <h1>Webpay plus Mall Transacción diferida capturada</h1>
 
 <h2>Request</h2>
-{{ var_dump($req) }}
+{{ print_r($req, true) }}
 
 <h2> Response </h2>
-<pre> {{  var_dump($resp) }} </pre>
+<pre> {{  print_r($resp, true) }} </pre>
 
 
 <h2>Reembolsar la transacción</h2>
 <form method="post" action="/webpayplus/mall/diferido/refund" style="display: flex; flex-direction: column; width: 20%;">
     @csrf
-    <input type="hidden" name="token" value="{{ $req["token"] }}">
+    <input type="text" name="token" value="{{ $req["token"] }}">
 
     <label for="buy_order_1">Buy Order</label>
     <input id="buy_order_1" name="child_buy_order" value="{{ $req["buy_order"]  }}" >
@@ -28,7 +28,7 @@
 
 <form method="post" action="/webpayplus/mall/diferido/transactionStatus">
     @csrf
-    <input name="token" type="hidden" value={{ $req["token"] }}>
+    <input name="token" type="text" value={{ $req["token"] }}>
     <button type="submit">Ver estado</button>
 
 </form>

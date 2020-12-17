@@ -4,16 +4,16 @@
 
     <div>
         <h2>Parametros</h2>
-        <pre> {{  var_dump($req) }} </pre>
+        <pre> {{  print_r($req, true) }} </pre>
         <h2>Respuesta</h2>
-        <pre> {{  var_dump($resp) }} </pre>
+        <pre> {{  print_r($resp, true) }} </pre>
     </div>
 
     <h2>Obtener status de la transacción</h2>
 
     <form method="post" action="/webpayplus/mall/diferido/transactionStatus">
         @csrf
-        <input type="hidden"
+        <input type="text"
                value="{{ $req["token_ws"] }}"
                name="token">
         <div> Token: {{ $req["token_ws"] }}</div>
@@ -72,7 +72,7 @@
     <h3>Transaccion 1</h3>
     <form method="post" action="/webpayplus/mall/diferido/refund" style="display: flex; flex-direction: column; width: 20%;">
         @csrf
-        <input type="hidden" name="token" value="{{ $req["token_ws"] }}">
+        <input type="text" name="token" value="{{ $req["token_ws"] }}">
 
         <label for="buy_order_1">Buy Order</label>
         <input id="buy_order_1" name="child_buy_order" value="{{ $resp->getDetails()[0]["buy_order"]  }}" >
@@ -89,7 +89,7 @@
     <h3>Transaccion 2</h3>
     <form method="post" action="/webpayplus/mall/diferido/refund" style="display:flex; flex-direction: column; width: 20%;">
         @csrf
-        <input type="hidden" name="token" value="{{ $req["token_ws"] }}">
+        <input type="text" name="token" value="{{ $req["token_ws"] }}">
 
         <label for="buy_order_1">Buy Order</label>
         <input id="buy_order_1" name="child_buy_order" value="{{ $resp->getDetails()[1]["buy_order"]  }}" >

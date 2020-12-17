@@ -3,7 +3,7 @@
 <div>
 
     <pre>
-        {{ var_dump($resp) }}
+        {{ print_r($resp, true) }}
     </pre>
 
 

@@ -1,18 +1,18 @@
 <h1>Oneclick Mall Captura realizada</h1>
 
 <h1>Request</h1>
-<pre> {{  var_dump($req) }} </pre>
+<pre> {{  print_r($req, true) }} </pre>
 
 
 <h1>Response</h1>
-<pre> {{  var_dump($resp) }} </pre>
+<pre> {{  print_r($resp, true) }} </pre>
 
 
 <h2>Estado de la transacción</h2>
 <form method="post" action="/oneclick/mall/diferido/transactionStatus" >
     @csrf
     <label>Buy order: {{ $req['buy_order'] }}</label>
-    <input type="hidden" name="buy_order" value="{{  $req['parent_buy_order'] }}">
+    <input type="text" name="buy_order" value="{{  $req['parent_buy_order'] }}">
 
     <button type="submit">Enviar datos</button>
 </form>
