@@ -13,7 +13,7 @@ class HomeController extends Controller
         $data = array(
             'production' => app()->environment('production'),
             'webpay_plus_credentials_present' => 
-                config('services.transbank.webpay_plus_cc') !=  null && config('services.transbank.webpay_plus_cc') != null,
+                config('services.transbank.webpay_plus_cc') !=  null && config('services.transbank.webpay_plus_api_key') != null,
             'webpay_plus_mall_credentials_present' => 
                 config('services.transbank.webpay_plus_mall_cc') != null && config('services.transbank.webpay_plus_mall_api_key') != null,
             'webpay_plus_deferred_credentials_present' => 
