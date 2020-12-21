@@ -22,7 +22,7 @@
     <input id="parent_buy_order" name="buy_order" value="{{"123456".rand(1, 100)}}"/>
 
     <label for="details_commerce_code">Detalles de transacción</label>
-    @if (app()->environment('production')
+    @if (app()->environment('production'))
         <?php $childCC = config('services.transbank.oneclick_mall_child_cc') ?>
         <select id="details_commerce_code" name="details[0][commerce_code]" value="{{ $childCC }}">
             <option value="{{ $childCC }}">Comercio Hijo - {{ $childCC }}</option>
