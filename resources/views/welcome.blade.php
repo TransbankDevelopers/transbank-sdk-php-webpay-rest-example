@@ -115,6 +115,7 @@
                     <a href="patpass_comercio/create-form">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
+        @endif
     </div>
 
 @endsection
