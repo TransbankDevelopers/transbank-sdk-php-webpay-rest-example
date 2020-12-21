@@ -3,9 +3,9 @@
     <h1>Inscripción borrada exitosamente</h1>
 
 <h2>Request</h2>
-<pre> {{  var_dump($req) }} </pre>
+<pre> {{  print_r($req, true) }} </pre>
 
 
 <h2>Response</h2>
-<pre> {{  var_dump($resp) }} </pre>
+<pre> {{  print_r($resp, true) }} </pre>
 @endsection

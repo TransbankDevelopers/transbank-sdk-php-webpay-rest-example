@@ -12,7 +12,7 @@
 </pre>
 
 <form method="post" action={{  $response->getUrlVoucher() }}>
-    <input type="hidden" name="tokenComercio" value={{ $params["tokenComercio"] }} />
+    <input type="text" name="tokenComercio" value={{ $params["tokenComercio"] }} />
 
     <button type="submit">Obtener Voucher</button>
 </form>

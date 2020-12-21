@@ -3,7 +3,7 @@
 <div>
 
     <div>
-        <pre> {{  var_dump($resp) }} </pre>
+        <pre> {{  print_r($resp, true) }} </pre>
     </div>
 
 
@@ -11,10 +11,10 @@
 
     <form method="post" action="/webpayplus/diferido/capture">
         @csrf
-        <input type="hidden" name="token" value={{ $req["token_ws"] }}>
-        <input type="hidden" name="buy_order" value={{ $resp->getBuyOrder() }} >
-        <input type="hidden" name="authorization_code" value={{ $resp->getAuthorizationCode() }} >
-        <input type="hidden" name="capture_amount" value={{ $resp->getAmount() }} >
+        <input type="text" name="token" value={{ $req["token_ws"] }}>
+        <input type="text" name="buy_order" value={{ $resp->getBuyOrder() }} >
+        <input type="text" name="authorization_code" value={{ $resp->getAuthorizationCode() }} >
+        <input type="text" name="capture_amount" value={{ $resp->getAmount() }} >
         <button type="submit">Capturar</button>
     </form>
 
@@ -22,7 +22,7 @@
 
     <form method="post" action="/webpayplus/diferido/status">
         @csrf
-        <input type="hidden"
+        <input type="text"
                value="{{ $req["token_ws"] }}"
                name="token">
         <div> Token: {{ $req["token_ws"] }}</div>

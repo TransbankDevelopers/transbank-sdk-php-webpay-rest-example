@@ -12,7 +12,7 @@
 </pre>
 
 <form method="post" action={{  $response->getUrlWebpay() }}>
-    <input type="hidden" name="tokenComercio" value={{ $response->getToken() }} />
+    <input type="text" name="tokenComercio" value={{ $response->getToken() }} />
 
     <button type="submit">Enviar datos</button>
 </form>

@@ -22,7 +22,7 @@
     <label for="url">
         URL
     </label>
-    <input id="url" name="url" value="http://{{ $_SERVER['HTTP_HOST'] }}/patpass_comercio/returnUrl"/>
+    <input id="url" name="url" value="{{ url('/') }}/patpass_comercio/returnUrl"/>
 
     <label for="nombre">
         Nombre
@@ -52,7 +52,7 @@
     <label for="finalUrl">
         URL Final
     </label>
-    <input id="finalUrl" name="finalUrl" value="http://{{ $_SERVER['HTTP_HOST'] }}/patpass_comercio/voucherUrl" />
+    <input id="finalUrl" name="finalUrl" value="{{ url('/') }}/patpass_comercio/voucherUrl" />
 
     <label for="montoMaximo">
         Monto Máximo
