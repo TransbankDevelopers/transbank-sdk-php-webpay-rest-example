@@ -12,11 +12,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Transbank\TransaccionCompleta;
 use Transbank\TransaccionCompleta\Transaction;
 use Transbank\TransaccionCompleta as TransaccionNormalCompleta;
 
 class TransaccionCompletaController extends Controller
 {
+
+    public function __construct(){
+        if (app()->environment('production')) {
+            TransaccionCompleta::setCommerceCode(config('services.transbank.transaccion_completa_cc'));
+            TransaccionCompleta::setApiKey(config('services.transbank.transaccion_completa_api_key'));
+            TransaccionCompleta::setIntegrationType('LIVE');
+        } else {
+            TransaccionCompleta::configureForTesting();
+        }
+    }
+
     public function createTransaction(Request $request)
     {
         TransaccionNormalCompleta::configureForTesting();

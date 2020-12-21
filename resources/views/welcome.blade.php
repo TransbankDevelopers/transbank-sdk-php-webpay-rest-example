@@ -112,9 +112,16 @@
                     <a href="patpass_comercio/create-form">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
 
-            </div>
+    @if (!$data['production'] || $data['production'] && $data['patpass_comercio_credentials_present'])
+    <div class="examples_container" style="padding: 10px">
+        <span class="operation_title">Patpass Comercio</span>
+        <span class="operation_link">
+            <a href="patpass_comercio/create-form">Request Form <i class="fa fa-arrow-right"></i></a>
+        </span>
+    </div>
+    @endif
 
-        </div>
+</div>
 
 
 @endsection

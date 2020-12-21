@@ -11,12 +11,23 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Transbank\TransaccionCompleta;
 use Transbank\TransaccionCompleta\MallTransaction;
 use Transbank\TransaccionCompleta\MallTransaccionCompleta;
 use Transbank\TransaccionCompleta\Options;
 
 class TransaccionCompletaMallController
 {
+
+    public function __construct(){
+        if (app()->environment('production')) {
+            TransaccionCompleta::setCommerceCode(config('services.transbank.transaccion_completa_mall_cc'));
+            TransaccionCompleta::setApiKey(config('services.transbank.transaccion_completa_mall_api_key'));
+            TransaccionCompleta::setIntegrationType('LIVE');
+        } else {
+            TransaccionCompleta::configureMallForTesting();
+        }
+    }
 
     public function showMallCreate(Request $request)
     {

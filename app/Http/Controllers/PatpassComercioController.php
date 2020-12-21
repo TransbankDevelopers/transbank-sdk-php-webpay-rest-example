@@ -12,38 +12,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Transbank\Patpass\PatpassComercio;
 use Transbank\Patpass\PatpassComercio\Inscription;
 
 
 
 class PatpassComercioController extends Controller
 {
-  public function startTransaction(Request $request) {
 
-    $req = $request->all();
+    public function __construct()
+    {
+        if (app()->environment('production')) {
+            PatpassComercio::setCommerceCode(config('services.transbank.patpass_comercio_cc'));
+            PatpassComercio::setApiKey(config('services.transbank.patpass_comercio_api_key'));
+            PatpassComercio::setIntegrationType('LIVE');
+        } else {
+            PatpassComercio::configureForTesting();
+        }
+    }
+    
+    public function startTransaction(Request $request)
+    {
 
-      $res = Inscription::start(  $req['url'],
-                                  $req['nombre'],
-                                  $req['pApellido'],
-                                  $req['sApellido'],
-                                  $req['rut'],
-                                  $req['serviceId'],
-                                  $req['finalUrl'],
-                                  $req['montoMaximo'],
-                                  $req['telefonoFijo'],
-                                  $req['telefonoCelular'],
-                                  $req['nombrePatPass'],
-                                  $req['correoPersona'],
-                                  $req['correoComercio'],
-                                  $req['direccion'],
-                                  $req['ciudad']
-          );
+        $req = $request->all();
+
+        $res = Inscription::start(
+            $req['url'],
+            $req['nombre'],
+            $req['pApellido'],
+            $req['sApellido'],
+            $req['rut'],
+            $req['serviceId'],
+            $req['finalUrl'],
+            $req['montoMaximo'],
+            $req['telefonoFijo'],
+            $req['telefonoCelular'],
+            $req['nombrePatPass'],
+            $req['correoPersona'],
+            $req['correoComercio'],
+            $req['direccion'],
+            $req['ciudad']
+        );
         return view('patpass_comercio/inscription_started', [
             "params" => $req,
             "response" => $res,
         ]);
     }
-    public function status(Request $request){
+    public function status(Request $request)
+    {
 
         $req = $request->all();
         $res = Inscription::status(
@@ -55,7 +71,8 @@ class PatpassComercioController extends Controller
         ]);
     }
 
-    public function finishStartTransaction(Request $request){
+    public function finishStartTransaction(Request $request)
+    {
         $req = $request->all();
         $res = $request->all();
         return view('patpass_comercio/inscription_finish', [
@@ -64,7 +81,8 @@ class PatpassComercioController extends Controller
         ]);
     }
 
-    public function displayVoucher(Request $request){
+    public function displayVoucher(Request $request)
+    {
 
         $req = $request->all();
 

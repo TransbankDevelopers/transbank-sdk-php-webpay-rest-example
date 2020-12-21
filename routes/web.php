@@ -11,56 +11,54 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@welcome');
 
 # Webpay Plus
 Route::get('/webpayplus/create', function () {
     return view('webpayplus/create');
 });
 
-Route::post('/webpayplus/create/', 'WebpayController@createdTransaction');
+Route::post('/webpayplus/create/', 'WebpayPlusController@createdTransaction');
 
-Route::post('/webpayplus/returnUrl', 'WebpayController@commitTransaction');
+Route::post('/webpayplus/returnUrl', 'WebpayPlusController@commitTransaction');
 
-Route::get('/webpayplus/refund', 'WebpayController@showRefund');
-Route::post('/webpayplus/refund', 'WebpayController@refundTransaction');
+Route::get('/webpayplus/refund', 'WebpayPlusController@showRefund');
+Route::post('/webpayplus/refund', 'WebpayPlusController@refundTransaction');
 
-Route::get('/webpayplus/transactionStatus', 'WebpayController@showGetStatus');
-Route::post('/webpayplus/transactionStatus', 'WebpayController@getTransactionStatus');
+Route::get('/webpayplus/transactionStatus', 'WebpayPlusController@showGetStatus');
+Route::post('/webpayplus/transactionStatus', 'WebpayPlusController@getTransactionStatus');
 
 # Webpay Plus Diferido
 Route::get('/webpayplus/diferido/create', function () {
     return view('webpayplus/diferido/create');
 });
-Route::post('/webpayplus/diferido/create', 'WebpayController@createDiferido');
+Route::post('/webpayplus/diferido/create', 'WebpayPlusDeferredController@createDiferido');
 
-Route::post('/webpayplus/diferido/returnUrl', 'WebpayController@commitDiferidoTransaction');
+Route::post('/webpayplus/diferido/returnUrl', 'WebpayPlusDeferredController@commitDiferidoTransaction');
 
 Route::get('/webpayplus/diferido/capture', function () {
     return view('webpayplus/diferido/diferido');
 });
-Route::post('/webpayplus/diferido/capture', 'WebpayController@captureDiferido');
+Route::post('/webpayplus/diferido/capture', 'WebpayPlusDeferredController@captureDiferido');
 
 
 Route::get('/webpayplus/diferido/refund', function () {
     return view('webpayplus/diferido/refund');
 });
-Route::post('/webpayplus/diferido/refund', 'WebpayController@refundDiferido');
+Route::post('/webpayplus/diferido/refund', 'WebpayPlusDeferredController@refundDiferido');
 
-Route::post('/webpayplus/diferido/status', 'WebpayController@statusDiferido');
+Route::post('/webpayplus/diferido/status', 'WebpayPlusDeferredController@statusDiferido');
 
 # Webpay Plus Mall
 
-Route::get('/webpayplus/createMall', 'WebpayController@createMall');
-Route::post('/webpayplus/createMall', 'WebpayController@createdMallTransaction');
+Route::get('/webpayplus/createMall', 'WebpayPlusMallController@createMall');
+Route::post('/webpayplus/createMall', 'WebpayPlusMallController@createdMallTransaction');
 
-Route::post('/webpayplus/mallReturnUrl', 'WebpayController@commitMallTransaction');
+Route::post('/webpayplus/mallReturnUrl', 'WebpayPlusMallController@commitMallTransaction');
 
-Route::get('/webpayplus/mallRefund', 'WebpayController@showMallRefund');
-Route::post('/webpayplus/mallRefund', 'WebpayController@refundMallTransaction');
-Route::post('/webpayplus/mallTransactionStatus', 'WebpayController@getMallTransactionStatus');
+Route::get('/webpayplus/mallRefund', 'WebpayPlusMallController@showMallRefund');
+Route::post('/webpayplus/mallRefund', 'WebpayPlusMallController@refundMallTransaction');
+Route::post('/webpayplus/mallTransactionStatus', 'WebpayPlusMallController@getMallTransactionStatus');
 
 
 # Transaccion Completa
@@ -121,22 +119,22 @@ Route::post('/patpass_comercio/voucherUrl', 'PatpassComercioController@displayVo
 Route::get('/webpayplus/mall/diferido/create', function () {
     return view('webpayplus/mall/diferido/create');
 });
-Route::post('/webpayplus/mall/diferido/create', 'WebpayController@createMallDiferido');
+Route::post('/webpayplus/mall/diferido/create', 'WebpayPlusMallDeferredController@createMallDiferido');
 
-Route::post('/webpayplus/mall/diferido/returnUrl', 'WebpayController@commitMallDiferido');
+Route::post('/webpayplus/mall/diferido/returnUrl', 'WebpayPlusMallDeferredController@commitMallDiferido');
 
 Route::get('/webpayplus/mall/diferido/capture', function () {
     return view('webpayplus/mall/diferido/capture');
 });
-Route::post('/webpayplus/mall/diferido/capture', 'WebpayController@captureMallDiferido');
+Route::post('/webpayplus/mall/diferido/capture', 'WebpayPlusMallDeferredController@captureMallDiferido');
 
 
 Route::get('/webpayplus/mall/diferido/refund', function () {
     return view('webpayplus/mall/diferido/refund');
 });
-Route::post('/webpayplus/mall/diferido/refund', 'WebpayController@refundMallDiferido');
+Route::post('/webpayplus/mall/diferido/refund', 'WebpayPlusMallDeferredController@refundMallDiferido');
 
-Route::post('/webpayplus/mall/diferido/transactionStatus', 'WebpayController@statusMallDiferido');
+Route::post('/webpayplus/mall/diferido/transactionStatus', 'WebpayPlusMallDeferredController@statusMallDiferido');
 
 
 # Oneclick Mall
@@ -188,15 +186,3 @@ Route::post('/oneclick/mall/diferido/refund', 'OneclickDeferredController@refund
 
 Route::post('/oneclick/mall/diferido/capture', 'OneclickDeferredController@transactionCapture');
 
-
-# Patpass by Webpay
-Route::get('/patpass_by_webpay/create', function () {
-
-    return view('/patpass_by_webpay/create_transaction');
-});
-
-Route::post('/patpass_by_webpay/create', 'PatpassWebpayController@create');
-
-Route::post('/patpass_by_webpay/returnUrl', 'PatpassWebpayController@commitTransaction');
-
-Route::get('/patpass_by_webpay/transactionStatus', 'PatpassWebpayController@getTransactionStatus');

@@ -3,15 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Transbank\Webpay\Oneclick;
 use Transbank\Webpay\Options;
-use Transbank\Webpay\authorize;
 use Transbank\Webpay\Oneclick\MallInscription;
 use Transbank\Webpay\Oneclick\MallTransaction;
-use Transbank\Webpay\WebpayPlus;
+use Transbank\Webpay\Oneclick;
 
 class OneclickController extends Controller
 {
+
+    public function __construct(){
+        if (app()->environment('production')) {
+            Oneclick::setCommerceCode(config('services.transbank.oneclick_mall_cc'));
+            Oneclick::setApiKey(config('services.transbank.oneclick_mall_api_key'));
+            Oneclick::setIntegrationType('LIVE');
+        } else {
+            Oneclick::configureOneclickMallForTesting();
+        }
+    }
 
     public function startInscription(Request $request)
     {
@@ -80,11 +88,7 @@ class OneclickController extends Controller
         $req = $request->except('_token');
         $buyOrder = $req["buy_order"];
 
-        $apiKey = \Transbank\Webpay\Oneclick::getApiKey();
-        $parentCommerceCode = 597055555541;
-        $options = new Options($apiKey, $parentCommerceCode);
-
-        $resp = MallTransaction::getStatus($buyOrder, $options);
+        $resp = MallTransaction::getStatus($buyOrder);
 
         return view('oneclick/mall_transaction_status', ["req" => $req, "resp" => $resp]);
     }
@@ -96,11 +100,8 @@ class OneclickController extends Controller
         $childCommerceCode = $req["commerce_code"];
         $childBuyOrder = $req["child_buy_order"];
         $amount = $req["amount"];
-        $apiKey = \Transbank\Webpay\Oneclick::getApiKey();
-        $parentCommerceCode = 597055555541;
-        $options = new Options($apiKey, $parentCommerceCode);
 
-        $resp = MallTransaction::refund($buyOrder, $childCommerceCode, $childBuyOrder, $amount, $options);
+        $resp = MallTransaction::refund($buyOrder, $childCommerceCode, $childBuyOrder, $amount);
 
         return view('oneclick/mall_refund_transaction', ["req" => $req, "resp" => $resp]);
     }
@@ -111,11 +112,7 @@ class OneclickController extends Controller
         $tbkUser = $req["tbk_user"];
         $userName = $req["user_name"];
 
-        $apiKey = \Transbank\Webpay\Oneclick::getApiKey();
-        $parentCommerceCode = 597055555541;
-        $options = new Options($apiKey, $parentCommerceCode);
-
-        $resp = MallInscription::delete($tbkUser, $userName, $options);
+        $resp = MallInscription::delete($tbkUser, $userName);
         return view('oneclick/mall_inscription_deleted', ["req" => $req, "resp" => $resp]);
     }
 
