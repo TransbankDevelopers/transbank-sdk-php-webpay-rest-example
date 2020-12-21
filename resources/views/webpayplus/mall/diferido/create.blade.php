@@ -45,11 +45,10 @@
 
         <label for="merchant_2_buy_order">Orden de compra comercio 2</label>
         <input id="merchant_2_buy_order" name="detail[1][buy_order]" value="{{ time() + rand(1, 1000) }}">
-
-
-        <label for="parent_merchant_buy_order">Orden de compra comercio Padre</label>
-        <input id="parent_merchant_buy_order" name="buy_order" value="{{ time() + rand(1,1000) }}"/>
     @endif
+
+    <label for="parent_merchant_buy_order">Orden de compra comercio Padre</label>
+    <input id="parent_merchant_buy_order" name="buy_order" value="{{ time() + rand(1,1000) }}"/>
 
     <label for="session_id_parent">
         Session id comercio padre

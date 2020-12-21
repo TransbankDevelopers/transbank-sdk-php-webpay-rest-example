@@ -53,6 +53,7 @@ return [
         'webpay_plus_deferred_cc' => env('WEBPAY_PLUS_DEFERRED_CC'),
         'webpay_plus_deferred_api_key' => env('WEBPAY_PLUS_DEFERRED_API_KEY'),
         'webpay_plus_mall_deferred_cc' => env('WEBPAY_PLUS_MALL_DEFERRED_CC'),
+        'webpay_plus_mall_deferred_child_cc' => env('WEBPAY_PLUS_MALL_DEFERRED_CHILD_CC'),
         'webpay_plus_mall_deferred_api_key' => env('WEBPAY_PLUS_MALL_DEFERRED_API_KEY'),
         'oneclick_mall_cc' => env('ONECLICK_MALL_CC'),
         'oneclick_mall_api_key' => env('ONECLICK_MALL_API_KEY'),
