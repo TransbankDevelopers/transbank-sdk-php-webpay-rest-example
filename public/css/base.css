@@ -55,10 +55,4 @@ pre {
 .operation_link {
     float: right;
 }
-.operation_link i {
-    opacity: 0;
-}
 
-.operation_link:hover i {
-    opacity: 1;
-}

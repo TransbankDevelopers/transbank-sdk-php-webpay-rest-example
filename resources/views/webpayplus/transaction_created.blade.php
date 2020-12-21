@@ -23,7 +23,7 @@
     <p>Con el siguiente código se realiza la redirección : </p>
     <code class="block"><pre>
 &lt;form method="post" action={{  $response->getUrl() }}&gt;
-    &lt;input type="hidden" name="token_ws" value={{ $response->getToken() }} /&gt;
+    &lt;input type="text" name="token_ws" value={{ $response->getToken() }} /&gt;
 
     &lt;button type="submit"&gt;Enviar datos&lt;/button&gt;
 &lt;/form>

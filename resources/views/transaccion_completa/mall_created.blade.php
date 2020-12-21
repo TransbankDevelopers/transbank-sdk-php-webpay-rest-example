@@ -44,7 +44,7 @@
 <form class="transaccion_completa_form" action="/transaccion_completa/mall_installments" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
     @csrf
     <span>Token: {{ $res->getToken() }} </span>
-  <input type="hidden" name="token_ws" value="{{ $res->getToken() }}">
+  <input type="text" name="token_ws" value="{{ $res->getToken() }}">
 
   <h3>Detalles</h3>
   <hr>

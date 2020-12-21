@@ -7,7 +7,7 @@
 
 <form method="post" action="/patpass_comercio/status">
     @csrf
-    <input name="tokenComercio" type="hidden" value="{{ $req["j_token"] }}"/>
+    <input name="tokenComercio" type="text" value="{{ $req["j_token"] }}"/>
 
     <button type="submit">Obtener Status</button>
 </form>
