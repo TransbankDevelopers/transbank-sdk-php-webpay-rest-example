@@ -56,3 +56,9 @@ pre {
     float: right;
 }
 
+.home .header {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+

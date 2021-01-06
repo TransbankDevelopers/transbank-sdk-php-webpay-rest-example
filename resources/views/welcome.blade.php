@@ -1,10 +1,10 @@
 @extends('layout')
 @section('content')
 
-    <div class="main_content">
-        <h1 class="header">
-            Ejemplos Webpay
-        </h1>
+    <div class="main_content home">
+        <h2 class="header">
+            Webpay Plus
+        </h2>
 
         @if (!$data['production'] || ($data['production'] && $data['webpay_plus_credentials_present']))
             <div class="examples_container">
@@ -53,9 +53,9 @@
         @endif
 
 
-        <h1 class="header">
+        <h2 class="header">
             Webpay OneClick
-        </h1>
+        </h2>
 
         @if (!$data['production'] || ($data['production'] && $data['oneclick_mall_credentials_present']))
             <div class="examples_container">
@@ -81,9 +81,9 @@
             </div>
         @endif
 
-        <h1 class="header">
+        <h2 class="header">
             Transacción Completa
-        </h1>
+        </h2>
 
         @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_credentials_present']))
             <div class="examples_container">
@@ -113,6 +113,20 @@
 
                 <span class="operation_link">
                     <a href="patpass_comercio/create-form">Iniciar <i class="fa fa-arrow-right"></i></a>
+                </span>
+            </div>
+        @endif
+
+        <h2 class="header">
+            Webpay Modal
+        </h2>
+
+        @if (!$data['production'] || ($data['production'] && $data['webpay_modal_credentials_present']))
+            <div class="examples_container">
+                <span class="operation_title">Webpay Modal</span>
+
+                <span class="operation_link">
+                    <a href="modal/create-form">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif

@@ -186,3 +186,9 @@ Route::post('/oneclick/mall/diferido/refund', 'OneclickDeferredController@refund
 
 Route::post('/oneclick/mall/diferido/capture', 'OneclickDeferredController@transactionCapture');
 
+
+Route::get('/modal/create-form', [\App\Http\Controllers\WebpayModalController::class, 'create_form']);
+Route::post('/modal/create', [\App\Http\Controllers\WebpayModalController::class, 'create']);
+Route::post('/modal/commit', [\App\Http\Controllers\WebpayModalController::class, 'commit']);
+Route::get('/modal/status/{token}', [\App\Http\Controllers\WebpayModalController::class, 'status']);
+Route::post('/modal/refund', [\App\Http\Controllers\WebpayModalController::class, 'refund']);
