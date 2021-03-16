@@ -1,29 +1,7 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    <style>
-        .webpay_form input {
-            font-size: 20px;
-            display: flex;
-            flex-direction:column;
-            width:50%;
-        }
-
-
-    </style>
-
-</head>
-<body>
+@extends('layout')
+@section('content')
 <h1>Ejemplo Transaccion Completa Mall</h1>
-<form action="mall_create" method="post" class="webpay_form" style="">
+<form action="mall_create" method="post" class="webpay_form" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
     @csrf
     <label for="buy_order">
         Ordern de Compra
@@ -76,4 +54,4 @@
 
     <button type="submit">Aceptar</button>
 </form>
-</body>
+@endsection

@@ -1,3 +1,9 @@
-<h1>Webpay Plus Mall Reembolso exitoso</h1>
+@extends('layout')
+@section('content')
 
-<pre> {{  print_r($resp, true) }} </pre>
+    <h1>Webpay Plus Mall Reembolso exitoso</h1>
+
+    <pre> {{  print_r($resp, true) }} </pre>
+
+    <a class="mt-10 block" href="./status/{{ $req['token'] }}">&lt;&lt; Volver al estado de la transacción</a>
+@endsection

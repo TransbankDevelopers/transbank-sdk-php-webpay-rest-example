@@ -11,10 +11,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Transbank\TransaccionCompleta;
 use Transbank\TransaccionCompleta\MallTransaction;
 use Transbank\TransaccionCompleta\MallTransaccionCompleta;
 use Transbank\TransaccionCompleta\Options;
+use Transbank\TransaccionCompleta\TransaccionCompleta;
 
 class TransaccionCompletaMallController
 {
@@ -23,7 +23,7 @@ class TransaccionCompletaMallController
         if (app()->environment('production')) {
             TransaccionCompleta::setCommerceCode(config('services.transbank.transaccion_completa_mall_cc'));
             TransaccionCompleta::setApiKey(config('services.transbank.transaccion_completa_mall_api_key'));
-            TransaccionCompleta::setIntegrationType('LIVE');
+            TransaccionCompleta::setIntegrationType(Options::ENVIRONMENT_LIVE);
         } else {
             TransaccionCompleta::configureMallForTesting();
         }
@@ -37,7 +37,6 @@ class TransaccionCompletaMallController
 
 
     public function mallCreate(Request $request) {
-        MallTransaccionCompleta::configureForTesting();
 
         $req = $request->all();
         $res = MallTransaction::create(
@@ -58,7 +57,6 @@ class TransaccionCompletaMallController
 
     public function mallInstallments(Request $request)
     {
-        MallTransaccionCompleta::configureForTesting();
 
         $req = $request->all();
         $res = MallTransaction::installments(
@@ -76,7 +74,6 @@ class TransaccionCompletaMallController
 
     public function mallCommit(Request $request)
     {
-        MallTransaccionCompleta::configureForTesting();
 
         $req = $request->all();
         $res = MallTransaction::commit(
@@ -93,10 +90,9 @@ class TransaccionCompletaMallController
 
     public function mallStatus($token, Request $request)
     {
-        MallTransaccionCompleta::configureForTesting();
 
         $req = $request->all();
-        $res = MallTransaction::getStatus($token);
+        $res = MallTransaction::status($token);
 
         return view('transaccion_completa/mall_status', [
             "req" => $req,
@@ -107,7 +103,6 @@ class TransaccionCompletaMallController
 
     public function mallRefund(Request $request)
     {
-        MallTransaccionCompleta::configureForTesting();
 
         $req = $request->all();
 

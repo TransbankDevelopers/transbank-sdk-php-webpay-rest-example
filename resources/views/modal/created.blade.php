@@ -30,15 +30,9 @@
     <script>
         $(function () {
             Webpay.show('webpay_div', '{{$token}}', function (token) {
-                // Código que confirme la transacción
-                swal({
-                    title: 'Confirmando transacción...',
-                    text: ' ',
-                    icon: 'success',
-                    buttons: false
-                });
 
-                // Cuando llega la confirmación de pago al SDK Js, llamar a un endpoint propio pare realizar el commit de la transacción.
+
+                // Cuando lle ga la confirmación de pago al SDK Js, llamar a un endpoint propio pare realizar el commit de la transacción.
                 $.post('./commit', {token: token}, function (res) {
                     if (res.responseCode === 0) {
                         swal({

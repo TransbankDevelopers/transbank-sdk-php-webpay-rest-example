@@ -88,7 +88,7 @@ class OneclickController extends Controller
         $req = $request->except('_token');
         $buyOrder = $req["buy_order"];
 
-        $resp = MallTransaction::getStatus($buyOrder);
+        $resp = MallTransaction::status($buyOrder);
 
         return view('oneclick/mall_transaction_status', ["req" => $req, "resp" => $resp]);
     }

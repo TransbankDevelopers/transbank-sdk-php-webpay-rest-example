@@ -54,7 +54,7 @@ class WebpayPlusDeferredController extends Controller
         $req = $request->except('_token');
         $token = $req["token"];
 
-        $resp = WebpayPlus\Transaction::getStatus($token);
+        $resp = WebpayPlus\Transaction::status($token);
         dd($resp);
     }
 

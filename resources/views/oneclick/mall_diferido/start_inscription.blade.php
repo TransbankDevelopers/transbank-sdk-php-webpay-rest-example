@@ -13,7 +13,7 @@
     <input type="email" id="email" name="email" value="example@example.com">
 
     <label for="responseUrl">URL de Respuesta</label>
-    <input id="responseUrl" name="response_url" value="http:/{{ $_SERVER['HTTP_HOST'] }}/oneclick/diferido/responseUrl">
+    <input id="responseUrl" name="response_url" value="{{ url('/') }}/oneclick/diferido/responseUrl">
 
 
     <button type="submit">Enviar datos</button>

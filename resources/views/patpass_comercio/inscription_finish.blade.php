@@ -1,4 +1,6 @@
-<h1> Ejemplo Patpass Comercio</h1>
+@extends('layout')
+@section('content')
+    <h1> Ejemplo Patpass Comercio</h1>
 
 <h3>Obtener Status:</h3>
 <pre>
@@ -12,3 +14,4 @@
     <button type="submit">Obtener Status</button>
 </form>
 
+@endsection

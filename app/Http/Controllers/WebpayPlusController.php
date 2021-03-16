@@ -43,7 +43,7 @@ class WebpayPlusController extends Controller
     public function refundTransaction(Request $request)
     {
         $req = $request->except('_token');
-
+        
         $resp = WebpayPlus\Transaction::refund($req["token"], $req["amount"]);
 
         return view('webpayplus/refund_success', ["resp" => $resp]);
@@ -54,7 +54,7 @@ class WebpayPlusController extends Controller
         $req = $request->except('_token');
         $token = $req["token"];
 
-        $resp = WebpayPlus\Transaction::getStatus($token);
+        $resp = WebpayPlus\Transaction::status($token);
 
         return view('webpayplus/transaction_status', ["resp" => $resp, "req" => $req]);
     }

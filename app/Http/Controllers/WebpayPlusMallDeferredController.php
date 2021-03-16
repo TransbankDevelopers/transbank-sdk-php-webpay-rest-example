@@ -14,15 +14,13 @@ class WebpayPlusMallDeferredController extends Controller
             WebpayPlus::setApiKey(config('services.transbank.webpay_plus_mall_deferred_api_key'));
             WebpayPlus::setIntegrationType('LIVE');
         } else {
-            WebpayPlus::setCommerceCode("597055555544");
-            WebpayPlus::setApiKey("579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C");
-            WebpayPlus::setIntegrationType('TEST');
+            WebpayPlus::configureMallDeferredForTesting();
         }
     }
     public function createMallDiferido(Request $request)
     {
         $req = $request->except('_token');
-        $resp = WebpayPlus\Transaction::createMall($req["buy_order"], $req["session_id"],  $req["return_url"], $req["detail"]);
+        $resp = WebpayPlus\MallTransaction::create($req["buy_order"], $req["session_id"],  $req["return_url"], $req["detail"]);
 
         return view('webpayplus/mall/diferido/transaction_created', [ "params" => $req,"response" => $resp]);
     }
@@ -30,7 +28,7 @@ class WebpayPlusMallDeferredController extends Controller
     public function commitMallDiferido(Request $request)
     {
         $req = $request->except('_token');
-        $resp = WebpayPlus\Transaction::commitMall($req["token_ws"]);
+        $resp = WebpayPlus\MallTransaction::commit($req["token_ws"]);
 
         return view('webpayplus/mall/diferido/transaction_committed', ["resp" => $resp, 'req' => $req]);
     }
@@ -43,7 +41,7 @@ class WebpayPlusMallDeferredController extends Controller
         $buyOrder = $req["buy_order"];
         $authCode = $req["authorization_code"];
         $amount = $req["capture_amount"];
-        $resp = WebpayPlus\Transaction::captureMall($childCommerceCode, $token, $buyOrder, $authCode, $amount);
+        $resp = WebpayPlus\MallTransaction::capture($childCommerceCode, $token, $buyOrder, $authCode, $amount);
 
         return view('webpayplus/mall/diferido/transaction_captured', ["req" => $req, 'resp' => $resp]);
 
@@ -56,7 +54,7 @@ class WebpayPlusMallDeferredController extends Controller
         $amount = $req["amount"];
         $childCommerceCode = $req["child_commerce_code"];
         $childBuyOrder = $req["child_buy_order"];
-        $resp = WebpayPlus\Transaction::refundMall($token, $childBuyOrder, $childCommerceCode, $amount);
+        $resp = WebpayPlus\MallTransaction::refund($token, $childBuyOrder, $childCommerceCode, $amount);
         dd($resp);
     }
 
@@ -64,7 +62,7 @@ class WebpayPlusMallDeferredController extends Controller
     {
         $req = $request->except('_token');
         $token = $req["token"];
-        $resp = WebpayPlus\Transaction::getMallStatus($token);
+        $resp = WebpayPlus\MallTransaction::status($token);
         dd($resp);
     }
 }

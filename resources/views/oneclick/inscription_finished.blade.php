@@ -6,6 +6,11 @@
 <pre> {{  print_r($req, true) }} </pre>
 
 <h2>Respuesta</h2>
+@if ($resp->isApproved())
+    <span class="text-green-700 text-xl my-2 inline-block font-bold">Transacción aprobada</span>
+@else
+    <span class="text-red-700 text-xl my-2 inline-block font-bold">Transacción rechazada</span>
+@endif
 <pre> {{  print_r($resp, true) }} </pre>
 
 <h2>Autorizar transacción</h2>

@@ -107,7 +107,7 @@ class OneclickDeferredController extends Controller
         $req = $request->all();
         $buyOrder = $req["buy_order"];
 
-        $resp = MallTransaction::getStatus($buyOrder);
+        $resp = MallTransaction::status($buyOrder);
 
         return view('oneclick/mall_diferido/mall_transaction_status', ["req" => $req, "resp" => $resp]);
     }

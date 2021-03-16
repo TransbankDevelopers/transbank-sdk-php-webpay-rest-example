@@ -1,28 +1,5 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    <style>
-        .webpay_form input {
-            font-size: 20px;
-            display: flex;
-            flex-direction:column;
-            width:50%;
-        }
-
-
-    </style>
-
-</head>
-<body>
-
+@extends('layout')
+@section('content')
 <h3>Parametros recibidos:</h3>
 <pre>
     {{ print_r($req) }}
@@ -44,7 +21,6 @@
 
     <h3>Comercio 1</h3>
     <hr>
-
     <label for="etails_commerce_code_1">Codigo de comercio (comercio hijo)</label>
     <input id="details_commerce_code_1" name="details[0][commerce_code]" value="{{ $details[0]['commerce_code'] }}">
 
@@ -98,4 +74,4 @@
     <button type="submit">Enviar</button>
 
 </form>
-
+@endsection

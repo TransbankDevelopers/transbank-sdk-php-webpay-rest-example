@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Transbank\Webpay\Exceptions\WebpayRequestException;
 use Transbank\Webpay\Modal\Exceptions\TransactionRefundException;
 use Transbank\Webpay\Modal\Transaction;
 
@@ -15,7 +16,12 @@ class WebpayModalController extends Controller
 
     public function create(Request $request)
     {
-        $response = Transaction::create($request->get('amount'), $request->get('buy_order'), $request->get('session_id'));
+        try {
+            $response = Transaction::create($request->get('amount'), $request->get('buy_order'), $request->get('session_id'));
+        } catch (WebpayRequestException $e) {
+            dd($e);
+        }
+        
 
         return view('modal/created', [
             'token' => $response->getToken(),

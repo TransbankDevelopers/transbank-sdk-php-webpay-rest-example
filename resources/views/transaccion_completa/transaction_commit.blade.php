@@ -1,37 +1,16 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    <style>
-        .webpay_form input {
-            font-size: 20px;
-
-        }
-
-
-    </style>
-
-</head>
-
-<body>
+@extends('layout')
+@section('content')
 <h1> Ejemplo Transacción Completa transacción confirmada</h1>
 
-<h3>Parametros recibidos:</h3>
+<h3>Parámetros recibidos:</h3>
 <pre>
-    {{ print_r($req) }}
+    {{ print_r($req, true) }}
 </pre>
 
 
 <h3>Respuesta:</h3>
 <pre>
-    {{ print_r($res)  }}
+    {{ print_r($res, true)  }}
 </pre>
 
 <h3>Revisar status de la transacción</h3>
@@ -58,12 +37,7 @@
     <input type="number" name="amount" value="1000">
     <button type="submit"> Solicitar Reembolso</button>
 </form>
-</body>
-
-
-</body>
-
-
+@endsection
 
 
 

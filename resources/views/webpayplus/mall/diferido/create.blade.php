@@ -1,23 +1,6 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    <style>
-        .webpay_form input {
-            font-size: 20px;
-        }
-    </style>
-</head>
-
-<body>
-<h1>Ejemplo Transaccion Webpay Plus Mall Diferido </h1>
+@extends('layout')
+@section('content')
+    <h1>Ejemplo Transaccion Webpay Plus Mall Diferido </h1>
 
 <form class="webpay_form" action="/webpayplus/mall/diferido/create" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
     @csrf
@@ -30,7 +13,7 @@
         <?php $childCC = config('services.transbank.webpay_plus_mall_deferred_child_cc') ?>
         <input id="merchant_1_commerce_code" name="detail[0][commerce_code]" value="{{ $childCC }}">
     @else
-        <input id="merchant_1_commerce_code" name="detail[0][commerce_code]" value="597055555545">
+        <input id="merchant_1_commerce_code" name="detail[0][commerce_code]" value="{{ \Transbank\Webpay\Options::DEFAULT_WEBPAY_PLUS_MALL_DEFERRED_CHILD_COMMERCE_CODES[0] }}">
     @endif
 
     <label for="merchant_1_buy_order">Orden de compra comercio 1</label>
@@ -41,7 +24,7 @@
         <input id="merchant_2_amount" name="detail[1][amount]" value="2000">
 
         <label for="merchant_2_commerce_code">Codigo comercio del comercio 2</label>
-            <input id="merchant_1_commerce_code" name="detail[1][commerce_code]" value="597055555546">
+            <input id="merchant_1_commerce_code" name="detail[1][commerce_code]" value="{{ \Transbank\Webpay\Options::DEFAULT_WEBPAY_PLUS_MALL_DEFERRED_CHILD_COMMERCE_CODES[1] }}">
 
         <label for="merchant_2_buy_order">Orden de compra comercio 2</label>
         <input id="merchant_2_buy_order" name="detail[1][buy_order]" value="{{ time() + rand(1, 1000) }}">
@@ -63,7 +46,4 @@
 
     <button type="submit">Aceptar</button>
 </form>
-
-</body>
-
-</html>
+@endsection
