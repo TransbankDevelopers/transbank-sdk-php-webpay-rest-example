@@ -13,7 +13,7 @@
     <pre>{{ print_r($response, true)  }}</pre>
 </div>
 
-<form method="post" action={{  $response->getUrl() }}>
+<form method="get" action={{  $response->getUrl() }}>
     <input name="token_ws" value={{ $response->getToken() }} />
 
     <button type="submit">Enviar datos</button>

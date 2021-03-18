@@ -57,7 +57,7 @@
 <form method="delete" action="/oneclick/diferido/inscription" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
 
     <label>Nombre de usuario</label>
-    <input name="user_name" value="{{ $_SESSION["user_name"] }}"/>
+    <input name="user_name" value="{{ isset($_SESSION["user_name"]) ? $_SESSION["user_name"] : ''}}"/>
 
     <label>Id de usuario</label>
     <input name="tbk_user" value="{{ $resp->getTbkUser() }}"/>

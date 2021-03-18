@@ -107,6 +107,10 @@
             </div>
         @endif
 
+        <h2 class="header">
+            Patpass
+        </h2>
+
         @if (!$data['production'] || ($data['production'] && $data['patpass_comercio_credentials_present']))
             <div class="examples_container">
                 <span class="operation_title">Patpass Comercio</span>

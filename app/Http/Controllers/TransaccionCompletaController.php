@@ -12,9 +12,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Transbank\TransaccionCompleta;
 use Transbank\TransaccionCompleta\Transaction;
-use Transbank\TransaccionCompleta as TransaccionNormalCompleta;
+use Transbank\TransaccionCompleta\TransaccionCompleta;
+use Transbank\Webpay\Options;
 
 class TransaccionCompletaController extends Controller
 {
@@ -23,7 +23,7 @@ class TransaccionCompletaController extends Controller
         if (app()->environment('production')) {
             TransaccionCompleta::setCommerceCode(config('services.transbank.transaccion_completa_cc'));
             TransaccionCompleta::setApiKey(config('services.transbank.transaccion_completa_api_key'));
-            TransaccionCompleta::setIntegrationType('LIVE');
+            TransaccionCompleta::setIntegrationType(Options::ENVIRONMENT_LIVE);
         } else {
             TransaccionCompleta::configureForTesting();
         }
@@ -31,7 +31,6 @@ class TransaccionCompletaController extends Controller
 
     public function createTransaction(Request $request)
     {
-        TransaccionNormalCompleta::configureForTesting();
 
         $req = $request->all();
         $res = Transaction::create(
@@ -51,7 +50,6 @@ class TransaccionCompletaController extends Controller
 
     public function installments(Request $request)
     {
-        TransaccionNormalCompleta::configureForTesting();
 
         $req = $request->all();
 
@@ -69,7 +67,6 @@ class TransaccionCompletaController extends Controller
 
     public function commit(Request $request)
     {
-        TransaccionNormalCompleta::configureForTesting();
 
         $req = $request->all();
 
@@ -88,11 +85,10 @@ class TransaccionCompletaController extends Controller
 
     public function status(Request $request)
     {
-        TransaccionNormalCompleta::configureForTesting();
 
         $req = $request->all();
 
-        $res = Transaction::getStatus(
+        $res = Transaction::status(
             $req['token_ws']
         );
 
@@ -105,8 +101,6 @@ class TransaccionCompletaController extends Controller
 
     public function refund(Request $request)
     {
-        TransaccionNormalCompleta::configureForTesting();
-
         $req = $request->all();
 
         $res = Transaction::refund(

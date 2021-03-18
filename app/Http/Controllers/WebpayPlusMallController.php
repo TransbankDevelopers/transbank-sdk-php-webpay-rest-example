@@ -12,7 +12,7 @@ class WebpayPlusMallController extends Controller
         if (app()->environment('production')) {
             WebpayPlus::setCommerceCode(config('services.transbank.webpay_plus_mall_cc'));
             WebpayPlus::setApiKey(config('services.transbank.webpay_plus_mall_api_key'));
-            WebpayPlus::setIntegrationType('LIVE');
+            WebpayPlus::setIntegrationType(WebpayPlus::ENVIRONMENT_LIVE);
         } else {
             WebpayPlus::configureMallForTesting();
         }
@@ -27,7 +27,7 @@ class WebpayPlusMallController extends Controller
     {
 
         $req = $request->except('_token');
-        $resp = WebpayPlus\Transaction::createMall($req["buy_order"], $req["session_id"],  $req["return_url"], $req["detail"]);
+        $resp = WebpayPlus\MallTransaction::create($req["buy_order"], $req["session_id"],  $req["return_url"], $req["detail"]);
 
         return view('webpayplus/transaction_created', [ "params" => $req,"response" => $resp]);
 
@@ -38,7 +38,7 @@ class WebpayPlusMallController extends Controller
     {
         $req = $request->except('_token');
         $token = $req["token_ws"];
-        $resp = WebpayPlus\Transaction::commitMall($token);
+        $resp = WebpayPlus\MallTransaction::commit($token);
 
         return view('webpayplus/mall_transaction_committed', ["params" => $req, "response" => $resp]);
 
@@ -48,7 +48,7 @@ class WebpayPlusMallController extends Controller
     {
         $req = $request->except('_token');
         $token = $req["token"];
-        $resp = WebpayPlus\Transaction::getMallStatus($token);
+        $resp = WebpayPlus\MallTransaction::status($token);
 
         return view('webpayplus/mall_transaction_status', ["resp" => $resp, "req" => $req]);
     }
@@ -57,7 +57,12 @@ class WebpayPlusMallController extends Controller
     {
         $req = $request->except('_token');
         $token = $req["token"];
-        $resp = WebpayPlus\Transaction::refundMall($token, $req["buy_order"],$req["commerce_code"], $req["amount"]);
+        try {
+            $resp = WebpayPlus\MallTransaction::refund($token, $req["buy_order"],$req["commerce_code"], $req["amount"]);
+        } catch (WebpayPlus\Exceptions\TransactionRefundException $e) {
+            dd($e);
+        }
+        
 
         return view('webpayplus/mall_refund_success', ["req" => $req,"resp" => $resp]);
     }

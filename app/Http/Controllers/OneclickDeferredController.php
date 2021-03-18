@@ -17,7 +17,7 @@ class OneclickDeferredController extends Controller
         if (app()->environment('production')) {
             Oneclick::setCommerceCode(config('services.transbank.oneclick_mall_deferred_cc'));
             Oneclick::setApiKey(config('services.transbank.oneclick_mall_deferred_api_key'));
-            Oneclick::setIntegrationType('LIVE');
+            Oneclick::setIntegrationType(Options::ENVIRONMENT_LIVE);
         } else {
             Oneclick::configureOneclickMallDeferredForTesting();
         }
@@ -107,7 +107,7 @@ class OneclickDeferredController extends Controller
         $req = $request->all();
         $buyOrder = $req["buy_order"];
 
-        $resp = MallTransaction::getStatus($buyOrder);
+        $resp = MallTransaction::status($buyOrder);
 
         return view('oneclick/mall_diferido/mall_transaction_status', ["req" => $req, "resp" => $resp]);
     }

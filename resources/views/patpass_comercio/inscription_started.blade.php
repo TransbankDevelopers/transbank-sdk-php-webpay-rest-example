@@ -1,4 +1,6 @@
-<h1> Ejemplo Patpass Comercio</h1>
+@extends('layout')
+@section('content')
+    <h1> Ejemplo Patpass Comercio</h1>
 
 <h3>Parametros recibidos:</h3>
 <pre>
@@ -16,6 +18,7 @@
 
     <button type="submit">Enviar datos</button>
 </form>
+@endsection
 
 
 

@@ -12,7 +12,7 @@ class WebpayPlusDeferredController extends Controller
         if (app()->environment('production')) {
             WebpayPlus::setCommerceCode(config('services.transbank.webpay_plus_deferred_cc'));
             WebpayPlus::setApiKey(config('services.transbank.webpay_plus_deferred_api_key'));
-            WebpayPlus::setIntegrationType('LIVE');
+            WebpayPlus::setIntegrationType(Options::ENVIRONMENT_LIVE);
         } else {
             WebpayPlus::configureDeferredForTesting();
         }
@@ -54,7 +54,7 @@ class WebpayPlusDeferredController extends Controller
         $req = $request->except('_token');
         $token = $req["token"];
 
-        $resp = WebpayPlus\Transaction::getStatus($token);
+        $resp = WebpayPlus\Transaction::status($token);
         dd($resp);
     }
 
