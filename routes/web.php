@@ -20,7 +20,7 @@ Route::get('/webpayplus/create', function () {
 
 Route::post('/webpayplus/create/', 'WebpayPlusController@createdTransaction');
 
-Route::post('/webpayplus/returnUrl', 'WebpayPlusController@commitTransaction');
+Route::get('/webpayplus/returnUrl', 'WebpayPlusController@commitTransaction');
 
 Route::get('/webpayplus/refund', 'WebpayPlusController@showRefund');
 Route::post('/webpayplus/refund', 'WebpayPlusController@refundTransaction');

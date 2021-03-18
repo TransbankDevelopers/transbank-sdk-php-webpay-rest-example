@@ -10,11 +10,9 @@ class WebpayPlusController extends Controller
 {
     public function __construct(){
         if (app()->environment('production')) {
-            WebpayPlus::setCommerceCode(config('services.transbank.webpay_plus_cc'));
-            WebpayPlus::setApiKey(config('services.transbank.webpay_plus_api_key'));
-            WebpayPlus::setIntegrationType('LIVE');
+            WebpayPlus::configureForProduction(config('services.transbank.webpay_plus_cc'), config('services.transbank.webpay_plus_api_key'));
         } else {
-            WebpayPlus::configureForTesting();
+            WebpayPlus::configureForProduction('597035769625', '0b12a12a7ec72992cf1f557042c4fa9b');
         }
     }
 

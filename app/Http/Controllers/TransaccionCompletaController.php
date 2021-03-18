@@ -14,6 +14,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Transbank\TransaccionCompleta\Transaction;
 use Transbank\TransaccionCompleta\TransaccionCompleta;
+use Transbank\Webpay\Options;
 
 class TransaccionCompletaController extends Controller
 {
@@ -22,7 +23,7 @@ class TransaccionCompletaController extends Controller
         if (app()->environment('production')) {
             TransaccionCompleta::setCommerceCode(config('services.transbank.transaccion_completa_cc'));
             TransaccionCompleta::setApiKey(config('services.transbank.transaccion_completa_api_key'));
-            TransaccionCompleta::setIntegrationType('LIVE');
+            TransaccionCompleta::setIntegrationType(Options::ENVIRONMENT_LIVE);
         } else {
             TransaccionCompleta::configureForTesting();
         }

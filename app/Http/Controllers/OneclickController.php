@@ -15,7 +15,7 @@ class OneclickController extends Controller
         if (app()->environment('production')) {
             Oneclick::setCommerceCode(config('services.transbank.oneclick_mall_cc'));
             Oneclick::setApiKey(config('services.transbank.oneclick_mall_api_key'));
-            Oneclick::setIntegrationType('LIVE');
+            Oneclick::setIntegrationType(Options::ENVIRONMENT_LIVE);
         } else {
             Oneclick::configureOneclickMallForTesting();
         }

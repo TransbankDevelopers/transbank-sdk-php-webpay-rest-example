@@ -14,8 +14,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Transbank\Patpass\PatpassComercio;
 use Transbank\Patpass\PatpassComercio\Inscription;
-
-
+use Transbank\Webpay\Options;
 
 class PatpassComercioController extends Controller
 {
@@ -25,7 +24,7 @@ class PatpassComercioController extends Controller
         if (app()->environment('production')) {
             PatpassComercio::setCommerceCode(config('services.transbank.patpass_comercio_cc'));
             PatpassComercio::setApiKey(config('services.transbank.patpass_comercio_api_key'));
-            PatpassComercio::setIntegrationType('LIVE');
+            PatpassComercio::setIntegrationType(Options::ENVIRONMENT_LIVE);
         } else {
             PatpassComercio::configureForTesting();
         }

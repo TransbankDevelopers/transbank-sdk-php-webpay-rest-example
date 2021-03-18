@@ -12,7 +12,7 @@ class WebpayPlusMallDeferredController extends Controller
         if (app()->environment('production')) {
             WebpayPlus::setCommerceCode(config('services.transbank.webpay_plus_mall_deferred_cc'));
             WebpayPlus::setApiKey(config('services.transbank.webpay_plus_mall_deferred_api_key'));
-            WebpayPlus::setIntegrationType('LIVE');
+            WebpayPlus::setIntegrationType(Options::ENVIRONMENT_LIVE);
         } else {
             WebpayPlus::configureMallDeferredForTesting();
         }

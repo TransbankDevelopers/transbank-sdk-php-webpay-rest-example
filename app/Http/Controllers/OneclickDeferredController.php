@@ -17,7 +17,7 @@ class OneclickDeferredController extends Controller
         if (app()->environment('production')) {
             Oneclick::setCommerceCode(config('services.transbank.oneclick_mall_deferred_cc'));
             Oneclick::setApiKey(config('services.transbank.oneclick_mall_deferred_api_key'));
-            Oneclick::setIntegrationType('LIVE');
+            Oneclick::setIntegrationType(Options::ENVIRONMENT_LIVE);
         } else {
             Oneclick::configureOneclickMallDeferredForTesting();
         }
