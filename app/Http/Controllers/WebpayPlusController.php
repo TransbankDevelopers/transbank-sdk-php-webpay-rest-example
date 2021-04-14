@@ -12,7 +12,7 @@ class WebpayPlusController extends Controller
         if (app()->environment('production')) {
             WebpayPlus::configureForProduction(config('services.transbank.webpay_plus_cc'), config('services.transbank.webpay_plus_api_key'));
         } else {
-            WebpayPlus::configureForProduction('597035769625', '0b12a12a7ec72992cf1f557042c4fa9b');
+            WebpayPlus::configureForTesting();
         }
     }
 
@@ -41,7 +41,7 @@ class WebpayPlusController extends Controller
     public function refundTransaction(Request $request)
     {
         $req = $request->except('_token');
-        
+
         $resp = WebpayPlus\Transaction::refund($req["token"], $req["amount"]);
 
         return view('webpayplus/refund_success', ["resp" => $resp]);
