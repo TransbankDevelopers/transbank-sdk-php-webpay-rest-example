@@ -22,20 +22,18 @@ class PatpassComercioController extends Controller
     public function __construct()
     {
         if (app()->environment('production')) {
-            PatpassComercio::setCommerceCode(config('services.transbank.patpass_comercio_cc'));
-            PatpassComercio::setApiKey(config('services.transbank.patpass_comercio_api_key'));
-            PatpassComercio::setIntegrationType(Options::ENVIRONMENT_LIVE);
+            PatpassComercio::configureForProduction(config('services.transbank.patpass_comercio_cc'), config('services.transbank.patpass_comercio_api_key'));
         } else {
             PatpassComercio::configureForTesting();
         }
     }
-    
+
     public function startTransaction(Request $request)
     {
 
         $req = $request->all();
 
-        $res = Inscription::start(
+        $res = (new Inscription)->start(
             $req['url'],
             $req['nombre'],
             $req['pApellido'],
@@ -61,7 +59,7 @@ class PatpassComercioController extends Controller
     {
 
         $req = $request->all();
-        $res = Inscription::status(
+        $res = (new Inscription)->status(
             $req["tokenComercio"]
         );
         return view('patpass_comercio/inscription_status', [

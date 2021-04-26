@@ -15,11 +15,9 @@ class OneclickDeferredController extends Controller
 
     public function __construct(){
         if (app()->environment('production')) {
-            Oneclick::setCommerceCode(config('services.transbank.oneclick_mall_deferred_cc'));
-            Oneclick::setApiKey(config('services.transbank.oneclick_mall_deferred_api_key'));
-            Oneclick::setIntegrationType(Options::ENVIRONMENT_LIVE);
+            Oneclick::configureForProduction(config('services.transbank.oneclick_mall_deferred_cc'), config('services.transbank.oneclick_mall_deferred_api_key'));
         } else {
-            Oneclick::configureOneclickMallDeferredForTesting();
+            Oneclick::configureForTestingDeferred();
         }
     }
 
@@ -34,7 +32,7 @@ class OneclickDeferredController extends Controller
         $email = $req["email"];
         $responseUrl = $req["response_url"];
 
-        $resp = MallInscription::start($userName, $email, $responseUrl);
+        $resp = (new MallInscription)->start($userName, $email, $responseUrl);
 
         $_SESSION["user_name"] = $userName;
         $_SESSION["email"] = $email;
@@ -50,7 +48,7 @@ class OneclickDeferredController extends Controller
         $req = $request->all();
         $token = $req["TBK_TOKEN"];
 
-        $resp = MallInscription::finish($token);
+        $resp = (new MallInscription)->finish($token);
         $userName = array_key_exists("user_name", $_SESSION) ? $_SESSION["user_name"] : '';
         return view('oneclick/mall_diferido/inscription_finished', ["resp" => $resp, "req" => $req, "username" => $userName]);
 
@@ -81,7 +79,7 @@ class OneclickDeferredController extends Controller
             ]
         ];
 
-        $resp = MallTransaction::authorize($userName, $tbkUser, $parentBuyOrder, $details);
+        $resp = (new MallTransaction)->authorize($userName, $tbkUser, $parentBuyOrder, $details);
 
         return view('oneclick/mall_diferido/authorized_mall', ["req" => $req, "resp" => $resp]);
 
@@ -93,7 +91,7 @@ class OneclickDeferredController extends Controller
 
         $req = $request->all();
 
-        $resp = MallTransaction::capture(
+        $resp = (new MallTransaction)->capture(
             $req['commerce_code'], $req['buy_order'], $req['authorization_code'], $req['amount']
         );
 
@@ -107,7 +105,7 @@ class OneclickDeferredController extends Controller
         $req = $request->all();
         $buyOrder = $req["buy_order"];
 
-        $resp = MallTransaction::status($buyOrder);
+        $resp = (new MallTransaction)->status($buyOrder);
 
         return view('oneclick/mall_diferido/mall_transaction_status', ["req" => $req, "resp" => $resp]);
     }
@@ -122,7 +120,7 @@ class OneclickDeferredController extends Controller
         $childBuyOrder = $req["child_buy_order"];
         $amount = $req["amount"];
 
-        $resp = MallTransaction::refund($buyOrder, $childCommerceCode, $childBuyOrder, $amount);
+        $resp = (new MallTransaction)->refund($buyOrder, $childCommerceCode, $childBuyOrder, $amount);
 
         return view('oneclick/mall_diferido/mall_refund_transaction', ["req" => $req, "resp" => $resp]);
     }
@@ -135,7 +133,7 @@ class OneclickDeferredController extends Controller
         $tbkUser = $req["tbk_user"];
         $userName = $req["user_name"];
 
-        $resp = MallInscription::delete($tbkUser, $userName);
+        $resp = (new MallInscription)->delete($tbkUser, $userName);
         return view('oneclick/mall_diferido/mall_inscription_deleted', ["req" => $req, "resp" => $resp]);
     }
 }

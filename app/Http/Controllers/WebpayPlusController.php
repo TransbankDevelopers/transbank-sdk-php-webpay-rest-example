@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Transbank\Webpay\Options;
 use Transbank\Webpay\WebpayPlus;
+use Transbank\Webpay\WebpayPlus\Transaction;
 
 class WebpayPlusController extends Controller
 {
@@ -19,7 +19,7 @@ class WebpayPlusController extends Controller
     public function createdTransaction(Request $request)
     {
         $req = $request->except('_token');
-        $resp = WebpayPlus\Transaction::create($req["buy_order"], $req["session_id"], $req["amount"], $req["return_url"]);
+        $resp = (new Transaction)->create($req["buy_order"], $req["session_id"], $req["amount"], $req["return_url"]);
 
         return view('webpayplus/transaction_created', [ "params" => $req,"response" => $resp]);
     }
@@ -27,7 +27,7 @@ class WebpayPlusController extends Controller
     public function commitTransaction(Request $request)
     {
         $req = $request->except('_token');
-        $resp = WebpayPlus\Transaction::commit($req["token_ws"]);
+        $resp = (new Transaction)->commit($req["token_ws"]);
 
         return view('webpayplus/transaction_committed', ["resp" => $resp, 'req' => $req]);
     }
@@ -42,7 +42,7 @@ class WebpayPlusController extends Controller
     {
         $req = $request->except('_token');
 
-        $resp = WebpayPlus\Transaction::refund($req["token"], $req["amount"]);
+        $resp = (new Transaction)->refund($req["token"], $req["amount"]);
 
         return view('webpayplus/refund_success', ["resp" => $resp]);
     }
@@ -52,7 +52,7 @@ class WebpayPlusController extends Controller
         $req = $request->except('_token');
         $token = $req["token"];
 
-        $resp = WebpayPlus\Transaction::status($token);
+        $resp = (new Transaction)->status($token);
 
         return view('webpayplus/transaction_status', ["resp" => $resp, "req" => $req]);
     }

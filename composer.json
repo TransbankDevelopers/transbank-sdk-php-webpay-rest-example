@@ -11,7 +11,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "transbank/transbank-sdk": "dev-master"
+        "transbank/transbank-sdk": "~2.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -21,17 +21,15 @@ class TransaccionCompletaMallController
 
     public function __construct(){
         if (app()->environment('production')) {
-            TransaccionCompleta::setCommerceCode(config('services.transbank.transaccion_completa_mall_cc'));
-            TransaccionCompleta::setApiKey(config('services.transbank.transaccion_completa_mall_api_key'));
-            TransaccionCompleta::setIntegrationType(Options::ENVIRONMENT_LIVE);
+            TransaccionCompleta::configureForProduction(config('services.transbank.transaccion_completa_mall_cc'), config('services.transbank.transaccion_completa_mall_api_key'));
         } else {
-            TransaccionCompleta::configureMallForTesting();
+            TransaccionCompleta::configureForTestingMall();
         }
     }
 
     public function showMallCreate(Request $request)
     {
-        $childCommerceCodes = Options::DEFAULT_TRANSACCION_COMPLETA_MALL_CHILD_COMMERCE_CODE;
+        $childCommerceCodes = [TransaccionCompleta::DEFAULT_MALL_CHILD_COMMERCE_CODE_1, TransaccionCompleta::DEFAULT_MALL_CHILD_COMMERCE_CODE_2];
         return view('transaccion_completa/mall_create',["childCommerceCodes" => $childCommerceCodes ]);
     }
 
@@ -39,7 +37,7 @@ class TransaccionCompletaMallController
     public function mallCreate(Request $request) {
 
         $req = $request->all();
-        $res = MallTransaction::create(
+        $res = (new MallTransaction)->create(
             $req["buy_order"],
             $req["session_id"],
             $req["card_number"],
@@ -59,7 +57,7 @@ class TransaccionCompletaMallController
     {
 
         $req = $request->all();
-        $res = MallTransaction::installments(
+        $res = (new MallTransaction)->installments(
             $req["token_ws"],
             $req["details"]
         );
@@ -76,7 +74,7 @@ class TransaccionCompletaMallController
     {
 
         $req = $request->all();
-        $res = MallTransaction::commit(
+        $res = (new MallTransaction)->commit(
             $req["token"],
             $req["details"]
         );
@@ -92,7 +90,7 @@ class TransaccionCompletaMallController
     {
 
         $req = $request->all();
-        $res = MallTransaction::status($token);
+        $res = (new MallTransaction)->status($token);
 
         return view('transaccion_completa/mall_status', [
             "req" => $req,
@@ -106,7 +104,7 @@ class TransaccionCompletaMallController
 
         $req = $request->all();
 
-        $res = MallTransaction::refund(
+        $res = (new MallTransaction)->refund(
           $req["token"],
           $req["child_buy_order"],
           $req["child_commerce_code"],

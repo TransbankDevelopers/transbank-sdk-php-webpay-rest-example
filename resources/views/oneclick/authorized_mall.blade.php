@@ -26,13 +26,13 @@
     <input name="parent_buy_order" value="{{ $resp->getBuyOrder() }}">
 
     <label>Commerce code hijo</label>
-    <input name="commerce_code" value="{{ $resp->getDetails()[0]["commerce_code"] }}">
+    <input name="commerce_code" value="{{ $resp->getDetails()[0]->getCommerceCode() }}">
 
     <label>Buy order hijo</label>
-    <input name="child_buy_order" value="{{ $resp->getDetails()[0]["buy_order"] }}">
+    <input name="child_buy_order" value="{{ $resp->getDetails()[0]->getBuyOrder() }}">
 
     <label>Monto</label>
-    <input name="amount" value="{{ $resp->getDetails()[0]["amount"] }}"/>
+    <input name="amount" value="{{ $resp->getDetails()[0]->getAmount() }}"/>
 
     <button type="submit">Enviar</button>
 </form>

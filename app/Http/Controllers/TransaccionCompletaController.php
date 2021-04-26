@@ -21,9 +21,7 @@ class TransaccionCompletaController extends Controller
 
     public function __construct(){
         if (app()->environment('production')) {
-            TransaccionCompleta::setCommerceCode(config('services.transbank.transaccion_completa_cc'));
-            TransaccionCompleta::setApiKey(config('services.transbank.transaccion_completa_api_key'));
-            TransaccionCompleta::setIntegrationType(Options::ENVIRONMENT_LIVE);
+            TransaccionCompleta::configureForProduction(config('services.transbank.transaccion_completa_cc'), config('services.transbank.transaccion_completa_api_key'));
         } else {
             TransaccionCompleta::configureForTesting();
         }
@@ -33,7 +31,7 @@ class TransaccionCompletaController extends Controller
     {
 
         $req = $request->all();
-        $res = Transaction::create(
+        $res = (new Transaction)->create(
             $req["buy_order"],
             $req["session_id"],
             $req["amount"],
@@ -53,7 +51,7 @@ class TransaccionCompletaController extends Controller
 
         $req = $request->all();
 
-        $res = Transaction::installments(
+        $res = (new Transaction)->installments(
             $req['token_ws'],
             $req["installments_number"]
         );
@@ -70,7 +68,7 @@ class TransaccionCompletaController extends Controller
 
         $req = $request->all();
 
-        $res = Transaction::commit(
+        $res = (new Transaction)->commit(
             $req['token_ws'],
             $req["id_query_installments"],
             $req["deferred_period_index"],
@@ -88,7 +86,7 @@ class TransaccionCompletaController extends Controller
 
         $req = $request->all();
 
-        $res = Transaction::status(
+        $res = (new Transaction)->status(
             $req['token_ws']
         );
 
@@ -103,7 +101,7 @@ class TransaccionCompletaController extends Controller
     {
         $req = $request->all();
 
-        $res = Transaction::refund(
+        $res = (new Transaction)->refund(
             $req['token_ws'],
             $req["amount"]
         );

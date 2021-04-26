@@ -17,11 +17,11 @@ class WebpayModalController extends Controller
     public function create(Request $request)
     {
         try {
-            $response = Transaction::create($request->get('amount'), $request->get('buy_order'), $request->get('session_id'));
+            $response = (new Transaction)->create($request->get('amount'), $request->get('buy_order'), $request->get('session_id'));
         } catch (WebpayRequestException $e) {
             dd($e);
         }
-        
+
 
         return view('modal/created', [
             'token' => $response->getToken(),
@@ -35,13 +35,13 @@ class WebpayModalController extends Controller
         $this->validate($request, [
             'token' => 'required'
         ]);
-        $response = Transaction::commit($request->get('token'));
+        $response = (new Transaction)->commit($request->get('token'));
         return response()->json($response);
     }
 
     public function status(Request $request, $token)
     {
-        $response = Transaction::status($token);
+        $response = (new Transaction)->status($token);
         return view('modal/status', ['transaction' => $response, 'token' => $token]);
     }
 
@@ -58,7 +58,7 @@ class WebpayModalController extends Controller
         $error = false;
         $response = null;
         try {
-            $response = Transaction::refund($request['token'], $request['amount']);
+            $response = (new Transaction)->refund($request['token'], $request['amount']);
         } catch (TransactionRefundException $e) {
             $error = $e->getTransbankError();
         }

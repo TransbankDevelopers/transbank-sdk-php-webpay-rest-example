@@ -24,7 +24,7 @@
     <input id="tbk_user" name="tbk_user" value="{{ $resp->getTbkUser() }}"/>
 
     <label for="parent_buy_order">Orden de compra (comercio padre)</label>
-    <input id="parent_buy_order" name="buy_order" value="{{"123456".rand(1, 100)}}"/>
+    <input id="parent_buy_order" name="buy_order" value="{{rand(100000000, 999999999)}}"/>
 
     <label for="details_commerce_code">Detalles de transacción</label>
     @if (app()->environment('production'))
@@ -34,20 +34,20 @@
         </select>
     @else
         <select id="details_commerce_code" name="details[0][commerce_code]" value="597055555543">
-            <option value="597055555542"> Comercio 1 - Codigo 597055555542</option>
-            <option value="597055555543">Comercio 2 - Codigo 597055555543</option>
+            <option value="597055555542"> Comercio 1 - Código 597055555542</option>
+            <option value="597055555543">Comercio 2 - Código 597055555543</option>
         </select>
     @endif
 
 
     <label for="details_buy_order">Orden de compra (comercio hijo)</label>
-    <input id="details_buy_order" name="details[0][buy_order]" value="{{"abcdef".rand(1, 100)}}"/>
+    <input id="details_buy_order" name="details[0][buy_order]" value="{{"child-". rand(100000000, 999999999) }}"/>
 
     <label for="details_amount">Monto</label>
     <input id="details_amount" name="details[0][amount]" value="1000"/>
 
     <label for="details_installments_number">Cantidad de cuotas</label>
-    <select id="details_installments_number" name="details[0][installments_number]" value="3">
+    <select class="border rounded p-2" id="details_installments_number" name="details[0][installments_number]">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>

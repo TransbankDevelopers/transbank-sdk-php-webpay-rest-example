@@ -147,7 +147,7 @@ Route::post('/oneclick/startInscription', 'OneclickController@startInscription')
 Route::delete('/oneclick/inscription', 'OneclickController@deleteInscription');
 Route::get('/oneclick/inscription', 'OneclickController@deleteInscription');
 
-Route::post('/oneclick/responseUrl', 'OneclickController@finishInscription');
+Route::any('/oneclick/responseUrl', 'OneclickController@finishInscription');
 
 Route::get('/oneclick/mall/authorizeTransaction', function () {
 
