@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-        <h1>Ejemplo Transaccion Completa Mall transacción confirmada</h1>
+    <h1>Ejemplo Transaccion Completa Mall transacción confirmada</h1>
 
     <h2>Request</h2>
     <pre>@php print_r($req) @endphp</pre>
@@ -22,13 +22,13 @@
         <input name="token" id="token" value="{{ $req['token'] }}">
 
         <label for="child_commerce_code">Código de comercio (hijo)</label>
-        <input name="child_commerce_code" value="{{ $res->getDetails()[0]['commerce_code'] }}">
+        <input name="child_commerce_code" value="{{ $res->getDetails()[0]->getCommerceCode() }}">
 
         <label for="child_buy_order">Codigo de comercio (hijo)</label>
-        <input name="child_buy_order" value="{{ $res->getDetails()[0]['buy_order'] }}">
+        <input name="child_buy_order" value="{{ $res->getDetails()[0]->getBuyOrder() }}">
 
         <label for="amount">Monto</label>
-        <input name="amount" id="amount" value="{{ $res->getDetails()[0]['amount'] }}">
+        <input name="amount" id="amount" value="{{ $res->getDetails()[0]->getAmount() }}">
 
 
         <button type="submit">Solicitar reembolso</button>
@@ -40,14 +40,14 @@
         <label for="token">Token</label>
         <input name="token" id="token" value="{{ $req['token'] }}">
 
-        <label for="child_commerce_code">Codigo de comercio (hijo)</label>
-        <input name="child_commerce_code" value="{{ $res->getDetails()[1]['commerce_code'] }}">
+        <label for="child_commerce_code">Código de comercio (hijo)</label>
+        <input name="child_commerce_code" value="{{ $res->getDetails()[1]->getCommerceCode() }}">
 
-        <label for="child_buy_order">Codigo de comercio (hijo)</label>
-        <input name="child_buy_order" value="{{ $res->getDetails()[1]['buy_order'] }}">
+        <label for="child_buy_order">Cdigo de comercio (hijo)</label>
+        <input name="child_buy_order" value="{{ $res->getDetails()[1]->getBuyOrder() }}">
 
         <label for="amount">Monto</label>
-        <input name="amount" id="amount" value="{{ $res->getDetails()[1]['amount'] }}">
+        <input name="amount" id="amount" value="{{ $res->getDetails()[1]->getAmount() }}">
 
 
         <button type="submit">Solicitar reembolso</button>

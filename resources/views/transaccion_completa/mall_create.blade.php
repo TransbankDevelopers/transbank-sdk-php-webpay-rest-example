@@ -23,6 +23,11 @@
     </label>
     <input type="text" name="card_expiration_date" value="22/10" />
 
+    <label for="cvv">
+        CVV
+    </label>
+    <input type="text" name="cvv" value="123" />
+
     @if (app()->environment('production'))
         <label for="merchant_1_amount">Monto Merchant 1</label>
         <input type="text" id="merchant_1_amount" name="details[0][amount]" value="10000" />
