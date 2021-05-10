@@ -42,9 +42,9 @@ class TransaccionCompletaMallController
             $req["session_id"],
             $req["card_number"],
             $req["card_expiration_date"],
-            $req["details"]
+            $req["details"],
+            $req["cvv"]
         );
-
 
         return view('transaccion_completa/mall_created', [
                 "req" => $req,
