@@ -13,7 +13,7 @@
         <?php $childCC = config('services.transbank.webpay_plus_mall_deferred_child_cc') ?>
         <input id="merchant_1_commerce_code" name="detail[0][commerce_code]" value="{{ $childCC }}">
     @else
-        <input id="merchant_1_commerce_code" name="detail[0][commerce_code]" value="{{ \Transbank\Webpay\Options::DEFAULT_WEBPAY_PLUS_MALL_DEFERRED_CHILD_COMMERCE_CODES[0] }}">
+        <input id="merchant_1_commerce_code" name="detail[0][commerce_code]" value="{{ \Transbank\Webpay\WebpayPlus::DEFAULT_MALL_DEFERRED_CHILD_COMMERCE_CODE_1 }}">
     @endif
 
     <label for="merchant_1_buy_order">Orden de compra comercio 1</label>
@@ -24,7 +24,7 @@
         <input id="merchant_2_amount" name="detail[1][amount]" value="2000">
 
         <label for="merchant_2_commerce_code">Codigo comercio del comercio 2</label>
-            <input id="merchant_1_commerce_code" name="detail[1][commerce_code]" value="{{ \Transbank\Webpay\Options::DEFAULT_WEBPAY_PLUS_MALL_DEFERRED_CHILD_COMMERCE_CODES[1] }}">
+            <input id="merchant_1_commerce_code" name="detail[1][commerce_code]" value="{{ \Transbank\Webpay\WebpayPlus::DEFAULT_MALL_DEFERRED_CHILD_COMMERCE_CODE_2 }}">
 
         <label for="merchant_2_buy_order">Orden de compra comercio 2</label>
         <input id="merchant_2_buy_order" name="detail[1][buy_order]" value="{{ time() + rand(1, 1000) }}">

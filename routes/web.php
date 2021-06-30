@@ -34,7 +34,7 @@ Route::get('/webpayplus/diferido/create', function () {
 });
 Route::post('/webpayplus/diferido/create', 'WebpayPlusDeferredController@createDiferido');
 
-Route::post('/webpayplus/diferido/returnUrl', 'WebpayPlusDeferredController@commitDiferidoTransaction');
+Route::any('/webpayplus/diferido/returnUrl', 'WebpayPlusDeferredController@commitDiferidoTransaction');
 
 Route::get('/webpayplus/diferido/capture', function () {
     return view('webpayplus/diferido/diferido');
@@ -54,7 +54,7 @@ Route::post('/webpayplus/diferido/status', 'WebpayPlusDeferredController@statusD
 Route::get('/webpayplus/createMall', 'WebpayPlusMallController@createMall');
 Route::post('/webpayplus/createMall', 'WebpayPlusMallController@createdMallTransaction');
 
-Route::post('/webpayplus/mallReturnUrl', 'WebpayPlusMallController@commitMallTransaction');
+Route::any('/webpayplus/mallReturnUrl', 'WebpayPlusMallController@commitMallTransaction');
 
 Route::get('/webpayplus/mallRefund', 'WebpayPlusMallController@showMallRefund');
 Route::post('/webpayplus/mallRefund', 'WebpayPlusMallController@refundMallTransaction');
@@ -121,7 +121,7 @@ Route::get('/webpayplus/mall/diferido/create', function () {
 });
 Route::post('/webpayplus/mall/diferido/create', 'WebpayPlusMallDeferredController@createMallDiferido');
 
-Route::post('/webpayplus/mall/diferido/returnUrl', 'WebpayPlusMallDeferredController@commitMallDiferido');
+Route::any('/webpayplus/mall/diferido/returnUrl', 'WebpayPlusMallDeferredController@commitMallDiferido');
 
 Route::get('/webpayplus/mall/diferido/capture', function () {
     return view('webpayplus/mall/diferido/capture');
@@ -171,7 +171,7 @@ Route::post('/oneclick/diferido/startInscription', 'OneclickDeferredController@s
 Route::delete('/oneclick/diferido/inscription', 'OneclickDeferredController@deleteInscription');
 Route::get('/oneclick/diferido/inscription', 'OneclickDeferredController@deleteInscription');
 
-Route::post('/oneclick/diferido/responseUrl', 'OneclickDeferredController@finishInscription');
+Route::any('/oneclick/diferido/responseUrl', 'OneclickDeferredController@finishInscription');
 
 Route::get('/oneclick/mall/diferido/authorizeTransaction', function () {
 
