@@ -25,7 +25,7 @@ class OneclickDeferredController extends Controller
     {
         session_start();
 
-        Oneclick::configureOneclickMallDeferredForTesting();
+        
 
         $req = $request->all();
         $userName = $req["user_name"];
@@ -43,7 +43,7 @@ class OneclickDeferredController extends Controller
     {
         session_start();
 
-        Oneclick::configureOneclickMallDeferredForTesting();
+        
 
         $req = $request->all();
         $token = $req["TBK_TOKEN"];
@@ -58,7 +58,7 @@ class OneclickDeferredController extends Controller
     {
         session_start();
 
-        Oneclick::configureOneclickMallDeferredForTesting();
+        
 
         $req = $request->all();
 
@@ -87,7 +87,7 @@ class OneclickDeferredController extends Controller
 
     public function transactionCapture(Request $request)
     {
-        Oneclick::configureOneclickMallDeferredForTesting();
+        
 
         $req = $request->all();
 
@@ -100,7 +100,7 @@ class OneclickDeferredController extends Controller
 
     public function transactionStatus(Request $request)
     {
-        Oneclick::configureOneclickMallDeferredForTesting();
+        
 
         $req = $request->all();
         $buyOrder = $req["buy_order"];
@@ -112,7 +112,7 @@ class OneclickDeferredController extends Controller
 
     public function refund(Request $request)
     {
-        Oneclick::configureOneclickMallDeferredForTesting();
+        
 
         $req = $request->all();
         $buyOrder = $req["parent_buy_order"];
@@ -127,7 +127,7 @@ class OneclickDeferredController extends Controller
 
     public function deleteInscription(Request $request)
     {
-        Oneclick::configureOneclickMallDeferredForTesting();
+        
 
         $req = $request->all();
         $tbkUser = $req["tbk_user"];
