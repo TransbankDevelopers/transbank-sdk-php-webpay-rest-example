@@ -96,6 +96,17 @@
             </div>
         @endif
 
+        @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_credentials_present']))
+            <div class="examples_container">
+                <span class="operation_title">
+                    Transacción Completa Captura Diferida
+                </span>
+                <span class="operation_link">
+                    <a href="transaccion_completa/diferido/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                </span>
+            </div>
+        @endif
+
         @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_mall_credentials_present']))
             <div class="examples_container">
                 <span class="operation_title">
