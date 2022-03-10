@@ -40,20 +40,25 @@ class WebpayPlusController extends Controller
 
     public function refundTransaction(Request $request)
     {
-        $req = $request->except('_token');
-
-        $resp = (new Transaction)->refund($req["token"], $req["amount"]);
-
-        return view('webpayplus/refund_success', ["resp" => $resp]);
+        $error = false;
+        try {
+            $req = $request->except('_token');
+            $resp = (new Transaction)->refund($req["token"], $req["amount"]);
+        } catch (\Exception $e) {
+            $resp = array(
+                'msg' => $e->getMessage(),
+                'code' => $e->getCode()
+            );
+            $error = true;
+        }
+        return view('webpayplus/refund_success', ["resp" => $resp, "error" => $error]);
     }
 
     public function getTransactionStatus(Request $request)
     {
         $req = $request->except('_token');
         $token = $req["token"];
-
         $resp = (new Transaction)->status($token);
-
         return view('webpayplus/transaction_status', ["resp" => $resp, "req" => $req]);
     }
 }
