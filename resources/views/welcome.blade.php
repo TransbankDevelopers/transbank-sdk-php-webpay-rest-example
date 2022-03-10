@@ -96,7 +96,7 @@
             </div>
         @endif
 
-        @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_credentials_present']))
+        @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_deferred_credentials_present']))
             <div class="examples_container">
                 <span class="operation_title">
                     Transacción Completa Captura Diferida
