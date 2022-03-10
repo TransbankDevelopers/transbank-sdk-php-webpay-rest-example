@@ -63,6 +63,8 @@ return [
         'oneclick_mall_deferred_api_key' => env('ONECLICK_MALL_DEFERRED_API_KEY'),
         'transaccion_completa_cc' => env('TRANSACCION_COMPLETA_CC'),
         'transaccion_completa_api_key' => env('TRANSACCION_COMPLETA_API_KEY'),
+        'transaccion_completa_deferred_cc' => env('TRANSACCION_COMPLETA_DEFERRED_CC'),
+        'transaccion_completa_deferred_api_key' => env('TRANSACCION_COMPLETA_DEFERRED_API_KEY'),
         'transaccion_completa_mall_cc' => env('TRANSACCION_COMPLETA_MALL_CC'),
         'transaccion_completa_mall_child_cc' => env('TRANSACCION_COMPLETA_MALL_CHILD_CC'),
         'transaccion_completa_mall_api_key' => env('TRANSACCION_COMPLETA_MALL_API_KEY'),

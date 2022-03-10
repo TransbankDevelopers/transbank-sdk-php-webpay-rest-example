@@ -26,6 +26,8 @@ class HomeController extends Controller
                 config('services.transbank.oneclick_mall_deferred_cc') != null && config('services.transbank.oneclick_mall_deferred_api_key') != null,
             'transaccion_completa_credentials_present' =>
                 config('services.transbank.transaccion_completa_cc') != null && config('services.transbank.transaccion_completa_api_key') != null,
+            'transaccion_completa_deferred_credentials_present' =>
+                config('services.transbank.transaccion_completa_deferred_cc') != null && config('services.transbank.transaccion_completa_deferred_api_key') != null,
             'transaccion_completa_mall_credentials_present' =>
                 config('services.transbank.transaccion_completa_mall_cc') != null && config('services.transbank.transaccion_completa_mall_api_key') != null,
             'patpass_comercio_credentials_present' =>
