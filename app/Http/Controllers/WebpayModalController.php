@@ -60,7 +60,7 @@ class WebpayModalController extends Controller
         try {
             $response = (new Transaction)->refund($request['token'], $request['amount']);
         } catch (TransactionRefundException $e) {
-            $error = $e->getTransbankError();
+            $error = $e->getTransbankErrorMessage();
         }
 
         return view('modal/refunded', ['response' => $response, 'request' => $request, 'error' => $error]);
