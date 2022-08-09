@@ -29,7 +29,7 @@ class WebpayPlusMallQrController extends Controller
         /* logica que permite eliminar los codigos de comercio no seleccionados */
         $new_details = [];
         foreach($req["detail"] as $item) {
-            if ($item["active"] == "1"){
+            if (isset($item["active"]) && $item["active"] == "1"){
                 $new_detail = [];
                 $new_detail["commerce_code"] = $item["commerce_code"];
                 $new_detail["buy_order"] = $item["buy_order"];
