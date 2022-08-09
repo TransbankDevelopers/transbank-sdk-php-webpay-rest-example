@@ -50,6 +50,13 @@ return [
         'webpay_plus_mall_cc' => env('WEBPAY_PLUS_MALL_CC'),
         'webpay_plus_mall_child_cc' => env ('WEBPAY_PLUS_MALL_CHILD_CC'),
         'webpay_plus_mall_api_key' => env('WEBPAY_PLUS_MALL_API_KEY'),
+
+        'webpay_plus_mall_qr_cc' => env('WEBPAY_PLUS_MALL_QR_CC'),
+        'webpay_plus_mall_qr_api_key' => env('WEBPAY_PLUS_MALL_QR_API_KEY'),
+        'webpay_plus_mall_child1_qr_cc' => env ('WEBPAY_PLUS_MALL_CHILD1_QR_CC'),
+        'webpay_plus_mall_child2_qr_cc' => env ('WEBPAY_PLUS_MALL_CHILD2_QR_CC'),
+        'webpay_plus_mall_child3_qr_cc' => env ('WEBPAY_PLUS_MALL_CHILD3_QR_CC'),
+
         'webpay_plus_deferred_cc' => env('WEBPAY_PLUS_DEFERRED_CC'),
         'webpay_plus_deferred_api_key' => env('WEBPAY_PLUS_DEFERRED_API_KEY'),
         'webpay_plus_mall_deferred_cc' => env('WEBPAY_PLUS_MALL_DEFERRED_CC'),
