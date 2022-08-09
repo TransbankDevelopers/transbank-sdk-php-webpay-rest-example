@@ -25,8 +25,21 @@ class WebpayPlusMallQrController extends Controller
     {
 
         $req = $request->except('_token');
-        $resp = (new WebpayPlus\MallTransaction)->create($req["buy_order"], $req["session_id"],  $req["return_url"], $req["detail"]);
 
+        /* logica que permite eliminar los codigos de comercio no seleccionados */
+        $new_details = [];
+        foreach($req["detail"] as $item) {
+            if ($item["active"] == "1"){
+                $new_detail = [];
+                $new_detail["commerce_code"] = $item["commerce_code"];
+                $new_detail["buy_order"] = $item["buy_order"];
+                $new_detail["amount"] = $item["amount"];
+
+                $new_details[] = $new_detail;
+            }
+        }
+        $req["detail"] = $new_details;
+        $resp = (new WebpayPlus\MallTransaction)->create($req["buy_order"], $req["session_id"],  $req["return_url"], $req["detail"]);
         return view('webpayplus/transaction_created', [ "params" => $req,"response" => $resp]);
 
     }
