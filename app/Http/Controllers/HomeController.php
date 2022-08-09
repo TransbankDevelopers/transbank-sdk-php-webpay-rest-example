@@ -16,6 +16,8 @@ class HomeController extends Controller
                 config('services.transbank.webpay_plus_cc') !=  null && config('services.transbank.webpay_plus_api_key') != null,
             'webpay_plus_mall_credentials_present' =>
                 config('services.transbank.webpay_plus_mall_cc') != null && config('services.transbank.webpay_plus_mall_api_key') != null,
+            'webpay_plus_mall_qr_credentials_present' =>
+                config('services.transbank.webpay_plus_mall_qr_cc') != null && config('services.transbank.webpay_plus_mall_qr_api_key') != null,    
             'webpay_plus_deferred_credentials_present' =>
                 config('services.transbank.webpay_plus_deferred_cc') != null && config('services.transbank.webpay_plus_deferred_api_key') != null,
             'webpay_plus_mall_deferred_credentials_present' =>

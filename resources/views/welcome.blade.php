@@ -39,6 +39,17 @@
             </div>
         @endif
 
+        @if (!$data['production'] || ($data['production'] && $data['webpay_plus_mall_qr_credentials_present']))
+            <div class="examples_container">
+                <span class="operation_title">
+                    Webpay Mall - Test QR
+                </span>
+                <span class="operation_link">
+                    <a href="webpayplusqr/createMall">Iniciar <i class="fa fa-arrow-right"></i></a>
+                </span>
+            </div>
+        @endif
+
 
         @if (!$data['production'] || ($data['production'] && $data['webpay_plus_mall_deferred_credentials_present']))
             <div class="examples_container">
