@@ -19,7 +19,7 @@
 
         <h2 class="text-lg mt-2 font-bold">Obtener status de la transacción</h2>
 
-        <form method="post" action="/webpayplus/mallTransactionStatus">
+        <form method="post" action="/webpayplusqr/mallTransactionStatus">
             @csrf
             <input type="text"
                    value="{{ $params["token_ws"] }}"
@@ -31,7 +31,7 @@
         <h2 class="text-xl font-bold mt-5">Reembolsar una transacción</h2>
         @foreach($response->getDetails() as $key => $detail)
         <h3 class="text-lg mt-1">Transacción #{{ $key + 1 }}</h3>
-        <form method="post" action="/webpayplus/mallRefund" style="display: flex; flex-direction: column; width: 20%;">
+        <form method="post" action="/webpayplusqr/mallRefund" style="display: flex; flex-direction: column; width: 20%;">
             @csrf
             <input type="text" name="token" value="{{ $params["token_ws"] }}">
 
