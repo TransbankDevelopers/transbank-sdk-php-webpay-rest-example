@@ -97,7 +97,7 @@ class TransaccionCompletaDeferredController extends Controller
         $req = $request->except('_token');
 
         $res = (new Transaction)->status(
-            $req['token_ws']
+            $req['token']
         );
 
         return view('transaccion_completa/diferido/status', [
@@ -117,6 +117,69 @@ class TransaccionCompletaDeferredController extends Controller
         );
 
         return view('transaccion_completa/diferido/refund', [
+            "req" => $req,
+            "res" => $res
+        ]);
+    }
+
+    public function increaseAmount(Request $request)
+    {
+        $req = $request->except('_token');
+        $token = $req["token"];
+        $buyOrder = $req["buyOrder"];
+        $authCode = $req["authCode"];
+        $amount = $req["amount"];
+        $commerceCode = TransaccionCompleta::DEFAULT_DEFERRED_COMMERCE_CODE;
+
+        $res = (new Transaction)->increaseAmount($token, $buyOrder, $authCode, $amount, $commerceCode);
+
+        return view('transaccion_completa/diferido/amount_increased', [
+            "req" => $req,
+            "res" => $res
+        ]);
+    }
+
+    public function reverseAmount(Request $request)
+    {
+        $req = $request->except('_token');
+        $token = $req["token"];
+        $buyOrder = $req["buyOrder"];
+        $authCode = $req["authCode"];
+        $amount = $req["amount"];
+        $commerceCode = TransaccionCompleta::DEFAULT_DEFERRED_COMMERCE_CODE;
+
+        $res = (new Transaction)->reversePreAuthorizedAmount($token, $buyOrder, $authCode, $amount, $commerceCode);
+
+        return view('transaccion_completa/diferido/amount_reversed', [
+            "req" => $req,
+            "res" => $res
+        ]);
+    }
+
+    public function increaseDate(Request $request)
+    {
+        $req = $request->except('_token');
+        $token = $req["token"];
+        $buyOrder = $req["buyOrder"];
+        $authCode = $req["authCode"];
+        $commerceCode = TransaccionCompleta::DEFAULT_DEFERRED_COMMERCE_CODE;
+
+        $res = (new Transaction)->increaseAuthorizationDate($token, $buyOrder, $authCode, $commerceCode);
+
+        return view('transaccion_completa/diferido/date_increased', [
+            "req" => $req,
+            "res" => $res
+        ]);
+    }
+
+    public function transactionHistory(Request $request)
+    {
+        $req = $request->except('_token');
+        $token = $req["token"];
+
+        $res = (new Transaction)->deferredCaptureHistory($token);
+
+        return view('transaccion_completa/diferido/history', [
             "req" => $req,
             "res" => $res
         ]);

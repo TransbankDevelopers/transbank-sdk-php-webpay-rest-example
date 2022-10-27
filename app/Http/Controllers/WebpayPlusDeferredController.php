@@ -54,7 +54,9 @@ class WebpayPlusDeferredController extends Controller
         $token = $req["token"];
 
         $resp = (new Transaction())->status($token);
-        dd($resp);
+
+        return view('webpayplus/diferido/status', ["req" => $req, 'resp' => $resp]);
+
     }
 
     public function refundDiferido(Request $request)
@@ -67,4 +69,56 @@ class WebpayPlusDeferredController extends Controller
         dd($resp);
 
     }
+
+    public function increaseAmount(Request $request)
+    {
+        $req = $request->except('_token');
+        $token = $req["token"];
+        $buyOrder = $req["buyOrder"];
+        $authCode = $req["authCode"];
+        $amount = $req["amount"];
+        $commerceCode = WebpayPlus::DEFAULT_DEFERRED_COMMERCE_CODE;
+
+        $resp = (new Transaction())->increaseAmount($token, $buyOrder, $authCode, $amount, $commerceCode);
+
+        return view('webpayplus/diferido/amount_increased', ["req" => $req, 'resp' => $resp]);
+    }
+
+    public function reverseAmount(Request $request)
+    {
+        $req = $request->except('_token');
+        $token = $req["token"];
+        $buyOrder = $req["buyOrder"];
+        $authCode = $req["authCode"];
+        $amount = $req["amount"];
+        $commerceCode = WebpayPlus::DEFAULT_DEFERRED_COMMERCE_CODE;
+
+        $resp = (new Transaction())->reversePreAuthorizedAmount($token, $buyOrder, $authCode, $amount, $commerceCode);
+
+        return view('webpayplus/diferido/amount_reversed', ["req" => $req, 'resp' => $resp]);
+    }
+
+    public function increaseDate(Request $request)
+    {
+        $req = $request->except('_token');
+        $token = $req["token"];
+        $buyOrder = $req["buyOrder"];
+        $authCode = $req["authCode"];
+        $commerceCode = WebpayPlus::DEFAULT_DEFERRED_COMMERCE_CODE;
+
+        $resp = (new Transaction())->increaseAuthorizationDate($token, $buyOrder, $authCode, $commerceCode);
+
+        return view('webpayplus/diferido/date_increased', ["req" => $req, 'resp' => $resp]);
+    }
+
+    public function transactionHistory(Request $request)
+    {
+        $req = $request->except('_token');
+        $token = $req["token"];
+
+        $resp = (new Transaction())->deferredCaptureHistory($token);
+
+        return view('webpayplus/diferido/history', ["req" => $req, 'resp' => $resp]);
+    }
+
 }
