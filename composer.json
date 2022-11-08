@@ -8,10 +8,10 @@
     ],
     "license": "BSD-3-Clause",
     "require": {
-        "php": "^7.3",
+        "php": "^8.0",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "^6.0",
-        "laravel/tinker": "^1.0",
+        "laravel/framework": "^8.0",
+        "laravel/tinker": "^2.0",
         "transbank/transbank-sdk": "~3.0"
     },
     "require-dev": {
@@ -19,8 +19,8 @@
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^7.5"
+        "nunomaduro/collision": "^5.5",
+        "phpunit/phpunit": "^9.0"
     },
     "extra": {
         "laravel": {
