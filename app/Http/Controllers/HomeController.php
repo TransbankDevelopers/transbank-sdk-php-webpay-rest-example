@@ -16,6 +16,8 @@ class HomeController extends Controller
                 config('services.transbank.webpay_plus_cc') !=  null && config('services.transbank.webpay_plus_api_key') != null,
             'webpay_plus_mall_credentials_present' =>
                 config('services.transbank.webpay_plus_mall_cc') != null && config('services.transbank.webpay_plus_mall_api_key') != null,
+            'webpay_plus_mall_qr_credentials_present' =>
+                config('services.transbank.webpay_plus_mall_qr_cc') != null && config('services.transbank.webpay_plus_mall_qr_api_key') != null,    
             'webpay_plus_deferred_credentials_present' =>
                 config('services.transbank.webpay_plus_deferred_cc') != null && config('services.transbank.webpay_plus_deferred_api_key') != null,
             'webpay_plus_mall_deferred_credentials_present' =>
@@ -26,6 +28,8 @@ class HomeController extends Controller
                 config('services.transbank.oneclick_mall_deferred_cc') != null && config('services.transbank.oneclick_mall_deferred_api_key') != null,
             'transaccion_completa_credentials_present' =>
                 config('services.transbank.transaccion_completa_cc') != null && config('services.transbank.transaccion_completa_api_key') != null,
+            'transaccion_completa_deferred_credentials_present' =>
+                config('services.transbank.transaccion_completa_deferred_cc') != null && config('services.transbank.transaccion_completa_deferred_api_key') != null,
             'transaccion_completa_mall_credentials_present' =>
                 config('services.transbank.transaccion_completa_mall_cc') != null && config('services.transbank.transaccion_completa_mall_api_key') != null,
             'patpass_comercio_credentials_present' =>

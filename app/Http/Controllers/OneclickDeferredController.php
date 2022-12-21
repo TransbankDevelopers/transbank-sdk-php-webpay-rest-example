@@ -25,7 +25,7 @@ class OneclickDeferredController extends Controller
     {
         session_start();
 
-        Oneclick::configureOneclickMallDeferredForTesting();
+
 
         $req = $request->all();
         $userName = $req["user_name"];
@@ -43,7 +43,7 @@ class OneclickDeferredController extends Controller
     {
         session_start();
 
-        Oneclick::configureOneclickMallDeferredForTesting();
+
 
         $req = $request->all();
         $token = $req["TBK_TOKEN"];
@@ -58,7 +58,7 @@ class OneclickDeferredController extends Controller
     {
         session_start();
 
-        Oneclick::configureOneclickMallDeferredForTesting();
+
 
         $req = $request->all();
 
@@ -87,7 +87,7 @@ class OneclickDeferredController extends Controller
 
     public function transactionCapture(Request $request)
     {
-        Oneclick::configureOneclickMallDeferredForTesting();
+
 
         $req = $request->all();
 
@@ -100,7 +100,7 @@ class OneclickDeferredController extends Controller
 
     public function transactionStatus(Request $request)
     {
-        Oneclick::configureOneclickMallDeferredForTesting();
+
 
         $req = $request->all();
         $buyOrder = $req["buy_order"];
@@ -112,7 +112,7 @@ class OneclickDeferredController extends Controller
 
     public function refund(Request $request)
     {
-        Oneclick::configureOneclickMallDeferredForTesting();
+
 
         $req = $request->all();
         $buyOrder = $req["parent_buy_order"];
@@ -127,7 +127,7 @@ class OneclickDeferredController extends Controller
 
     public function deleteInscription(Request $request)
     {
-        Oneclick::configureOneclickMallDeferredForTesting();
+
 
         $req = $request->all();
         $tbkUser = $req["tbk_user"];
@@ -136,4 +136,55 @@ class OneclickDeferredController extends Controller
         $resp = (new MallInscription)->delete($tbkUser, $userName);
         return view('oneclick/mall_diferido/mall_inscription_deleted', ["req" => $req, "resp" => $resp]);
     }
+
+    public function increaseAmount(Request $request)
+    {
+        $req = $request->all();
+        $buyOrder = $req["buyOrder"];
+        $authCode = $req["authCode"];
+        $amount = $req["amount"];
+        $commerceCode = $req["commerceCode"];
+
+        $res = (new MallTransaction)->increaseAmount($buyOrder, $authCode, $amount, $commerceCode);
+
+        return view('oneclick/mall_diferido/amount_increased', ["req" => $req, "res" => $res]);
+    }
+
+    public function reverseAmount(Request $request)
+    {
+        $req = $request->all();
+        $buyOrder = $req["buyOrder"];
+        $authCode = $req["authCode"];
+        $amount = $req["amount"];
+        $commerceCode = $req["commerceCode"];
+
+        $res = (new MallTransaction)->reversePreAuthorizedAmount($buyOrder, $authCode, $amount, $commerceCode);
+
+        return view('oneclick/mall_diferido/amount_reversed', ["req" => $req, "res" => $res]);
+    }
+
+    public function increaseDate(Request $request)
+    {
+        $req = $request->all();
+        $buyOrder = $req["buyOrder"];
+        $authCode = $req["authCode"];
+        $commerceCode = $req["commerceCode"];
+
+        $res = (new MallTransaction)->increaseAuthorizationDate($buyOrder, $authCode, $commerceCode);
+
+        return view('oneclick/mall_diferido/date_increased', ["req" => $req, "res" => $res]);
+    }
+
+    public function transactionHistory(Request $request)
+    {
+        $req = $request->all();
+        $buyOrder = $req["buyOrder"];
+        $authCode = $req["authCode"];
+        $commerceCode = $req["commerceCode"];
+
+        $res = (new MallTransaction)->deferredCaptureHistory($authCode, $buyOrder, $commerceCode);
+
+        return view('oneclick/mall_diferido/history', ["req" => $req, "res" => $res]);
+    }
+
 }

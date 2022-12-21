@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <h1> Ejemplo Webpay Refund </h1>
+    <h1> Ejemplo Webpay Plus Mall Refund </h1>
 
 
     <form method="post" action="refund">

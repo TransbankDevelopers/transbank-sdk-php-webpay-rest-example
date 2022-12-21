@@ -1,31 +1,39 @@
-<h1>Webpay Transacción diferida capturada</h1>
+@extends('layout')
+@section('content')
+    <h1>Webpay Transacción diferida capturada</h1>
 
-<h2>Request</h2>
-<pre> {{  print_r($req, true) }} </pre>
+    <h2>Request</h2>
+    <pre> {{  print_r($req, true) }} </pre>
 
-<h2> Response </h2>
-<pre> {{  print_r($resp, true) }} </pre>
-
-
+    <h2> Response </h2>
+    <pre> {{  print_r($resp, true) }} </pre>
 
 
 
-<h2>Reembolso</h2>
-<form method="post" action="/webpayplus/diferido/refund">
-    @csrf
-    <input name="token" type="text" value={{ $req["token"] }}>
-    <input name="amount" type="text" value={{ $resp->getCapturedAmount() }}>
 
-    <button type="submit">Reembolsar transacción </button>
 
-</form>
+    <h2>Reembolso</h2>
+    <br><hr>
+    <form method="post" action="/webpayplus/diferido/refund">
+        @csrf
+        <label for="token">Token</label> <br>
+        <input name="token" type="text" id="token" value={{ $req["token"] }}> <br>
+        <label for="amount">Monto</label> <br>
+        <input name="amount" type="text" id="amount" value={{ $resp->getCapturedAmount() }}> <br>
 
-<h2>Estado de la transacción</h2>
+        <button type="submit">Reembolsar transacción </button>
 
-<form method="post" action="/webpayplus/diferido/status">
-    @csrf
-    <input name="amount" type="text" value={{ $resp->getCapturedAmount() }}>
-    <input name="token" type="text" value={{ $req["token"] }}>
-    <button type="submit">Ver estado</button>
+    </form>
+    <br><hr>
+    <h2>Estado de la transacción</h2>
 
-</form>
+    <form method="post" action="/webpayplus/diferido/status">
+        @csrf
+        <label for="amount">Monto</label> <br>
+        <input name="amount" type="text" id="amount" value={{ $resp->getCapturedAmount() }}> <br>
+        <label for="token">Token</label> <br>
+        <input name="token" type="text" id="token" value={{ $req["token"] }}> <br>
+        <button type="submit">Ver estado</button>
+
+    </form>
+@endsection

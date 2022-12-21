@@ -8,10 +8,11 @@
     ],
     "license": "BSD-3-Clause",
     "require": {
+        "php": "^7.3",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "transbank/transbank-sdk": "~2.0"
+        "transbank/transbank-sdk": "~3.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
