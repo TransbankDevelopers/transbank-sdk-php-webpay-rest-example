@@ -1,7 +1,7 @@
-version: '2'
+version: '3'
 services:
   web:
-    container_name: web
+    container_name: transbank-sdk-php-webpay-rest-example
     build:
       context: .
       dockerfile: Dockerfile
