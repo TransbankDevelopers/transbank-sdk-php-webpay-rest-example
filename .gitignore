@@ -11,3 +11,5 @@ npm-debug.log
 yarn-error.log
 .idea/*
 .idea/
+public/app.js
+public/js/app.js
