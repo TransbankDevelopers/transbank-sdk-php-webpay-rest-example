@@ -110,6 +110,8 @@
                     </form>
                 </div>
             </div>
+
+            @if(count($resp->details) >1)
             <div class="flex flex-col w-1/2 space-y-3">
                 <div>
                     <h2 class="text-lg mt-2 font-bold">Transacción #2</h2>
@@ -202,5 +204,9 @@
                     </form>
                 </div>
             </div>
+            @endif
+
+
+            
         </div>
 @endsection
