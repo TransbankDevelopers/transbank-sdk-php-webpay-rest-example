@@ -1,4 +1,4 @@
-Proyecto de ejemplo para uso de Onepay con el SDK de Transbank para PHP
+Proyecto de ejemplo de uso del SDK de Transbank para PHP
 --
 
 El siguiente proyecto es una simulacion de un ecommerce el cual utiliza los distintos servicios de webpay rest a traves del SDK de Transbank para php
