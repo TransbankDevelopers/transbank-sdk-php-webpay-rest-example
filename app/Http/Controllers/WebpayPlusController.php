@@ -26,10 +26,22 @@ class WebpayPlusController extends Controller
 
     public function commitTransaction(Request $request)
     {
-        $req = $request->except('_token');
-        $resp = (new Transaction)->commit($req["token_ws"]);
+        //Flujo normal
+        if($request->exists("token_ws")){
+            $req = $request->except('_token');
+            $resp = (new Transaction)->commit($req["token_ws"]);
 
-        return view('webpayplus/transaction_committed', ["resp" => $resp, 'req' => $req]);
+            return view('webpayplus/transaction_committed', ["resp" => $resp, 'req' => $req]);
+        }
+
+        //Pago abortado
+        if($request->exists("TBK_TOKEN")){
+            return view('webpayplus/transaction_aborted', ["resp" => $request->all()]);
+        }
+
+        //Timeout
+        return view('webpayplus/transaction_timeout', ["resp" => $request->all()]);
+
     }
 
 
