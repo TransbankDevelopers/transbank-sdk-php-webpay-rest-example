@@ -26,10 +26,21 @@ class WebpayPlusMallDeferredController extends Controller
 
     public function commitMallDiferido(Request $request)
     {
-        $req = $request->except('_token');
-        $resp = (new MallTransaction)->commit($req["token_ws"]);
+        //Flujo normal
+        if($request->exists("token_ws")){
+            $req = $request->except('_token');
+            $resp = (new MallTransaction)->commit($req["token_ws"]);
 
-        return view('webpayplus/mall/diferido/transaction_committed', ["resp" => $resp, 'req' => $req]);
+            return view('webpayplus/mall/diferido/transaction_committed', ["resp" => $resp, 'req' => $req]);
+        }
+
+        //Pago abortado
+        if($request->exists("TBK_TOKEN")){
+            return view('webpayplus/mall/diferido/transaction_aborted', ["resp" => $request->all()]);
+        }
+
+        //Timeout
+        return view('webpayplus/mall/diferido/transaction_timeout', ["resp" => $request->all()]);
     }
 
     public function captureMallDiferido(Request $request)
