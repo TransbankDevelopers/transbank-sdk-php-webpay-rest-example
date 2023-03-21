@@ -73,7 +73,7 @@ class WebpayPlusMallDeferredController extends Controller
         $req = $request->except('_token');
         $token = $req["token"];
         $resp = (new MallTransaction)->status($token);
-        dd($resp);
+        return view('webpayplus/mall/diferido/status', ["req" => $req, 'resp' => $resp]);
     }
 
     public function increaseAmountMallDiferido(Request $request)
