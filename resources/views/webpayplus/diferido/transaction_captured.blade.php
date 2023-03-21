@@ -9,11 +9,8 @@
     <pre> {{  print_r($resp, true) }} </pre>
 
 
-
-
-
-    <h2>Reembolso</h2>
     <br><hr>
+    <h2>Reembolso</h2>
     <form method="post" action="/webpayplus/diferido/refund">
         @csrf
         <label for="token">Token</label> <br>

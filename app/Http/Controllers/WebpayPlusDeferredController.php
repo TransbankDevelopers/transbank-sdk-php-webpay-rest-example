@@ -76,7 +76,8 @@ class WebpayPlusDeferredController extends Controller
         $amount = $req["amount"];
 
         $resp = (new Transaction())->refund($token, $amount);
-        dd($resp);
+
+        return view('webpayplus/diferido/refund', ["req" => $req, 'resp' => $resp]);
 
     }
 

@@ -65,7 +65,7 @@ class WebpayPlusMallDeferredController extends Controller
         $childCommerceCode = $req["child_commerce_code"];
         $childBuyOrder = $req["child_buy_order"];
         $resp = (new MallTransaction)->refund($token, $childBuyOrder, $childCommerceCode, $amount);
-        dd($resp);
+        return view('webpayplus/mall/diferido/refund', ["req" => $req, 'resp' => $resp]);
     }
 
     public function statusMallDiferido(Request $request)
@@ -73,7 +73,7 @@ class WebpayPlusMallDeferredController extends Controller
         $req = $request->except('_token');
         $token = $req["token"];
         $resp = (new MallTransaction)->status($token);
-        dd($resp);
+        return view('webpayplus/mall/diferido/status', ["req" => $req, 'resp' => $resp]);
     }
 
     public function increaseAmountMallDiferido(Request $request)
