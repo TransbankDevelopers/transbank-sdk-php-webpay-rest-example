@@ -34,11 +34,22 @@ class WebpayPlusMallController extends Controller
 
     public function commitmallTransaction(Request $request)
     {
-        $req = $request->except('_token');
-        $token = $req["token_ws"];
-        $resp = (new WebpayPlus\MallTransaction)->commit($token);
+        //Flujo normal
+        if($request->exists("token_ws")){
+            $req = $request->except('_token');
+            $token = $req["token_ws"];
+            $resp = (new WebpayPlus\MallTransaction)->commit($token);
 
-        return view('webpayplus/mall_transaction_committed', ["params" => $req, "response" => $resp]);
+            return view('webpayplus/mall_transaction_committed', ["params" => $req, "response" => $resp]);
+        }
+
+        //Pago abortado
+        if($request->exists("TBK_TOKEN")){
+            return view('webpayplus/mall_transaction_aborted', ["resp" => $request->all()]);
+        }
+
+        //Timeout
+        return view('webpayplus/mall_transaction_timeout', ["resp" => $request->all()]);
 
     }
 

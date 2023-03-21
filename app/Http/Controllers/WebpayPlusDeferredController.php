@@ -27,11 +27,21 @@ class WebpayPlusDeferredController extends Controller
 
     public function commitDiferidoTransaction(Request $request)
     {
+        //Flujo normal
+        if($request->exists("token_ws")){
+            $req = $request->except('_token');
+            $resp = (new Transaction())->commit($req["token_ws"]);
 
-        $req = $request->except('_token');
-        $resp = (new Transaction())->commit($req["token_ws"]);
+            return view('webpayplus/diferido/transaction_committed', ["resp" => $resp, 'req' => $req]);
+        }
 
-        return view('webpayplus/diferido/transaction_committed', ["resp" => $resp, 'req' => $req]);
+        //Pago abortado
+        if($request->exists("TBK_TOKEN")){
+            return view('webpayplus/diferido/transaction_aborted', ["resp" => $request->all()]);
+        }
+
+        //Timeout
+        return view('webpayplus/diferido/transaction_timeout', ["resp" => $request->all()]);
     }
 
 
