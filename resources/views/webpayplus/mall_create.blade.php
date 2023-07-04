@@ -6,14 +6,21 @@
     @csrf
 
     @if (app()->environment('production'))
-        <label for="merchant_1_amount">Monto comercio 1</label>
-        <input id="merchant_1_amount" name="detail[0][amount]" value="1000">
+        @foreach($commerceCodeList as $i => $child)
+            @if($child['type_child'] == '3DS')
+                <span> Tienda Piloto 3DS {{$child['commerce_code']}} </span>
+            @else
+                <span> Tienda Normal {{$child['commerce_code']}} </span>
+            @endif
+            <label for="merchant_{{$i}}_amount">Monto comercio</label>
+            <input id="merchant_{{$i}}_amount" name="detail[{{$i}}][amount]" value="1000">
 
-        <label for="merchant_1_commerce_code">Código comercio del comercio #1</label>
-        <input id="merchant_1_commerce_code" name="detail[0][commerce_code]" value="{{ config('services.transbank.webpay_plus_mall_child_cc') }}">
+            <label for="merchant_{{$i}}_commerce_code">Código comercio del comercio</label>
+            <input id="merchant_{{$i}}_commerce_code" name="detail[{{$i}}][commerce_code]" value="{{$child['commerce_code']}}">
 
-        <label for="merchant_1_buy_order">Orden de compra comercio #1</label>
-        <input id="merchant_1_buy_order" name="detail[0][buy_order]" value="buyorder_{{Str::random(10)}}">
+            <label for="merchant_{{$i}}_buy_order">Orden de compra comercio</label>
+            <input id="merchant_{{$i}}_buy_order" name="detail[{{$i}}][buy_order]" value="buyorder_{{Str::random(10)}}">
+        @endforeach
     @else
         <label for="merchant_1_amount">Monto comercio 1</label>
         <input id="merchant_1_amount" name="detail[0][amount]" value="1000">
