@@ -18,7 +18,19 @@ class WebpayPlusMallController extends Controller
 
     public function createMall(Request $request)
     {
-        return view('webpayplus/mall_create');
+        $childCommerceCodeNormal = config('services.transbank.webpay_plus_mall_child_cc');
+        $childCommerceCode3ds = config('services.transbank.webpay_plus_mall_child_3ds');
+
+        $commerceCodeList = [];
+        foreach ($childCommerceCodeNormal as $childNormal){
+            $commerceCodeList[] = ['commerce_code' => $childNormal, 'type_child'=> 'normal'];
+        }
+
+        foreach ($childCommerceCode3ds as $child){
+            $commerceCodeList[] = ['commerce_code' => $child, 'type_child'=> '3DS'];
+        }
+
+        return view('webpayplus/mall_create', compact('commerceCodeList'));
     }
 
     public function createdMallTransaction(Request $request)
