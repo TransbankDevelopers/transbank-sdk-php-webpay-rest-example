@@ -23,11 +23,15 @@ class WebpayPlusMallController extends Controller
 
         $commerceCodeList = [];
         foreach ($childCommerceCodeNormal as $childNormal){
-            $commerceCodeList[] = ['commerce_code' => $childNormal, 'type_child'=> 'normal'];
+            if ($childNormal != ""){
+                $commerceCodeList[] = ['commerce_code' => $childNormal, 'type_child'=> 'normal'];
+            }
         }
 
         foreach ($childCommerceCode3ds as $child){
-            $commerceCodeList[] = ['commerce_code' => $child, 'type_child'=> '3DS'];
+            if($child != ""){
+                $commerceCodeList[] = ['commerce_code' => $child, 'type_child'=> '3DS'];
+            }
         }
 
         return view('webpayplus/mall_create', compact('commerceCodeList'));
