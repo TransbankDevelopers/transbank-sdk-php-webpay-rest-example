@@ -9,39 +9,28 @@ Para ejecutar el proyecto es necesario tener:
  ```docker``` y ```docker-compose``` ([como instalar Docker](https://docs.docker.com/install/))
 
 ## Ejecutar ejemplo
-Para iniciar el proyecto, se usa `docker` y `docker-compose`. Para simplificar el proceso se crearon algunos scripts. 
+Para iniciar el proyecto, se usa `docker` y `docker-compose`. Puedes utilizar los siguientes comandos:
 
 ### Iniciar proyecto
-Estos comandos construirán el contenedor la primera vez que se ejecute, además de iniciar el proyecto.
+Este comando construirá el contenedor la primera vez que se ejecute, además de iniciar el proyecto.
 ```bash
-./update
-./start
+docker-compose up
 ```
-
+Esto levantará el servidor de prueba en [http://localhost:8000](http://localhost:8000) (y fallará en caso de que el puerto 8000 no esté disponible)
 ### Detener proyecto
 ```bash
-./stop
+docker-compose down
 ```
 
 ### Otros comandos
 
 #### Detener y eliminar las imágenes
 ```bash
-./purge
-```
-
-#### Entrar a la máquina 
-```bash
-./shell
-```
-
-#### Instalar dependencias de composer
-```bash
-./update
+docker-compose down -v --rmi all --remove-orphans
 ```
 
 
-Esto levantará el servidor de prueba en [http://localhost:8000](http://localhost:8000) (y fallará en caso de que el puerto 8000 no esté disponible)
+
 
 Es posible ver las operaciones del SDK implementadas en la clase los controladores ubicados en `app/Http/Controllers/`. 
 
