@@ -32,5 +32,5 @@ docker-compose down -v --rmi all --remove-orphans
 
 
 
-Es posible ver las operaciones del SDK implementadas en la clase los controladores ubicados en `app/Http/Controllers/`. 
+Es posible ver las operaciones del SDK implementadas en los controladores ubicados en `app/Http/Controllers/`. 
 
