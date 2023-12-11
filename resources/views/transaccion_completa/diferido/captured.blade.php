@@ -21,7 +21,7 @@
             <label for="token_ws">
                 Token
             </label>
-            <input type="text" name="token_ws" value={{ $req['token_ws'] }}>
+            <input type="text" name="_token" value={{ $req['token_ws'] }}>
             <button type="submit" class="w-full">Revisar Status</button>
         </form>
     </div>
