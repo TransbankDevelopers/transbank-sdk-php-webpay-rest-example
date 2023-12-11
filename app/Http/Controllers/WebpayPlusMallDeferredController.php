@@ -76,52 +76,5 @@ class WebpayPlusMallDeferredController extends Controller
         return view('webpayplus/mall/diferido/status', ["req" => $req, 'resp' => $resp]);
     }
 
-    public function increaseAmountMallDiferido(Request $request)
-    {
-        $req = $request->except('_token');
-        $token = $req["token"];
-        $buyOrder = $req["buyOrder"];
-        $authCode = $req["authCode"];
-        $amount = $req["amount"];
-        $commerceCode = $req["commerceCode"];
 
-        $resp = (new MallTransaction)->increaseAmount($token, $buyOrder, $authCode, $amount, $commerceCode);
-        return view('webpayplus/mall/diferido/amount_increased', ["req" => $req, 'resp' => $resp]);
-    }
-
-    public function reverseAmountMallDiferido(Request $request)
-    {
-        $req = $request->except('_token');
-        $token = $req["token"];
-        $buyOrder = $req["buyOrder"];
-        $authCode = $req["authCode"];
-        $amount = $req["amount"];
-        $commerceCode = $req["commerceCode"];
-
-        $resp = (new MallTransaction)->reversePreAuthorizedAmount($token, $buyOrder, $authCode, $amount, $commerceCode);
-        return view('webpayplus/mall/diferido/amount_reversed', ["req" => $req, 'resp' => $resp]);
-    }
-
-    public function increaseDateMallDiferido(Request $request)
-    {
-        $req = $request->except('_token');
-        $token = $req["token"];
-        $buyOrder = $req["buyOrder"];
-        $authCode = $req["authCode"];
-        $commerceCode = $req["commerceCode"];
-
-        $resp = (new MallTransaction)->increaseAuthorizationDate($token, $buyOrder, $authCode, $commerceCode);
-        return view('webpayplus/mall/diferido/date_increased', ["req" => $req, 'resp' => $resp]);
-    }
-
-    public function transactionHistoryMallDiferido(Request $request)
-    {
-        $req = $request->except('_token');
-        $token = $req["token"];
-        $buyOrder = $req["buyOrder"];
-        $commerceCode = $req["commerceCode"];
-
-        $resp = (new MallTransaction)->deferredCaptureHistory($token, $buyOrder, $commerceCode);
-        return view('webpayplus/mall/diferido/history', ["req" => $req, 'resp' => $resp]);
-    }
 }
