@@ -11,7 +11,7 @@
 
 <br><hr>
 <h2>Estado de la transacción</h2>
-<form method="post" action="/oneclick/mall/diferido/transactionStatus" >
+<form method="post" action="/oneclick/mall/diferido/transaction_status" >
     <input type="hidden" name="buy_order" value="{{  $req['parent_buy_order'] }}">
     <button type="submit">Consultar estado</button>
 </form>
