@@ -31,7 +31,7 @@
     <label for="serviceId">
         Service Id (rut con digito verificador, sin puntos ni guión)
     </label>
-    <input id="serviceId" name="serviceId" value="{{ '184399792' }}"/>
+    <input id="serviceId" name="serviceId" value="{{ 'service_'.rand(10,100) }}"/>
 
     <label for="finalUrl">
         URL Final
