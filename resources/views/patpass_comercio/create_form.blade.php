@@ -29,7 +29,7 @@
     <input id="rut" name="rut" value="18439979-2"/>
 
     <label for="serviceId">
-        Service Id (rut con digito verificador, sin puntos ni guión)
+        Service Id (ID del servicio del tarjetahabiente, generado por el comercio para identificar su instrucción de cargo)
     </label>
     <input id="serviceId" name="serviceId" value="{{ 'service_'.rand(10,100) }}"/>
 
