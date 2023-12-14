@@ -49,10 +49,6 @@ Route::post('/webpayplus/diferido/refund', 'WebpayPlusDeferredController@refundD
 
 Route::post('/webpayplus/diferido/status', 'WebpayPlusDeferredController@statusDiferido');
 
-Route::post('/webpayplus/diferido/increaseAmount', 'WebpayPlusDeferredController@increaseAmount');
-Route::post('/webpayplus/diferido/reverseAmount', 'WebpayPlusDeferredController@reverseAmount');
-Route::post('/webpayplus/diferido/increaseDate', 'WebpayPlusDeferredController@increaseDate');
-Route::post('/webpayplus/diferido/transactionHistory', 'WebpayPlusDeferredController@transactionHistory');
 
 
 
@@ -119,10 +115,6 @@ Route::post('/transaccion_completa/diferido/transaction_status', 'TransaccionCom
 
 Route::post('/transaccion_completa/diferido/refund', 'TransaccionCompletaDeferredController@refund')->name("completa.deferred.refund");
 
-Route::post('/transaccion_completa/diferido/increase_amount', 'TransaccionCompletaDeferredController@increaseAmount')->name("completa.deferred.increase_amount");
-Route::post('/transaccion_completa/diferido/reverse_amount', 'TransaccionCompletaDeferredController@reverseAmount')->name("completa.deferred.reverse_amount");
-Route::post('/transaccion_completa/diferido/increase_date', 'TransaccionCompletaDeferredController@increaseDate')->name("completa.deferred.increase_date");
-Route::post('/transaccion_completa/diferido/history', 'TransaccionCompletaDeferredController@transactionHistory')->name("completa.deferred.history");
 
 # Transaccion completa mall
 Route::get('/transaccion_completa/mall_create', 'TransaccionCompletaMallController@showMallCreate');
@@ -175,12 +167,6 @@ Route::post('/webpayplus/mall/diferido/refund', 'WebpayPlusMallDeferredControlle
 
 Route::post('/webpayplus/mall/diferido/transactionStatus', 'WebpayPlusMallDeferredController@statusMallDiferido');
 
-Route::post('/webpayplus/mall/diferido/increaseAmount', 'WebpayPlusMallDeferredController@increaseAmountMallDiferido');
-Route::post('/webpayplus/mall/diferido/reverseAmount', 'WebpayPlusMallDeferredController@reverseAmountMallDiferido');
-Route::post('/webpayplus/mall/diferido/increaseDate', 'WebpayPlusMallDeferredController@increaseDateMallDiferido');
-Route::post('/webpayplus/mall/diferido/transactionHistory', 'WebpayPlusMallDeferredController@transactionHistoryMallDiferido');
-
-
 # Oneclick Mall
 
 Route::get('/oneclick/startInscription', function() {
@@ -203,11 +189,6 @@ Route::post('/oneclick/mall/authorizeTransaction', 'OneclickController@authorize
 Route::post('/oneclick/mall/transactionStatus', 'OneclickController@transactionStatus');
 
 Route::post('/oneclick/mall/refund', 'OneclickController@refund');
-
-Route::post('/oneclick/mall/increaseAmount', 'OneclickController@increaseAmount');
-Route::post('/oneclick/mall/reverseAmount', 'OneclickController@reverseAmount');
-Route::post('/oneclick/mall/increaseDate', 'OneclickController@increaseDate');
-Route::post('/oneclick/mall/transactionHistory', 'OneclickController@transactionHistory');
 
 
 # Oneclick Mall diferido
@@ -234,12 +215,6 @@ Route::post('/oneclick/mall/diferido/transaction_status', 'OneclickDeferredContr
 Route::post('/oneclick/mall/diferido/refund', 'OneclickDeferredController@refund');
 
 Route::post('/oneclick/mall/diferido/capture', 'OneclickDeferredController@transactionCapture');
-
-Route::post('/oneclick/mall/diferido/increase_amount', 'OneclickDeferredController@increaseAmount');
-Route::post('/oneclick/mall/diferido/reverse_amount', 'OneclickDeferredController@reverseAmount');
-Route::post('/oneclick/mall/diferido/increase_date', 'OneclickDeferredController@increaseDate');
-Route::post('/oneclick/mall/diferido/history', 'OneclickDeferredController@transactionHistory');
-
 
 Route::get('/modal/create-form', [\App\Http\Controllers\WebpayModalController::class, 'create_form']);
 Route::post('/modal/create', [\App\Http\Controllers\WebpayModalController::class, 'create']);

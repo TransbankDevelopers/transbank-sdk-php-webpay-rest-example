@@ -25,58 +25,6 @@
             </div>
             <hr>
             <div>
-                <h3 class="text-lg mt-2 font-bold">Incrementar monto pre autorizado</h3>
-                <form method="post" action="/webpayplus/diferido/increaseAmount">
-                    <label for="amount">Monto</label>
-                    <input type="text" class="w-full" value="1000" id="amount" name="amount">
-                    <label for="buyOrder">Orden de compra</label>
-                    <input type="text" class="w-full" name="buyOrder" id="buyOrder" value="{{ $resp->buyOrder }}">
-                    <label for="authCode">Código de autorización</label>
-                    <input type="text" class="w-full" name="authCode" id="authCode" value="{{ $resp->authorizationCode }}">
-                    <label for="token">Token</label>
-                    <input type="text" class="w-full" name="token" id="token" value="{{ $req["token_ws"] }}">
-                    <button type="submit">Incrementar monto</button>
-                </form>
-            </div>
-            <hr>
-            <div>
-                <h3 class="text-lg mt-2 font-bold">Reversa monto pre autorizado</h3>
-                <form method="post" action="/webpayplus/diferido/reverseAmount">
-                    <label for="amount">Monto</label>
-                    <input type="text" class="w-full" value="1000" id="amount" name="amount">
-                    <label for="buyOrder">Orden de compra</label>
-                    <input type="text" class="w-full" name="buyOrder" id="buyOrder" value="{{ $resp->buyOrder }}">
-                    <label for="authCode">Código de autorización</label>
-                    <input type="text" class="w-full" name="authCode" id="authCode" value="{{ $resp->authorizationCode }}">
-                    <label for="token">Token</label>
-                    <input type="text" class="w-full" name="token" id="token" value="{{ $req["token_ws"] }}">
-                    <button type="submit">Revertir monto</button>
-                </form>
-            </div>
-            <hr>
-            <div>
-                <h3 class="text-lg mt-2 font-bold">Extender fecha expiración</h3>
-                <form method="post" action="/webpayplus/diferido/increaseDate">
-                    <label for="buyOrder">Orden de compra</label>
-                    <input type="text" class="w-full" name="buyOrder" id="buyOrder" value="{{ $resp->buyOrder }}">
-                    <label for="authCode">Código de autorización</label>
-                    <input type="text" class="w-full" name="authCode" id="authCode" value="{{ $resp->authorizationCode }}">
-                    <label for="token">Token</label>
-                    <input type="text" class="w-full" name="token" id="token" value="{{ $req["token_ws"] }}">
-                    <button type="submit">Extender fecha</button>
-                </form>
-            </div>
-            <hr>
-            <div>
-                <h3 class="text-lg mt-2 font-bold">Historial de transacción</h3>
-                <form method="post" action="/webpayplus/diferido/transactionHistory">
-                    <label for="token">Token</label>
-                    <input type="text" class="w-full" name="token" id="token" value="{{ $req["token_ws"] }}">
-                    <button type="submit">Historial</button>
-                </form>
-            </div>
-            <hr>
-            <div>
                 <h3 class="text-lg mt-2 font-bold">Obtener status de la transacción</h3>
                 <form method="post" action="/webpayplus/diferido/status">
                     @csrf
