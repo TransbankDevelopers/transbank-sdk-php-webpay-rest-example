@@ -63,6 +63,17 @@ Route::get('/webpayplus/mallRefund', 'WebpayPlusMallController@showMallRefund');
 Route::post('/webpayplus/mallRefund', 'WebpayPlusMallController@refundMallTransaction');
 Route::post('/webpayplus/mallTransactionStatus', 'WebpayPlusMallController@getMallTransactionStatus');
 
+# Webpay Plus Cuotas QR
+
+Route::get('/webpayplusduesqr/createMall', 'WebpayPlusMallDuesQrController@createMall');
+Route::post('/webpayplusduesqr/createMall', 'WebpayPlusMallDuesQrController@createdMallTransaction');
+
+Route::any('/webpayplusduesqr/mallReturnUrl', 'WebpayPlusMallDuesQrController@commitMallTransaction')->name('webpayplusduesqr.commit');
+
+Route::get('/webpayplusduesqr/mallRefund', 'WebpayPlusMallDuesQrController@showMallRefund');
+Route::post('/webpayplusduesqr/mallRefund', 'WebpayPlusMallDuesQrController@refundMallTransaction');
+Route::post('/webpayplusduesqr/mallTransactionStatus', 'WebpayPlusMallDuesQrController@getMallTransactionStatus');
+
 # Webpay Plus Mall QR
 
 Route::get('/webpayplusqr/createMall', 'WebpayPlusMallQrController@createMall');
