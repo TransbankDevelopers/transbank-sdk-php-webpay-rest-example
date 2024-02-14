@@ -52,6 +52,10 @@ return [
         'webpay_plus_mall_child_3ds' => explode(',',env('WEBPAY_PLUS_MALL_CHILD_3DS')),
         'webpay_plus_mall_api_key' => env('WEBPAY_PLUS_MALL_API_KEY'),
 
+        'webpay_plus_mall_dues_qr_cc' => env('WEBPAY_PLUS_MALL_DUES_QR_CC'),
+        'webpay_plus_mall_dues_qr_child_cc' => explode(',', env ('WEBPAY_PLUS_MALL_DUES_QR_CHILD_CC')),
+        'webpay_plus_mall_dues_qr_api_key' => env('WEBPAY_PLUS_MALL_DUES_QR_API_KEY'),
+
         'webpay_plus_mall_qr_cc' => env('WEBPAY_PLUS_MALL_QR_CC'),
         'webpay_plus_mall_qr_api_key' => env('WEBPAY_PLUS_MALL_QR_API_KEY'),
         'webpay_plus_mall_child1_qr_cc' => env ('WEBPAY_PLUS_MALL_CHILD1_QR_CC'),
