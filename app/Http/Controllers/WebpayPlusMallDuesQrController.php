@@ -33,8 +33,18 @@ class WebpayPlusMallDuesQrController extends Controller
     public function createdMallTransaction(Request $request)
     {
         $req = $request->except('_token');
-        unset($req["detail"][0]['active']);
-        unset($req["detail"][1]['active']);
+        $new_details = [];
+        foreach($req["detail"] as $item) {
+            if (isset($item["active"]) && $item["active"] == "1"){
+                $new_detail = [];
+                $new_detail["commerce_code"] = $item["commerce_code"];
+                $new_detail["buy_order"] = $item["buy_order"];
+                $new_detail["amount"] = $item["amount"];
+
+                $new_details[] = $new_detail;
+            }
+        }
+        $req["detail"] = $new_details;
         $resp = (new WebpayPlus\MallTransaction)->create($req["buy_order"],
             $req["session_id"],
             $req["return_url"],
