@@ -39,6 +39,18 @@
             </div>
         @endif
 
+        @if ($data['production'] && $data['webpay_plus_mall_qr_dues_credentials_present'])
+            <div class="examples_container">
+                <span class="operation_title">
+                    Webpay Plus Mall - Prueba cuotas QR
+                </span>
+                <span class="operation_link">
+                    <a href="webpayplusduesqr/createMall">
+                        Iniciar <i class="fa fa-arrow-right"></i></a>
+                </span>
+            </div>
+        @endif
+
         @if (!$data['production'] || ($data['production'] && $data['webpay_plus_mall_qr_credentials_present']))
             <div class="examples_container">
                 <span class="operation_title">
