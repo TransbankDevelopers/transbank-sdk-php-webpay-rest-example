@@ -154,20 +154,6 @@
                 </span>
             </div>
         @endif
-
-        <h2 class="header">
-            Webpay Modal
-        </h2>
-
-        @if (!$data['production'] || ($data['production'] && $data['webpay_modal_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">Webpay Modal</span>
-
-                <span class="operation_link">
-                    <a href="modal/create-form">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
     </div>
 
 @endsection
