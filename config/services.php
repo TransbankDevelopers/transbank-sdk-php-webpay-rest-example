@@ -82,7 +82,5 @@ return [
         'transaccion_completa_mall_api_key' => env('TRANSACCION_COMPLETA_MALL_API_KEY'),
         'patpass_comercio_cc' => env('PATPASS_COMERCIO_CC'),
         'patpass_comercio_api_key' => env('PATPASS_COMERCIO_API_KEY'),
-        'webpay_modal_cc' => env('WEBPAY_MODAL_CC'),
-        'webpay_modal_api_key' => env('WEBPAY_MODAL_API_KEY'),
     ]
 ];

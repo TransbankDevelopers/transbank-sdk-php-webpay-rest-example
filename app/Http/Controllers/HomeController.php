@@ -36,9 +36,7 @@ class HomeController extends Controller
             'transaccion_completa_mall_credentials_present' =>
                 config('services.transbank.transaccion_completa_mall_cc') != null && config('services.transbank.transaccion_completa_mall_api_key') != null,
             'patpass_comercio_credentials_present' =>
-                config('services.transbank.patpass_comercio_cc') != null && config('services.transbank.patpass_comercio_api_key') != null,
-            'webpay_modal_credentials_present' =>
-                config('services.transbank.webpay_modal_comercio_cc') != null && config('services.transbank.webpay_modal_api_key') != null
+                config('services.transbank.patpass_comercio_cc') != null && config('services.transbank.patpass_comercio_api_key') != null
         );
         return view('welcome', compact('data'));
     }
