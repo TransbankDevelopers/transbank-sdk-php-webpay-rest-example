@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,17 +16,25 @@
 </head>
 
 <body class="p-0 m-0">
-   <div class="container min-h-screen mx-auto flex items-center justify-center">
-       <div class="box shadow-lg p-10 bg-white" style="min-width: 50%;">
-           <nav class="border-b w-full mb-5 py-1">
-               <a class="text-gray-800 no-underline" href="{{ url('/') }}"><i class="fa fa-home"></i> Inicio</a>
-               @stack('nav')
-           </nav>
-        @yield('content')
-       </div>
-   </div>
+    <div class="container min-h-screen mx-auto flex items-center justify-center">
+        <div class="box shadow-lg p-10 bg-white" style="min-width: 50%;">
+            <nav class="border-b w-full mb-5 py-1">
+                <a class="text-gray-800 no-underline" href="{{ url('/') }}"><i class="fa fa-home"></i> Inicio</a>
+                @stack('nav')
+                <a class="text-gray-800 no-underline float-right" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    <i class="fa fa-sign-out-alt"></i> Cerrar sesión
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </nav>
+            @yield('content')
+        </div>
+    </div>
 
 </body>
 
 </html>
-
