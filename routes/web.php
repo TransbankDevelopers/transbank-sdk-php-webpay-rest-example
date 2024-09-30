@@ -11,6 +11,15 @@
 |
 */
 
+Auth::routes([
+    'register' => false,
+    'password.email' => false,
+    'password.reset' => false,
+    'password.update' => false,
+    'password.request' => false,
+]);
+
+
 Route::get('/', 'HomeController@welcome');
 
 # Webpay Plus
