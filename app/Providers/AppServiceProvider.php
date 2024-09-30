@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\File;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $databasePath = database_path('tbk-production.sqlite');
+
+        if (!File::exists($databasePath)) {
+            File::put($databasePath, '');
+        }
     }
 
     /**
