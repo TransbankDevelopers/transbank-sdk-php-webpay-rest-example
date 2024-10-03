@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $databasePath = database_path('tbk-production.sqlite');
+        $databasePath = database_path('database.sqlite');
 
         if (!File::exists($databasePath)) {
             File::put($databasePath, '');
