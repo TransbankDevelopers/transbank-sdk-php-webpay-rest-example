@@ -14,11 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $databasePath = database_path('database.sqlite');
-
-        if (!File::exists($databasePath)) {
-            File::put($databasePath, '');
-        }
+        //
     }
 
     /**
@@ -28,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $databasePath = database_path('database.sqlite');
+
+        if (!File::exists($databasePath)) {
+            File::put($databasePath, '');
+        }
     }
 }
