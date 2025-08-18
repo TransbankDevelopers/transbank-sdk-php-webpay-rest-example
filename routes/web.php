@@ -15,9 +15,13 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/', 'HomeController@welcome');
+    Route::get('/home', 'HomeController@welcome');
 
     # Webpay Plus
     Route::get('/webpayplus/create', function () {
