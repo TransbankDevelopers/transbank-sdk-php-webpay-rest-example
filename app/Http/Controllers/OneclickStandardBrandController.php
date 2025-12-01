@@ -34,4 +34,24 @@ class OneclickStandardBrandController extends Controller
         $_SESSION["email"] = $email;
         return view('oneclick/standard_brand/inscription_successful', ['resp' => $resp, 'req' => $req]);
     }
+
+
+    public function finishInscription(Request $request)
+    {
+        session_start();
+        $req = $request->except('_token');
+        $token = $req["TBK_TOKEN"];
+
+        $resp = [
+            "response_code" => 0,
+            "tbk_user" => "fake-tbk-user-123456",
+            "card_number" => "1234",
+            "card_type" => "VISA",
+            "authorization_code" => "123456"
+
+        ];
+
+        $userName = array_key_exists("user_name", $_SESSION) ? $_SESSION["user_name"] : '';
+        return view('oneclick/standard_brand/inscription_finished', ["resp" => $resp, "req" => $req, "username" => $userName]);
+    }
 }
