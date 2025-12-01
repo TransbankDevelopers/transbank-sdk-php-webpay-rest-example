@@ -82,5 +82,8 @@ return [
         'transaccion_completa_mall_api_key' => env('TRANSACCION_COMPLETA_MALL_API_KEY'),
         'patpass_comercio_cc' => env('PATPASS_COMERCIO_CC'),
         'patpass_comercio_api_key' => env('PATPASS_COMERCIO_API_KEY'),
+        'oneclick_mall_standard_brand_cc' => env('ONECLICK_MALL_STANDARD_BRAND_CC'),
+        'oneclick_mall_standard_brand_api_key' => env('ONECLICK_MALL_STANDARD_BRAND_API_KEY'),
+        'oneclick_mall_standard_brand_child_cc' => env('ONECLICK_MALL_STANDARD_BRAND_CHILD_CC'),
     ]
 ];
