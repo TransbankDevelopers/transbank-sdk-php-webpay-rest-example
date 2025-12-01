@@ -1,0 +1,85 @@
+{
+    "name": "Proyecto ejemplo PHP Webpay REST SDK",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "remoteUser": "root",
+    "postCreateCommand": "bash /workspaces/${localWorkspaceFolderBasename}/.devcontainer/post-create.sh",
+    "shutdownAction": "stopCompose",
+    "mounts": [
+        "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
+    ],
+    "forwardPorts": [8000, 3306, 5173],
+    "features": {
+        "ghcr.io/devcontainers-extra/features/zsh-plugins:0": {
+            "plugins": "git zsh-autosuggestions zsh-syntax-highlighting",
+            "omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions https://github.com/zsh-users/zsh-syntax-highlighting"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "explorer.confirmDelete": false,
+                "editor.bracketPairColorization.enabled": true,
+                "editor.guides.bracketPairs": true,
+                "editor.autoClosingBrackets": "always",
+                "editor.linkedEditing": true,
+                "editor.fontLigatures": true,
+                "editor.suggestSelection": "first",
+                "editor.inlineSuggest.enabled": true,
+                "editor.guides.bracketPairsHorizontal": true,
+                "editor.unicodeHighlight.invisibleCharacters": false,
+                "editor.codeLens": true,
+                "editor.formatOnSave": true,
+                "editor.rulers": [120],
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+                "files.insertFinalNewline": true,
+                "github.copilot.nextEditSuggestions.enabled": true,
+                "git.enableCommitSigning": false,
+                "extensions.autoUpdate": false,
+                "extensions.autoCheckUpdates": false,
+                "extensions.ignoreRecommendations": true,
+                "remote.containers.installRecommendedExtensions": false,
+                "settingsSync.enabled": false,
+                "remote.extensionKind": {
+                    "github.copilot": ["ui"],
+                    "github.copilot-chat": ["ui"]
+                },
+                "files.watcherExclude": {
+                    "**/vendor/**": true,
+                    "**/var/cache/**": true,
+                    "**/node_modules/**": true
+                },
+                "prettier.trailingComma": "none",
+                "php.executablePath": "/usr/local/bin/php",
+                "php.validate.executablePath": "/usr/local/bin/php",
+                "intelephense.files.maxSize": 5000000,
+                "intelephense.environment.includePaths": ["./"],
+                "[php]": {
+                    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+                }
+            },
+            "extensions": [
+                "ms-vsliveshare.vsliveshare", // Live Share
+                "Gruntfuggly.todo-tree", // [TODO Tree]
+                "GitHub.copilot", // GitHub Copilot
+                "esbenp.prettier-vscode", // Prettier
+                "fill-labs.dependi", // Dependi
+                "onecentlin.laravel-extension-pack", // Laravel Extension Pack
+                "formulahendry.auto-rename-tag", // Auto Rename Tag
+                "formulahendry.auto-close-tag", // Auto Close Tag
+                "DEVSENSE.composer-php-vscode", // PHP Composer
+                "bradgashler.htmltagwrap", // HTML Tag Wrap
+                "kisstkondoros.vscode-gutter-preview", // Gutter Preview
+                "xdebug.php-debug", // PHP Debug
+                "bmewburn.vscode-intelephense-client", // Intelephense
+                "valeryanm.vscode-phpsab", // PHP Sniffer & Beautifier
+                "bradlc.vscode-tailwindcss", // Tailwind CSS IntelliSense
+                "adpyke.codesnap", // CodeSnap
+                "naumovs.color-highlighter", // Color Highlighter
+                "usernamehw.errorlens", // Error Lens
+                "dbaeumer.vscode-eslint" // ESLint
+            ]
+        }
+    }
+}
