@@ -54,4 +54,17 @@ class OneclickStandardBrandController extends Controller
         $userName = array_key_exists("user_name", $_SESSION) ? $_SESSION["user_name"] : '';
         return view('oneclick/standard_brand/inscription_finished', ["resp" => $resp, "req" => $req, "username" => $userName]);
     }
+
+    public function deleteInscription(Request $request)
+    {
+        $req = $request->except('_token');
+        $tbkUser = $req["tbk_user"];
+        $userName = $req["user_name"];
+
+        $resp = [
+            "success" => true,
+            "code" => 204
+        ];
+        return view('oneclick/standard_brand/mall_inscription_deleted', ["req" => $req, "resp" => $resp]);
+    }
 }
