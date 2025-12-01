@@ -15,8 +15,8 @@
 
 @if ($resp['response_code'] == 0)
 
-    <h2>Autorizar transacción</h2>
-    <form method="post" action="/oneclick/standard_brand/mall/authorizeTransaction" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
+    <h1>Autorizar transacción</h1>
+    <form method="post" action="/oneclick/standard_brand/mall/authorizeTransaction" style="display: flex; flex-direction:column; font-size: 20px;">
         @csrf
 
         <label for="username">Nombre de usuario</label>
@@ -28,14 +28,28 @@
         <label for="parent_buy_order">Orden de compra (comercio padre)</label>
         <input id="parent_buy_order" name="buy_order" value="{{rand(100000000, 999999999)}}"/>
 
-        <label for="details_commerce_code">Detalles de transacción</label>
+        <label for="pos_entry_mode">POS Entry Mode</label>
+        <select class="border rounded p-2" id="pos_entry_mode" name="session_id">
+            <option value="01">Manual</option>
+            <option value="010">Archivo</option>
+            <option value="810" selected>Comercio electrónico</option>
+        </select>
+
+         <label for="request_3ds_authentication">Solicitar autenticación 3DS</label>
+        <select class="border rounded p-2" id="request_3ds_authentication" name="session_id">
+            <option value="Si">Si</option>
+            <option value="NO" selected>No</option>
+        </select>
+
+        <h1 class="mt-2">Detalle de la transacción</h1>
+        <label for="details_commerce_code">Código de comercio tienda</label>
         @if (app()->environment('production'))
-            <?php $childCC = config('services.transbank.oneclick_mall_child_cc') ?>
-            <select id="details_commerce_code" name="details[0][commerce_code]" value="{{ $childCC }}">
+            <?php $childCC = config('services.transbank.oneclick_mall_standard_brand_child_cc') ?>
+            <select class="border rounded p-2" id="details_commerce_code" name="details[0][commerce_code]" value="{{ $childCC }}">
                 <option value="{{ $childCC }}">Comercio Hijo - {{ $childCC }}</option>
             </select>
         @else
-            <select id="details_commerce_code" name="details[0][commerce_code]" value="597055555543">
+            <select class="border rounded p-2" id="details_commerce_code" name="details[0][commerce_code]" value="597055555543">
                 <option value="597055555542"> Comercio 1 - Código 597055555542</option>
                 <option value="597055555543">Comercio 2 - Código 597055555543</option>
             </select>
@@ -58,11 +72,25 @@
             <option value="6">6</option>
         </select>
 
+        <label for="pmnt_ind">Índice de período diferido</label>
+        <select class="border rounded p-2" id="pmnt_ind" name="details[0][pmnt_ind]" value="0"/>
+            <option value="C">Cardholder consent for Credential on File (COF)</option>
+            <option value="R" selected>Recurring Payment</option>
+            <option value="">Unknown / Not Provided</option>
+        </select>
+
+        <label for="recur_pmnt">Índice de período diferido</label>
+        <select class="border rounded p-2" id="recur_pmnt" name="details[0][recur_pmnt]" value="0"/>
+            <option value="F" selected>Importe fijo</option>
+            <option value="V">Importe variable</option>
+            <option value="">No hay información disponible</option>
+        </select>
+
         <button type="submit">Enviar</button>
     </form>
 
-    <h2>Eliminar inscripcion</h2>
-    <form method="delete" action="/oneclick/standard_brand/inscription" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
+    <h1>Eliminar inscripcion</h1>
+    <form method="delete" action="/oneclick/standard_brand/inscription" style="display: flex; flex-direction:column; font-size: 20px;">
 
         <label>Nombre de usuario</label>
         <input name="user_name" value="{{ $username}}"/>
