@@ -234,4 +234,20 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/oneclick/mall/diferido/refund', 'OneclickDeferredController@refund');
 
     Route::post('/oneclick/mall/diferido/capture', 'OneclickDeferredController@transactionCapture');
+
+    # Oneclick Mall Standard Brand
+
+    Route::get('/oneclick/standard_brand/startInscription', function () {
+        return view('oneclick/standard_brand/start_inscription');
+    });
+    Route::post('/oneclick/standard_brand/startInscription', 'OneclickStandardBrandController@startInscription');
+    Route::delete('/oneclick/standard_brand/inscription', 'OneclickStandardBrandController@deleteInscription');
+    Route::get('/oneclick/standard_brand/inscription', 'OneclickStandardBrandController@deleteInscription');
+    Route::any('/oneclick/standard_brand/responseUrl', 'OneclickStandardBrandController@finishInscription');
+    Route::get('/oneclick/standard_brand/mall/authorizeTransaction', function () {
+        return view('/oneclick/standard_brand/authorize_mall');
+    });
+    Route::post('/oneclick/standard_brand/mall/authorizeTransaction', 'OneclickStandardBrandController@authorizeMall');
+    Route::post('/oneclick/standard_brand/mall/transactionStatus', 'OneclickStandardBrandController@transactionStatus');
+    Route::post('/oneclick/standard_brand/mall/refund', 'OneclickStandardBrandController@refund');
 });
