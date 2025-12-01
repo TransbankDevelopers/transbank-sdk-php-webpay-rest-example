@@ -237,17 +237,20 @@ Route::middleware(['auth'])->group(function () {
 
     # Oneclick Mall Standard Brand
 
-    Route::get('/oneclick/standard_brand/startInscription', function () {
-        return view('oneclick/standard_brand/start_inscription');
+    Route::prefix('/oneclick/standard_brand')->group(function () {        
+        Route::get('/startInscription', function () {
+            return view('oneclick/standard_brand/start_inscription');
+        });
+        Route::post('/startInscription', 'OneclickStandardBrandController@startInscription');
+        Route::delete('/inscription', 'OneclickStandardBrandController@deleteInscription');
+        Route::get('/inscription', 'OneclickStandardBrandController@deleteInscription');
+        Route::any('/responseUrl', 'OneclickStandardBrandController@finishInscription');
+        Route::get('/mall/authorizeTransaction', function () {
+            return view('/authorize_mall');
+        });
+        Route::post('/mall/authorizeTransaction', 'OneclickStandardBrandController@authorizeMall');
+        Route::post('/mall/transactionStatus', 'OneclickStandardBrandController@transactionStatus');
+        Route::post('/mall/refund', 'OneclickStandardBrandController@refund');
     });
-    Route::post('/oneclick/standard_brand/startInscription', 'OneclickStandardBrandController@startInscription');
-    Route::delete('/oneclick/standard_brand/inscription', 'OneclickStandardBrandController@deleteInscription');
-    Route::get('/oneclick/standard_brand/inscription', 'OneclickStandardBrandController@deleteInscription');
-    Route::any('/oneclick/standard_brand/responseUrl', 'OneclickStandardBrandController@finishInscription');
-    Route::get('/oneclick/standard_brand/mall/authorizeTransaction', function () {
-        return view('/oneclick/standard_brand/authorize_mall');
-    });
-    Route::post('/oneclick/standard_brand/mall/authorizeTransaction', 'OneclickStandardBrandController@authorizeMall');
-    Route::post('/oneclick/standard_brand/mall/transactionStatus', 'OneclickStandardBrandController@transactionStatus');
-    Route::post('/oneclick/standard_brand/mall/refund', 'OneclickStandardBrandController@refund');
+
 });
