@@ -23,6 +23,8 @@ class HomeController extends Controller
             config('services.transbank.webpay_plus_mall_deferred_cc') != null && config('services.transbank.webpay_plus_mall_deferred_api_key') != null,
             'oneclick_mall_credentials_present' =>
             config('services.transbank.oneclick_mall_cc') != null && config('services.transbank.oneclick_mall_api_key') != null,
+            'oneclick_mall_standard_brand_credentials_present' =>
+            config('services.transbank.oneclick_mall_standard_brand_cc') != null && config('services.transbank.oneclick_mall_standard_brand_api_key') != null,
             'oneclick_mall_deferred_credentials_present' =>
             config('services.transbank.oneclick_mall_deferred_cc') != null && config('services.transbank.oneclick_mall_deferred_api_key') != null,
             'transaccion_completa_credentials_present' =>

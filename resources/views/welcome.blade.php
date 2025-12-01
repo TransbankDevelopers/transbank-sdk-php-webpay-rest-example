@@ -104,6 +104,18 @@
             </div>
         @endif
 
+        @if (!$data['production'] || ($data['production'] && $data['oneclick_mall_standard_brand_credentials_present']))
+            <div class="examples_container">
+                <span class="operation_title">
+                    Oneclick mall estándar marca
+                </span>
+                <span class="operation_link">
+                    <a href="oneclick/standard_brand/startInscription">Iniciar <i class="fa fa-arrow-right"></i></a>
+                </span>
+
+            </div>
+        @endif
+
         <h2 class="header">
             Transacción Completa
         </h2>
