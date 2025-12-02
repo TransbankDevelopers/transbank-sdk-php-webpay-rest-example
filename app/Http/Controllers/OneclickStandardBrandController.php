@@ -3,14 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\OneClickStandardBrandService;
 
 class OneclickStandardBrandController extends Controller
 {
+    private OneClickStandardBrandService $standardBrandService;
+
     public function __construct(){
         if (app()->environment('production')) {
-            // TODO: Add production configuration here
+            $this->standardBrandService = new OneClickStandardBrandService(
+                config('services.transbank.oneclick_mall_standard_brand_cc'),
+                config('services.transbank.oneclick_mall_standard_brand_api_key')
+            );
+
         } else {
             // TODO: Add testing configuration here
+            $this->standardBrandService = new OneClickStandardBrandService(
+                config('services.transbank.oneclick_mall_standard_brand_cc'),
+                config('services.transbank.oneclick_mall_standard_brand_api_key')
+            );
         }
     }
 
@@ -24,11 +35,7 @@ class OneclickStandardBrandController extends Controller
         $email = $req["email"];
         $responseUrl = $req["response_url"];
 
-
-        $resp = [
-            "url_webpay" => url('oneclick/standard_brand/responseUrl'),
-            "token" => "fake-token-1234567890"
-        ];
+        $resp = $this->standardBrandService->startInscription($userName, $email, $responseUrl);
 
         $_SESSION["user_name"] = $userName;
         $_SESSION["email"] = $email;
@@ -42,14 +49,8 @@ class OneclickStandardBrandController extends Controller
         $req = $request->except('_token');
         $token = $req["TBK_TOKEN"];
 
-        $resp = [
-            "response_code" => 0,
-            "tbk_user" => "fake-tbk-user-123456",
-            "card_number" => "1234",
-            "card_type" => "VISA",
-            "authorization_code" => "123456"
+        $resp = $this->standardBrandService->finishInscription($token);
 
-        ];
 
         $userName = array_key_exists("user_name", $_SESSION) ? $_SESSION["user_name"] : '';
         return view('oneclick/standard_brand/inscription_finished', ["resp" => $resp, "req" => $req, "username" => $userName]);
@@ -61,10 +62,7 @@ class OneclickStandardBrandController extends Controller
         $tbkUser = $req["tbk_user"];
         $userName = $req["user_name"];
 
-        $resp = [
-            "success" => true,
-            "code" => 204
-        ];
+        $resp = $this->standardBrandService->deleteInscription($tbkUser, $userName);
         return view('oneclick/standard_brand/mall_inscription_deleted', ["req" => $req, "resp" => $resp]);
     }
 }
