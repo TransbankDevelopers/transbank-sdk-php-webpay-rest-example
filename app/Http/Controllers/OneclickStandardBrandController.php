@@ -51,9 +51,15 @@ class OneclickStandardBrandController extends Controller
 
         $resp = $this->standardBrandService->finishInscription($token);
 
+        $metaData = [
+            "ip_address" => $request->ip(),
+            "accept_header" => $request->header('Accept'),
+            "user_agent" => $request->header('User-Agent'),
+            "language" => $request->header('Accept-Language')
+        ];
 
         $userName = array_key_exists("user_name", $_SESSION) ? $_SESSION["user_name"] : '';
-        return view('oneclick/standard_brand/inscription_finished', ["resp" => $resp, "req" => $req, "username" => $userName]);
+        return view('oneclick/standard_brand/inscription_finished', ["resp" => $resp, "req" => $req, "username" => $userName, "metaData" => $metaData]);
     }
 
     public function deleteInscription(Request $request)

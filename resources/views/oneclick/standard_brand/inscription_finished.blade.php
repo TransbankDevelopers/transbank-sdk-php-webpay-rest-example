@@ -16,10 +16,10 @@
 @if ($resp['response_code'] == 0)
 
     <h1>Autorizar transacción</h1>
-    <form method="post" action="/oneclick/standard_brand/mall/authorizeTransaction" style="display: flex; flex-direction:column; font-size: 20px;">
+    <form method="post" action="/oneclick/standard_brand/mall/authorizeTransaction" style="display: flex; flex-direction:column; font-size: 20px; gap: 8px;">
         @csrf
 
-        <label for="username">Nombre de usuario</label>
+        <label for="username" style="margin-top: 8px;">Nombre de usuario</label>
         <input id="username" name="username" value="{{ $username }}"/>
 
         <label for="tbk_user">Codigo de usuario</label>
@@ -79,20 +79,55 @@
             <option value="">Unknown / Not Provided</option>
         </select>
 
-        <label for="recur_pmnt">Índice de período diferido</label>
+        <label for="recur_pmnt">Tipo de importe</label>
         <select class="border rounded p-2" id="recur_pmnt" name="details[0][recur_pmnt]" value="0"/>
             <option value="F" selected>Importe fijo</option>
             <option value="V">Importe variable</option>
             <option value="">No hay información disponible</option>
         </select>
 
+        <label for="tid">Transaction ID</label>
+        <input id="tid" name="details[0][tid]" value="TID123"/>
+
+        <label for="device_type">Tipo de dispositivo</label>
+        <input id="device_type" name="details[0][device_type]" value="mobile"/>
+
+        <h1 class="mt-4">Datos del navegador</h1>
+
+        <label for="browserAcceptHeader">Cabecera Accept del navegador</label>
+        <input id="browserAcceptHeader" name="details[0][browserAcceptHeader]" value="{{ $metaData['accept_header'] }}"/>
+
+        <label for="browserIP">IP del navegador</label>
+        <input id="browserIP" name="details[0][browserIP]" value="{{ $metaData['ip_address'] }}" placeholder="Cargando..."/>
+
+        <label for="browserJavaEnabled">Java habilitado</label>
+        <input id="browserJavaEnabled" name="details[0][browserJavaEnabled]" value=""/>
+
+        <label for="browserLanguage">Idioma del navegador</label>
+        <input id="browserLanguage" name="details[0][browserLanguage]" value="{{ $metaData['language'] }}"/>
+
+        <label for="browserScreenHeight">Alto del navegador</label>
+        <input id="browserScreenHeight" name="details[0][browserScreenHeight]" value=""/>
+
+        <label for="browserScreenWidth">Ancho del navegador</label>
+        <input id="browserScreenWidth" name="details[0][browserScreenWidth]" value=""/>
+
+        <label for="browserTZ">Zona horaria (minutos respecto UTC)</label>
+        <input id="browserTZ" name="details[0][browserTZ]" value=""/>
+
+        <label for="browserUserAgent">User Agent del navegador</label>
+        <input id="browserUserAgent" name="details[0][browserUserAgent]" value="{{ $metaData['user_agent'] }}"/>
+
+        <label for="browserJavascriptEnabled">Javascript habilitado</label>
+        <input id="browserJavascriptEnabled" name="details[0][browserJavascriptEnabled]" value="true"/>
+
         <button type="submit">Enviar</button>
     </form>
 
     <h1>Eliminar inscripcion</h1>
-    <form method="delete" action="/oneclick/standard_brand/inscription" style="display: flex; flex-direction:column; font-size: 20px;">
+    <form method="delete" action="/oneclick/standard_brand/inscription" style="display: flex; flex-direction:column; font-size: 20px; gap: 10px;">
 
-        <label>Nombre de usuario</label>
+        <label style="margin-top: 10px;">Nombre de usuario</label>
         <input name="user_name" value="{{ $username}}"/>
 
         <label>Id de usuario</label>
@@ -102,5 +137,31 @@
 
 
     </form>
+
+    <script>
+        async function getTransactionDetails() {
+            const details = {
+                device_type: navigator.userAgentData?.mobile ? 'mobile' : 'browser',
+                browserJavaEnabled: navigator.javaEnabled ? navigator.javaEnabled() : 'false',
+                browserScreenHeight: window.screen.height.toString(),
+                browserScreenWidth: window.screen.width.toString(),
+                browserTZ: String(new Date().getTimezoneOffset()),
+                browserJavascriptEnabled: true
+            };
+
+            return details;
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            const details = await getTransactionDetails();
+
+            document.getElementById('device_type').value = details.device_type;
+            document.getElementById('browserJavaEnabled').value = details.browserJavaEnabled;
+            document.getElementById('browserScreenHeight').value = details.browserScreenHeight;
+            document.getElementById('browserScreenWidth').value = details.browserScreenWidth;
+            document.getElementById('browserTZ').value = details.browserTZ;
+            document.getElementById('browserJavascriptEnabled').value = details.browserJavascriptEnabled;
+        });
+    </script>
 @endif
 @endsection
