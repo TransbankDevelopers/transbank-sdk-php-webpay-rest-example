@@ -87,7 +87,7 @@
         </select>
 
         <label for="tid">Transaction ID</label>
-        <input id="tid" name="details[0][tid]" value="TID123"/>
+        <input id="tid" name="details[0][tid]" value=""/>
 
         <label for="device_type">Tipo de dispositivo</label>
         <input id="device_type" name="details[0][device_type]" value="mobile"/>
