@@ -98,41 +98,37 @@ class OneclickStandardBrandController extends Controller
     }
 
     //TODO: Confirm that this method is Ok
-    public function authorizeBrandStandard(Request $request)
+    public function authorizeMall(Request $request)
     {
+        $req = $request->except('_token');
         //TODO: Get these values from the request
         $details = [
-            'amount' => 50,
-            'buy_order' => 'order12345',
-            'commerce_code' => config('services.oneclick_mall_standard_brand_child_cc') ?? "",
-            'pmnt_ind' => 'C',
-            'recur_pmnt' => 'V',
-            'tid' => '',
-            'device_type' => '',
-            'browserAcceptHeader' => '',
-            'browserIP' => '',
-            'browserJavaEnabled' => '',
-            'browserLanguage' => '',
-            'browserScreenHeight' => '',
-            'browserScreenWidth' => '',
-            'browserTZ' => '',
-            'browserUserAgent' => '',
-            'browserJavascriptEnabled' => true,
-            'installments_number' => 0,
+            'amount' => $req['details'][0]['amount'],
+            'buy_order' => $req['details'][0]['buy_order'],
+            'commerce_code' => $req['details'][0]['commerce_code'],
+            'pmnt_ind' => $req['details'][0]['pmnt_ind'],
+            'recur_pmnt' => $req['details'][0]['recur_pmnt'],
+            'tid' => $req['details'][0]['tid'],
+            'device_type' => $req['details'][0]['device_type'],
+            'browserAcceptHeader' => $req['details'][0]['browserAcceptHeader'],
+            'browserIP' => $req['details'][0]['browserIP'],
+            'browserJavaEnabled' => $req['details'][0]['browserJavaEnabled'],
+            'browserLanguage' => $req['details'][0]['browserLanguage'],
+            'browserScreenHeight' => $req['details'][0]['browserScreenHeight'],
+            'browserScreenWidth' => $req['details'][0]['browserScreenWidth'],
+            'browserTZ' => $req['details'][0]['browserTZ'],
+            'browserUserAgent' => $req['details'][0]['browserUserAgent'],
+            'browserJavascriptEnabled' => $req['details'][0]['browserJavascriptEnabled'],
+            'installments_number' => $req['details'][0]['installments_number'],
         ];
 
         try {
-            //TODO: Get these values from the request
-            $response = $this->standardBrandService->authorize('user-name', 'tbk_user_123', 'order12345', 1, 'NO', $details);
+            $response = $this->standardBrandService->authorize($req["username"], $req["tbk_user"], $req["buy_order"], $req['pos_entry_mode'], $req['request_3ds_authentication'], $details);
+            $challenge = false;
             if($response instanceof \App\Dto\ChallengeResponseDTO){
-                //TODO: Handle brand challenge response
-
+                $challenge = true;
             }
-            else if($response instanceof \App\Dto\AuthorizeResponseDTO){
-                //TODO: Handle no challenge response
-
-            }
-            return response()->json($response);
+            return view('oneclick/standard_brand/authorized_mall', ["req" => $req, "resp" => $response, "challenge" => $challenge]);
         }
 
         catch (\Exception $e) {
