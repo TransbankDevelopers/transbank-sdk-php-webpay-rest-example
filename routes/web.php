@@ -251,6 +251,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/mall/authorizeTransaction', 'OneclickStandardBrandController@authorizeMall');
         Route::post('/mall/transactionStatus', 'OneclickStandardBrandController@transactionStatus');
         Route::post('/mall/refund', 'OneclickStandardBrandController@refund');
+        Route::get('/mall/challenge-start', 'OneclickStandardBrandController@challengeStart');
     });
 
 });

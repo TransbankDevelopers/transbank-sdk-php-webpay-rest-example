@@ -136,4 +136,15 @@ class OneclickStandardBrandController extends Controller
         }
 
     }
+
+    public function challengeStart(Request $request)
+    {
+        $token = $request->query('token');
+        $url   = $request->query('url');
+
+        return view('oneclick.standard_brand.challenge_start', [
+            'browserChallengeToken' => $token,
+            'baseUrl' => $url
+        ]);
+    }
 }
