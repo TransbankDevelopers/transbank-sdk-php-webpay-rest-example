@@ -29,14 +29,14 @@
         <input id="parent_buy_order" name="buy_order" value="{{rand(100000000, 999999999)}}"/>
 
         <label for="pos_entry_mode">POS Entry Mode</label>
-        <select class="border rounded p-2" id="pos_entry_mode" name="session_id">
+        <select class="border rounded p-2" id="pos_entry_mode" name="pos_entry_mode">
             <option value="01">Manual</option>
             <option value="010">Archivo</option>
             <option value="810" selected>Comercio electrónico</option>
         </select>
 
          <label for="request_3ds_authentication">Solicitar autenticación 3DS</label>
-        <select class="border rounded p-2" id="request_3ds_authentication" name="session_id">
+        <select class="border rounded p-2" id="request_3ds_authentication" name="request_3ds_authentication">
             <option value="Si">Si</option>
             <option value="NO" selected>No</option>
         </select>
