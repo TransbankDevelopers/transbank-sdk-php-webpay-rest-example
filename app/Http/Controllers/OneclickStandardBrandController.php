@@ -101,7 +101,6 @@ class OneclickStandardBrandController extends Controller
     public function authorizeMall(Request $request)
     {
         $req = $request->except('_token');
-        //TODO: Get these values from the request
         $details = [
             'amount' => $req['details'][0]['amount'],
             'buy_order' => $req['details'][0]['buy_order'],
