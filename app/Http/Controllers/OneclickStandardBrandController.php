@@ -9,13 +9,13 @@ class OneclickStandardBrandController extends Controller
 {
     private OneClickStandardBrandService $standardBrandService;
 
-    public function __construct(){
+    public function __construct()
+    {
         if (app()->environment('production')) {
             $this->standardBrandService = new OneClickStandardBrandService(
                 config('services.transbank.oneclick_mall_standard_brand_cc'),
                 config('services.transbank.oneclick_mall_standard_brand_api_key')
             );
-
         } else {
             // TODO: Add testing configuration here
             $this->standardBrandService = new OneClickStandardBrandService(
@@ -124,16 +124,13 @@ class OneclickStandardBrandController extends Controller
         try {
             $response = $this->standardBrandService->authorize($req["username"], $req["tbk_user"], $req["buy_order"], $req['pos_entry_mode'], $req['request_3ds_authentication'], $details);
             $challenge = false;
-            if($response instanceof \App\Dto\ChallengeResponseDTO){
+            if ($response instanceof \App\Dto\OneclickStandardBrand\ChallengeResponseDTO) {
                 $challenge = true;
             }
             return view('oneclick/standard_brand/authorized_mall', ["req" => $req, "resp" => $response, "challenge" => $challenge]);
-        }
-
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
-
     }
 
     public function challengeStart(Request $request)

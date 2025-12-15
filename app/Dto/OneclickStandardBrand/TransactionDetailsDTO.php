@@ -1,43 +1,43 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\OneclickStandardBrand;
 
 
 class TransactionDetailsDTO
 {
     /** @var int|float */
     private $amount;
-    
+
     /** @var string */
     private $status;
-    
+
     /** @var string */
     private $tid;
-    
+
     /** @var string */
     private $authorizationCode;
-    
+
     /** @var string */
     private $paymentTypeCode;
-    
+
     /** @var int */
     private $responseCode;
-    
+
     /** @var int */
     private $installmentsNumber;
-    
+
     /** @var string */
     private $commerceCode;
-    
+
     /** @var string */
     private $buyOrder;
-    
+
     /** @var string */
     private $recurPmnt;
-    
+
     /** @var string */
     private $eciTrxRes;
-    
+
     /** @var string */
     private $pmntInd;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\OneclickStandardBrand;
 
 
 class CardDetailDTO

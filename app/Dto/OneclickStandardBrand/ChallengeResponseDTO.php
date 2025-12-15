@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\OneclickStandardBrand;
 
 class ChallengeResponseDTO
 {
 
-    
+
     /** @var ChallengeDataDTO */
     private $challengeData;
 

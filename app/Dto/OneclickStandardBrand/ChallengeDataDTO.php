@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\OneclickStandardBrand;
 
 class ChallengeDataDTO
 {
     /** @var string */
     private $baseUrl;
-    
+
     /** @var string */
     private $timeout;
-    
+
     /** @var string */
     private $redirectMethod;
-    
+
     /** @var string */
     private $targetType;
-    
+
     /** @var ChallengeParametersDTO */
     private $parameters;
 

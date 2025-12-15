@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Dto\ChallengeResponseDTO;
-use App\Dto\AuthorizeResponseDTO;
+use App\Dto\OneclickStandardBrand\ChallengeResponseDTO;
+use App\Dto\OneclickStandardBrand\AuthorizeResponseDTO;
 use Symfony\Component\HttpFoundation\Response;
 
 class OneClickStandardBrandService
@@ -20,8 +20,7 @@ class OneClickStandardBrandService
         string $userName,
         string $email,
         string $responseUrl
-    )
-    {
+    ) {
         $payload = [
             'username'      => $userName,
             'email'         => $email,
@@ -58,7 +57,7 @@ class OneClickStandardBrandService
         return $response['response'];
     }
 
-    
+
     /**
      * @return ChallengeResponseDTO|AuthorizeResponseDTO
      */
@@ -69,8 +68,7 @@ class OneClickStandardBrandService
         int $posEntryMode,
         string $request3dsAuth,
         array $details
-        )
-    {
+    ) {
         $payload = [
             'username'                      => $userName,
             'tbk_user'                      => $tbkUser,
@@ -84,7 +82,7 @@ class OneClickStandardBrandService
         if ($response['status'] !== Response::HTTP_OK) {
             throw new \Exception('Error authorizing Oneclick brand transaction: ' . json_encode($response['response']), $response['status']);
         }
-        if(isset($response['response']['challenge_data']))
+        if (isset($response['response']['challenge_data']))
             return ChallengeResponseDTO::fromArray($response['response']);
 
         return AuthorizeResponseDTO::fromArray($response['response']);
@@ -98,7 +96,7 @@ class OneClickStandardBrandService
             throw new \Exception('Error getting Oneclick brand transaction status: ' . json_encode($response['response']), $response['status']);
         }
         return $response['response'];
-    } 
+    }
 
     public function refund(string $buyOrder, string $commerceCode, string $detailBuyOrder, int $amount)
     {

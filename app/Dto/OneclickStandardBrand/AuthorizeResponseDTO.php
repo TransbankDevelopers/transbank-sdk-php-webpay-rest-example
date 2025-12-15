@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\OneclickStandardBrand;
 
 class AuthorizeResponseDTO
 {
     /** @var string */
     private $buyOrder;
-    
+
     /** @var CardDetailDTO */
     private $cardDetail;
-    
+
     /** @var string */
     private $accountingDate;
-    
+
     /** @var string */
     private $transactionDate;
-    
+
     /** @var string */
     private $request3dsAuthentication;
-    
+
     /** @var TransactionDetailsDTO */
     private $details;
 
