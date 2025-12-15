@@ -75,7 +75,7 @@ class OneClickStandardBrandService
             'buy_order'                     => $buyOrder,
             'pos_entry_mode'                => $posEntryMode,
             'request_3ds_authentication'    => $request3dsAuth,
-            'Details'                       => $details,
+            'details'                       => $details,
         ];
         $endpoint = 'rswebpaytransaction/api/oneclick/v1.4/transactions';
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
