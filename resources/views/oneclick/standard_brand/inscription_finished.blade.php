@@ -49,9 +49,10 @@
                 <option value="{{ $childCC }}">Comercio Hijo - {{ $childCC }}</option>
             </select>
         @else
-            <select class="border rounded p-2" id="details_commerce_code" name="details[0][commerce_code]" value="597055555543">
-                <option value="597055555542"> Comercio 1 - Código 597055555542</option>
-                <option value="597055555543">Comercio 2 - Código 597055555543</option>
+        <!-- TODO: Add testing configuration here -->
+            <?php $childCC = config('services.transbank.oneclick_mall_standard_brand_child_cc') ?>
+            <select class="border rounded p-2" id="details_commerce_code" name="details[0][commerce_code]" value="{{ $childCC }}">
+                <option value="{{ $childCC }}">Comercio Hijo - {{ $childCC }}</option>
             </select>
         @endif
 
