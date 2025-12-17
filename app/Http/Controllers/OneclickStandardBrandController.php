@@ -111,13 +111,13 @@ class OneclickStandardBrandController extends Controller
             'device_type' => $req['details'][0]['device_type'],
             'browserAcceptHeader' => $req['details'][0]['browserAcceptHeader'],
             'browserIP' => $req['details'][0]['browserIP'],
-            'browserJavaEnabled' => $req['details'][0]['browserJavaEnabled'],
+            'browserJavaEnabled' => filter_var($req['details'][0]['browserJavaEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
             'browserLanguage' => $req['details'][0]['browserLanguage'],
             'browserScreenHeight' => $req['details'][0]['browserScreenHeight'],
             'browserScreenWidth' => $req['details'][0]['browserScreenWidth'],
             'browserTZ' => $req['details'][0]['browserTZ'],
             'browserUserAgent' => $req['details'][0]['browserUserAgent'],
-            'browserJavascriptEnabled' => $req['details'][0]['browserJavascriptEnabled'],
+            'browserJavascriptEnabled' => filter_var($req['details'][0]['browserJavascriptEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
             'installments_number' => $req['details'][0]['installments_number'],
         ];
 
