@@ -108,7 +108,6 @@ class OneclickStandardBrandController extends Controller
             'pmnt_ind' => $req['details'][0]['pmnt_ind'],
             'recur_pmnt' => $req['details'][0]['recur_pmnt'],
             'tid' => $req['details'][0]['tid'],
-            'device_type' => $req['details'][0]['device_type'],
             'browserAcceptHeader' => $req['details'][0]['browserAcceptHeader'],
             'browserIP' => $req['details'][0]['browserIP'],
             'browserJavaEnabled' => filter_var($req['details'][0]['browserJavaEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),

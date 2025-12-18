@@ -90,9 +90,6 @@
         <label for="tid">Transaction ID</label>
         <input id="tid" name="details[0][tid]" value=""/>
 
-        <label for="device_type">Tipo de dispositivo</label>
-        <input id="device_type" name="details[0][device_type]" value="mobile"/>
-
         <h1 class="mt-4">Datos del navegador</h1>
 
         <label for="browserAcceptHeader">Cabecera Accept del navegador</label>
@@ -142,7 +139,6 @@
     <script>
         async function getTransactionDetails() {
             const details = {
-                device_type: navigator.userAgentData?.mobile ? 'mobile' : 'browser',
                 browserJavaEnabled: navigator.javaEnabled ? navigator.javaEnabled() : 'false',
                 browserScreenHeight: window.screen.height.toString(),
                 browserScreenWidth: window.screen.width.toString(),
@@ -156,7 +152,6 @@
         document.addEventListener('DOMContentLoaded', async function() {
             const details = await getTransactionDetails();
 
-            document.getElementById('device_type').value = details.device_type;
             document.getElementById('browserJavaEnabled').value = details.browserJavaEnabled;
             document.getElementById('browserScreenHeight').value = details.browserScreenHeight;
             document.getElementById('browserScreenWidth').value = details.browserScreenWidth;
