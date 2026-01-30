@@ -155,6 +155,18 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/transaccion_completa/mall_refund', 'TransaccionCompletaMallController@mallRefund');
 
+    # Transaccion completa standard brand
+    Route::prefix('/transaccion_completa/standard_brand')->group(function () {
+        Route::get('/create', 'TransaccionCompletaStandardBrandController@showCreate');
+        Route::post('/create', 'TransaccionCompletaStandardBrandController@createTransaction');
+        Route::post('/installments', 'TransaccionCompletaStandardBrandController@installments');
+        Route::post('/commit', 'TransaccionCompletaStandardBrandController@commit');
+        Route::post('/status', 'TransaccionCompletaStandardBrandController@status');
+        Route::post('/refund', 'TransaccionCompletaStandardBrandController@refund');
+        Route::get('/account-verify', 'TransaccionCompletaStandardBrandController@showAccountVerify');
+        Route::post('/account-verify', 'TransaccionCompletaStandardBrandController@accountVerify');
+    });
+
     # Patpass comercio
 
     Route::get('/patpass_comercio/create-form', function () {
@@ -237,7 +249,7 @@ Route::middleware(['auth'])->group(function () {
 
     # Oneclick Mall Standard Brand
 
-    Route::prefix('/oneclick/standard_brand')->group(function () {        
+    Route::prefix('/oneclick/standard_brand')->group(function () {
         Route::get('/startInscription', function () {
             return view('oneclick/standard_brand/start_inscription');
         });
@@ -253,5 +265,4 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/mall/refund', 'OneclickStandardBrandController@refund');
         Route::get('/mall/challenge-start', 'OneclickStandardBrandController@challengeStart');
     });
-
 });

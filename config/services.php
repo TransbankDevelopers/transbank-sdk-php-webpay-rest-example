@@ -48,19 +48,19 @@ return [
         'webpay_plus_cc' => env('WEBPAY_PLUS_CC'),
         'webpay_plus_api_key' => env('WEBPAY_PLUS_API_KEY'),
         'webpay_plus_mall_cc' => env('WEBPAY_PLUS_MALL_CC'),
-        'webpay_plus_mall_child_cc' => explode(',', env ('WEBPAY_PLUS_MALL_CHILD_CC')),
-        'webpay_plus_mall_child_3ds' => explode(',',env('WEBPAY_PLUS_MALL_CHILD_3DS')),
+        'webpay_plus_mall_child_cc' => explode(',', env('WEBPAY_PLUS_MALL_CHILD_CC')),
+        'webpay_plus_mall_child_3ds' => explode(',', env('WEBPAY_PLUS_MALL_CHILD_3DS')),
         'webpay_plus_mall_api_key' => env('WEBPAY_PLUS_MALL_API_KEY'),
 
         'webpay_plus_mall_dues_qr_cc' => env('WEBPAY_PLUS_MALL_DUES_QR_CC'),
-        'webpay_plus_mall_dues_qr_child_cc' => explode(',', env ('WEBPAY_PLUS_MALL_DUES_QR_CHILD_CC')),
+        'webpay_plus_mall_dues_qr_child_cc' => explode(',', env('WEBPAY_PLUS_MALL_DUES_QR_CHILD_CC')),
         'webpay_plus_mall_dues_qr_api_key' => env('WEBPAY_PLUS_MALL_DUES_QR_API_KEY'),
 
         'webpay_plus_mall_qr_cc' => env('WEBPAY_PLUS_MALL_QR_CC'),
         'webpay_plus_mall_qr_api_key' => env('WEBPAY_PLUS_MALL_QR_API_KEY'),
-        'webpay_plus_mall_child1_qr_cc' => env ('WEBPAY_PLUS_MALL_CHILD1_QR_CC'),
-        'webpay_plus_mall_child2_qr_cc' => env ('WEBPAY_PLUS_MALL_CHILD2_QR_CC'),
-        'webpay_plus_mall_child3_qr_cc' => env ('WEBPAY_PLUS_MALL_CHILD3_QR_CC'),
+        'webpay_plus_mall_child1_qr_cc' => env('WEBPAY_PLUS_MALL_CHILD1_QR_CC'),
+        'webpay_plus_mall_child2_qr_cc' => env('WEBPAY_PLUS_MALL_CHILD2_QR_CC'),
+        'webpay_plus_mall_child3_qr_cc' => env('WEBPAY_PLUS_MALL_CHILD3_QR_CC'),
 
         'webpay_plus_deferred_cc' => env('WEBPAY_PLUS_DEFERRED_CC'),
         'webpay_plus_deferred_api_key' => env('WEBPAY_PLUS_DEFERRED_API_KEY'),
@@ -85,5 +85,10 @@ return [
         'oneclick_mall_standard_brand_cc' => env('ONECLICK_MALL_STANDARD_BRAND_CC'),
         'oneclick_mall_standard_brand_api_key' => env('ONECLICK_MALL_STANDARD_BRAND_API_KEY'),
         'oneclick_mall_standard_brand_child_cc' => env('ONECLICK_MALL_STANDARD_BRAND_CHILD_CC'),
+
+        'transacction_completa_mall_standard_brand_cc' => env('TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_CC'),
+        'transacction_completa_mall_standard_brand_child_cc' => env('TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_CHILD_CC'),
+        'transacction_completa_mall_standard_brand_api_key' => env('TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_API_KEY'),
+
     ]
 ];
