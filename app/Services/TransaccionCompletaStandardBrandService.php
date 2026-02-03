@@ -8,6 +8,7 @@ class TransaccionCompletaStandardBrandService
 {
     protected TbkApiClient $apiClient;
     protected string $baseUrl = 'https://webpay3gint.transbank.cl';
+    protected string $basePath = 'rswebpaytransaction/api/webpay/v1.4/transactions';
 
     public function __construct(string $apiKeyId, string $apiKeySecret)
     {
@@ -16,11 +17,11 @@ class TransaccionCompletaStandardBrandService
 
     public function createTransaction(array $payload): array
     {
-        $endpoint = 'rswebpaytransaction/api/webpay/v1.4/transactions';
+        $endpoint = $this->basePath;
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error creating Transacción Completa Standard Brand: ' . json_encode($response['response']), $response['status']);
+            throw new \Exception('Error creating Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
         }
 
         return $response['response'];
@@ -28,11 +29,11 @@ class TransaccionCompletaStandardBrandService
 
     public function installments(string $token, array $payload): array
     {
-        $endpoint = 'rswebpaytransaction/api/webpay/v1.4/transactions/' . $token . '/installments';
+        $endpoint = $this->basePath . '/' . $token . '/installments';
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error requesting installments for Transacción Completa Standard Brand: ' . json_encode($response['response']), $response['status']);
+            throw new \Exception('Error requesting installments for Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
         }
 
         return $response['response'];
@@ -40,11 +41,11 @@ class TransaccionCompletaStandardBrandService
 
     public function commit(string $token, array $payload): array
     {
-        $endpoint = 'rswebpaytransaction/api/webpay/v1.4/transactions/' . $token;
+        $endpoint = $this->basePath . '/' . $token;
         $response = $this->apiClient->request('PUT', $this->baseUrl, $endpoint, $payload);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error committing Transacción Completa Standard Brand: ' . json_encode($response['response']), $response['status']);
+            throw new \Exception('Error committing Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
         }
 
         return $response['response'];
@@ -52,11 +53,11 @@ class TransaccionCompletaStandardBrandService
 
     public function status(string $token): array
     {
-        $endpoint = 'rswebpaytransaction/api/webpay/v1.4/transactions/' . $token;
+        $endpoint = $this->basePath . '/' . $token;
         $response = $this->apiClient->request('GET', $this->baseUrl, $endpoint, []);
 
-        if ($response['status'] !== Response::HTTP_OK) { //vista error
-            throw new \Exception('Error getting status for Transacción Completa Standard Brand: ' . json_encode($response['response']), $response['status']);
+        if ($response['status'] !== Response::HTTP_OK) {
+            throw new \Exception('Error getting status for Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
         }
 
         return $response['response'];
@@ -64,11 +65,11 @@ class TransaccionCompletaStandardBrandService
 
     public function refund(string $token, array $payload): array
     {
-        $endpoint = 'rswebpaytransaction/api/webpay/v1.4/transactions/' . $token . '/refunds';
+        $endpoint = $this->basePath . '/' . $token . '/refunds';
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error refunding Transacción Completa Standard Brand: ' . json_encode($response['response']), $response['status']);
+            throw new \Exception('Error refunding Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
         }
 
         return $response['response'];
@@ -80,7 +81,7 @@ class TransaccionCompletaStandardBrandService
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error verifying account for Transacción Completa Standard Brand: ' . json_encode($response['response']), $response['status']);
+            throw new \Exception('Error verifying account for Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
         }
 
         return $response['response'];
