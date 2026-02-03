@@ -167,3 +167,13 @@ pre {
     background: #243b6b;
 }
 
+.tbk-btn-link {
+    background: green;
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-decoration: none;
+    display: inline-block;
+}
