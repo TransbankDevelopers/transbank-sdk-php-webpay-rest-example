@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <div class="error-card">
-        <h2 class="error-title error-title--standard">Error en Transacción Completa Standard Brand</h2>
+        <h2 class="error-title error-title--standard">Error en Transacción Completa Estándar Marca</h2>
         <p class="error-text error-text--standard">No se pudo completar la operación.</p>
         <p class="error-text error-text--standard error-text--method"><strong>Método que falló:</strong>
             {{ $action ?? 'N/A' }}</p>

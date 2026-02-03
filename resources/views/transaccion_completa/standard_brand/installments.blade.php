@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <h1>Cuotas consultadas - Transacción Completa Standard Brand</h1>
+    <h1>Cuotas consultadas - Transacción Completa Estándar Marca</h1>
 
     <h3>Parámetros recibidos:</h3>
     <pre>

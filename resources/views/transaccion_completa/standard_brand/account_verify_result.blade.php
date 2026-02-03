@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <h1>Resultado Verificación de Cuenta - Transacción Completa Standard Brand</h1>
+    <h1>Resultado Verificación de Cuenta - Transacción Completa Estándar Marca</h1>
 
     <h3>Parámetros recibidos:</h3>
     <pre>

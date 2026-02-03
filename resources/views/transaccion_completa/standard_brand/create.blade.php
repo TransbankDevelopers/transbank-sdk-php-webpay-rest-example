@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <h1>Ejemplo Transacción Completa Standard Brand</h1>
+    <h1>Ejemplo Transacción Completa Estándar Marca</h1>
 
     <form action="/transaccion_completa/standard_brand/create" method="post" class="webpay_form sb-form">
         @csrf
@@ -63,6 +63,6 @@
     </form>
 
     <div class="sb-section">
-        <a href="/transaccion_completa/standard_brand/account-verify">Verificación de cuenta</a>
+        <a class="tbk-btn-link" href="/transaccion_completa/standard_brand/account-verify">Verificación de cuenta</a>
     </div>
 @endsection

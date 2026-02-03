@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <h1>Verificación de Cuenta - Transacción Completa Standard Brand</h1>
+    <h1>Verificación de Cuenta - Transacción Completa Estándar Marca</h1>
 
     <form action="/transaccion_completa/standard_brand/account-verify" method="post" class="webpay_form sb-form">
         @csrf

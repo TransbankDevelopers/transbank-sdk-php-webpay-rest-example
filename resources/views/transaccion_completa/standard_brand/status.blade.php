@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <h1>Estado de Transacción - Transacción Completa Standard Brand</h1>
+    <h1>Estado de Transacción - Transacción Completa Estándar Marca</h1>
 
     <h3>Parámetros recibidos:</h3>
     <pre>
