@@ -23,6 +23,7 @@ class TransaccionCompletaStandardBrandController extends Controller
 
         return view('transaccion_completa/standard_brand/create', [
             'childCommerceCodes' => $childCommerceCodes,
+            'sessionId' => session()->getId(),
         ]);
     }
 
