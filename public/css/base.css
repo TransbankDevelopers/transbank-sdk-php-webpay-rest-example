@@ -62,3 +62,118 @@ pre {
     font-weight: bold;
 }
 
+.sb-form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    font-size: 20px;
+}
+
+.sb-section {
+    margin-top: 24px;
+}
+
+.error-card {
+    max-width: 720px;
+    margin: 24px auto;
+    padding: 24px;
+    border-radius: 12px;
+    background: #fff4f4;
+    border: 1px solid #f5b5b5;
+}
+
+.error-card--general {
+    background: #f2f6ff;
+    border-color: #b8ccff;
+}
+
+.error-title {
+    margin-top: 0;
+}
+
+.error-title--standard {
+    color: #b00020;
+}
+
+.error-title--general {
+    color: #243b6b;
+}
+
+.error-text {
+    margin: 8px 0;
+}
+
+.error-text--standard {
+    color: #5c1a1a;
+}
+
+.error-text--general {
+    color: #2f3b52;
+}
+
+.error-text--method {
+    margin: 6px 0;
+}
+
+.error-detail {
+    margin-top: 16px;
+    padding: 12px;
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+.error-detail--standard {
+    border: 1px solid #f0caca;
+}
+
+.error-detail--general {
+    border: 1px solid #d7e2ff;
+}
+
+.error-pre {
+    background: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.error-pre--standard {
+    border: 1px solid #f0caca;
+}
+
+.error-pre--general {
+    border: 1px solid #d7e2ff;
+}
+
+.error-actions {
+    margin-top: 16px;
+}
+
+.error-back {
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.error-back--standard {
+    background: #b00020;
+}
+
+.error-back--general {
+    background: #243b6b;
+}
+
+.tbk-btn-link {
+    background: green;
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-decoration: none;
+    display: inline-block;
+}

@@ -1,6 +1,5 @@
 @extends('layout')
 @section('content')
-
     <div class="main_content home">
         <h2 class="header">
             Webpay Plus
@@ -153,6 +152,17 @@
             </div>
         @endif
 
+        @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_standard_brand_credentials_present']))
+            <div class="examples_container">
+                <span class="operation_title">
+                    Transacción Completa Mall estándar marca
+                </span>
+                <span class="operation_link">
+                    <a href="transaccion_completa/standard_brand/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                </span>
+            </div>
+        @endif
+
         <h2 class="header">
             Patpass
         </h2>
@@ -167,5 +177,4 @@
             </div>
         @endif
     </div>
-
 @endsection
