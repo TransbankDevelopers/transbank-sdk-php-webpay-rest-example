@@ -5,32 +5,32 @@
     <form action="/transaccion_completa/standard_brand/create" method="post" class="webpay_form sb-form">
         @csrf
         <label for="buy_order">Orden de compra</label>
-        <input type="text" name="buy_order" value="{{ 'vic-c-t' }}" />
+        <input type="text" name="buy_order" />
 
         <label for="session_id">Id de sesión</label>
-        <input type="text" name="session_id" value="{{ '597026008018' }}" />
+        <input type="text" name="session_id" value="{{ $sessionId ?? '' }}" />
 
         <label for="card_number">Número de tarjeta</label>
-        <input type="text" name="card_number" value="4051885600446623" />
+        <input type="text" name="card_number" />
 
         <label for="card_expiration_date">Fecha de expiración (MM/YY)</label>
-        <input type="text" name="card_expiration_date" value="31/12" />
+        <input type="text" name="card_expiration_date" />
 
         <label for="cvv">CVV</label>
-        <input type="text" name="cvv" value="123" />
+        <input type="text" name="cvv" />
 
         <h3>Detalles</h3>
         <label for="details_amount">Monto</label>
-        <input type="text" name="details[0][amount]" value="20100" />
+        <input type="text" name="details[0][amount]" />
 
         <label for="details_commerce_code">Código de comercio</label>
-        <input type="text" name="details[0][commerce_code]" value="{{ $childCommerceCodes[0] ?? '597038367138' }}" />
+        <input type="text" name="details[0][commerce_code]" value="{{ $childCommerceCodes[0] }}" />
 
         <label for="details_buy_order">Orden de compra (hijo)</label>
-        <input type="text" name="details[0][buy_order]" value="victor-c-t" />
+        <input type="text" name="details[0][buy_order]" />
 
         <label for="details_post_entry_mod">Post entry mode</label>
-        <input type="text" name="details[0][post_entry_mod]" value="010" />
+        <input type="text" name="details[0][post_entry_mod]" />
 
         <label for="details_eci">ECI</label>
         <input type="text" name="details[0][eci]" />
@@ -51,7 +51,7 @@
         <input type="text" name="details[0][authentication_type]" />
 
         <label for="details_identify_initiated_trx">Identify initiated trx</label>
-        <input type="text" name="details[0][identify_initiated_trx]" value="0" />
+        <input type="text" name="details[0][identify_initiated_trx]" />
 
         <label for="pmnt_ind">pmnt_ind</label>
         <input type="text" name="details[0][pmnt_ind]" />
