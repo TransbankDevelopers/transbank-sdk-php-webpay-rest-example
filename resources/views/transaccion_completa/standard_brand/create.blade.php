@@ -65,7 +65,11 @@
         </select>
 
         <label for="recur_pmnt">recur_pmnt</label>
-        <input type="text" name="details[0][recur_pmnt]" />
+        <select name="details[0][recur_pmnt]">
+            <option value="">Seleccionar</option>
+            <option value="F">F - Fijo</option>
+            <option value="V">V - Variable</option>
+        </select>
 
         <button type="submit">Crear transacción</button>
     </form>
