@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 class TransaccionCompletaStandardBrandService
 {
     protected TbkApiClient $apiClient;
-    protected string $baseUrl = 'https://webpay3gint.transbank.cl';
+    protected string $baseUrl = 'https://webpay3g.transbank.cl';
     protected string $basePath = 'rswebpaytransaction/api/webpay/v1.4/transactions';
 
     public function __construct(string $apiKeyId, string $apiKeySecret)
