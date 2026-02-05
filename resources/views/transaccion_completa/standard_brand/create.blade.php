@@ -13,7 +13,7 @@
         <label for="card_number">Número de tarjeta</label>
         <input type="text" name="card_number" />
 
-        <label for="card_expiration_date">Fecha de expiración (MM/YY)</label>
+        <label for="card_expiration_date">Fecha de expiración (YY/MM)</label>
         <input type="text" name="card_expiration_date" />
 
         <label for="cvv">CVV</label>
