@@ -62,7 +62,10 @@
         <input type="text" name="details[0][ds_trans_id]" />
 
         <label for="details_authentication_type">Authentication type</label>
-        <input type="text" name="details[0][authentication_type]" />
+        <select name="details[0][authentication_type]">
+            <option value="">No challenge (null)</option>
+            <option value="C">C - Challenge</option>
+        </select>
 
         <label for="details_identify_initiated_trx">Identify initiated trx</label>
         <input type="text" name="details[0][identify_initiated_trx]" />
