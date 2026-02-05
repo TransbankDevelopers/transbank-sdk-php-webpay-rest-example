@@ -58,7 +58,11 @@
         <input type="text" name="details[0][identify_initiated_trx]" />
 
         <label for="pmnt_ind">pmnt_ind</label>
-        <input type="text" name="details[0][pmnt_ind]" />
+        <select name="details[0][pmnt_ind]">
+            <option value="">Ventas únicas</option>
+            <option value="C">C - Transacciones COF</option>
+            <option value="R">R - Transacciones recurrentes</option>
+        </select>
 
         <label for="recur_pmnt">recur_pmnt</label>
         <input type="text" name="details[0][recur_pmnt]" />
