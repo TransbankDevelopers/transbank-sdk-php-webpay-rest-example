@@ -37,7 +37,15 @@
         </select>
 
         <label for="details_eci">ECI</label>
-        <input type="text" name="details[0][eci]" />
+        <select name="details[0][eci]">
+            <option value="">null - Transacción no autenticada</option>
+            <option value="05">VISA 05</option>
+            <option value="06">VISA 06</option>
+            <option value="02">MASTERCARD 02</option>
+            <option value="01">MASTERCARD 01</option>
+            <option value="05">AMEX 05</option>
+            <option value="06">AMEX 06</option>
+        </select>
 
         <label for="details_authentication_value">Authentication value</label>
         <input type="text" name="details[0][authentication_value]" />
