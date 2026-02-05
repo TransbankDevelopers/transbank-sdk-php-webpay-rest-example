@@ -43,6 +43,10 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+    'tracking' => [
+        'google_tag_id' => env('GOOGLE_TAG_ID'),
+        'hotjar_tag_id' => env('HOTJAR_TAG_ID'),
+    ],
     // CC stands for commerce_code
     'transbank' => [
         'webpay_plus_cc' => env('WEBPAY_PLUS_CC'),
