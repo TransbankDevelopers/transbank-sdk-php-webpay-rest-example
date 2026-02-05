@@ -41,7 +41,7 @@
         @if ($data['production'] && $data['webpay_plus_mall_qr_dues_credentials_present'])
             <div class="examples_container">
                 <span class="operation_title">
-                    Webpay Plus Mall - Prueba cuotas QR
+                    Webpay Plus Mall - Prueba Cuotas QR
                 </span>
                 <span class="operation_link">
                     <a href="webpayplusduesqr/createMall">
@@ -82,7 +82,7 @@
         @if (!$data['production'] || ($data['production'] && $data['oneclick_mall_credentials_present']))
             <div class="examples_container">
                 <span class="operation_title">
-                    Oneclick mall
+                    Oneclick Mall
                 </span>
                 <span class="operation_link">
                     <a href="oneclick/startInscription">Iniciar <i class="fa fa-arrow-right"></i></a>
@@ -94,7 +94,7 @@
         @if (!$data['production'] || ($data['production'] && $data['oneclick_mall_deferred_credentials_present']))
             <div class="examples_container">
                 <span class="operation_title">
-                    Oneclick mall diferido
+                    Oneclick Mall Diferido
                 </span>
                 <span class="operation_link">
                     <a href="oneclick/diferido/startInscription">Iniciar <i class="fa fa-arrow-right"></i></a>
@@ -106,7 +106,7 @@
         @if (!$data['production'] || ($data['production'] && $data['oneclick_mall_standard_brand_credentials_present']))
             <div class="examples_container">
                 <span class="operation_title">
-                    Oneclick mall estándar marca
+                    Oneclick mall Estándar Marca
                 </span>
                 <span class="operation_link">
                     <a href="oneclick/standard_brand/startInscription">Iniciar <i class="fa fa-arrow-right"></i></a>
@@ -155,7 +155,7 @@
         @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_standard_brand_credentials_present']))
             <div class="examples_container">
                 <span class="operation_title">
-                    Transacción Completa Mall estándar marca
+                    Transacción Completa Mall Estándar Marca
                 </span>
                 <span class="operation_link">
                     <a href="transaccion_completa/standard_brand/create">Iniciar <i class="fa fa-arrow-right"></i></a>
