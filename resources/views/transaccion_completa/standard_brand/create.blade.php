@@ -5,7 +5,7 @@
     <form action="/transaccion_completa/standard_brand/create" method="post" class="webpay_form sb-form">
         @csrf
         <label for="buy_order">Orden de compra</label>
-        <input type="text" name="buy_order" />
+        <input type="text" name="buy_order" value="{{ '123456' . rand(1,1000) }}" />
 
         <label for="session_id">Id de sesión</label>
         <input type="text" name="session_id" value="{{ $sessionId ?? '' }}" />
@@ -27,10 +27,14 @@
         <input type="text" name="details[0][commerce_code]" value="{{ $childCommerceCodes[0] }}" />
 
         <label for="details_buy_order">Orden de compra (hijo)</label>
-        <input type="text" name="details[0][buy_order]" />
+        <input type="text" name="details[0][buy_order]" value="{{ '123456' . rand(1,1000) }}" />
 
         <label for="details_post_entry_mod">Post entry mode</label>
-        <input type="text" name="details[0][post_entry_mod]" />
+        <select name="details[0][post_entry_mod]">
+            <option value="010">010</option>
+            <option value="810">810</option>
+            <option value="100">100</option>
+        </select>
 
         <label for="details_eci">ECI</label>
         <input type="text" name="details[0][eci]" />
