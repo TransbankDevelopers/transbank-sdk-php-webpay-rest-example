@@ -46,7 +46,17 @@
         <input type="text" name="details[0][message_version]" />
 
         <label for="details_trans_status">Transaction status</label>
-        <input type="text" name="details[0][trans_status]" />
+        <select name="details[0][trans_status]">
+            <option value="">No autenticada (null)</option>
+            <option value="C">C - Desafio requerido</option>
+            <option value="Y">Y - Elegible/Exitosa</option>
+            <option value="A">A - Intento de autenticacion</option>
+            <option value="N">N - No autenticada/Denegada</option>
+            <option value="R">R - Autenticacion rechazada</option>
+            <option value="D">D - Desafio desacoplado</option>
+            <option value="U">U - No se pudo autenticar</option>
+            <option value="I">I - Informativo/Exencion</option>
+        </select>
 
         <label for="details_ds_trans_id">DS Trans ID</label>
         <input type="text" name="details[0][ds_trans_id]" />
