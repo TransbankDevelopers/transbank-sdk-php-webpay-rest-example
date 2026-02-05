@@ -68,7 +68,14 @@
         </select>
 
         <label for="details_identify_initiated_trx">Identify initiated trx</label>
-        <input type="text" name="details[0][identify_initiated_trx]" />
+        <select name="details[0][identify_initiated_trx]">
+            <option value="">Seleccionar</option>
+            <option value="0">0 - Venta Unica</option>
+            <option value="1">1 - Primera CIT</option>
+            <option value="2">2 - Primera CIT Recurrencia MIT</option>
+            <option value="3">3 - Subsecuente CIT</option>
+            <option value="4">4 - Recurrente MIT</option>
+        </select>
 
         <label for="pmnt_ind">pmnt_ind</label>
         <select name="details[0][pmnt_ind]">
