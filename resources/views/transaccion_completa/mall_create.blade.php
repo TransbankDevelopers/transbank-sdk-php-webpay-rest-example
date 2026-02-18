@@ -16,17 +16,17 @@
     <label for="card_number">
         Numero de Tarjeta
     </label>
-    <input type="text" name="card_number" value="4051885600446623" />
+    <input type="text" name="card_number" value="{{ app()->environment('production') ? '' : '4051885600446623' }}" />
 
     <label for="card_expiration_date">
         Fecha de Expiracion de tarjeta
     </label>
-    <input type="text" name="card_expiration_date" value="22/10" />
+    <input type="text" name="card_expiration_date" value="{{ app()->environment('production') ? '' : '22/10' }}" />
 
     <label for="cvv">
         CVV
     </label>
-    <input type="text" name="cvv" value="123" />
+    <input type="text" name="cvv" value="{{ app()->environment('production') ? '' : '123' }}" />
 
     @if (app()->environment('production'))
         <label for="merchant_1_amount">Monto Merchant 1</label>
