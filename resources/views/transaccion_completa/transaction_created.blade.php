@@ -18,7 +18,7 @@
     <label for="installments_number">
         Cuotas
     </label>
-    <input id="installments_number" name="installments_number" value="10"/>
+    <input type="number" id="installments_number" name="installments_number" value="3" min="2" max="12"/>
     <label for="token_ws">
         Token
     </label>

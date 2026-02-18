@@ -21,17 +21,17 @@
         <label for="card_number">
             Numero de tarjeta
         </label>
-        <input id="card_number" name="card_number" value="4051885600446623"/>
+        <input id="card_number" name="card_number" value="{{ app()->environment('production') ? '' : '4051885600446623' }}"/>
 
         <label for="card_expiration_date">
             Fecha expiracion tarjeta
         </label>
-        <input id="card_expiration_date" name="card_expiration_date" value="22/10"/>
+        <input id="card_expiration_date" name="card_expiration_date" value="{{ app()->environment('production') ? '' : '22/10' }}"/>
 
         <label for="cvv">
             cvv
         </label>
-        <input id="cvv" name="cvv" value="123"/>
+        <input id="cvv" name="cvv" value="{{ app()->environment('production') ? '' : '123' }}"/>
 
         <button type="submit">Aceptar</button>
     </form>
