@@ -4,13 +4,13 @@
 
 <h3>Parametros recibidos:</h3>
 <pre>
-    {{ print_r($req) }}
+    {{ print_r($req, true) }}
 </pre>
 
 
 <h3>Respuesta:</h3>
 <pre>
-    {{ print_r($res)  }}
+    {{ print_r($res, true)  }}
 </pre>
 
 <form class="webpay_form" action="/transaccion_completa/transaction_commit" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;" >
@@ -32,7 +32,7 @@
         Periodo de Gracia
     </label>
     <input type="text" name="grace_period" value="false">
-    <button type="submit">Enviar datos</button>
+    <button type="submit">Authorizar</button>
 </form>
 
 @endsection
