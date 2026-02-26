@@ -14,5 +14,5 @@
 </pre>
 
 <br>
-<a href="/"><h1>Volver</h1></a>
+<a href="/transaccion_completa/create"><h1>Volver</h1></a>
 @endsection
