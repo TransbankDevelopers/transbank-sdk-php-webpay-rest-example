@@ -4,11 +4,11 @@
 
     <h3>Parámetros recibidos:</h3>
     <pre>
-    {{ print_r($req) }}
+    {{ print_r($req, true) }}
 </pre>
 
     <h3>Respuesta:</h3>
     <pre>
-    {{ print_r($res) }}
+    {{ print_r($res, true) }}
 </pre>
 @endsection

@@ -4,12 +4,12 @@
 
     <h3>Parámetros recibidos:</h3>
     <pre>
-    {{ print_r($req) }}
+    {{ print_r($req, true) }}
 </pre>
 
     <h3>Respuesta:</h3>
     <pre>
-    {{ print_r($res) }}
+    {{ print_r($res, true) }}
 </pre>
 
     <form class="webpay_form sb-form" action="/transaccion_completa/standard_brand/commit" method="post">

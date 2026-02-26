@@ -10,6 +10,6 @@
 
 <h3>Respuesta:</h3>
 <pre>
-    {{ print_r($res)  }}
+    {{ print_r($res, true)  }}
 </pre>
 @endsection
