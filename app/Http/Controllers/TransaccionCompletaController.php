@@ -31,13 +31,14 @@ class TransaccionCompletaController extends Controller
     {
 
         $req = $request->all();
+        $expirationDateFormated = substr($req["card_expiration_date"], 3, 2) . "/" . substr($req["card_expiration_date"], 0, 2);
         $res = (new Transaction)->create(
             $req["buy_order"],
             $req["session_id"],
             $req["amount"],
             $req["cvv"],
             $req["card_number"],
-            $req["card_expiration_date"]
+            $expirationDateFormated
         );
 
         return view('transaccion_completa/transaction_created', [
