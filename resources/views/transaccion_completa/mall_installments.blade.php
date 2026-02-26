@@ -1,77 +1,74 @@
 @extends('layout')
 @section('content')
-<h3>Parametros recibidos:</h3>
-<pre>
-    {{ print_r($req) }}
-</pre>
+<div class="w-full max-w-none">
+    <h1 class="mb-2">Transaccion Completa Mall: cuotas consultadas</h1>
+    <p class="text-gray-700 mb-6">
+        La consulta de cuotas fue exitosa. Ahora puedes autorizar la transaccion mall con esos resultados.
+    </p>
 
+    <div class="grid grid-cols-1 gap-6 mb-6">
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+            <h3 class="font-bold mb-2">Parametros recibidos</h3>
+            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($req, true) }}</pre>
+        </div>
 
-<h3>Respuesta:</h3>
-<pre>
-    {{ print_r($res)  }}
-</pre>
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+            <h3 class="font-bold mb-2">Respuesta</h3>
+            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($res, true) }}</pre>
+        </div>
+    </div>
 
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+        <h2 class="text-base font-bold text-blue-900 mb-2">Token</h2>
+        <input type="text" readonly value="{{ $req['token_ws'] }}" class="w-full bg-white" />
+    </div>
 
+    <h2 class="text-lg font-bold mb-3">Acciones</h2>
+    <div class="bg-white border border-gray-200 rounded-lg p-4 mb-8">
+        <h3 class="font-bold mb-3">Autorizar transaccion mall</h3>
+        <p class="text-sm text-gray-600 mb-4">Confirma la transaccion usando los datos de cuotas por comercio hijo.</p>
+        <form action="/transaccion_completa/mall_commit" method="post"
+            style="display: flex; flex-direction:column; width:100%; font-size: 16px; gap: 10px;">
+            @csrf
+            <div>
+                <label for="mall_token">Token</label>
+                <input id="mall_token" class="w-full" name="token" value="{{ $req['token_ws'] }}">
+            </div>
 
-<h1>Confirmar transacción</h1>
-<form class="transaccion_completa_form" action="/transaccion_completa/mall_commit" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
-    @csrf
-    <label for="token">Token</label>
-    <input name="token" value="{{ $req['token_ws'] }}">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                @foreach ($details as $index => $detail)
+                    <div class="border border-gray-200 rounded p-3">
+                        <h4 class="font-bold mb-2">Comercio {{ $index + 1 }}</h4>
+                        <label for="details_{{ $index }}_commerce_code">Codigo comercio</label>
+                        <input id="details_{{ $index }}_commerce_code" class="w-full" name="details[{{ $index }}][commerce_code]" value="{{ $detail['commerce_code'] }}">
 
-    <h3>Comercio 1</h3>
-    <hr>
-    <label for="etails_commerce_code_1">Codigo de comercio (comercio hijo)</label>
-    <input id="details_commerce_code_1" name="details[0][commerce_code]" value="{{ $details[0]['commerce_code'] }}">
+                        <label for="details_{{ $index }}_buy_order">Orden compra</label>
+                        <input id="details_{{ $index }}_buy_order" class="w-full" name="details[{{ $index }}][buy_order]" value="{{ $detail['buy_order'] }}">
 
-    <label for="details_buy_order_1">Orden de compra (comercio hijo)</label>
-    <input id="details_buy_order_1" name="details[0][buy_order]" value="{{ $details[0]['buy_order'] }}"/>
+                        <label for="details_{{ $index }}_id_query_installments">Id query installments</label>
+                        <input id="details_{{ $index }}_id_query_installments" class="w-full" name="details[{{ $index }}][id_query_installments]" value="{{ $res[$index]->getIdQueryInstallments() }}">
 
-    <label for="id_query_installments_1">Id query installments</label>
-    <input id="id_query_installments_1" name="details[0][id_query_installments]" value="{{ $res[0]->getIdQueryInstallments()  }}">
+                        <label for="details_{{ $index }}_deferred_period_index">Deferred period index</label>
+                        <select id="details_{{ $index }}_deferred_period_index" class="w-full" name="details[{{ $index }}][deferred_period_index]">
+                            @php $deferredPeriods = $res[$index]->getDeferredPeriods() ?? []; @endphp
+                            @forelse ($deferredPeriods as $period)
+                                <option value="{{ $period }}" {{ $loop->first ? 'selected' : '' }}>{{ $period }}</option>
+                            @empty
+                                <option value="" selected>No disponible para esta consulta</option>
+                            @endforelse
+                        </select>
 
-    <label for="deferred_period_index_1">Deferred period index</label>
-    <select name="details[0][deferred_period_index]" id="deferred_period_index_1">
-        <option value="" selected></option>
-        @foreach ($res[0]->getDeferredPeriods() as $per)
-            <option selected value="{{ $per }}">{{ $per }}</option>
-        @endforeach
-    </select>
+                        <label for="details_{{ $index }}_grace_period">Periodo de gracia</label>
+                        <select id="details_{{ $index }}_grace_period" class="w-full" name="details[{{ $index }}][grace_period]">
+                            <option value="true">true</option>
+                            <option value="false" selected>false</option>
+                        </select>
+                    </div>
+                @endforeach
+            </div>
 
-    <label for="grace_period_1">Periodo de gracia</label>
-    <select name="details[0][grace_period]">
-        <option value="true">true</option>
-        <option selected value="false">false</option>
-    </select>
-
-    <h3>Comercio 2</h3>
-    <hr>
-
-    <label for="etails_commerce_code_2">Codigo de comercio (comercio hijo)</label>
-    <input id="details_commerce_code_2" name="details[1][commerce_code]" value="{{ $details[1]['commerce_code'] }}">
-
-    <label for="details_buy_order_2">Orden de compra (comercio hijo)</label>
-    <input id="details_buy_order_2" name="details[1][buy_order]" value="{{ $details[1]['buy_order'] }}"/>
-
-
-    <label for="id_query_installments">Id query installments</label>
-    <input id="id_query_installments_2" name="details[1][id_query_installments]" value="{{ $res[1]->getIdQueryInstallments() }}">
-
-    <label for="deferred_period_index_2">Deferred period index</label>
-    <select name="details[1][deferred_period_index]" id="deferred_period_index_2">
-        <option value="" selected></option>
-        @foreach ($res[1]->getDeferredPeriods() as $per)
-            <option selected value="{{ $per }}">{{ $per }}</option>
-        @endforeach
-    </select>
-
-    <label for="grace_period_2">Periodo de gracia</label>
-    <select id="grace_period_2" name="details[1][grace_period]">
-        <option value="true">true</option>
-        <option selected value="false">false</option>
-    </select>
-
-    <button type="submit">Enviar</button>
-
-</form>
+            <button type="submit">Autorizar</button>
+        </form>
+    </div>
+</div>
 @endsection
