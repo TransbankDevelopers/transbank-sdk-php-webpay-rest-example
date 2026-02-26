@@ -24,13 +24,14 @@ class TransaccionCompletaDeferredController extends Controller
     {
 
         $req = $request->except('_token');
+        $expirationDateFormated = substr($req["card_expiration_date"], 3, 2) . "/" . substr($req["card_expiration_date"], 0, 2);
         $res = (new Transaction)->create(
             $req["buy_order"],
             $req["session_id"],
             $req["amount"],
             $req["cvv"],
             $req["card_number"],
-            $req["card_expiration_date"]
+            $expirationDateFormated
         );
 
         return view('transaccion_completa/diferido/created', [
@@ -63,9 +64,9 @@ class TransaccionCompletaDeferredController extends Controller
 
         $res = (new Transaction)->commit(
             $req['token_ws'],
-            $req["id_query_installments"],
-            $req["deferred_period_index"],
-            $req["grace_period"]
+            $req["id_query_installments"] ?? null,
+            $req["deferred_period_index"] ?? null,
+            $req["grace_period"] ?? null
         );
 
         return view('transaccion_completa/diferido/commit', [

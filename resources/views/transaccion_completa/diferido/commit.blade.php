@@ -1,49 +1,72 @@
 @extends('layout')
 @section('content')
-<h1> Ejemplo Transacción Completa Diferida transacción confirmada</h1>
+<div class="w-full max-w-none">
+    <h1 class="mb-2">Transaccion Completa Diferida confirmada</h1>
+    <p class="text-gray-700 mb-6">
+        La autorizacion diferida fue confirmada. Desde aqui puedes capturar monto o consultar estado.
+    </p>
 
-<h3>Parámetros recibidos:</h3>
-<pre>
-    {{ print_r($req, true) }}
-</pre>
+    <div class="grid grid-cols-1 gap-6 mb-6">
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+            <h3 class="font-bold mb-2">Parametros recibidos</h3>
+            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($req, true) }}</pre>
+        </div>
 
-
-<h3>Respuesta:</h3>
-<pre>
-    {{ print_r($res, true)  }}
-</pre>
-
-<br><hr>
-<div class="flex flex-col w-1/2 space-y-3 p-4">
-    <div>
-        <h3 class="text-lg mt-2 font-bold">Capturar monto</h3>
-        <form method="post" action="/transaccion_completa/diferido/capture">
-            @csrf
-            <label>Token</label>
-            <input type="text" class="w-full" name="token_ws" value={{ $req["token_ws"] }}>
-            <label>Orden de compra</label>
-            <input type="text" class="w-full" name="buy_order" value={{ $res->buyOrder }} >
-            <label>Código de autorización</label>
-            <input type="text" class="w-full" name="authorization_code" value={{ $res->authorizationCode }} >
-            <label >Monto</label>
-            <input type="text" class="w-full" name="amount" value="{{ $res->amount }}" >
-            <button type="submit">Capturar</button>
-        </form>
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+            <h3 class="font-bold mb-2">Respuesta</h3>
+            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($res, true) }}</pre>
+        </div>
     </div>
-    <hr>
-    <div>
-        <h3 class="text-lg mt-2 font-bold">Obtener status de la transacción</h3>
-        <form method="post" action="/transaccion_completa/diferido/transaction_status">
-            @csrf
-            <label>Token</label>
-            <input type="text" class="w-full" value="{{ $req["token_ws"] }}" name="token">
-            <button type="submit">Obtener status</button>
-        </form>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+        <h2 class="text-base font-bold text-blue-900 mb-2">Token</h2>
+        <input id="deferred_commit_token" type="text" readonly value="{{ $req['token_ws'] }}" class="w-full bg-white" />
+    </div>
+
+    <h2 class="text-lg font-bold mb-3">Acciones</h2>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
+            <h3 class="font-bold mb-3">Capturar monto</h3>
+            <p class="text-sm text-gray-600 mb-4">Ingresa los datos de captura para concretar el cargo.</p>
+            <form method="post" action="{{ route('completa.deferred.capture') }}"
+                style="display: flex; flex-direction:column; width:100%; font-size: 16px; gap: 10px; flex: 1;">
+                @csrf
+                <div>
+                    <label for="capture_token_ws">Token</label>
+                    <input id="capture_token_ws" type="text" class="w-full" name="token_ws" value="{{ $req['token_ws'] }}">
+                </div>
+                <div>
+                    <label for="capture_buy_order">Orden de compra</label>
+                    <input id="capture_buy_order" type="text" class="w-full" name="buy_order" value="{{ $res->buyOrder }}">
+                </div>
+                <div>
+                    <label for="capture_authorization_code">Codigo de autorizacion</label>
+                    <input id="capture_authorization_code" type="text" class="w-full" name="authorization_code" value="{{ $res->authorizationCode }}">
+                </div>
+                <div>
+                    <label for="capture_amount">Monto</label>
+                    <input id="capture_amount" type="text" class="w-full" name="amount" value="{{ $res->amount }}">
+                </div>
+                <button type="submit" style="margin-top: auto;">Capturar</button>
+            </form>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
+            <h3 class="font-bold mb-3">Obtener status</h3>
+            <p class="text-sm text-gray-600 mb-4">Consulta el estado actual de la transaccion diferida.</p>
+            <form method="post" action="{{ route('completa.deferred.status') }}"
+                style="display: flex; flex-direction:column; width:100%; font-size: 16px; gap: 10px; flex: 1;">
+                @csrf
+                <div>
+                    <label for="status_token">Token</label>
+                    <input id="status_token" type="text" class="w-full" value="{{ $req['token_ws'] }}" name="token">
+                </div>
+                <button type="submit" style="margin-top: auto;">Obtener status</button>
+            </form>
+        </div>
     </div>
 </div>
 
-
 @endsection
-
 
 
