@@ -37,11 +37,12 @@ class TransaccionCompletaMallController
     public function mallCreate(Request $request) {
 
         $req = $request->all();
+        $expirationDateFormated = substr($req["card_expiration_date"], 3, 2) . "/" . substr($req["card_expiration_date"], 0, 2);
         $res = (new MallTransaction)->create(
             $req["buy_order"],
             $req["session_id"],
             $req["card_number"],
-            $req["card_expiration_date"],
+            $expirationDateFormated,
             $req["details"],
             $req["cvv"]
         );
@@ -74,9 +75,19 @@ class TransaccionCompletaMallController
     {
 
         $req = $request->all();
+        $details = array_map(function ($detail) {
+            return [
+                "commerce_code" => $detail["commerce_code"] ?? null,
+                "buy_order" => $detail["buy_order"] ?? null,
+                "id_query_installments" => $detail["id_query_installments"] ?? null,
+                "deferred_period_index" => $detail["deferred_period_index"] ?? null,
+                "grace_period" => $detail["grace_period"] ?? null,
+            ];
+        }, $req["details"] ?? []);
+
         $res = (new MallTransaction)->commit(
             $req["token"],
-            $req["details"]
+            $details
         );
 
         return view('transaccion_completa/mall_commit', [
