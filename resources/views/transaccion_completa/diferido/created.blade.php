@@ -1,14 +1,14 @@
 @extends('layout')
 @section('content')
 <div class="w-full max-w-none">
-    <h1 class="mb-2">Transaccion Completa Diferida creada</h1>
+    <h1 class="mb-2">Transacción Completa Diferida creada</h1>
     <p class="text-gray-700 mb-6">
-        La transaccion diferida fue creada correctamente. El siguiente paso es consultar cuotas con el token generado.
+        La transacción diferida fue creada correctamente. El siguiente paso es consultar cuotas con el token generado.
     </p>
 
     <div class="grid grid-cols-1 gap-6 mb-6">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
-            <h3 class="font-bold mb-2">Parametros recibidos</h3>
+            <h3 class="font-bold mb-2">Parámetros recibidos</h3>
             <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
         </div>
 
@@ -27,7 +27,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
             <h3 class="font-bold mb-3">Autorizar</h3>
-            <p class="text-sm text-gray-600 mb-4">Confirma la transaccion usando el token generado.</p>
+            <p class="text-sm text-gray-600 mb-4">Confirma la transacción usando el token generado.</p>
             <form class="webpay_form" method="post" action="{{ route('completa.deferred.commit') }}"
                 class="tbk-form-stack tbk-form-stack-flex">
                 @csrf
@@ -43,7 +43,7 @@
 
         <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
             <h3 class="font-bold mb-3">Consultar cuotas</h3>
-            <p class="text-sm text-gray-600 mb-4">Indica la cantidad de cuotas a consultar para esta transaccion.</p>
+            <p class="text-sm text-gray-600 mb-4">Indica la cantidad de cuotas a consultar para esta transacción.</p>
             <form class="webpay_form" method="post" action="{{ route('completa.deferred.installments') }}"
                 class="tbk-form-stack tbk-form-stack-flex">
                 @csrf

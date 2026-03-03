@@ -1,14 +1,14 @@
 @extends('layout')
 @section('content')
 <div class="w-full max-w-none">
-    <h1 class="mb-2">Transaccion Completa Mall: cuotas consultadas</h1>
+    <h1 class="mb-2">Transacción Completa Mall: cuotas consultadas</h1>
     <p class="text-gray-700 mb-6">
-        La consulta de cuotas fue exitosa. Ahora puedes autorizar la transaccion mall con esos resultados.
+        La consulta de cuotas fue exitosa. Ahora puedes autorizar la transacción mall con esos resultados.
     </p>
 
     <div class="grid grid-cols-1 gap-6 mb-6">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
-            <h3 class="font-bold mb-2">Parametros recibidos</h3>
+            <h3 class="font-bold mb-2">Parámetros recibidos</h3>
             <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
         </div>
 
@@ -25,8 +25,8 @@
 
     <h2 class="text-lg font-bold mb-3">Acciones</h2>
     <div class="bg-white border border-gray-200 rounded-lg p-4 mb-8">
-        <h3 class="font-bold mb-3">Autorizar transaccion mall</h3>
-        <p class="text-sm text-gray-600 mb-4">Confirma la transaccion usando los datos de cuotas por comercio hijo.</p>
+        <h3 class="font-bold mb-3">Autorizar transacción mall</h3>
+        <p class="text-sm text-gray-600 mb-4">Confirma la transacción usando los datos de cuotas por comercio hijo.</p>
         <form action="/transaccion_completa/mall_commit" method="post"
             class="tbk-form-stack">
             @csrf
@@ -40,7 +40,7 @@
                     <div class="border border-gray-200 rounded p-3">
                         <h4 class="font-bold mb-2">Comercio {{ $index + 1 }}</h4>
                         @php $installmentResponse = $res[$index] ?? null; @endphp
-                        <label for="details_{{ $index }}_commerce_code">Codigo comercio</label>
+                        <label for="details_{{ $index }}_commerce_code">Código comercio</label>
                         <input id="details_{{ $index }}_commerce_code" class="w-full" name="details[{{ $index }}][commerce_code]" value="{{ $detail['commerce_code'] }}">
 
                         <label for="details_{{ $index }}_buy_order">Orden compra</label>

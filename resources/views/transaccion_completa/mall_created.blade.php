@@ -1,14 +1,14 @@
 @extends('layout')
 @section('content')
 <div class="w-full max-w-none">
-    <h1 class="mb-2">Transaccion Completa Mall creada</h1>
+    <h1 class="mb-2">Transacción Completa Mall creada</h1>
     <p class="text-gray-700 mb-6">
-        La transaccion mall fue creada correctamente. Puedes autorizar directamente o consultar cuotas antes de autorizar.
+        La transacción mall fue creada correctamente. Puedes autorizar directamente o consultar cuotas antes de autorizar.
     </p>
 
     <div class="grid grid-cols-1 gap-6 mb-6">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
-            <h3 class="font-bold mb-2">Parametros recibidos</h3>
+            <h3 class="font-bold mb-2">Parámetros recibidos</h3>
             <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
         </div>
 
@@ -60,7 +60,7 @@
                     @foreach ($details as $index => $detail)
                         <div class="border border-gray-200 rounded p-3">
                             <h4 class="font-bold mb-2">Comercio {{ $index + 1 }}</h4>
-                            <label for="details_{{ $index }}_commerce_code">Codigo comercio</label>
+                            <label for="details_{{ $index }}_commerce_code">Código comercio</label>
                             <input id="details_{{ $index }}_commerce_code" class="w-full" name="details[{{ $index }}][commerce_code]" value="{{ $detail['commerce_code'] }}">
 
                             <label for="details_{{ $index }}_buy_order">Orden compra</label>

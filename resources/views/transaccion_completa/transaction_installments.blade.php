@@ -1,14 +1,14 @@
 @extends('layout')
 @section('content')
 <div class="w-full max-w-none">
-    <h1 class="mb-2">Transaccion Completa: cuotas consultadas</h1>
+    <h1 class="mb-2">Transacción Completa: cuotas consultadas</h1>
     <p class="text-gray-700 mb-6">
-        La consulta de cuotas fue exitosa. Ahora puedes autorizar la transaccion.
+        La consulta de cuotas fue exitosa. Ahora puedes autorizar la transacción.
     </p>
 
     <div class="grid grid-cols-1 gap-6 mb-6">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
-            <h3 class="font-bold mb-2">Parametros recibidos</h3>
+            <h3 class="font-bold mb-2">Parámetros recibidos</h3>
             <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
         </div>
 
@@ -25,8 +25,8 @@
 
     <h2 class="text-lg font-bold mb-3">Acciones</h2>
     <div class="bg-white border border-gray-200 rounded-lg p-4 mb-8">
-        <h3 class="font-bold mb-3">Autorizar transaccion</h3>
-        <p class="text-sm text-gray-600 mb-4">Completa los datos de autorizacion y envia la transaccion.</p>
+        <h3 class="font-bold mb-3">Autorizar transacción</h3>
+        <p class="text-sm text-gray-600 mb-4">Completa los datos de autorización y envia la transacción.</p>
         <form class="webpay_form" action="/transaccion_completa/transaction_commit" method="post"
             class="tbk-form-stack">
             @csrf
@@ -44,7 +44,7 @@
             </div>
             <div>
                 <label for="deferred_period_index">
-                    Cantidad de periodo diferido
+                    Cantidad de período diferido
                 </label>
                 <input id="deferred_period_index" class="w-full" type="number" name="deferred_period_index" value="1" />
             </div>

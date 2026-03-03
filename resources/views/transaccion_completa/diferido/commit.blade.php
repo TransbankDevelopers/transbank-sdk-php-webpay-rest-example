@@ -1,14 +1,14 @@
 @extends('layout')
 @section('content')
 <div class="w-full max-w-none">
-    <h1 class="mb-2">Transaccion Completa Diferida confirmada</h1>
+    <h1 class="mb-2">Transacción Completa Diferida confirmada</h1>
     <p class="text-gray-700 mb-6">
-        La autorizacion diferida fue confirmada. Desde aqui puedes capturar monto o consultar estado.
+        La autorización diferida fue confirmada. Desde aquí puedes capturar monto o consultar estado.
     </p>
 
     <div class="grid grid-cols-1 gap-6 mb-6">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
-            <h3 class="font-bold mb-2">Parametros recibidos</h3>
+            <h3 class="font-bold mb-2">Parámetros recibidos</h3>
             <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
         </div>
 
@@ -40,7 +40,7 @@
                     <input id="capture_buy_order" type="text" class="w-full" name="buy_order" value="{{ $res->buyOrder }}">
                 </div>
                 <div>
-                    <label for="capture_authorization_code">Codigo de autorizacion</label>
+                    <label for="capture_authorization_code">Código de autorización</label>
                     <input id="capture_authorization_code" type="text" class="w-full" name="authorization_code" value="{{ $res->authorizationCode }}">
                 </div>
                 <div>
@@ -53,7 +53,7 @@
 
         <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
             <h3 class="font-bold mb-3">Obtener status</h3>
-            <p class="text-sm text-gray-600 mb-4">Consulta el estado actual de la transaccion diferida.</p>
+            <p class="text-sm text-gray-600 mb-4">Consulta el estado actual de la transacción diferida.</p>
             <form method="post" action="{{ route('completa.deferred.status') }}"
                 class="tbk-form-stack tbk-form-stack-flex">
                 @csrf

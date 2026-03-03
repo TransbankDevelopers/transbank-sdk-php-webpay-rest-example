@@ -1,14 +1,14 @@
 @extends('layout')
 @section('content')
 <div class="w-full max-w-none">
-    <h1 class="mb-2">Transaccion Completa Diferida capturada</h1>
+    <h1 class="mb-2">Transacción Completa Diferida capturada</h1>
     <p class="text-gray-700 mb-6">
         La captura fue realizada correctamente. Puedes revisar estado o solicitar reembolso.
     </p>
 
     <div class="grid grid-cols-1 gap-6 mb-6">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
-            <h3 class="font-bold mb-2">Parametros recibidos</h3>
+            <h3 class="font-bold mb-2">Parámetros recibidos</h3>
             <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
         </div>
 
@@ -27,7 +27,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
             <h3 class="font-bold mb-3">Revisar status</h3>
-            <p class="text-sm text-gray-600 mb-4">Consulta el estado mas reciente de la transaccion.</p>
+            <p class="text-sm text-gray-600 mb-4">Consulta el estado más reciente de la transacción.</p>
             <form action="{{ route('completa.deferred.status') }}" method="post"
                 class="tbk-form-stack tbk-form-stack-flex">
                 @csrf

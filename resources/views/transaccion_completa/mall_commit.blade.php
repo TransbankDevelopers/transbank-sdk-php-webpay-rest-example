@@ -1,9 +1,9 @@
 @extends('layout')
 @section('content')
 <div class="w-full max-w-none">
-    <h1 class="mb-2">Transaccion Completa Mall confirmada</h1>
+    <h1 class="mb-2">Transacción Completa Mall confirmada</h1>
     <p class="text-gray-700 mb-6">
-        La autorizacion mall fue confirmada. Desde aqui puedes consultar estado o solicitar reembolso por comercio hijo.
+        La autorización mall fue confirmada. Desde aquí puedes consultar estado o solicitar reembolso por comercio hijo.
     </p>
 
     <div class="grid grid-cols-1 gap-6 mb-6">
@@ -46,7 +46,7 @@
                             <input id="refund_token_{{ $index }}" class="w-full" name="token" value="{{ $req['token'] }}">
                         </div>
                         <div>
-                            <label for="refund_child_commerce_code_{{ $index }}">Codigo comercio hijo</label>
+                            <label for="refund_child_commerce_code_{{ $index }}">Código comercio hijo</label>
                             <input id="refund_child_commerce_code_{{ $index }}" class="w-full" name="child_commerce_code" value="{{ $detail->getCommerceCode() }}">
                         </div>
                         <div>

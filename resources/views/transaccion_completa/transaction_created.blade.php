@@ -1,14 +1,14 @@
 @extends('layout')
 @section('content')
 <div class="w-full max-w-none">
-    <h1 class="mb-2">Transaccion Completa creada</h1>
+    <h1 class="mb-2">Transacción Completa creada</h1>
     <p class="text-gray-700 mb-6">
-        La transaccion fue creada correctamente. Desde aqui puedes autorizar el pago o consultar cuotas usando el token generado.
+        La transacción fue creada correctamente. Desde aquí puedes autorizar el pago o consultar cuotas usando el token generado.
     </p>
 
     <div class="grid grid-cols-1 gap-6 mb-6">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
-            <h3 class="font-bold mb-2">Parametros recibidos</h3>
+            <h3 class="font-bold mb-2">Parámetros recibidos</h3>
             <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
         </div>
 
@@ -27,7 +27,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
             <h3 class="font-bold mb-3">Autorizar</h3>
-            <p class="text-sm text-gray-600 mb-4">Confirma la transaccion usando el token generado.</p>
+            <p class="text-sm text-gray-600 mb-4">Confirma la transacción usando el token generado.</p>
             <form class="webpay_form" action="/transaccion_completa/transaction_commit" method="post"
                 class="tbk-form-stack tbk-form-stack-flex">
                 @csrf
@@ -38,13 +38,13 @@
                     <input id="token_ws" class="w-full" type="text" name="token_ws" value="{{ $res->getToken() }}" />
                 </div>
 
-                <button type="submit" class="tbk-btn-bottom">Autorizar transaccion</button>
+                <button type="submit" class="tbk-btn-bottom">Autorizar transacción</button>
             </form>
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
             <h3 class="font-bold mb-3">Consultar cuotas</h3>
-            <p class="text-sm text-gray-600 mb-4">Consulta cuotas disponibles para la misma transaccion.</p>
+            <p class="text-sm text-gray-600 mb-4">Consulta cuotas disponibles para la misma transacción.</p>
             <form class="webpay_form" method="post" action="/transaccion_completa/installments"
                 class="tbk-form-stack tbk-form-stack-flex">
                 @csrf

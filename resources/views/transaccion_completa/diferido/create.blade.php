@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
-    <h1>Transaccion Completa Diferida</h1>
-    <form class="webpay_form" action="{{ route("completa.deferred.create") }}" method="post" class="tbk-form-narrow">
+    <h1>Transacción Completa Diferida</h1>
+    <form class="webpay_form tbk-form-narrow" action="{{ route("completa.deferred.create") }}" method="post">
         @csrf
         <label for="buy_order">
             Orden de compra
@@ -24,7 +24,7 @@
         <input id="card_number" name="card_number" value="{{ app()->environment('production') ? '' : '4051885600446623' }}"/>
 
         <label for="card_expiration_date">
-            Fecha expiracion tarjeta
+            Fecha expiración tarjeta
         </label>
         <input id="card_expiration_date" name="card_expiration_date" placeholder="MM/YY" maxlength="5" pattern="^(0[1-9]|1[0-2])\/\d{2}$" title="Usa formato MM/YY" inputmode="numeric" value="{{ app()->environment('production') ? '' : '10/22' }}"/>
 
