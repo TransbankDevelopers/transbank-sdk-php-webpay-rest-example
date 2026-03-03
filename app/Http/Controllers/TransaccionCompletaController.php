@@ -19,7 +19,8 @@ use Transbank\Webpay\Options;
 class TransaccionCompletaController extends Controller
 {
 
-    public function __construct(){
+    public function __construct()
+    {
         if (app()->environment('production')) {
             TransaccionCompleta::configureForProduction(config('services.transbank.transaccion_completa_cc'), config('services.transbank.transaccion_completa_api_key'));
         } else {
@@ -31,25 +32,26 @@ class TransaccionCompletaController extends Controller
     {
 
         $req = $request->all();
+        $expirationDateFormated = substr($req["card_expiration_date"], 3, 2) . "/" . substr($req["card_expiration_date"], 0, 2);
         $res = (new Transaction)->create(
             $req["buy_order"],
             $req["session_id"],
             $req["amount"],
             $req["cvv"],
             $req["card_number"],
-            $req["card_expiration_date"]
+            $expirationDateFormated
         );
 
         return view('transaccion_completa/transaction_created', [
             "req" => $req,
-            "res" => $res,
+            "res" => $res
         ]);
     }
 
     public function installments(Request $request)
     {
 
-        $req = $request->all();
+        $req = $request->except('_token');
 
         $res = (new Transaction)->installments(
             $req['token_ws'],
@@ -60,7 +62,6 @@ class TransaccionCompletaController extends Controller
             "req" => $req,
             "res" => $res
         ]);
-
     }
 
     public function commit(Request $request)
@@ -70,9 +71,9 @@ class TransaccionCompletaController extends Controller
 
         $res = (new Transaction)->commit(
             $req['token_ws'],
-            $req["id_query_installments"],
-            $req["deferred_period_index"],
-            $req["grace_period"]
+            $req["id_query_installments"] ?? null,
+            $req["deferred_period_index"] ?? null,
+            $req["grace_period"] ?? null
         );
 
         return view('transaccion_completa/transaction_commit', [
@@ -94,7 +95,6 @@ class TransaccionCompletaController extends Controller
             "req" => $req,
             "res" => $res
         ]);
-
     }
 
     public function refund(Request $request)
@@ -106,7 +106,7 @@ class TransaccionCompletaController extends Controller
             $req["amount"]
         );
 
-        return view('transaccion_completa/refund', [
+        return view('transaccion_completa/transaction_refund', [
             "req" => $req,
             "res" => $res
         ]);

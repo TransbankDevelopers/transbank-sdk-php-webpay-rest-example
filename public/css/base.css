@@ -214,3 +214,46 @@ pre {
     text-decoration: none;
     display: inline-block;
 }
+
+.tbk-pre-wrap {
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.tbk-form-stack {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 16px;
+    gap: 10px;
+}
+
+.tbk-form-stack-flex {
+    flex: 1;
+}
+
+.tbk-form-stack-lg {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 16px;
+    gap: 16px;
+}
+
+.tbk-form-narrow {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    font-size: 20px;
+}
+
+.tbk-btn-bottom {
+    margin-top: auto;
+}
+
+.tbk-field {
+    margin-bottom: 10px;
+}

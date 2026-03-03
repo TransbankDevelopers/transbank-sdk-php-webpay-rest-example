@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
-    <h1>Transaccion Completa Diferida</h1>
-    <form class="webpay_form" action="{{ route("completa.deferred.create") }}" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
+    <h1>Transacción Completa Diferida</h1>
+    <form class="webpay_form tbk-form-narrow" action="{{ route("completa.deferred.create") }}" method="post">
         @csrf
         <label for="buy_order">
             Orden de compra
@@ -24,9 +24,9 @@
         <input id="card_number" name="card_number" value="{{ app()->environment('production') ? '' : '4051885600446623' }}"/>
 
         <label for="card_expiration_date">
-            Fecha expiracion tarjeta
+            Fecha expiración tarjeta
         </label>
-        <input id="card_expiration_date" name="card_expiration_date" value="{{ app()->environment('production') ? '' : '22/10' }}"/>
+        <input id="card_expiration_date" name="card_expiration_date" placeholder="MM/YY" maxlength="5" pattern="^(0[1-9]|1[0-2])\/\d{2}$" title="Usa formato MM/YY" inputmode="numeric" value="{{ app()->environment('production') ? '' : '10/22' }}"/>
 
         <label for="cvv">
             cvv
@@ -35,4 +35,17 @@
 
         <button type="submit">Aceptar</button>
     </form>
+    <script>
+        (function() {
+            var expirationInput = document.getElementById('card_expiration_date');
+            if (!expirationInput) return;
+            expirationInput.addEventListener('input', function(e) {
+                var value = e.target.value.replace(/\D/g, '').slice(0, 4);
+                if (value.length >= 3) {
+                    value = value.slice(0, 2) + '/' + value.slice(2);
+                }
+                e.target.value = value;
+            });
+        })();
+    </script>
 @endsection

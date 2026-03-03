@@ -3,7 +3,7 @@
     <h1>Ejemplo transacción completa mall Reembolso de la transacción</h1>
 
     <h2>Request</h2>
-    {{ print_r($req) }}
+    {{ print_r($req, true) }}
     <h2>Response</h2>
-    {{ print_r($res) }}
+    {{ print_r($res, true) }}
 @endsection

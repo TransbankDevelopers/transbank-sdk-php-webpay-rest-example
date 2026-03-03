@@ -1,38 +1,62 @@
 @extends('layout')
 @section('content')
-<h1>Ejemplo Transaccion Completa Diferida Cuotas consultadas</h1>
+<div class="w-full max-w-none">
+    <h1 class="mb-2">Transacción Completa Diferida: cuotas consultadas</h1>
+    <p class="text-gray-700 mb-6">
+        La consulta de cuotas fue exitosa. Ahora puedes autorizar la transacción diferida con los datos retornados.
+    </p>
 
-<h3>Parametros recibidos:</h3>
-<pre>
-    {{ print_r($req) }}
-</pre>
+    <div class="grid grid-cols-1 gap-6 mb-6">
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+            <h3 class="font-bold mb-2">Parámetros recibidos</h3>
+            <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
+        </div>
 
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+            <h3 class="font-bold mb-2">Respuesta</h3>
+            <pre class="text-sm tbk-pre-wrap">{{ print_r($res, true) }}</pre>
+        </div>
+    </div>
 
-<h3>Respuesta:</h3>
-<pre>
-    {{ print_r($res)  }}
-</pre>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+        <h2 class="text-base font-bold text-blue-900 mb-2">Token</h2>
+        <input id="deferred_installments_token" type="text" readonly value="{{ $req['token_ws'] }}" class="w-full bg-white" />
+    </div>
 
-<form class="webpay_form" action="{{ route("completa.deferred.commit") }}" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;" >
-    @csrf
-    <label for="token_ws">
-        Token
-    </label>
-    <input type="text" name="token_ws" value="{{ $req["token_ws"] }}">
-    <label for="id_query_installments">
-        Id de cuotas
-    </label>
-
-    <input type="text" name="id_query_installments" value="{{ $res->getIdQueryInstallments() }}" />
-    <label for="deferred_period_index">
-        Cantidad de periodo diferido
-    </label>
-    <input type="number" name="deferred_period_index" value="1" />
-    <label for="grace_period">
-        Periodo de Gracia
-    </label>
-    <input type="text" name="grace_period" value="false">
-    <button type="submit">Enviar datos</button>
-</form>
+    <h2 class="text-lg font-bold mb-3">Acciones</h2>
+    <div class="bg-white border border-gray-200 rounded-lg p-4 mb-8">
+        <h3 class="font-bold mb-3">Autorizar transacción diferida</h3>
+        <p class="text-sm text-gray-600 mb-4">Completa los datos de autorización y envia la transacción.</p>
+        <form class="webpay_form" action="{{ route('completa.deferred.commit') }}" method="post"
+            class="tbk-form-stack">
+            @csrf
+            <div>
+                <label for="token_ws">
+                    Token
+                </label>
+                <input id="token_ws" class="w-full" type="text" name="token_ws" value="{{ $req['token_ws'] }}">
+            </div>
+            <div>
+                <label for="id_query_installments">
+                    Id de cuotas
+                </label>
+                <input id="id_query_installments" class="w-full" type="text" name="id_query_installments" value="{{ $res->getIdQueryInstallments() }}" />
+            </div>
+            <div>
+                <label for="deferred_period_index">
+                    Cantidad de período diferido
+                </label>
+                <input id="deferred_period_index" class="w-full" type="number" name="deferred_period_index" value="1" />
+            </div>
+            <div>
+                <label for="grace_period">
+                    Periodo de Gracia
+                </label>
+                <input id="grace_period" class="w-full" type="text" name="grace_period" value="false">
+            </div>
+            <button type="submit">Autorizar</button>
+        </form>
+    </div>
+</div>
 
 @endsection
