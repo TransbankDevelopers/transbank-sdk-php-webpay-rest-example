@@ -9,12 +9,12 @@
     <div class="grid grid-cols-1 gap-6 mb-6">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
             <h3 class="font-bold mb-2">Parametros recibidos</h3>
-            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($req, true) }}</pre>
+            <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">
             <h3 class="font-bold mb-2">Respuesta</h3>
-            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($res, true) }}</pre>
+            <pre class="text-sm tbk-pre-wrap">{{ print_r($res, true) }}</pre>
         </div>
     </div>
 
@@ -29,7 +29,7 @@
             <h3 class="font-bold mb-3">Revisar status</h3>
             <p class="text-sm text-gray-600 mb-4">Consulta el estado mas reciente de la transaccion.</p>
             <form action="{{ route('completa.deferred.status') }}" method="post"
-                style="display: flex; flex-direction:column; width:100%; font-size: 16px; gap: 10px; flex: 1;">
+                class="tbk-form-stack tbk-form-stack-flex">
                 @csrf
                 <div>
                     <label for="captured_status_token">
@@ -37,7 +37,7 @@
                     </label>
                     <input id="captured_status_token" class="w-full" type="text" name="token" value="{{ $req['token_ws'] }}">
                 </div>
-                <button type="submit" style="margin-top: auto;">Revisar status</button>
+                <button type="submit" class="tbk-btn-bottom">Revisar status</button>
             </form>
         </div>
 
@@ -45,7 +45,7 @@
             <h3 class="font-bold mb-3">Reembolso</h3>
             <p class="text-sm text-gray-600 mb-4">Solicita el reembolso del monto capturado.</p>
             <form action="{{ route('completa.deferred.refund') }}" method="post"
-                style="display: flex; flex-direction:column; width:100%; font-size: 16px; gap: 10px; flex: 1;">
+                class="tbk-form-stack tbk-form-stack-flex">
                 @csrf
                 <div>
                     <label for="captured_refund_token">
@@ -59,7 +59,7 @@
                     </label>
                     <input id="captured_refund_amount" class="w-full" type="number" name="amount" value="{{ $res->getCapturedAmount() }}">
                 </div>
-                <button type="submit" style="margin-top: auto;">Solicitar reembolso</button>
+                <button type="submit" class="tbk-btn-bottom">Solicitar reembolso</button>
             </form>
         </div>
     </div>

@@ -9,12 +9,12 @@
     <div class="grid grid-cols-1 gap-6 mb-8">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
             <h3 class="font-bold mb-2">Parametros recibidos</h3>
-            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($req, true) }}</pre>
+            <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">
             <h3 class="font-bold mb-2">Respuesta</h3>
-            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($res, true) }}</pre>
+            <pre class="text-sm tbk-pre-wrap">{{ print_r($res, true) }}</pre>
         </div>
     </div>
 

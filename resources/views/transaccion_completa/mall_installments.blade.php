@@ -9,12 +9,12 @@
     <div class="grid grid-cols-1 gap-6 mb-6">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
             <h3 class="font-bold mb-2">Parametros recibidos</h3>
-            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($req, true) }}</pre>
+            <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">
             <h3 class="font-bold mb-2">Respuesta</h3>
-            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($res, true) }}</pre>
+            <pre class="text-sm tbk-pre-wrap">{{ print_r($res, true) }}</pre>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
         <h3 class="font-bold mb-3">Autorizar transaccion mall</h3>
         <p class="text-sm text-gray-600 mb-4">Confirma la transaccion usando los datos de cuotas por comercio hijo.</p>
         <form action="/transaccion_completa/mall_commit" method="post"
-            style="display: flex; flex-direction:column; width:100%; font-size: 16px; gap: 10px;">
+            class="tbk-form-stack">
             @csrf
             <div>
                 <label for="mall_token">Token</label>

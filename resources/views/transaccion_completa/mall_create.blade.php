@@ -7,7 +7,7 @@
     </p>
 
     <form action="/transaccion_completa/mall_create" method="post"
-        style="display: flex; flex-direction:column; width:100%; font-size: 16px; gap: 16px;">
+        class="tbk-form-stack-lg">
         @csrf
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">
@@ -15,29 +15,29 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div>
                     <h4 class="font-bold mb-2">Datos de transaccion</h4>
-                    <div style="margin-bottom: 10px;">
+                    <div class="tbk-field">
                         <label for="buy_order">Orden de compra</label>
                         <input id="buy_order" class="w-full" type="text" name="buy_order" value="{{ '123456' . rand(1,1000) }}" />
                     </div>
 
-                    <div style="margin-bottom: 10px;">
+                    <div class="tbk-field">
                         <label for="session_id">Id de sesion</label>
                         <input id="session_id" class="w-full" type="text" name="session_id" value="{{ '123456' . rand(1,1000) }}"/>
                     </div>
                 </div>
                 <div>
                     <h4 class="font-bold mb-2">Datos de tarjeta</h4>
-                    <div style="margin-bottom: 10px;">
+                    <div class="tbk-field">
                         <label for="card_number">Numero de tarjeta</label>
                         <input id="card_number" class="w-full" type="text" name="card_number" value="{{ app()->environment('production') ? '' : '4051885600446623' }}" />
                     </div>
 
-                    <div style="margin-bottom: 10px;">
+                    <div class="tbk-field">
                         <label for="card_expiration_date">Fecha expiracion tarjeta</label>
                         <input id="card_expiration_date" class="w-full" type="text" name="card_expiration_date" placeholder="MM/YY" maxlength="5" pattern="^(0[1-9]|1[0-2])\/\d{2}$" title="Usa formato MM/YY" inputmode="numeric" value="{{ app()->environment('production') ? '' : '10/22' }}" />
                     </div>
 
-                    <div style="margin-bottom: 10px;">
+                    <div class="tbk-field">
                         <label for="cvv">CVV</label>
                         <input id="cvv" class="w-full" type="text" name="cvv" value="{{ app()->environment('production') ? '' : '123' }}" />
                     </div>
@@ -51,17 +51,17 @@
                 @if (app()->environment('production'))
                     <div class="border border-gray-200 rounded p-3">
                         <h4 class="font-bold mb-2">Comercio 1</h4>
-                        <div style="margin-bottom: 10px;">
+                        <div class="tbk-field">
                             <label for="merchant_1_amount">Monto</label>
                             <input id="merchant_1_amount" class="w-full" type="text" name="details[0][amount]" value="10000" />
                         </div>
 
-                        <div style="margin-bottom: 10px;">
+                        <div class="tbk-field">
                             <label for="merchant_1_commerce_code">Codigo comercio hijo</label>
                             <input id="merchant_1_commerce_code" class="w-full" type="text" name="details[0][commerce_code]" value="{{ config('services.transbank.transaccion_completa_mall_child_cc') }}">
                         </div>
 
-                        <div style="margin-bottom: 10px;">
+                        <div class="tbk-field">
                             <label for="merchant_1_buy_order">Orden compra comercio hijo</label>
                             <input id="merchant_1_buy_order" class="w-full" type="text" name="details[0][buy_order]" value="{{ '123456' . rand(1,1000) }}" />
                         </div>
@@ -69,17 +69,17 @@
                 @else
                     <div class="border border-gray-200 rounded p-3">
                         <h4 class="font-bold mb-2">Comercio 1</h4>
-                        <div style="margin-bottom: 10px;">
+                        <div class="tbk-field">
                             <label for="merchant_1_amount">Monto</label>
                             <input id="merchant_1_amount" class="w-full" type="text" name="details[0][amount]" value="10000" />
                         </div>
 
-                        <div style="margin-bottom: 10px;">
+                        <div class="tbk-field">
                             <label for="merchant_1_commerce_code">Codigo comercio hijo</label>
                             <input id="merchant_1_commerce_code" class="w-full" type="text" name="details[0][commerce_code]" value="{{ $childCommerceCodes[0] }}">
                         </div>
 
-                        <div style="margin-bottom: 10px;">
+                        <div class="tbk-field">
                             <label for="merchant_1_buy_order">Orden compra comercio hijo</label>
                             <input id="merchant_1_buy_order" class="w-full" type="text" name="details[0][buy_order]" value="{{ '123456' . rand(1,1000) }}" />
                         </div>
@@ -87,17 +87,17 @@
 
                     <div class="border border-gray-200 rounded p-3">
                         <h4 class="font-bold mb-2">Comercio 2</h4>
-                        <div style="margin-bottom: 10px;">
+                        <div class="tbk-field">
                             <label for="merchant_2_amount">Monto</label>
                             <input id="merchant_2_amount" class="w-full" type="text" name="details[1][amount]" value="10000" />
                         </div>
 
-                        <div style="margin-bottom: 10px;">
+                        <div class="tbk-field">
                             <label for="merchant_2_commerce_code">Codigo comercio hijo</label>
                             <input id="merchant_2_commerce_code" class="w-full" type="text" name="details[1][commerce_code]" value="{{ $childCommerceCodes[1] }}">
                         </div>
 
-                        <div style="margin-bottom: 10px;">
+                        <div class="tbk-field">
                             <label for="merchant_2_buy_order">Orden compra comercio hijo</label>
                             <input id="merchant_2_buy_order" class="w-full" type="text" name="details[1][buy_order]" value="{{ '123456' . rand(1,1000) }}" />
                         </div>

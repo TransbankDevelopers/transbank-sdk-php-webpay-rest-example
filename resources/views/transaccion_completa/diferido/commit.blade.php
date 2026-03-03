@@ -9,12 +9,12 @@
     <div class="grid grid-cols-1 gap-6 mb-6">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
             <h3 class="font-bold mb-2">Parametros recibidos</h3>
-            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($req, true) }}</pre>
+            <pre class="text-sm tbk-pre-wrap">{{ print_r($req, true) }}</pre>
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">
             <h3 class="font-bold mb-2">Respuesta</h3>
-            <pre class="text-sm" style="white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; max-width: 100%; overflow-x: auto;">{{ print_r($res, true) }}</pre>
+            <pre class="text-sm tbk-pre-wrap">{{ print_r($res, true) }}</pre>
         </div>
     </div>
 
@@ -29,7 +29,7 @@
             <h3 class="font-bold mb-3">Capturar monto</h3>
             <p class="text-sm text-gray-600 mb-4">Ingresa los datos de captura para concretar el cargo.</p>
             <form method="post" action="{{ route('completa.deferred.capture') }}"
-                style="display: flex; flex-direction:column; width:100%; font-size: 16px; gap: 10px; flex: 1;">
+                class="tbk-form-stack tbk-form-stack-flex">
                 @csrf
                 <div>
                     <label for="capture_token_ws">Token</label>
@@ -47,7 +47,7 @@
                     <label for="capture_amount">Monto</label>
                     <input id="capture_amount" type="text" class="w-full" name="amount" value="{{ $res->amount }}">
                 </div>
-                <button type="submit" style="margin-top: auto;">Capturar</button>
+                <button type="submit" class="tbk-btn-bottom">Capturar</button>
             </form>
         </div>
 
@@ -55,13 +55,13 @@
             <h3 class="font-bold mb-3">Obtener status</h3>
             <p class="text-sm text-gray-600 mb-4">Consulta el estado actual de la transaccion diferida.</p>
             <form method="post" action="{{ route('completa.deferred.status') }}"
-                style="display: flex; flex-direction:column; width:100%; font-size: 16px; gap: 10px; flex: 1;">
+                class="tbk-form-stack tbk-form-stack-flex">
                 @csrf
                 <div>
                     <label for="status_token">Token</label>
                     <input id="status_token" type="text" class="w-full" value="{{ $req['token_ws'] }}" name="token">
                 </div>
-                <button type="submit" style="margin-top: auto;">Obtener status</button>
+                <button type="submit" class="tbk-btn-bottom">Obtener status</button>
             </form>
         </div>
     </div>

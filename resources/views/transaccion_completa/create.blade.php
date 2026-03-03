@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <h1>Transaccion Completa</h1>
-    <form class="webpay_form" action="create" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
+    <form class="webpay_form" action="create" method="post" class="tbk-form-narrow">
         @csrf
         <label for="buy_order">
             Orden de compra
