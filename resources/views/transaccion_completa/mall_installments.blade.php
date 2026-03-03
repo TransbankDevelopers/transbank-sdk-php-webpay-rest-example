@@ -39,6 +39,7 @@
                 @foreach ($details as $index => $detail)
                     <div class="border border-gray-200 rounded p-3">
                         <h4 class="font-bold mb-2">Comercio {{ $index + 1 }}</h4>
+                        @php $installmentResponse = $res[$index] ?? null; @endphp
                         <label for="details_{{ $index }}_commerce_code">Codigo comercio</label>
                         <input id="details_{{ $index }}_commerce_code" class="w-full" name="details[{{ $index }}][commerce_code]" value="{{ $detail['commerce_code'] }}">
 
@@ -46,17 +47,21 @@
                         <input id="details_{{ $index }}_buy_order" class="w-full" name="details[{{ $index }}][buy_order]" value="{{ $detail['buy_order'] }}">
 
                         <label for="details_{{ $index }}_id_query_installments">Id query installments</label>
-                        <input id="details_{{ $index }}_id_query_installments" class="w-full" name="details[{{ $index }}][id_query_installments]" value="{{ $res[$index]->getIdQueryInstallments() }}">
+                        <input id="details_{{ $index }}_id_query_installments" class="w-full" name="details[{{ $index }}][id_query_installments]" value="{{ $installmentResponse ? $installmentResponse->getIdQueryInstallments() : '' }}">
 
                         <label for="details_{{ $index }}_deferred_period_index">Deferred period index</label>
                         <select id="details_{{ $index }}_deferred_period_index" class="w-full" name="details[{{ $index }}][deferred_period_index]">
-                            @php $deferredPeriods = $res[$index]->getDeferredPeriods() ?? []; @endphp
+                            @php $deferredPeriods = $installmentResponse ? ($installmentResponse->getDeferredPeriods() ?? []) : []; @endphp
                             @forelse ($deferredPeriods as $period)
                                 <option value="{{ $period }}" {{ $loop->first ? 'selected' : '' }}>{{ $period }}</option>
                             @empty
                                 <option value="" selected>No disponible para esta consulta</option>
                             @endforelse
                         </select>
+
+                        @if (!$installmentResponse)
+                            <p class="text-red-700 text-sm mt-2">Sin datos de cuotas para este comercio.</p>
+                        @endif
 
                         <label for="details_{{ $index }}_grace_period">Periodo de gracia</label>
                         <select id="details_{{ $index }}_grace_period" class="w-full" name="details[{{ $index }}][grace_period]">
