@@ -136,6 +136,36 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/transaccion_completa/diferido/refund', 'TransaccionCompletaDeferredController@refund')->name("completa.deferred.refund");
 
+    Route::prefix('/transaccion_completa/diferido/1_3')
+        ->name('completa.deferred.1_3.')
+        ->group(function () {
+            Route::get('/create', function () {
+                return view('transaccion_completa/diferido/create', [
+                    'routeNames' => [
+                        'index' => 'completa.deferred.1_3.index',
+                        'create' => 'completa.deferred.1_3.create',
+                        'installments' => 'completa.deferred.1_3.installments',
+                        'commit' => 'completa.deferred.1_3.commit',
+                        'capture' => 'completa.deferred.1_3.capture',
+                        'status' => 'completa.deferred.1_3.status',
+                        'refund' => 'completa.deferred.1_3.refund',
+                    ],
+                    'productLabel' => 'Transacción Completa Diferida 1.3',
+                ]);
+            })->name('index');
+
+            Route::post('/create', 'TransaccionCompletaDeferred13Controller@createTransaction')->name('create');
+
+            Route::post('/installments', 'TransaccionCompletaDeferred13Controller@installments')->name('installments');
+
+            Route::post('/commit', 'TransaccionCompletaDeferred13Controller@commit')->name('commit');
+
+            Route::post('/capture', 'TransaccionCompletaDeferred13Controller@capture')->name('capture');
+
+            Route::post('/transaction_status', 'TransaccionCompletaDeferred13Controller@status')->name('status');
+
+            Route::post('/refund', 'TransaccionCompletaDeferred13Controller@refund')->name('refund');
+        });
 
     # Transaccion completa mall
     Route::get('/transaccion_completa/mall_create', 'TransaccionCompletaMallController@showMallCreate');

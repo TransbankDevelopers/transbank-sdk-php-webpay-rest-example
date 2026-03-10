@@ -1,7 +1,19 @@
 @extends('layout')
 @section('content')
+@php
+    $routeNames = $routeNames ?? [
+        'index' => 'completa.diferido.index',
+        'create' => 'completa.deferred.create',
+        'installments' => 'completa.deferred.installments',
+        'commit' => 'completa.deferred.commit',
+        'capture' => 'completa.deferred.capture',
+        'status' => 'completa.deferred.status',
+        'refund' => 'completa.deferred.refund',
+    ];
+    $productLabel = $productLabel ?? 'Transacción Completa Diferida';
+@endphp
 <div class="w-full max-w-none">
-    <h1 class="mb-2">Transacción Completa Diferida: refund</h1>
+    <h1 class="mb-2">{{ $productLabel }}: refund</h1>
     <p class="text-gray-700 mb-6">
         Resultado de la solicitud de reembolso para la transacción diferida.
     </p>
@@ -18,6 +30,6 @@
         </div>
     </div>
 
-    <a class="tbk-btn-link" href="{{ route('completa.diferido.index') }}">Volver</a>
+    <a class="tbk-btn-link" href="{{ route($routeNames['index']) }}">Volver</a>
 </div>
 @endsection

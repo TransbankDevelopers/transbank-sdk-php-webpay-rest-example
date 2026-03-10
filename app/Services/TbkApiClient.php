@@ -37,7 +37,8 @@ class TbkApiClient
         ];
 
         if (in_array($method, ['POST', 'PUT', 'PATCH', 'DELETE'])) {
-            $options[CURLOPT_POSTFIELDS] = json_encode($payload);
+            $encodedPayload = $this->encodePayload($payload);
+            $options[CURLOPT_POSTFIELDS] = $encodedPayload;
         }
 
         curl_setopt_array($ch, $options);
@@ -53,7 +54,20 @@ class TbkApiClient
 
         return [
             'status'   => $status,
+            'url' => $url,
+            'payload' => $payload,
+            'encoded_payload' => $encodedPayload ?? null,
+            'raw_response' => $rawResponse,
             'response' => json_decode($rawResponse, true),
         ];
+    }
+
+    private function encodePayload(array $payload): string
+    {
+        if ($payload === []) {
+            return '{}';
+        }
+
+        return json_encode($payload);
     }
 }
