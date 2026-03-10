@@ -57,13 +57,7 @@ class TransaccionCompletaDeferred13Service
 
         if ($response['status'] !== Response::HTTP_OK) {
             throw new \Exception(
-                'Error ' . $action . ' Transacción Completa Diferida 1.3: ' . json_encode([
-                    'status' => $response['status'],
-                    'url' => $response['url'] ?? null,
-                    'payload' => $response['payload'] ?? $payload,
-                    'response' => $response['response'],
-                    'raw_response' => $response['raw_response'] ?? null,
-                ]),
+                'Error ' . $action . ' Transacción Completa Diferida 1.3: ' . json_encode($response['response']),
                 $response['status']
             );
         }
