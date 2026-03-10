@@ -248,6 +248,7 @@ pre {
     flex-direction: column;
     width: 50%;
     font-size: 20px;
+    gap: 10px;
 }
 
 .tbk-btn-bottom {

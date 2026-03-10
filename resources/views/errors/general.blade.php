@@ -12,7 +12,7 @@
 
         @if (!empty($req))
             <h4 class="error-text error-text--general">Parámetros enviados</h4>
-            <pre class="error-pre error-pre--general">{{ print_r($req) }}</pre>
+            <pre class="error-pre error-pre--general">{{ print_r($req, true) }}</pre>
         @endif
 
         <div class="error-actions">
