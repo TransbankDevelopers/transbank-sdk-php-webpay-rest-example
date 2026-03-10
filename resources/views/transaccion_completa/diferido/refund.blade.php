@@ -1,17 +1,5 @@
 @extends('layout')
 @section('content')
-@php
-    $routeNames = $routeNames ?? [
-        'index' => 'completa.diferido.index',
-        'create' => 'completa.deferred.create',
-        'installments' => 'completa.deferred.installments',
-        'commit' => 'completa.deferred.commit',
-        'capture' => 'completa.deferred.capture',
-        'status' => 'completa.deferred.status',
-        'refund' => 'completa.deferred.refund',
-    ];
-    $productLabel = $productLabel ?? 'Transacción Completa Diferida';
-@endphp
 <div class="w-full max-w-none">
     <h1 class="mb-2">{{ $productLabel }}: refund</h1>
     <p class="text-gray-700 mb-6">

@@ -1,19 +1,5 @@
 @extends('layout')
 @section('content')
-@php
-    $routeNames = $routeNames ?? [
-        'index' => 'completa.diferido.index',
-        'create' => 'completa.deferred.create',
-        'installments' => 'completa.deferred.installments',
-        'commit' => 'completa.deferred.commit',
-        'capture' => 'completa.deferred.capture',
-        'status' => 'completa.deferred.status',
-        'refund' => 'completa.deferred.refund',
-    ];
-    $productLabel = $productLabel ?? 'Transacción Completa Diferida';
-    $token = $ui['token'] ?? ($req['token_ws'] ?? '');
-    $capturedAmount = $ui['captured_amount'] ?? null;
-@endphp
 <div class="w-full max-w-none">
     <h1 class="mb-2">{{ $productLabel }} capturada</h1>
     <p class="text-gray-700 mb-6">
@@ -69,7 +55,7 @@
                     <label for="captured_refund_amount">
                         Monto
                     </label>
-                    <input id="captured_refund_amount" class="w-full" type="number" name="amount" value="{{ $capturedAmount }}">
+                    <input id="captured_refund_amount" class="w-full" type="number" name="amount" value="{{ $capturedAmount ?? '' }}">
                 </div>
                 <button type="submit" class="tbk-btn-bottom">Solicitar reembolso</button>
             </form>

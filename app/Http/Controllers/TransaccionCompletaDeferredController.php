@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\TransaccionCompletaDeferredViewConfig;
 use Illuminate\Http\Request;
 use Transbank\TransaccionCompleta\Transaction;
 use Transbank\TransaccionCompleta\TransaccionCompleta;
@@ -9,16 +10,6 @@ use Transbank\Webpay\Options;
 
 class TransaccionCompletaDeferredController extends Controller
 {
-    private const ROUTE_NAMES = [
-        'index' => 'completa.diferido.index',
-        'create' => 'completa.deferred.create',
-        'installments' => 'completa.deferred.installments',
-        'commit' => 'completa.deferred.commit',
-        'capture' => 'completa.deferred.capture',
-        'status' => 'completa.deferred.status',
-        'refund' => 'completa.deferred.refund',
-    ];
-
     public function __construct(){
         if (app()->environment('production')) {
             TransaccionCompleta::configureForProduction(
@@ -45,9 +36,7 @@ class TransaccionCompletaDeferredController extends Controller
             );
 
             return $this->renderDeferredView('transaccion_completa/diferido/created', $req, $res, [
-                'ui' => [
-                    'token' => $res->getToken(),
-                ],
+                'token' => $res->getToken(),
             ]);
         } catch (\Throwable $e) {
             return $this->renderError($e, $req, 'createTransaction');
@@ -66,10 +55,8 @@ class TransaccionCompletaDeferredController extends Controller
             );
 
             return $this->renderDeferredView('transaccion_completa/diferido/installments', $req, $res, [
-                'ui' => [
-                    'token' => $req['token_ws'],
-                    'id_query_installments' => $res->getIdQueryInstallments(),
-                ],
+                'token' => $req['token_ws'],
+                'idQueryInstallments' => $res->getIdQueryInstallments(),
             ]);
         } catch (\Throwable $e) {
             return $this->renderError($e, $req, 'installments');
@@ -91,12 +78,10 @@ class TransaccionCompletaDeferredController extends Controller
             );
 
             return $this->renderDeferredView('transaccion_completa/diferido/commit', $req, $res, [
-                'ui' => [
-                    'token' => $req['token_ws'],
-                    'buy_order' => $res->buyOrder,
-                    'authorization_code' => $res->authorizationCode,
-                    'amount' => $res->amount,
-                ],
+                'token' => $req['token_ws'],
+                'buyOrder' => $res->buyOrder,
+                'authorizationCode' => $res->authorizationCode,
+                'amount' => $res->amount,
             ]);
         } catch (\Throwable $e) {
             return $this->renderError($e, $req, 'commit');
@@ -116,10 +101,8 @@ class TransaccionCompletaDeferredController extends Controller
             );
 
             return $this->renderDeferredView('transaccion_completa/diferido/captured', $req, $res, [
-                'ui' => [
-                    'token' => $req['token_ws'],
-                    'captured_amount' => $res->getCapturedAmount(),
-                ],
+                'token' => $req['token_ws'],
+                'capturedAmount' => $res->getCapturedAmount(),
             ]);
         } catch (\Throwable $e) {
             return $this->renderError($e, $req, 'capture');
@@ -164,9 +147,7 @@ class TransaccionCompletaDeferredController extends Controller
         return view($view, array_merge([
             'req' => $req,
             'res' => $res,
-            'routeNames' => static::ROUTE_NAMES,
-            'productLabel' => 'Transacción Completa Diferida',
-        ], $extra));
+        ], TransaccionCompletaDeferredViewConfig::sdk(), $extra));
     }
 
     protected function renderError(\Throwable $e, array $req, string $action)

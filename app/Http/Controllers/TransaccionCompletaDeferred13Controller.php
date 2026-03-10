@@ -3,21 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Services\TransaccionCompletaDeferred13Service;
+use App\Support\TransaccionCompletaDeferredViewConfig;
 use Illuminate\Http\Request;
 use Transbank\TransaccionCompleta\TransaccionCompleta;
 
 class TransaccionCompletaDeferred13Controller extends Controller
 {
-    private const ROUTE_NAMES = [
-        'index' => 'completa.deferred.1_3.index',
-        'create' => 'completa.deferred.1_3.create',
-        'installments' => 'completa.deferred.1_3.installments',
-        'commit' => 'completa.deferred.1_3.commit',
-        'capture' => 'completa.deferred.1_3.capture',
-        'status' => 'completa.deferred.1_3.status',
-        'refund' => 'completa.deferred.1_3.refund',
-    ];
-
     private TransaccionCompletaDeferred13Service $service;
 
     public function __construct()
@@ -50,9 +41,7 @@ class TransaccionCompletaDeferred13Controller extends Controller
             $res = $this->service->createTransaction($payload);
 
             return $this->renderDeferredView('transaccion_completa/diferido/created', $req, $res, [
-                'ui' => [
-                    'token' => $res['token'] ?? null,
-                ],
+                'token' => $res['token'] ?? null,
             ]);
         } catch (\Throwable $e) {
             return $this->renderError($e, $req, 'createTransaction');
@@ -70,10 +59,8 @@ class TransaccionCompletaDeferred13Controller extends Controller
             $res = $this->service->installments($req['token_ws'], $payload);
 
             return $this->renderDeferredView('transaccion_completa/diferido/installments', $req, $res, [
-                'ui' => [
-                    'token' => $req['token_ws'],
-                    'id_query_installments' => $res['id_query_installments'] ?? null,
-                ],
+                'token' => $req['token_ws'],
+                'idQueryInstallments' => $res['id_query_installments'] ?? null,
             ]);
         } catch (\Throwable $e) {
             return $this->renderError($e, $req, 'installments');
@@ -102,12 +89,10 @@ class TransaccionCompletaDeferred13Controller extends Controller
             $res = $this->service->commit($req['token_ws'], $payload);
 
             return $this->renderDeferredView('transaccion_completa/diferido/commit', $req, $res, [
-                'ui' => [
-                    'token' => $req['token_ws'],
-                    'buy_order' => $res['buy_order'] ?? null,
-                    'authorization_code' => $res['authorization_code'] ?? null,
-                    'amount' => $res['amount'] ?? null,
-                ],
+                'token' => $req['token_ws'],
+                'buyOrder' => $res['buy_order'] ?? null,
+                'authorizationCode' => $res['authorization_code'] ?? null,
+                'amount' => $res['amount'] ?? null,
             ]);
         } catch (\Throwable $e) {
             return $this->renderError($e, $req, 'commit');
@@ -127,10 +112,8 @@ class TransaccionCompletaDeferred13Controller extends Controller
             $res = $this->service->capture($req['token_ws'], $payload);
 
             return $this->renderDeferredView('transaccion_completa/diferido/captured', $req, $res, [
-                'ui' => [
-                    'token' => $req['token_ws'],
-                    'captured_amount' => $res['captured_amount'] ?? ($res['amount'] ?? null),
-                ],
+                'token' => $req['token_ws'],
+                'capturedAmount' => $res['captured_amount'] ?? ($res['amount'] ?? null),
             ]);
         } catch (\Throwable $e) {
             return $this->renderError($e, $req, 'capture');
@@ -171,9 +154,7 @@ class TransaccionCompletaDeferred13Controller extends Controller
         return view($view, array_merge([
             'req' => $req,
             'res' => $res,
-            'routeNames' => self::ROUTE_NAMES,
-            'productLabel' => 'Transacción Completa Diferida 1.3',
-        ], $extra));
+        ], TransaccionCompletaDeferredViewConfig::api(), $extra));
     }
 
     private function renderError(\Throwable $e, array $req, string $action)

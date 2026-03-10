@@ -1,21 +1,5 @@
 @extends('layout')
 @section('content')
-@php
-    $routeNames = $routeNames ?? [
-        'index' => 'completa.diferido.index',
-        'create' => 'completa.deferred.create',
-        'installments' => 'completa.deferred.installments',
-        'commit' => 'completa.deferred.commit',
-        'capture' => 'completa.deferred.capture',
-        'status' => 'completa.deferred.status',
-        'refund' => 'completa.deferred.refund',
-    ];
-    $productLabel = $productLabel ?? 'Transacción Completa Diferida';
-    $token = $ui['token'] ?? ($req['token_ws'] ?? '');
-    $buyOrder = $ui['buy_order'] ?? null;
-    $authorizationCode = $ui['authorization_code'] ?? null;
-    $amount = $ui['amount'] ?? null;
-@endphp
 <div class="w-full max-w-none">
     <h1 class="mb-2">{{ $productLabel }} confirmada</h1>
     <p class="text-gray-700 mb-6">
@@ -52,15 +36,15 @@
                 </div>
                 <div>
                     <label for="capture_buy_order">Orden de compra</label>
-                    <input id="capture_buy_order" type="text" class="w-full" name="buy_order" value="{{ $buyOrder }}">
+                    <input id="capture_buy_order" type="text" class="w-full" name="buy_order" value="{{ $buyOrder ?? '' }}">
                 </div>
                 <div>
                     <label for="capture_authorization_code">Código de autorización</label>
-                    <input id="capture_authorization_code" type="text" class="w-full" name="authorization_code" value="{{ $authorizationCode }}">
+                    <input id="capture_authorization_code" type="text" class="w-full" name="authorization_code" value="{{ $authorizationCode ?? '' }}">
                 </div>
                 <div>
                     <label for="capture_amount">Monto</label>
-                    <input id="capture_amount" type="text" class="w-full" name="amount" value="{{ $amount }}">
+                    <input id="capture_amount" type="text" class="w-full" name="amount" value="{{ $amount ?? '' }}">
                 </div>
                 <button type="submit" class="tbk-btn-bottom">Capturar</button>
             </form>

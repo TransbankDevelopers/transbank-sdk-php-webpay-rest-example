@@ -1,19 +1,5 @@
 @extends('layout')
 @section('content')
-@php
-    $routeNames = $routeNames ?? [
-        'index' => 'completa.diferido.index',
-        'create' => 'completa.deferred.create',
-        'installments' => 'completa.deferred.installments',
-        'commit' => 'completa.deferred.commit',
-        'capture' => 'completa.deferred.capture',
-        'status' => 'completa.deferred.status',
-        'refund' => 'completa.deferred.refund',
-    ];
-    $productLabel = $productLabel ?? 'Transacción Completa Diferida';
-    $token = $ui['token'] ?? ($req['token_ws'] ?? '');
-    $idQueryInstallments = $ui['id_query_installments'] ?? null;
-@endphp
 <div class="w-full max-w-none">
     <h1 class="mb-2">{{ $productLabel }}: cuotas consultadas</h1>
     <p class="text-gray-700 mb-6">
@@ -53,7 +39,7 @@
                 <label for="id_query_installments">
                     Id de cuotas
                 </label>
-                <input id="id_query_installments" class="w-full" type="text" name="id_query_installments" value="{{ $idQueryInstallments }}" />
+                <input id="id_query_installments" class="w-full" type="text" name="id_query_installments" value="{{ $idQueryInstallments ?? '' }}" />
             </div>
             <div>
                 <label for="deferred_period_index">

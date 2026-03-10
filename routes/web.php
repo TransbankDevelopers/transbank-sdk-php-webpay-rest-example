@@ -121,7 +121,7 @@ Route::middleware(['auth'])->group(function () {
 
     # Transacción completa diferido.
     Route::get('/transaccion_completa/diferido/create', function () {
-        return view('transaccion_completa/diferido/create');
+        return view('transaccion_completa/diferido/create', \App\Support\TransaccionCompletaDeferredViewConfig::sdk());
     })->name("completa.diferido.index");
 
     Route::post('/transaccion_completa/diferido/create', 'TransaccionCompletaDeferredController@createTransaction')->name("completa.deferred.create");
@@ -140,18 +140,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('completa.deferred.1_3.')
         ->group(function () {
             Route::get('/create', function () {
-                return view('transaccion_completa/diferido/create', [
-                    'routeNames' => [
-                        'index' => 'completa.deferred.1_3.index',
-                        'create' => 'completa.deferred.1_3.create',
-                        'installments' => 'completa.deferred.1_3.installments',
-                        'commit' => 'completa.deferred.1_3.commit',
-                        'capture' => 'completa.deferred.1_3.capture',
-                        'status' => 'completa.deferred.1_3.status',
-                        'refund' => 'completa.deferred.1_3.refund',
-                    ],
-                    'productLabel' => 'Transacción Completa Diferida 1.3',
-                ]);
+                return view('transaccion_completa/diferido/create', \App\Support\TransaccionCompletaDeferredViewConfig::api());
             })->name('index');
 
             Route::post('/create', 'TransaccionCompletaDeferred13Controller@createTransaction')->name('create');
