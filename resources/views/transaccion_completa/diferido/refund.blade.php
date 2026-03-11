@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <div class="w-full max-w-none">
-    <h1 class="mb-2">Transacción Completa Diferida: refund</h1>
+    <h1 class="mb-2">{{ $productLabel }}: refund</h1>
     <p class="text-gray-700 mb-6">
         Resultado de la solicitud de reembolso para la transacción diferida.
     </p>
@@ -18,6 +18,6 @@
         </div>
     </div>
 
-    <a class="tbk-btn-link" href="{{ route('completa.diferido.index') }}">Volver</a>
+    <a class="tbk-btn-link" href="{{ route($routeNames['index']) }}">Volver</a>
 </div>
 @endsection

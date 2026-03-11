@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
-    <h1>Transacción Completa Diferida</h1>
-    <form class="webpay_form tbk-form-narrow" action="{{ route("completa.deferred.create") }}" method="post">
+    <h1>{{ $productLabel }}</h1>
+    <form class="webpay_form tbk-form-narrow" action="{{ route($routeNames['create']) }}" method="post">
         @csrf
         <label for="buy_order">
             Orden de compra

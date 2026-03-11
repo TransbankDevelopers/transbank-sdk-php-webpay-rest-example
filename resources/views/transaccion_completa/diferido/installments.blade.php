@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <div class="w-full max-w-none">
-    <h1 class="mb-2">Transacción Completa Diferida: cuotas consultadas</h1>
+    <h1 class="mb-2">{{ $productLabel }}: cuotas consultadas</h1>
     <p class="text-gray-700 mb-6">
         La consulta de cuotas fue exitosa. Ahora puedes autorizar la transacción diferida con los datos retornados.
     </p>
@@ -20,27 +20,26 @@
 
     <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
         <h2 class="text-base font-bold text-blue-900 mb-2">Token</h2>
-        <input id="deferred_installments_token" type="text" readonly value="{{ $req['token_ws'] }}" class="w-full bg-white" />
+        <input id="deferred_installments_token" type="text" readonly value="{{ $token }}" class="w-full bg-white" />
     </div>
 
     <h2 class="text-lg font-bold mb-3">Acciones</h2>
     <div class="bg-white border border-gray-200 rounded-lg p-4 mb-8">
         <h3 class="font-bold mb-3">Autorizar transacción diferida</h3>
         <p class="text-sm text-gray-600 mb-4">Completa los datos de autorización y envia la transacción.</p>
-        <form class="webpay_form" action="{{ route('completa.deferred.commit') }}" method="post"
-            class="tbk-form-stack">
+        <form class="webpay_form tbk-form-stack" action="{{ route($routeNames['commit']) }}" method="post">
             @csrf
             <div>
                 <label for="token_ws">
                     Token
                 </label>
-                <input id="token_ws" class="w-full" type="text" name="token_ws" value="{{ $req['token_ws'] }}">
+                <input id="token_ws" class="w-full" type="text" name="token_ws" value="{{ $token }}">
             </div>
             <div>
                 <label for="id_query_installments">
                     Id de cuotas
                 </label>
-                <input id="id_query_installments" class="w-full" type="text" name="id_query_installments" value="{{ $res->getIdQueryInstallments() }}" />
+                <input id="id_query_installments" class="w-full" type="text" name="id_query_installments" value="{{ $idQueryInstallments ?? '' }}" />
             </div>
             <div>
                 <label for="deferred_period_index">

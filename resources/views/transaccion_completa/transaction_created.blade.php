@@ -28,8 +28,7 @@
         <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
             <h3 class="font-bold mb-3">Autorizar</h3>
             <p class="text-sm text-gray-600 mb-4">Confirma la transacción usando el token generado.</p>
-            <form class="webpay_form" action="/transaccion_completa/transaction_commit" method="post"
-                class="tbk-form-stack tbk-form-stack-flex">
+            <form class="webpay_form tbk-form-stack tbk-form-stack-flex" action="/transaccion_completa/transaction_commit" method="post">
                 @csrf
                 <div>
                     <label for="token_ws">
@@ -45,8 +44,7 @@
         <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
             <h3 class="font-bold mb-3">Consultar cuotas</h3>
             <p class="text-sm text-gray-600 mb-4">Consulta cuotas disponibles para la misma transacción.</p>
-            <form class="webpay_form" method="post" action="/transaccion_completa/installments"
-                class="tbk-form-stack tbk-form-stack-flex">
+            <form class="webpay_form tbk-form-stack tbk-form-stack-flex" method="post" action="/transaccion_completa/installments">
                 @csrf
                 <div>
                     <label for="token_ws_installments">

@@ -81,6 +81,8 @@ return [
         'transaccion_completa_api_key' => env('TRANSACCION_COMPLETA_API_KEY'),
         'transaccion_completa_deferred_cc' => env('TRANSACCION_COMPLETA_DEFERRED_CC'),
         'transaccion_completa_deferred_api_key' => env('TRANSACCION_COMPLETA_DEFERRED_API_KEY'),
+        'transaccion_completa_deferred_1_3_cc' => env('TRANSACCION_COMPLETA_DEFERRED_1_3_CC'),
+        'transaccion_completa_deferred_1_3_api_key' => env('TRANSACCION_COMPLETA_DEFERRED_1_3_API_KEY'),
         'transaccion_completa_mall_cc' => env('TRANSACCION_COMPLETA_MALL_CC'),
         'transaccion_completa_mall_child_cc' => env('TRANSACCION_COMPLETA_MALL_CHILD_CC'),
         'transaccion_completa_mall_api_key' => env('TRANSACCION_COMPLETA_MALL_API_KEY'),

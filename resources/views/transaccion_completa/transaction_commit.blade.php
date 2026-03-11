@@ -28,8 +28,7 @@
         <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
             <h3 class="font-bold mb-3">Revisar status</h3>
             <p class="text-sm text-gray-600 mb-4">Consulta el estado actual de la transacción.</p>
-            <form action="/transaccion_completa/transaction_status" method="post"
-                class="tbk-form-stack tbk-form-stack-flex">
+            <form class="tbk-form-stack tbk-form-stack-flex" action="/transaccion_completa/transaction_status" method="post">
                 @csrf
                 <div>
                     <label for="status_token_ws">Token</label>
@@ -42,8 +41,7 @@
         <div class="bg-white border border-gray-200 rounded-lg p-4 h-full flex flex-col">
             <h3 class="font-bold mb-3">Reembolso</h3>
             <p class="text-sm text-gray-600 mb-4">Solicita un reembolso para la transacción confirmada.</p>
-            <form action="/transaccion_completa/refund" method="post"
-                class="tbk-form-stack tbk-form-stack-flex">
+            <form class="tbk-form-stack tbk-form-stack-flex" action="/transaccion_completa/refund" method="post">
                 @csrf
                 <div>
                     <label for="refund_token_ws">Token</label>
@@ -59,5 +57,4 @@
     </div>
 </div>
 @endsection
-
 

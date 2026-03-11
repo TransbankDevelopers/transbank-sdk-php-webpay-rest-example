@@ -27,8 +27,7 @@
     <div class="bg-white border border-gray-200 rounded-lg p-4 mb-8">
         <h3 class="font-bold mb-3">Autorizar transacción</h3>
         <p class="text-sm text-gray-600 mb-4">Completa los datos de autorización y envia la transacción.</p>
-        <form class="webpay_form" action="/transaccion_completa/transaction_commit" method="post"
-            class="tbk-form-stack">
+        <form class="webpay_form tbk-form-stack" action="/transaccion_completa/transaction_commit" method="post">
             @csrf
             <div>
                 <label for="token_ws">

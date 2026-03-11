@@ -31,6 +31,8 @@ class HomeController extends Controller
             config('services.transbank.transaccion_completa_cc') != null && config('services.transbank.transaccion_completa_api_key') != null,
             'transaccion_completa_deferred_credentials_present' =>
             config('services.transbank.transaccion_completa_deferred_cc') != null && config('services.transbank.transaccion_completa_deferred_api_key') != null,
+            'transaccion_completa_deferred_1_3_credentials_present' =>
+            config('services.transbank.transaccion_completa_deferred_1_3_cc') != null && config('services.transbank.transaccion_completa_deferred_1_3_api_key') != null,
             'transaccion_completa_mall_credentials_present' =>
             config('services.transbank.transaccion_completa_mall_cc') != null && config('services.transbank.transaccion_completa_mall_api_key') != null,
             'transaccion_completa_standard_brand_credentials_present' =>
