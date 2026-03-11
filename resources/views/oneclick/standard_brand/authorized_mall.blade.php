@@ -48,7 +48,7 @@
         id="challengeStatusCheckForm"
         method="post"
         action="/oneclick/standard_brand/mall/transactionStatus"
-        style="margin-top: 16px;"
+        class="mt-4"
     >
         @csrf
         <label for="challengeStatusBuyOrder">Buy order:</label>

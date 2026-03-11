@@ -2,10 +2,10 @@
 @section('content')
     <h1>Autorizar transacción directamente</h1>
 
-    <form method="post" action="/oneclick/standard_brand/mall/authorizeTransaction" style="display: flex; flex-direction:column; font-size: 20px; gap: 8px;">
+    <form method="post" action="/oneclick/standard_brand/mall/authorizeTransaction" class="flex flex-col text-xl gap-2">
         @csrf
 
-        <label for="username" style="margin-top: 8px;">Nombre de usuario</label>
+        <label for="username" class="mt-2">Nombre de usuario</label>
         <input id="username" name="username" value=""/>
 
         <label for="tbk_user">Tbk User</label>
