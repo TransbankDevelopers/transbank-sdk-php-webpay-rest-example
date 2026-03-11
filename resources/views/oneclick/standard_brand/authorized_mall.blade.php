@@ -37,17 +37,98 @@
     </form>
 
 @else
+    <h1>Challenge requerido</h1>
 
-    <div id="challengeModal" class="modal" style="display: block;">
-        <div class="modal-content" style="width: 600px; margin: auto; background: white; padding: 20px;">
-            <h1>Modal del desafio</h1>
-            <iframe 
-                src="{{ url('/oneclick/standard_brand/mall/challenge-start') }}?token={{ $resp->getChallengeData()->getParameters()->getBrowserChallengeToken() }}&url={{ urlencode($resp->getChallengeData()->getBaseUrl()) }}"
-                style="width:100%; height:500px; border:none;">
-            </iframe>
-            <a class="text-gray-800 no-underline" href="{{ url('/home') }}"><i class="fa fa-home"></i> Inicio</a>
-        </div>
-    </div>
+    <p>La autorización requiere un challenge 3DS.</p>
+    <p>Presiona el botón para abrir la ventana del challenge y esta página hará seguimiento de su cierre.</p>
+    <p>Puedes editar el buy order antes de que se consulte automáticamente el status.</p>
+    <p id="challengeStatusMessage">Aún no se ha abierto la ventana del challenge.</p>
+
+    <form
+        id="challengeStatusCheckForm"
+        method="post"
+        action="/oneclick/standard_brand/mall/transactionStatus"
+        style="margin-top: 16px;"
+    >
+        @csrf
+        <label for="challengeStatusBuyOrder">Buy order:</label>
+        <input type="text" id="challengeStatusBuyOrder" name="buy_order" value="{{ $buyOrder }}">
+    </form>
+
+    <form
+        id="challengePopupForm"
+        method="post"
+        action="/oneclick/standard_brand/mall/challenge-popup"
+        target="challengeWindow"
+    >
+        @csrf
+        <input
+            type="hidden"
+            name="challenge_url"
+            value="{{ $resp->getChallengeData()->getBaseUrl() }}"
+        >
+        <input
+            type="hidden"
+            name="redirect_method"
+            value="{{ strtoupper($resp->getChallengeData()->getRedirectMethod()) }}"
+        >
+        <input
+            type="hidden"
+            name="browser_challenge_token"
+            id="browserChallengeToken"
+            value="{{ $resp->getChallengeData()->getParameters()->getBrowserChallengeToken() }}"
+        >
+    </form>
+
+    <button type="button" onclick="openChallengeFlow()">
+        Abrir challenge
+    </button>
+
+    <script>
+        let challengeWindow = null;
+        let challengeMonitorIntervalId = null;
+        let statusRequestSubmitted = false;
+
+        function updateChallengeWindowState() {
+            const statusMessage = document.getElementById('challengeStatusMessage');
+            const statusCheckForm = document.getElementById('challengeStatusCheckForm');
+
+            if (!challengeWindow) {
+                statusMessage.textContent = 'Aún no se ha abierto la ventana del challenge.';
+                return;
+            }
+
+            if (challengeWindow.closed) {
+                statusMessage.textContent = 'Challenge terminado. Consultando status de la autorización...';
+
+                if (challengeMonitorIntervalId) {
+                    clearInterval(challengeMonitorIntervalId);
+                    challengeMonitorIntervalId = null;
+                }
+
+                if (!statusRequestSubmitted) {
+                    statusRequestSubmitted = true;
+                    statusCheckForm.submit();
+                }
+
+                return;
+            }
+
+            statusMessage.textContent = 'La ventana del challenge sigue abierta.';
+        }
+
+        function openChallengeFlow() {
+            challengeWindow = window.open('', 'challengeWindow', 'width=520,height=720,resizable=yes,scrollbars=yes');
+
+            document.getElementById('challengePopupForm').submit();
+
+            updateChallengeWindowState();
+
+            if (!challengeMonitorIntervalId) {
+                challengeMonitorIntervalId = window.setInterval(updateChallengeWindowState, 3000);
+            }
+        }
+    </script>
+
 @endif
-
 @endsection
