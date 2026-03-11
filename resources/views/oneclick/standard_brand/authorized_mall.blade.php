@@ -62,22 +62,6 @@
         target="challengeWindow"
     >
         @csrf
-        <input
-            type="hidden"
-            name="challenge_url"
-            value="{{ $resp->getChallengeData()->getBaseUrl() }}"
-        >
-        <input
-            type="hidden"
-            name="redirect_method"
-            value="{{ strtoupper($resp->getChallengeData()->getRedirectMethod()) }}"
-        >
-        <input
-            type="hidden"
-            name="browser_challenge_token"
-            id="browserChallengeToken"
-            value="{{ $resp->getChallengeData()->getParameters()->getBrowserChallengeToken() }}"
-        >
     </form>
 
     <button type="button" onclick="openChallengeFlow()">
