@@ -75,12 +75,28 @@ class OneclickStandardBrandController extends Controller
 
     public function showChallengePopup(Request $request)
     {
-        $req = $request->except('_token');
+        $challengeData = $request->session()->get('oneclick_standard_brand_challenge');
+
+        if (!$challengeData) {
+            abort(400, 'Challenge no disponible en sesión');
+        }
+
+        $challengeUrl = $challengeData['challenge_url'] ?? '';
+        $redirectMethod = strtoupper($challengeData['redirect_method'] ?? 'POST');
+        $browserChallengeToken = $challengeData['browser_challenge_token'] ?? '';
+
+        if (!$this->isAllowedChallengeUrl($challengeUrl)) {
+            abort(400, 'URL de challenge inválida');
+        }
+
+        if ($redirectMethod !== 'POST') {
+            abort(400, 'Método de redirección inválido');
+        }
 
         return view('oneclick/standard_brand/challenge_popup', [
-            'challengeUrl' => $req['challenge_url'] ?? '',
-            'redirectMethod' => strtoupper($req['redirect_method'] ?? 'POST'),
-            'browserChallengeToken' => $req['browser_challenge_token'] ?? '',
+            'challengeUrl' => $challengeUrl,
+            'redirectMethod' => $redirectMethod,
+            'browserChallengeToken' => $browserChallengeToken,
         ]);
     }
 
@@ -144,11 +160,46 @@ class OneclickStandardBrandController extends Controller
             $challenge = false;
             if ($response instanceof \App\Dto\OneclickStandardBrand\ChallengeResponseDTO) {
                 $challenge = true;
+                $request->session()->put('oneclick_standard_brand_challenge', [
+                    'challenge_url' => $response->getChallengeData()->getBaseUrl(),
+                    'redirect_method' => strtoupper($response->getChallengeData()->getRedirectMethod()),
+                    'browser_challenge_token' => $response->getChallengeData()->getParameters()->getBrowserChallengeToken(),
+                ]);
+            } else {
+                $request->session()->forget('oneclick_standard_brand_challenge');
             }
             return view('oneclick/standard_brand/authorized_mall', ["req" => $req, "resp" => $response, "challenge" => $challenge, "buyOrder" => $req["buy_order"]]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    private function isAllowedChallengeUrl(string $challengeUrl): bool
+    {
+        if ($challengeUrl === '') {
+            return false;
+        }
+
+        $parsedUrl = parse_url($challengeUrl);
+        if ($parsedUrl === false) {
+            return false;
+        }
+
+        $allowedHosts = config('services.transbank.oneclick_mall_standard_brand_challenge_allowed_hosts', []);
+        $normalizedAllowedHosts = array_map('strtolower', $allowedHosts);
+        $host = strtolower($parsedUrl['host'] ?? '');
+        $scheme = strtolower($parsedUrl['scheme'] ?? '');
+        $port = $parsedUrl['port'] ?? null;
+
+        if ($scheme !== 'https') {
+            return false;
+        }
+
+        if (!in_array($host, $normalizedAllowedHosts, true)) {
+            return false;
+        }
+
+        return $port === null || (int)$port === 443;
     }
 
 }

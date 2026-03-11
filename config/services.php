@@ -91,6 +91,9 @@ return [
         'oneclick_mall_standard_brand_cc' => env('ONECLICK_MALL_STANDARD_BRAND_CC'),
         'oneclick_mall_standard_brand_api_key' => env('ONECLICK_MALL_STANDARD_BRAND_API_KEY'),
         'oneclick_mall_standard_brand_child_cc' => env('ONECLICK_MALL_STANDARD_BRAND_CHILD_CC'),
+        'oneclick_mall_standard_brand_challenge_allowed_hosts' => array_filter(
+            array_map('trim', explode(',', (string) env('ONECLICK_MALL_STANDARD_BRAND_CHALLENGE_ALLOWED_HOSTS')))
+        ),
 
         'transacction_completa_mall_standard_brand_cc' => env('TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_CC'),
         'transacction_completa_mall_standard_brand_child_cc' => env('TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_CHILD_CC'),
