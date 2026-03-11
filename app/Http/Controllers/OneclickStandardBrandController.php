@@ -62,6 +62,28 @@ class OneclickStandardBrandController extends Controller
         return view('oneclick/standard_brand/inscription_finished', ["resp" => $resp, "req" => $req, "username" => $userName, "metaData" => $metaData]);
     }
 
+    public function showDirectAuthorize(Request $request)
+    {
+        $metaData = [
+            "ip_address" => $request->ip(),
+            "accept_header" => $request->header('Accept'),
+            "user_agent" => $request->header('User-Agent'),
+            "language" => $request->header('Accept-Language')
+        ];
+        return view('oneclick/standard_brand/authorize_directly', ["metaData" => $metaData]);
+    }
+
+    public function showChallengePopup(Request $request)
+    {
+        $req = $request->except('_token');
+
+        return view('oneclick/standard_brand/challenge_popup', [
+            'challengeUrl' => $req['challenge_url'] ?? '',
+            'redirectMethod' => strtoupper($req['redirect_method'] ?? 'POST'),
+            'browserChallengeToken' => $req['browser_challenge_token'] ?? '',
+        ]);
+    }
+
     public function deleteInscription(Request $request)
     {
         $req = $request->except('_token');
@@ -132,14 +154,4 @@ class OneclickStandardBrandController extends Controller
         }
     }
 
-    public function challengeStart(Request $request)
-    {
-        $token = $request->query('token');
-        $url   = $request->query('url');
-
-        return view('oneclick.standard_brand.challenge_start', [
-            'browserChallengeToken' => $token,
-            'baseUrl' => $url
-        ]);
-    }
 }
