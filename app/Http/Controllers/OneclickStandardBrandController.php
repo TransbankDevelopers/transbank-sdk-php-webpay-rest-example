@@ -78,7 +78,7 @@ class OneclickStandardBrandController extends Controller
         $challengeData = $request->session()->get('oneclick_standard_brand_challenge');
 
         if (!$challengeData) {
-            abort(400, 'Challenge no disponible en sesión');
+            abort(400, 'Desafío no disponible en sesión');
         }
 
         $challengeUrl = $challengeData['challenge_url'] ?? '';
@@ -86,7 +86,7 @@ class OneclickStandardBrandController extends Controller
         $browserChallengeToken = $challengeData['browser_challenge_token'] ?? '';
 
         if (!$this->isAllowedChallengeUrl($challengeUrl)) {
-            abort(400, 'URL de challenge inválida');
+            abort(400, 'URL de desafío inválida');
         }
 
         if ($redirectMethod !== 'POST') {
