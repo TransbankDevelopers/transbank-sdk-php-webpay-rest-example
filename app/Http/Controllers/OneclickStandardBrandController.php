@@ -128,16 +128,13 @@ class OneclickStandardBrandController extends Controller
             'buy_order' => $req['details'][0]['buy_order'],
             'commerce_code' => $req['details'][0]['commerce_code'],
             'pmnt_ind' => $req['details'][0]['pmnt_ind'],
-            'recur_pmnt' => $req['details'][0]['recur_pmnt'],
-            'tid' => $req['details'][0]['tid'],
+            'recur_pmnt' => $req['details'][0]['recur_pmnt'] ?? ' ',
+            'tid' => $req['details'][0]['tid'] ?? '',
             'browserAcceptHeader' => $req['details'][0]['browserAcceptHeader'],
-            'browserIP' => $req['details'][0]['browserIP'],
             'browserJavaEnabled' => filter_var($req['details'][0]['browserJavaEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
-            'browserLanguage' => $req['details'][0]['browserLanguage'],
             'browserScreenHeight' => $req['details'][0]['browserScreenHeight'],
             'browserScreenWidth' => $req['details'][0]['browserScreenWidth'],
             'browserTZ' => $req['details'][0]['browserTZ'],
-            'browserUserAgent' => $req['details'][0]['browserUserAgent'],
             'browserJavascriptEnabled' => filter_var($req['details'][0]['browserJavascriptEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
             'installments_number' => $req['details'][0]['installments_number'],
         ];
@@ -148,7 +145,7 @@ class OneclickStandardBrandController extends Controller
             if ($response instanceof \App\Dto\OneclickStandardBrand\ChallengeResponseDTO) {
                 $challenge = true;
             }
-            return view('oneclick/standard_brand/authorized_mall', ["req" => $req, "resp" => $response, "challenge" => $challenge]);
+            return view('oneclick/standard_brand/authorized_mall', ["req" => $req, "resp" => $response, "challenge" => $challenge, "buyOrder" => $req["buy_order"]]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
