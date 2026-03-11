@@ -43,18 +43,9 @@
 
         <h1 class="mt-2">Detalle de la transacción</h1>
         <label for="details_commerce_code">Código de comercio tienda</label>
-        @if (app()->environment('production'))
-            <?php $childCC = config('services.transbank.oneclick_mall_standard_brand_child_cc') ?>
-            <select class="border rounded p-2" id="details_commerce_code" name="details[0][commerce_code]" value="{{ $childCC }}">
-                <option value="{{ $childCC }}">Comercio Hijo - {{ $childCC }}</option>
-            </select>
-        @else
-        <!-- TODO: Add testing configuration here -->
-            <?php $childCC = config('services.transbank.oneclick_mall_standard_brand_child_cc') ?>
-            <select class="border rounded p-2" id="details_commerce_code" name="details[0][commerce_code]" value="{{ $childCC }}">
-                <option value="{{ $childCC }}">Comercio Hijo - {{ $childCC }}</option>
-            </select>
-        @endif
+        <select class="border rounded p-2" id="details_commerce_code" name="details[0][commerce_code]" value="{{ $childCC }}">
+            <option value="{{ $childCC }}">Comercio Hijo - {{ $childCC }}</option>
+        </select>
 
 
         <label for="details_buy_order">Orden de compra (comercio hijo)</label>

@@ -8,6 +8,7 @@ use App\Services\OneClickStandardBrandService;
 class OneclickStandardBrandController extends Controller
 {
     private OneClickStandardBrandService $standardBrandService;
+    private $childCC;
 
     public function __construct()
     {
@@ -16,12 +17,14 @@ class OneclickStandardBrandController extends Controller
                 config('services.transbank.oneclick_mall_standard_brand_cc'),
                 config('services.transbank.oneclick_mall_standard_brand_api_key')
             );
+            $this->childCC = config('services.transbank.oneclick_mall_standard_brand_child_cc');
         } else {
             // TODO: Add testing configuration here
             $this->standardBrandService = new OneClickStandardBrandService(
                 config('services.transbank.oneclick_mall_standard_brand_cc'),
                 config('services.transbank.oneclick_mall_standard_brand_api_key')
             );
+            $this->childCC = config('services.transbank.oneclick_mall_standard_brand_child_cc');
         }
     }
 
@@ -59,7 +62,13 @@ class OneclickStandardBrandController extends Controller
         ];
 
         $userName = array_key_exists("user_name", $_SESSION) ? $_SESSION["user_name"] : '';
-        return view('oneclick/standard_brand/inscription_finished', ["resp" => $resp, "req" => $req, "username" => $userName, "metaData" => $metaData]);
+        return view('oneclick/standard_brand/inscription_finished', [
+            "resp" => $resp,
+            "req" => $req,
+            "username" => $userName,
+            "metaData" => $metaData,
+            "childCC" => $this->childCC,
+        ]);
     }
 
     public function showDirectAuthorize(Request $request)
@@ -70,7 +79,10 @@ class OneclickStandardBrandController extends Controller
             "user_agent" => $request->header('User-Agent'),
             "language" => $request->header('Accept-Language')
         ];
-        return view('oneclick/standard_brand/authorize_directly', ["metaData" => $metaData]);
+        return view('oneclick/standard_brand/authorize_directly', [
+            "metaData" => $metaData,
+            "childCC" => $this->childCC,
+        ]);
     }
 
     public function showChallengePopup(Request $request)
