@@ -31,14 +31,14 @@
         <label for="pos_entry_mode">POS Entry Mode</label>
         <select class="border rounded p-2" id="pos_entry_mode" name="pos_entry_mode">
             <option value="01">Manual</option>
-            <option value="010">Archivo</option>
-            <option value="810" selected>Comercio electrónico</option>
+            <option value="010" selected>Archivo</option>
+            <option value="810">Comercio electrónico</option>
         </select>
 
          <label for="request_3ds_authentication">Solicitar autenticación 3DS</label>
         <select class="border rounded p-2" id="request_3ds_authentication" name="request_3ds_authentication">
-            <option value="Si">Si</option>
-            <option value="NO" selected>No</option>
+            <option value="SI" selected>Si</option>
+            <option value="NO">No</option>
         </select>
 
         <h1 class="mt-2">Detalle de la transacción</h1>
@@ -65,26 +65,27 @@
 
         <label for="details_installments_number">Cantidad de cuotas</label>
         <select class="border rounded p-2" id="details_installments_number" name="details[0][installments_number]">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
+            <option value="1">0</option>
+            <option value="2">1</option>
+            <option value="3">2</option>
+            <option value="4">3</option>
+            <option value="5">4</option>
+            <option value="6">5</option>
+            <option value="7">6</option>
         </select>
 
         <label for="pmnt_ind">Índice de período diferido</label>
         <select class="border rounded p-2" id="pmnt_ind" name="details[0][pmnt_ind]" value="0"/>
-            <option value="C">Cardholder consent for Credential on File (COF)</option>
-            <option value="R" selected>Recurring Payment</option>
+            <option value="C" selected>Cardholder consent for Credential on File (COF)</option>
+            <option value="R">Recurring Payment</option>
             <option value="">Unknown / Not Provided</option>
         </select>
 
         <label for="recur_pmnt">Tipo de importe</label>
         <select class="border rounded p-2" id="recur_pmnt" name="details[0][recur_pmnt]" value="0"/>
-            <option value="F" selected>Importe fijo</option>
+            <option value="F">Importe fijo</option>
             <option value="V">Importe variable</option>
-            <option value="">No hay información disponible</option>
+            <option value=" " selected>No hay información disponible</option>
         </select>
 
         <label for="tid">Transaction ID</label>
@@ -121,6 +122,8 @@
 
         <button type="submit">Enviar</button>
     </form>
+
+    <hr>
 
     <h1>Eliminar inscripcion</h1>
     <form method="delete" action="/oneclick/standard_brand/inscription" style="display: flex; flex-direction:column; font-size: 20px; gap: 10px;">
