@@ -12,7 +12,7 @@
             value="{{ $browserChallengeToken }}"
         >
 
-        <button type="submit">Continuar al challenge</button>
+        <button type="submit">Continuar al desafío</button>
     </form>
 
 @endsection

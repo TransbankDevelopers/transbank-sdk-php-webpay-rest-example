@@ -37,12 +37,12 @@
     </form>
 
 @else
-    <h1>Challenge requerido</h1>
+    <h1>Se requiere completar desafío de autenticación</h1>
 
-    <p>La autorización requiere un challenge 3DS.</p>
-    <p>Presiona el botón para abrir la ventana del challenge y esta página hará seguimiento de su cierre.</p>
+    <p>La autorización requiere un desafío 3DS.</p>
+    <p>Presiona el botón para abrir la ventana del desafío y esta página hará seguimiento de su cierre.</p>
     <p>Puedes editar el buy order antes de que se consulte automáticamente el status.</p>
-    <p id="challengeStatusMessage">Aún no se ha abierto la ventana del challenge.</p>
+    <p id="challengeStatusMessage">Aún no se ha abierto la ventana del desafío.</p>
 
     <form
         id="challengeStatusCheckForm"
@@ -65,7 +65,7 @@
     </form>
 
     <button type="button" onclick="openChallengeFlow()">
-        Abrir challenge
+        Abrir desafío
     </button>
 
     <script>
@@ -78,12 +78,12 @@
             const statusCheckForm = document.getElementById('challengeStatusCheckForm');
 
             if (!challengeWindow) {
-                statusMessage.textContent = 'Aún no se ha abierto la ventana del challenge.';
+                statusMessage.textContent = 'Aún no se ha abierto la ventana del desafío.';
                 return;
             }
 
             if (challengeWindow.closed) {
-                statusMessage.textContent = 'Challenge terminado. Consultando status de la autorización...';
+                statusMessage.textContent = 'Desafío terminado. Consultando status de la autorización...';
 
                 if (challengeMonitorIntervalId) {
                     clearInterval(challengeMonitorIntervalId);
@@ -98,7 +98,7 @@
                 return;
             }
 
-            statusMessage.textContent = 'La ventana del challenge sigue abierta.';
+            statusMessage.textContent = 'La ventana del desafío sigue abierta.';
         }
 
         function openChallengeFlow() {
