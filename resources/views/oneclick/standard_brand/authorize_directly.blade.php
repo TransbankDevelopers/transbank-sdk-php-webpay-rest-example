@@ -6,10 +6,10 @@
         @csrf
 
         <label for="username" class="mt-2">Nombre de usuario</label>
-        <input id="username" name="username" value=""/>
+        <input id="username" name="username" value="" required/>
 
         <label for="tbk_user">Tbk User</label>
-        <input id="tbk_user" name="tbk_user" value=""/>
+        <input id="tbk_user" name="tbk_user" value="" required/>
 
         <label for="parent_buy_order">Orden de compra (comercio padre)</label>
         <input id="parent_buy_order" name="buy_order" value="{{ $parentBuyOrder }}"/>
