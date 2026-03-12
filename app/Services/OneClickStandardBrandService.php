@@ -65,7 +65,7 @@ class OneClickStandardBrandService
         string $userName,
         string $tbkUser,
         string $buyOrder,
-        int $posEntryMode,
+        string $posEntryMode,
         string $request3dsAuth,
         array $details
     ) {
