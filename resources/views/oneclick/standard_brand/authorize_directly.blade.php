@@ -12,7 +12,7 @@
         <input id="tbk_user" name="tbk_user" value=""/>
 
         <label for="parent_buy_order">Orden de compra (comercio padre)</label>
-        <input id="parent_buy_order" name="buy_order" value="{{ rand(100000000, 999999999) }}"/>
+        <input id="parent_buy_order" name="buy_order" value="{{ $parentBuyOrder }}"/>
 
         <label for="pos_entry_mode">POS Entry Mode</label>
         <select class="border rounded p-2" id="pos_entry_mode" name="pos_entry_mode">
@@ -34,7 +34,7 @@
         </select>
 
         <label for="details_buy_order">Orden de compra (comercio hijo)</label>
-        <input id="details_buy_order" name="details[0][buy_order]" value="{{ 'child-' . rand(100000000, 999999999) }}"/>
+        <input id="details_buy_order" name="details[0][buy_order]" value="{{ $detailsBuyOrder }}"/>
 
         <label for="details_amount">Monto</label>
         <input id="details_amount" name="details[0][amount]" value="50"/>

@@ -79,9 +79,14 @@ class OneclickStandardBrandController extends Controller
             "user_agent" => $request->header('User-Agent'),
             "language" => $request->header('Accept-Language')
         ];
+        $parentBuyOrder = (string) random_int(100000000, 999999999);
+        $detailsBuyOrder = 'child-' . random_int(100000000, 999999999);
+
         return view('oneclick/standard_brand/authorize_directly', [
             "metaData" => $metaData,
             "childCC" => $this->childCC,
+            "parentBuyOrder" => $parentBuyOrder,
+            "detailsBuyOrder" => $detailsBuyOrder,
         ]);
     }
 
