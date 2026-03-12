@@ -127,7 +127,6 @@ class OneclickStandardBrandController extends Controller
         return view('oneclick/standard_brand/mall_inscription_deleted', ["req" => $req, "resp" => $resp]);
     }
 
-    //TODO: Confirm that this method is Ok
     public function transactionStatus(Request $request)
     {
         $req = $request->except('_token');
@@ -138,7 +137,6 @@ class OneclickStandardBrandController extends Controller
         return view('oneclick/standard_brand/mall_transaction_status', ["req" => $req, "resp" => $resp]);
     }
 
-    //TODO: Confirm that this method is Ok
     public function refund(Request $request)
     {
         $req = $request->except('_token');
@@ -152,7 +150,6 @@ class OneclickStandardBrandController extends Controller
         return view('oneclick/standard_brand/mall_refund_transaction', ["req" => $req, "resp" => $resp]);
     }
 
-    //TODO: Confirm that this method is Ok
     public function authorizeMall(Request $request)
     {
         $req = $request->except('_token');
