@@ -40,13 +40,16 @@ class AuthorizeResponseDTO
 
     public static function fromArray(array $data): self
     {
+        $details = $data['details'] ?? [];
+        $detailItem = is_array($details) && isset($details[0]) ? $details[0] : $details;
+
         return new self(
             $data['buy_order'],
             CardDetailDTO::fromArray($data['card_detail']),
             $data['accounting_date'],
             $data['transaction_date'],
             $data['request_3ds_authentication'],
-            TransactionDetailsDTO::fromArray($data['Details'])
+            TransactionDetailsDTO::fromArray($detailItem)
         );
     }
 
