@@ -81,9 +81,9 @@ class TransactionDetailsDTO
             $data['installments_number'],
             $data['commerce_code'],
             $data['buy_order'],
-            $data['recur_pmnt'],
-            $data['eci_trx_res'],
-            $data['pmnt_ind']
+            $data['recur_pmnt'] ?? '',
+            $data['eci_trx_res'] ?? '',
+            $data['pmnt_ind'] ?? ''
         );
     }
 
