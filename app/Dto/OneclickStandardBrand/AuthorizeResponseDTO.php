@@ -40,8 +40,11 @@ class AuthorizeResponseDTO
 
     public static function fromArray(array $data): self
     {
-        $details = $data['details'] ?? [];
-        $detailItem = is_array($details) && isset($details[0]) ? $details[0] : $details;
+        $details = $data['details'] ?? null;
+
+        if (!is_array($details) || empty($details[0]) || !is_array($details[0])) {
+            throw new \InvalidArgumentException('Invalid authorize response: "details" must contain one item with valid data.');
+        }
 
         return new self(
             $data['buy_order'],
@@ -49,7 +52,7 @@ class AuthorizeResponseDTO
             $data['accounting_date'],
             $data['transaction_date'],
             $data['request_3ds_authentication'],
-            TransactionDetailsDTO::fromArray($detailItem)
+            TransactionDetailsDTO::fromArray($details[0])
         );
     }
 
