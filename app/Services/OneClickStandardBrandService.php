@@ -100,7 +100,7 @@ class OneClickStandardBrandService
 
     public function refund(string $buyOrder, string $commerceCode, string $detailBuyOrder, int $amount)
     {
-        $endpoint = 'rswebpaytransaction/api/oneclick/v1.4/transaction/' . $buyOrder . '/refund';
+        $endpoint = 'rswebpaytransaction/api/oneclick/v1.4/transactions/' . $buyOrder . '/refunds';
         $payload = [
             'commerce_code' => $commerceCode,
             'detail_buy_order' => $detailBuyOrder,
