@@ -68,13 +68,18 @@ class TransaccionCompletaStandardBrandController extends Controller
     {
         $req = $request->except('_token');
 
+        $detail = [
+            'commerce_code' => $req['commerce_code'],
+            'buy_order' => $req['buy_order'],
+        ];
+
+        if (isset($req['id_query_installments'])) {
+            $detail['id_query_installments'] = (int) $req['id_query_installments'];
+        }
+
         $payload = [
             'details' => [
-                [
-                    'commerce_code' => $req['commerce_code'],
-                    'buy_order' => $req['buy_order'],
-                    'id_query_installments' => (int) $req['id_query_installments'],
-                ],
+                $detail,
             ],
         ];
 
