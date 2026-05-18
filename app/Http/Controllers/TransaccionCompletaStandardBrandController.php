@@ -80,8 +80,8 @@ class TransaccionCompletaStandardBrandController extends Controller
             'buy_order' => $validated['buy_order'],
         ];
 
-        if (isset($validated['id_query_installments']) && $validated['id_query_installments'] !== '') {
-            $detail['id_query_installments'] = (int) $validated['id_query_installments'];
+        if (isset($validated['id_query_installments'])) {
+            $detail['id_query_installments'] = $validated['id_query_installments'];
         }
 
         $payload = [
