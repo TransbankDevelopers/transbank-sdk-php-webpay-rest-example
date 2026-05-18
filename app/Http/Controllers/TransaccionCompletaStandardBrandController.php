@@ -66,15 +66,22 @@ class TransaccionCompletaStandardBrandController extends Controller
 
     public function commit(Request $request)
     {
+        $validated = $request->validate([
+            'token' => 'required|string',
+            'commerce_code' => 'required|string',
+            'buy_order' => 'required|string',
+            'id_query_installments' => 'nullable|integer',
+        ]);
+
         $req = $request->except('_token');
 
         $detail = [
-            'commerce_code' => $req['commerce_code'],
-            'buy_order' => $req['buy_order'],
+            'commerce_code' => $validated['commerce_code'],
+            'buy_order' => $validated['buy_order'],
         ];
 
-        if (isset($req['id_query_installments'])) {
-            $detail['id_query_installments'] = (int) $req['id_query_installments'];
+        if (isset($validated['id_query_installments']) && $validated['id_query_installments'] !== '') {
+            $detail['id_query_installments'] = (int) $validated['id_query_installments'];
         }
 
         $payload = [
@@ -84,7 +91,7 @@ class TransaccionCompletaStandardBrandController extends Controller
         ];
 
         try {
-            $resp = $this->standardBrandService->commit($req['token'], $payload);
+            $resp = $this->standardBrandService->commit($validated['token'], $payload);
 
             return view('transaccion_completa/standard_brand/commit', [
                 'req' => $req,
