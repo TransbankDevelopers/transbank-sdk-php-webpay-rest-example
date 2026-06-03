@@ -72,6 +72,12 @@
         <label for="browserAcceptHeader">Cabecera Accept del navegador</label>
         <input id="browserAcceptHeader" name="details[0][browserAcceptHeader]"
             value="{{ $metaData['accept_header'] }}"/>
+        
+        <label for="browserUserAgent">User Agent del navegador</label>
+        <input id="browserUserAgent" name="details[0][browserUserAgent]" value="{{ $metaData['user_agent'] }}"/>
+
+        <label for="browserIP">IP del navegador</label>
+        <input id="browserIP" name="details[0][browserIP]" value="{{ $metaData['ip_address'] }}" placeholder="Cargando..."/>
 
         <label for="browserJavaEnabled">Java habilitado</label>
         <input id="browserJavaEnabled" name="details[0][browserJavaEnabled]" value=""/>
