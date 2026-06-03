@@ -152,27 +152,54 @@ class OneclickStandardBrandController extends Controller
 
     public function authorizeMall(Request $request)
     {
+        $validated = $request->validate([
+            'username' => 'required|string|max:255',
+            'tbk_user' => 'required|string|max:255',
+            'buy_order' => 'required|string|max:26',
+            'pos_entry_mode' => 'required|in:010,100,810',
+            'request_3ds_authentication' => 'required|in:SI,NO',
+            'details.0.amount' => 'required|integer|min:1',
+            'details.0.buy_order' => 'required|string|max:26',
+            'details.0.commerce_code' => 'required|string|max:12',
+            'details.0.pmnt_ind' => 'nullable|in:C,R, ',
+            'details.0.recur_pmnt' => 'nullable|in:F,V, ',
+            'details.0.tid' => 'nullable|string|max:255',
+            'details.0.browserAcceptHeader' => 'required|string|max:512',
+            'details.0.browserUserAgent' => 'required|string|max:512',
+            'details.0.browserIP' => 'required|ip',
+            'details.0.browserJavaEnabled' => 'nullable',
+            'details.0.browserScreenHeight' => 'required|integer|min:1|max:10000',
+            'details.0.browserScreenWidth' => 'required|integer|min:1|max:10000',
+            'details.0.browserTZ' => 'required|integer|min:-840|max:840',
+            'details.0.browserJavascriptEnabled' => 'nullable',
+            'details.0.installments_number' => 'required|integer|min:0|max:99',
+        ]);
+
         $req = $request->except('_token');
+        $validatedDetails = $validated['details'][0];
+        $browserAcceptHeader = preg_replace('/[\x00-\x1F\x7F]/u', '', $validatedDetails['browserAcceptHeader']);
+        $browserUserAgent = preg_replace('/[\x00-\x1F\x7F]/u', '', $validatedDetails['browserUserAgent']);
+
         $details = [
-            'amount' => $req['details'][0]['amount'],
-            'buy_order' => $req['details'][0]['buy_order'],
-            'commerce_code' => $req['details'][0]['commerce_code'],
-            'pmnt_ind' => $req['details'][0]['pmnt_ind'],
-            'recur_pmnt' => $req['details'][0]['recur_pmnt'] ?? ' ',
-            'tid' => $req['details'][0]['tid'] ?? '',
-            'browserUserAgent' => $req['details'][0]['browserUserAgent'],
-            'browserAcceptHeader' => $req['details'][0]['browserAcceptHeader'],
-            'browserIP' => $req['details'][0]['browserIP'],
-            'browserJavaEnabled' => filter_var($req['details'][0]['browserJavaEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
-            'browserScreenHeight' => $req['details'][0]['browserScreenHeight'],
-            'browserScreenWidth' => $req['details'][0]['browserScreenWidth'],
-            'browserTZ' => $req['details'][0]['browserTZ'],
-            'browserJavascriptEnabled' => filter_var($req['details'][0]['browserJavascriptEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
-            'installments_number' => $req['details'][0]['installments_number'],
+            'amount' => $validatedDetails['amount'],
+            'buy_order' => $validatedDetails['buy_order'],
+            'commerce_code' => $validatedDetails['commerce_code'],
+            'pmnt_ind' => $validatedDetails['pmnt_ind'] ?? '',
+            'recur_pmnt' => $validatedDetails['recur_pmnt'] ?? ' ',
+            'tid' => $validatedDetails['tid'] ?? '',
+            'browserUserAgent' => $browserUserAgent,
+            'browserAcceptHeader' => $browserAcceptHeader,
+            'browserIP' => $validatedDetails['browserIP'],
+            'browserJavaEnabled' => filter_var($validatedDetails['browserJavaEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
+            'browserScreenHeight' => $validatedDetails['browserScreenHeight'],
+            'browserScreenWidth' => $validatedDetails['browserScreenWidth'],
+            'browserTZ' => $validatedDetails['browserTZ'],
+            'browserJavascriptEnabled' => filter_var($validatedDetails['browserJavascriptEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
+            'installments_number' => $validatedDetails['installments_number'],
         ];
 
         try {
-            $response = $this->standardBrandService->authorize($req["username"], $req["tbk_user"], $req["buy_order"], $req['pos_entry_mode'], $req['request_3ds_authentication'], $details);
+            $response = $this->standardBrandService->authorize($validated["username"], $validated["tbk_user"], $validated["buy_order"], $validated['pos_entry_mode'], $validated['request_3ds_authentication'], $details);
             $challenge = false;
             if ($response instanceof \App\Dto\OneclickStandardBrand\ChallengeResponseDTO) {
                 $challenge = true;
@@ -184,7 +211,7 @@ class OneclickStandardBrandController extends Controller
             } else {
                 $request->session()->forget('oneclick_standard_brand_challenge');
             }
-            return view('oneclick/standard_brand/authorized_mall', ["req" => $req, "resp" => $response, "challenge" => $challenge, "buyOrder" => $req["buy_order"]]);
+            return view('oneclick/standard_brand/authorized_mall', ["req" => $req, "resp" => $response, "challenge" => $challenge, "buyOrder" => $validated["buy_order"]]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
