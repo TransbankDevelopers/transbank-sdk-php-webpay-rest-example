@@ -54,7 +54,7 @@
         <select class="border rounded p-2" id="pmnt_ind" name="details[0][pmnt_ind]" value="0"/>
             <option value="C" selected>(C) - Titular acepta almacenar credenciales (COF)</option>
             <option value="R">(R) - Pago recurrente</option>
-            <option value="">( ) - Desconocido</option>
+            <option value=" ">( ) - Desconocido</option>
         </select>
 
         <label for="recur_pmnt">Tipo de importe</label>
