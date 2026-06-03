@@ -175,10 +175,12 @@ class OneclickStandardBrandController extends Controller
             'details.0.installments_number' => 'required|integer|min:0|max:99',
         ]);
 
-        $req = $request->except('_token');
         $validatedDetails = $validated['details'][0];
         $browserAcceptHeader = preg_replace('/[\x00-\x1F\x7F]/u', '', $validatedDetails['browserAcceptHeader']);
         $browserUserAgent = preg_replace('/[\x00-\x1F\x7F]/u', '', $validatedDetails['browserUserAgent']);
+        $displayReq = $validated;
+        $displayReq['details'][0]['browserAcceptHeader'] = $browserAcceptHeader;
+        $displayReq['details'][0]['browserUserAgent'] = $browserUserAgent;
 
         $details = [
             'amount' => $validatedDetails['amount'],
@@ -211,7 +213,7 @@ class OneclickStandardBrandController extends Controller
             } else {
                 $request->session()->forget('oneclick_standard_brand_challenge');
             }
-            return view('oneclick/standard_brand/authorized_mall', ["req" => $req, "resp" => $response, "challenge" => $challenge, "buyOrder" => $validated["buy_order"]]);
+            return view('oneclick/standard_brand/authorized_mall', ["req" => $displayReq, "resp" => $response, "challenge" => $challenge, "buyOrder" => $validated["buy_order"]]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
