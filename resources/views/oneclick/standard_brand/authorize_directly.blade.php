@@ -16,9 +16,9 @@
 
         <label for="pos_entry_mode">POS Entry Mode</label>
         <select class="border rounded p-2" id="pos_entry_mode" name="pos_entry_mode">
-            <option value="01">Manual</option>
-            <option value="010" selected>Archivo</option>
-            <option value="810">Comercio electrónico</option>
+            <option value="010" selected>(010) - Credenciales en archivo</option>
+            <option value="100">(100) - CIT siguientes / MIT siguientes recurrentes</option>
+            <option value="810">(810) - Comercio electrónico</option>
         </select>
 
         <label for="request_3ds_authentication">Solicitar autenticación 3DS</label>
@@ -50,18 +50,18 @@
             <option value="7">6</option>
         </select>
 
-        <label for="pmnt_ind">Índice de período diferido</label>
+        <label for="pmnt_ind">Tipo de pago</label>
         <select class="border rounded p-2" id="pmnt_ind" name="details[0][pmnt_ind]" value="0"/>
-            <option value="C" selected>Cardholder consent for Credential on File (COF)</option>
-            <option value="R">Recurring Payment</option>
-            <option value="">Unknown / Not Provided</option>
+            <option value="C" selected>(C) - Titular acepta almacenar credenciales (COF)</option>
+            <option value="R">(R) - Pago recurrente</option>
+            <option value="">( ) - Desconocido</option>
         </select>
 
         <label for="recur_pmnt">Tipo de importe</label>
         <select class="border rounded p-2" id="recur_pmnt" name="details[0][recur_pmnt]" value=" "/>
-            <option value="F">Importe fijo</option>
-            <option value="V">Importe variable</option>
-            <option value=" " selected>No hay información disponible</option>
+            <option value="F">(F) - Importe fijo</option>
+            <option value="V">(V) - Importe variable</option>
+            <option value=" " selected>( ) - No hay información disponible</option>
         </select>
 
         <label for="tid">Transaction ID</label>
