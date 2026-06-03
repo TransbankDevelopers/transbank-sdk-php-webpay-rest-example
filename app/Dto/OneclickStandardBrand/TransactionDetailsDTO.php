@@ -21,9 +21,6 @@ class TransactionDetailsDTO
     private $paymentTypeCode;
 
     /** @var int */
-    private $responseCode;
-
-    /** @var int */
     private $installmentsNumber;
 
     /** @var string */
@@ -47,7 +44,6 @@ class TransactionDetailsDTO
         string $tid,
         string $authorizationCode,
         string $paymentTypeCode,
-        int $responseCode,
         int $installmentsNumber,
         string $commerceCode,
         string $buyOrder,
@@ -60,7 +56,6 @@ class TransactionDetailsDTO
         $this->tid = $tid;
         $this->authorizationCode = $authorizationCode;
         $this->paymentTypeCode = $paymentTypeCode;
-        $this->responseCode = $responseCode;
         $this->installmentsNumber = $installmentsNumber;
         $this->commerceCode = $commerceCode;
         $this->buyOrder = $buyOrder;
@@ -77,7 +72,6 @@ class TransactionDetailsDTO
             $data['tid'],
             $data['authorization_code'],
             $data['payment_type_code'],
-            $data['response_code'],
             $data['installments_number'],
             $data['commerce_code'],
             $data['buy_order'],
@@ -110,11 +104,6 @@ class TransactionDetailsDTO
     public function getPaymentTypeCode(): string
     {
         return $this->paymentTypeCode;
-    }
-
-    public function getResponseCode(): int
-    {
-        return $this->responseCode;
     }
 
     public function getInstallmentsNumber(): int
