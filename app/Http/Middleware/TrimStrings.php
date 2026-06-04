@@ -15,6 +15,8 @@ class TrimStrings extends Middleware
         'password',
         'password_confirmation',
         'recur_pmnt',
+        'details.0.pmnt_ind',
+        'details.0.recur_pmnt',
         'details.*.recur_pmnt',
     ];
 }
