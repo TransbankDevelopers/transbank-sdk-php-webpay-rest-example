@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OneclickStandardBrand\AuthorizeRequest;
 use Illuminate\Http\Request;
 use App\Services\OneClickStandardBrandService;
 
@@ -150,27 +151,32 @@ class OneclickStandardBrandController extends Controller
         return view('oneclick/standard_brand/mall_refund_transaction', ["req" => $req, "resp" => $resp]);
     }
 
-    public function authorizeMall(Request $request)
+    public function authorizeMall(AuthorizeRequest $request)
     {
-        $req = $request->except('_token');
+        $validated = $request->validated();
+
+        $validatedDetails = $validated['details'][0];
+
         $details = [
-            'amount' => $req['details'][0]['amount'],
-            'buy_order' => $req['details'][0]['buy_order'],
-            'commerce_code' => $req['details'][0]['commerce_code'],
-            'pmnt_ind' => $req['details'][0]['pmnt_ind'],
-            'recur_pmnt' => $req['details'][0]['recur_pmnt'] ?? ' ',
-            'tid' => $req['details'][0]['tid'] ?? '',
-            'browserAcceptHeader' => $req['details'][0]['browserAcceptHeader'],
-            'browserJavaEnabled' => filter_var($req['details'][0]['browserJavaEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
-            'browserScreenHeight' => $req['details'][0]['browserScreenHeight'],
-            'browserScreenWidth' => $req['details'][0]['browserScreenWidth'],
-            'browserTZ' => $req['details'][0]['browserTZ'],
-            'browserJavascriptEnabled' => filter_var($req['details'][0]['browserJavascriptEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
-            'installments_number' => $req['details'][0]['installments_number'],
+            'amount' => $validatedDetails['amount'],
+            'buy_order' => $validatedDetails['buy_order'],
+            'commerce_code' => $validatedDetails['commerce_code'],
+            'pmnt_ind' => $validatedDetails['pmnt_ind'],
+            'recur_pmnt' => $validatedDetails['recur_pmnt'],
+            'tid' => $validatedDetails['tid'] ?? '',
+            'browserUserAgent' => $validatedDetails['browserUserAgent'],
+            'browserAcceptHeader' => $validatedDetails['browserAcceptHeader'],
+            'browserIP' => $validatedDetails['browserIP'],
+            'browserJavaEnabled' => $validatedDetails['browserJavaEnabled'],
+            'browserScreenHeight' => $validatedDetails['browserScreenHeight'],
+            'browserScreenWidth' => $validatedDetails['browserScreenWidth'],
+            'browserTZ' => $validatedDetails['browserTZ'],
+            'browserJavascriptEnabled' => $validatedDetails['browserJavascriptEnabled'],
+            'installments_number' => $validatedDetails['installments_number'],
         ];
 
         try {
-            $response = $this->standardBrandService->authorize($req["username"], $req["tbk_user"], $req["buy_order"], $req['pos_entry_mode'], $req['request_3ds_authentication'], $details);
+            $response = $this->standardBrandService->authorize($validated["username"], $validated["tbk_user"], $validated["buy_order"], $validated['pos_entry_mode'], $validated['request_3ds_authentication'], $details);
             $challenge = false;
             if ($response instanceof \App\Dto\OneclickStandardBrand\ChallengeResponseDTO) {
                 $challenge = true;
@@ -182,7 +188,7 @@ class OneclickStandardBrandController extends Controller
             } else {
                 $request->session()->forget('oneclick_standard_brand_challenge');
             }
-            return view('oneclick/standard_brand/authorized_mall', ["req" => $req, "resp" => $response, "challenge" => $challenge, "buyOrder" => $req["buy_order"]]);
+            return view('oneclick/standard_brand/authorized_mall', ["req" => $validated, "resp" => $response, "challenge" => $challenge, "buyOrder" => $validated["buy_order"]]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

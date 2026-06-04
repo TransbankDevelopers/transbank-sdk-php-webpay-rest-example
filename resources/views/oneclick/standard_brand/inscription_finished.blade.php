@@ -22,7 +22,7 @@
         <label for="username" class="mt-2">Nombre de usuario</label>
         <input id="username" name="username" value="{{ $username }}"/>
 
-        <label for="tbk_user">Codigo de usuario</label>
+        <label for="tbk_user">TBK User</label>
         <input id="tbk_user" name="tbk_user" value="{{ $resp['tbk_user'] }}"/>
 
         <label for="parent_buy_order">Orden de compra (comercio padre)</label>
@@ -30,9 +30,9 @@
 
         <label for="pos_entry_mode">POS Entry Mode</label>
         <select class="border rounded p-2" id="pos_entry_mode" name="pos_entry_mode">
-            <option value="01">Manual</option>
-            <option value="010" selected>Archivo</option>
-            <option value="810">Comercio electrónico</option>
+            <option value="010" selected>(010) - Credenciales en archivo</option>
+            <option value="100">(100) - CIT siguientes / MIT siguientes recurrentes</option>
+            <option value="810">(810) - Comercio electrónico</option>
         </select>
 
          <label for="request_3ds_authentication">Solicitar autenticación 3DS</label>
@@ -55,28 +55,20 @@
         <input id="details_amount" name="details[0][amount]" value="1000"/>
 
         <label for="details_installments_number">Cantidad de cuotas</label>
-        <select class="border rounded p-2" id="details_installments_number" name="details[0][installments_number]">
-            <option value="1">0</option>
-            <option value="2">1</option>
-            <option value="3">2</option>
-            <option value="4">3</option>
-            <option value="5">4</option>
-            <option value="6">5</option>
-            <option value="7">6</option>
-        </select>
+        <input class="border rounded p-2" id="details_installments_number" type="number" name="details[0][installments_number]" value="0" min="0" max="99"/>
 
-        <label for="pmnt_ind">Índice de período diferido</label>
-        <select class="border rounded p-2" id="pmnt_ind" name="details[0][pmnt_ind]" value="0"/>
-            <option value="C" selected>Cardholder consent for Credential on File (COF)</option>
-            <option value="R">Recurring Payment</option>
-            <option value="">Unknown / Not Provided</option>
+        <label for="pmnt_ind">Tipo de pago</label>
+        <select class="border rounded p-2" id="pmnt_ind" name="details[0][pmnt_ind]">
+            <option value="C" selected>(C) - Titular acepta almacenar credenciales (COF)</option>
+            <option value="R">(R) - Pago recurrente</option>
+            <option value=" ">( ) - Desconocido</option>
         </select>
 
         <label for="recur_pmnt">Tipo de importe</label>
-        <select class="border rounded p-2" id="recur_pmnt" name="details[0][recur_pmnt]" value="0"/>
-            <option value="F">Importe fijo</option>
-            <option value="V">Importe variable</option>
-            <option value=" " selected>No hay información disponible</option>
+        <select class="border rounded p-2" id="recur_pmnt" name="details[0][recur_pmnt]">
+            <option value="F">(F) - Importe fijo</option>
+            <option value="V">(V) - Importe variable</option>
+            <option value=" " selected>( ) - No hay información disponible</option>
         </select>
 
         <label for="tid">Transaction ID</label>

@@ -24,7 +24,6 @@ class TbkApiClient
             'Accept: application/json',
             'Tbk-Api-Key-Id: ' . $this->apiKeyId,
             'Tbk-Api-Key-Secret: ' . $this->apiKeySecret,
-            'User-Agent: PostmanRuntime/7.51.1'
         ];
 
         $ch = curl_init();
