@@ -43,14 +43,14 @@
         <input class="border rounded p-2" id="details_installments_number" type="number" name="details[0][installments_number]" value="0" min="0" max="99"/>
 
         <label for="pmnt_ind">Tipo de pago</label>
-        <select class="border rounded p-2" id="pmnt_ind" name="details[0][pmnt_ind]" value="0"/>
+        <select class="border rounded p-2" id="pmnt_ind" name="details[0][pmnt_ind]">
             <option value="C" selected>(C) - Titular acepta almacenar credenciales (COF)</option>
             <option value="R">(R) - Pago recurrente</option>
             <option value=" ">( ) - Desconocido</option>
         </select>
 
         <label for="recur_pmnt">Tipo de importe</label>
-        <select class="border rounded p-2" id="recur_pmnt" name="details[0][recur_pmnt]" value=" "/>
+        <select class="border rounded p-2" id="recur_pmnt" name="details[0][recur_pmnt]">
             <option value="F">(F) - Importe fijo</option>
             <option value="V">(V) - Importe variable</option>
             <option value=" " selected>( ) - No hay información disponible</option>
