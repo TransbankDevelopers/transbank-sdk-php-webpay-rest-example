@@ -40,15 +40,7 @@
         <input id="details_amount" name="details[0][amount]" value="50"/>
 
         <label for="details_installments_number">Cantidad de cuotas</label>
-        <select class="border rounded p-2" id="details_installments_number" name="details[0][installments_number]">
-            <option value="1">0</option>
-            <option value="2">1</option>
-            <option value="3">2</option>
-            <option value="4">3</option>
-            <option value="5">4</option>
-            <option value="6">5</option>
-            <option value="7">6</option>
-        </select>
+        <input class="border rounded p-2" id="details_installments_number" type="number" name="details[0][installments_number]" value="0" min="0" max="99"/>
 
         <label for="pmnt_ind">Tipo de pago</label>
         <select class="border rounded p-2" id="pmnt_ind" name="details[0][pmnt_ind]" value="0"/>
