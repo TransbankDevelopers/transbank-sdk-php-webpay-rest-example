@@ -156,27 +156,22 @@ class OneclickStandardBrandController extends Controller
         $validated = $request->validated();
 
         $validatedDetails = $validated['details'][0];
-        $browserAcceptHeader = preg_replace('/[\x00-\x1F\x7F]/u', '', $validatedDetails['browserAcceptHeader']);
-        $browserUserAgent = preg_replace('/[\x00-\x1F\x7F]/u', '', $validatedDetails['browserUserAgent']);
-        $displayReq = $validated;
-        $displayReq['details'][0]['browserAcceptHeader'] = $browserAcceptHeader;
-        $displayReq['details'][0]['browserUserAgent'] = $browserUserAgent;
 
         $details = [
             'amount' => $validatedDetails['amount'],
             'buy_order' => $validatedDetails['buy_order'],
             'commerce_code' => $validatedDetails['commerce_code'],
-            'pmnt_ind' => $validatedDetails['pmnt_ind'] ?? '',
-            'recur_pmnt' => $validatedDetails['recur_pmnt'] ?? ' ',
+            'pmnt_ind' => $validatedDetails['pmnt_ind'],
+            'recur_pmnt' => $validatedDetails['recur_pmnt'],
             'tid' => $validatedDetails['tid'] ?? '',
-            'browserUserAgent' => $browserUserAgent,
-            'browserAcceptHeader' => $browserAcceptHeader,
+            'browserUserAgent' => $validatedDetails['browserUserAgent'],
+            'browserAcceptHeader' => $validatedDetails['browserAcceptHeader'],
             'browserIP' => $validatedDetails['browserIP'],
-            'browserJavaEnabled' => filter_var($validatedDetails['browserJavaEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
+            'browserJavaEnabled' => $validatedDetails['browserJavaEnabled'],
             'browserScreenHeight' => $validatedDetails['browserScreenHeight'],
             'browserScreenWidth' => $validatedDetails['browserScreenWidth'],
             'browserTZ' => $validatedDetails['browserTZ'],
-            'browserJavascriptEnabled' => filter_var($validatedDetails['browserJavascriptEnabled'] ?? false, FILTER_VALIDATE_BOOLEAN),
+            'browserJavascriptEnabled' => $validatedDetails['browserJavascriptEnabled'],
             'installments_number' => $validatedDetails['installments_number'],
         ];
 
@@ -193,7 +188,7 @@ class OneclickStandardBrandController extends Controller
             } else {
                 $request->session()->forget('oneclick_standard_brand_challenge');
             }
-            return view('oneclick/standard_brand/authorized_mall', ["req" => $displayReq, "resp" => $response, "challenge" => $challenge, "buyOrder" => $validated["buy_order"]]);
+            return view('oneclick/standard_brand/authorized_mall', ["req" => $validated, "resp" => $response, "challenge" => $challenge, "buyOrder" => $validated["buy_order"]]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
