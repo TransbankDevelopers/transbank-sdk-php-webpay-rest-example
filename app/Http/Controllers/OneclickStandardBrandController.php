@@ -151,7 +151,7 @@ class OneclickStandardBrandController extends Controller
             return response()->json(['error' => 'Unable to retrieve transaction status'], 503);
         }
 
-        if (!isset($resp['details']) || !is_array($resp['details']) || !isset($resp['details'][0]['status'])) {
+        if (!isset($resp['details']) || !is_array($resp['details']) || empty($resp['details']) || !isset($resp['details'][0]['status'])) {
             return response()->json(['error' => 'Invalid response format'], 500);
         }
 
