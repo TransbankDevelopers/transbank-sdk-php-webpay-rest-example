@@ -70,9 +70,23 @@
 
     <script>
         let challengeWindow = null;
-        let challengeMonitorIntervalId = null;
+        let challengeMonitorTimeoutId = null;
         let challengeStatusPollInProgress = false;
         let statusRequestSubmitted = false;
+        let challengePollingStopped = false;
+        let challengeStartedAt = null;
+        let consecutivePollErrors = 0;
+        const challengePollBaseDelayMs = 3000;
+        const challengePollMaxBackoffMs = 30000;
+        const challengePollMaxDurationMs = 10 * 60 * 1000;
+        const challengePollMaxConsecutiveErrors = 10;
+
+        function clearChallengeMonitor() {
+            if (challengeMonitorTimeoutId) {
+                clearTimeout(challengeMonitorTimeoutId);
+                challengeMonitorTimeoutId = null;
+            }
+        }
 
         function submitStatusForm(message) {
             const statusMessage = document.getElementById('challengeStatusMessage');
@@ -80,10 +94,7 @@
 
             statusMessage.textContent = message;
 
-            if (challengeMonitorIntervalId) {
-                clearInterval(challengeMonitorIntervalId);
-                challengeMonitorIntervalId = null;
-            }
+            clearChallengeMonitor();
 
             if (!statusRequestSubmitted) {
                 statusRequestSubmitted = true;
@@ -91,8 +102,60 @@
             }
         }
 
+        function getNextPollDelay() {
+            if (consecutivePollErrors === 0) {
+                return challengePollBaseDelayMs;
+            }
+
+            return Math.min(
+                challengePollBaseDelayMs * Math.pow(2, consecutivePollErrors - 1),
+                challengePollMaxBackoffMs
+            );
+        }
+
+        function hasExceededMaxPollingDuration() {
+            return challengeStartedAt && Date.now() - challengeStartedAt >= challengePollMaxDurationMs;
+        }
+
+        function stopChallengePolling(message) {
+            const statusMessage = document.getElementById('challengeStatusMessage');
+
+            challengePollingStopped = true;
+            clearChallengeMonitor();
+            statusMessage.textContent = message;
+        }
+
+        function scheduleChallengeMonitor() {
+            if (challengePollingStopped || statusRequestSubmitted || !challengeWindow || challengeWindow.closed) {
+                return;
+            }
+
+            if (hasExceededMaxPollingDuration()) {
+                stopChallengePolling('No fue posible confirmar el status automáticamente en 10 minutos. Cierre la ventana del desafío manualmente para continuar.');
+                return;
+            }
+
+            const remainingDurationMs = challengePollMaxDurationMs - (Date.now() - challengeStartedAt);
+            const delayMs = Math.min(getNextPollDelay(), remainingDurationMs);
+
+            clearChallengeMonitor();
+            challengeMonitorTimeoutId = window.setTimeout(updateChallengeWindowState, delayMs);
+        }
+
+        function registerPollFailure(message) {
+            consecutivePollErrors++;
+
+            if (consecutivePollErrors >= challengePollMaxConsecutiveErrors) {
+                stopChallengePolling('No fue posible consultar el status automáticamente. Cierre la ventana del desafío manualmente para continuar.');
+                return;
+            }
+
+            const nextRetrySeconds = Math.ceil(getNextPollDelay() / 1000);
+            document.getElementById('challengeStatusMessage').textContent = `${message} Se reintentará en ${nextRetrySeconds} segundos.`;
+        }
+
         async function pollChallengeStatus() {
-            if (challengeStatusPollInProgress || statusRequestSubmitted) {
+            if (challengeStatusPollInProgress || statusRequestSubmitted || challengePollingStopped) {
                 return;
             }
 
@@ -110,11 +173,18 @@
                 });
 
                 if (!response.ok) {
-                    statusMessage.textContent = 'No fue posible consultar el status. Se reintentará en unos segundos.';
+                    registerPollFailure('No fue posible consultar el status.');
                     return;
                 }
 
                 const data = await response.json();
+
+                if (!data || typeof data.is_initialized !== 'boolean') {
+                    registerPollFailure('Respuesta inválida del servidor.');
+                    return;
+                }
+
+                consecutivePollErrors = 0;
 
                 if (!data.is_initialized) {
                     if (challengeWindow && !challengeWindow.closed) {
@@ -127,9 +197,10 @@
 
                 statusMessage.textContent = 'La ventana del desafío sigue abierta. Status actual: INITIALIZED.';
             } catch (error) {
-                statusMessage.textContent = 'No fue posible consultar el status. Se reintentará en unos segundos.';
+                registerPollFailure('No fue posible consultar el status.');
             } finally {
                 challengeStatusPollInProgress = false;
+                scheduleChallengeMonitor();
             }
         }
 
@@ -138,6 +209,11 @@
 
             if (!challengeWindow) {
                 statusMessage.textContent = 'Aún no se ha abierto la ventana del desafío.';
+                return;
+            }
+
+            if (hasExceededMaxPollingDuration()) {
+                stopChallengePolling('No fue posible confirmar el status automáticamente en 10 minutos. Cierre la ventana del desafío manualmente para continuar.');
                 return;
             }
 
@@ -151,14 +227,13 @@
 
         function openChallengeFlow() {
             challengeWindow = window.open('', 'challengeWindow', 'width=520,height=720,resizable=yes,scrollbars=yes');
+            challengePollingStopped = false;
+            challengeStartedAt = Date.now();
+            consecutivePollErrors = 0;
 
             document.getElementById('challengePopupForm').submit();
 
             updateChallengeWindowState();
-
-            if (!challengeMonitorIntervalId) {
-                challengeMonitorIntervalId = window.setInterval(updateChallengeWindowState,3000);
-            }
         }
 
         document.getElementById('openChallengeButton').addEventListener('click', openChallengeFlow);
