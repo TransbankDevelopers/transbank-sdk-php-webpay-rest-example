@@ -138,6 +138,32 @@ class OneclickStandardBrandController extends Controller
         return view('oneclick/standard_brand/mall_transaction_status', ["req" => $req, "resp" => $resp]);
     }
 
+    public function pollTransactionStatus(Request $request)
+    {
+        $validated = $request->validate([
+            'buy_order' => 'required|string|max:26',
+        ]);
+        $buyOrder = $validated['buy_order'];
+
+        try {
+            $resp = $this->standardBrandService->status($buyOrder);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 502);
+        }
+
+        if (!isset($resp['details'][0]['status'])) {
+            return response()->json(['error' => 'Transaction status is not available'], 502);
+        }
+
+        $status = $resp['details'][0]['status'];
+
+        return response()->json([
+            'buy_order' => $resp['buy_order'] ?? $buyOrder,
+            'status' => $status,
+            'is_initialized' => $status === 'INITIALIZED',
+        ]);
+    }
+
     public function refund(Request $request)
     {
         $req = $request->except('_token');
