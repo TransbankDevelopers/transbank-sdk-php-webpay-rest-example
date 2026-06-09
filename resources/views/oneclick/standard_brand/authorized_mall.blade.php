@@ -163,13 +163,20 @@
 
             const statusMessage = document.getElementById('challengeStatusMessage');
             const buyOrder = document.getElementById('challengeStatusBuyOrder').value;
-            const pollUrl = `/oneclick/standard_brand/mall/transactionStatus/poll?buy_order=${encodeURIComponent(buyOrder)}`;
+            const csrfToken = document.querySelector('#challengeStatusCheckForm input[name="_token"]').value;
+            const pollUrl = '/oneclick/standard_brand/mall/transactionStatus/poll';
 
             try {
                 const response = await fetch(pollUrl, {
+                    method: 'POST',
                     headers: {
-                        'Accept': 'application/json'
-                    }
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    body: JSON.stringify({
+                        buy_order: buyOrder
+                    })
                 });
 
                 if (!response.ok) {
