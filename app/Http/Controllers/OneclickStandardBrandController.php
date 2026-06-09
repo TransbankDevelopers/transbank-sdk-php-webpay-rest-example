@@ -148,11 +148,11 @@ class OneclickStandardBrandController extends Controller
         try {
             $resp = $this->standardBrandService->status($buyOrder);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 502);
+            return response()->json(['error' => 'Unable to retrieve transaction status'], 503);
         }
 
-        if (!isset($resp['details'][0]['status'])) {
-            return response()->json(['error' => 'Transaction status is not available'], 502);
+        if (!isset($resp['details']) || !is_array($resp['details']) || !isset($resp['details'][0]['status'])) {
+            return response()->json(['error' => 'Invalid response format'], 500);
         }
 
         $status = $resp['details'][0]['status'];
