@@ -64,18 +64,77 @@
         @csrf
     </form>
 
-    <button type="button" onclick="openChallengeFlow()">
+    <button type="button" id="openChallengeButton">
         Abrir desafío
     </button>
 
     <script>
         let challengeWindow = null;
         let challengeMonitorIntervalId = null;
+        let challengeStatusPollInProgress = false;
         let statusRequestSubmitted = false;
+
+        function submitStatusForm(message) {
+            const statusMessage = document.getElementById('challengeStatusMessage');
+            const statusCheckForm = document.getElementById('challengeStatusCheckForm');
+
+            statusMessage.textContent = message;
+
+            if (challengeMonitorIntervalId) {
+                clearInterval(challengeMonitorIntervalId);
+                challengeMonitorIntervalId = null;
+            }
+
+            if (!statusRequestSubmitted) {
+                statusRequestSubmitted = true;
+                statusCheckForm.submit();
+            }
+        }
+
+        async function pollChallengeStatus() {
+            if (challengeStatusPollInProgress || statusRequestSubmitted) {
+                return;
+            }
+
+            challengeStatusPollInProgress = true;
+
+            const statusMessage = document.getElementById('challengeStatusMessage');
+            const buyOrder = document.getElementById('challengeStatusBuyOrder').value;
+            const pollUrl = `/oneclick/standard_brand/mall/transactionStatus/poll?buy_order=${encodeURIComponent(buyOrder)}`;
+
+            try {
+                const response = await fetch(pollUrl, {
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    statusMessage.textContent = 'No fue posible consultar el status. Se reintentará en unos segundos.';
+                    return;
+                }
+
+                const data = await response.json();
+
+                if (!data.is_initialized) {
+                    if (challengeWindow && !challengeWindow.closed) {
+                        challengeWindow.close();
+                    }
+
+                    submitStatusForm('Autorización actualizada. Consultando status de la autorización...');
+                    return;
+                }
+
+                statusMessage.textContent = 'La ventana del desafío sigue abierta. Status actual: INITIALIZED.';
+            } catch (error) {
+                statusMessage.textContent = 'No fue posible consultar el status. Se reintentará en unos segundos.';
+            } finally {
+                challengeStatusPollInProgress = false;
+            }
+        }
 
         function updateChallengeWindowState() {
             const statusMessage = document.getElementById('challengeStatusMessage');
-            const statusCheckForm = document.getElementById('challengeStatusCheckForm');
 
             if (!challengeWindow) {
                 statusMessage.textContent = 'Aún no se ha abierto la ventana del desafío.';
@@ -83,22 +142,11 @@
             }
 
             if (challengeWindow.closed) {
-                statusMessage.textContent = 'Desafío terminado. Consultando status de la autorización...';
-
-                if (challengeMonitorIntervalId) {
-                    clearInterval(challengeMonitorIntervalId);
-                    challengeMonitorIntervalId = null;
-                }
-
-                if (!statusRequestSubmitted) {
-                    statusRequestSubmitted = true;
-                    statusCheckForm.submit();
-                }
-
+                submitStatusForm('Desafío terminado. Consultando status de la autorización...');
                 return;
             }
 
-            statusMessage.textContent = 'La ventana del desafío sigue abierta.';
+            pollChallengeStatus();
         }
 
         function openChallengeFlow() {
@@ -109,9 +157,11 @@
             updateChallengeWindowState();
 
             if (!challengeMonitorIntervalId) {
-                challengeMonitorIntervalId = window.setInterval(updateChallengeWindowState, 3000);
+                challengeMonitorIntervalId = window.setInterval(updateChallengeWindowState,3000);
             }
         }
+
+        document.getElementById('openChallengeButton').addEventListener('click', openChallengeFlow);
     </script>
 
 @endif
