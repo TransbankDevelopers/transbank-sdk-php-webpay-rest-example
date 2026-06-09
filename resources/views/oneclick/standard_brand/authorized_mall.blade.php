@@ -89,17 +89,19 @@
         }
 
         function submitStatusForm(message) {
+            if (statusRequestSubmitted) {
+                return;
+            }
+
+            statusRequestSubmitted = true;
+
             const statusMessage = document.getElementById('challengeStatusMessage');
             const statusCheckForm = document.getElementById('challengeStatusCheckForm');
 
             statusMessage.textContent = message;
 
             clearChallengeMonitor();
-
-            if (!statusRequestSubmitted) {
-                statusRequestSubmitted = true;
-                statusCheckForm.submit();
-            }
+            statusCheckForm.submit();
         }
 
         function getNextPollDelay() {
@@ -148,7 +150,10 @@
             const delayMs = Math.min(getNextPollDelay(), remainingDurationMs);
 
             clearChallengeMonitor();
-            challengeMonitorTimeoutId = window.setTimeout(updateChallengeWindowState, delayMs);
+            challengeMonitorTimeoutId = window.setTimeout(() => {
+                challengeMonitorTimeoutId = null;
+                updateChallengeWindowState();
+            }, delayMs);
         }
 
         function registerPollFailure(message) {
@@ -247,6 +252,12 @@
 
         function openChallengeFlow() {
             challengeWindow = window.open('', 'challengeWindow', 'width=520,height=720,resizable=yes,scrollbars=yes');
+
+            if (!challengeWindow || challengeWindow.closed) {
+                document.getElementById('challengeStatusMessage').textContent = 'No fue posible abrir la ventana del desafío. Habilita los popups e intenta nuevamente.';
+                return;
+            }
+
             challengePollingStopped = false;
             challengeStartedAt = Date.now();
             consecutivePollErrors = 0;
