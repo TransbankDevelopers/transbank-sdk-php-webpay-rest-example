@@ -125,13 +125,22 @@
             statusMessage.textContent = message;
         }
 
+        function handleChallengePollingTimeout() {
+            if (challengeWindow && !challengeWindow.closed) {
+                challengeWindow.close();
+            }
+
+            clearChallengeMonitor();
+            submitStatusForm('Tiempo máximo de espera alcanzado. Consultando status de la autorización...');
+        }
+
         function scheduleChallengeMonitor() {
             if (challengePollingStopped || statusRequestSubmitted || !challengeWindow || challengeWindow.closed) {
                 return;
             }
 
             if (hasExceededMaxPollingDuration()) {
-                stopChallengePolling('No fue posible confirmar el status automáticamente en 10 minutos. Cierre la ventana del desafío manualmente para continuar.');
+                handleChallengePollingTimeout();
                 return;
             }
 
@@ -146,7 +155,11 @@
             consecutivePollErrors++;
 
             if (consecutivePollErrors >= challengePollMaxConsecutiveErrors) {
-                stopChallengePolling('No fue posible consultar el status automáticamente. Cierre la ventana del desafío manualmente para continuar.');
+                if (challengeWindow && !challengeWindow.closed) {
+                    challengeWindow.close();
+                }
+
+                submitStatusForm('Consultando status de la autorización...');
                 return;
             }
 
@@ -220,7 +233,7 @@
             }
 
             if (hasExceededMaxPollingDuration()) {
-                stopChallengePolling('No fue posible confirmar el status automáticamente en 10 minutos. Cierre la ventana del desafío manualmente para continuar.');
+                handleChallengePollingTimeout();
                 return;
             }
 
