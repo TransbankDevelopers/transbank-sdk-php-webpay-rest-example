@@ -168,7 +168,7 @@ class OneclickStandardBrandController extends Controller
         $status = $resp['details'][0]['status'];
 
         return response()->json([
-            'buy_order' => $resp['buy_order'] ?? $buyOrder,
+            'buy_order' => $buyOrder,
             'status' => $status,
             'is_initialized' => $status === 'INITIALIZED',
         ]);
