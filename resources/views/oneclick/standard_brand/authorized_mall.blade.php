@@ -76,6 +76,7 @@
         let challengePollingStopped = false;
         let challengeStartedAt = null;
         let consecutivePollErrors = 0;
+        let consecutiveNetworkErrors = 0;
         const challengePollBaseDelayMs = 3000;
         const challengePollMaxBackoffMs = 30000;
         const challengePollMaxDurationMs = 10 * 60 * 1000;
@@ -105,12 +106,14 @@
         }
 
         function getNextPollDelay() {
-            if (consecutivePollErrors === 0) {
+            const consecutiveErrors = Math.max(consecutivePollErrors, consecutiveNetworkErrors);
+
+            if (consecutiveErrors === 0) {
                 return challengePollBaseDelayMs;
             }
 
             return Math.min(
-                challengePollBaseDelayMs * Math.pow(2, consecutivePollErrors - 1),
+                challengePollBaseDelayMs * Math.pow(2, consecutiveErrors - 1),
                 challengePollMaxBackoffMs
             );
         }
@@ -158,6 +161,7 @@
 
         function registerPollFailure(message) {
             consecutivePollErrors++;
+            consecutiveNetworkErrors = 0;
 
             if (consecutivePollErrors >= challengePollMaxConsecutiveErrors) {
                 if (challengeWindow && !challengeWindow.closed) {
@@ -170,6 +174,14 @@
 
             const nextRetrySeconds = Math.ceil(getNextPollDelay() / 1000);
             document.getElementById('challengeStatusMessage').textContent = `${message} Se reintentará en ${nextRetrySeconds} segundos.`;
+        }
+
+        function registerNetworkFailure() {
+            consecutiveNetworkErrors++;
+            consecutivePollErrors = 0;
+
+            const nextRetrySeconds = Math.ceil(getNextPollDelay() / 1000);
+            document.getElementById('challengeStatusMessage').textContent = `No fue posible conectar para consultar el status. Revisa tu conexión. Se reintentará en ${nextRetrySeconds} segundos.`;
         }
 
         async function pollChallengeStatus() {
@@ -210,6 +222,7 @@
                 }
 
                 consecutivePollErrors = 0;
+                consecutiveNetworkErrors = 0;
 
                 if (!data.is_initialized) {
                     if (challengeWindow && !challengeWindow.closed) {
@@ -222,7 +235,7 @@
 
                 statusMessage.textContent = 'La ventana del desafío sigue abierta. Status actual: INITIALIZED.';
             } catch (error) {
-                registerPollFailure('No fue posible consultar el status.');
+                registerNetworkFailure();
             } finally {
                 challengeStatusPollPromise = null;
                 scheduleChallengeMonitor();
@@ -261,6 +274,7 @@
             challengePollingStopped = false;
             challengeStartedAt = Date.now();
             consecutivePollErrors = 0;
+            consecutiveNetworkErrors = 0;
 
             document.getElementById('challengePopupForm').submit();
 
