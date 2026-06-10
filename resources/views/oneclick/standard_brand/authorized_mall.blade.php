@@ -140,7 +140,12 @@
         }
 
         function scheduleChallengeMonitor() {
-            if (challengePollingStopped || statusRequestSubmitted || !challengeWindow || challengeWindow.closed) {
+            if (challengePollingStopped || statusRequestSubmitted || !challengeWindow) {
+                return;
+            }
+
+            if (challengeWindow.closed) {
+                submitStatusForm('Desafío terminado. Consultando status de la autorización...');
                 return;
             }
 
