@@ -235,7 +235,14 @@
                     return;
                 }
 
-                const data = await response.json();
+                let data = null;
+
+                try {
+                    data = await response.json();
+                } catch (error) {
+                    registerPollFailure('Error al procesar respuesta del servidor.');
+                    return;
+                }
 
                 if (shouldStopPollingResultHandling()) {
                     return;
