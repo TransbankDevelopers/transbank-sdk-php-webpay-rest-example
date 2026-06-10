@@ -161,15 +161,32 @@ class OneclickStandardBrandController extends Controller
             return response()->json(['error' => 'Unable to retrieve transaction status'], 500);
         }
 
-        if (!isset($resp['details']) || !is_array($resp['details']) || empty($resp['details']) || !is_array($resp['details'][0]) || !isset($resp['details'][0]['status'])) {
+        $status = $this->getStatusFromResponse($resp);
+
+        if ($status === null) {
             return response()->json(['error' => 'Invalid response format'], 500);
         }
-
-        $status = $resp['details'][0]['status'];
 
         return response()->json([
             'is_initialized' => $status === 'INITIALIZED',
         ]);
+    }
+
+    private function getStatusFromResponse(array $resp): ?string
+    {
+        if (!isset($resp['details']) || !is_array($resp['details'])) {
+            return null;
+        }
+
+        if (empty($resp['details']) || !is_array($resp['details'][0])) {
+            return null;
+        }
+
+        if (!isset($resp['details'][0]['status']) || !is_string($resp['details'][0]['status'])) {
+            return null;
+        }
+
+        return $resp['details'][0]['status'];
     }
 
     public function refund(Request $request)
