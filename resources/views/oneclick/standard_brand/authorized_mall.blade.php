@@ -281,7 +281,18 @@
             updateChallengeWindowState();
         }
 
+        function cleanupChallengeFlow() {
+            challengePollingStopped = true;
+            clearChallengeMonitor();
+
+            if (challengeWindow && !challengeWindow.closed) {
+                challengeWindow.close();
+            }
+        }
+
         document.getElementById('openChallengeButton').addEventListener('click', openChallengeFlow);
+        window.addEventListener('beforeunload', cleanupChallengeFlow);
+        window.addEventListener('pagehide', cleanupChallengeFlow);
     </script>
 
 @endif
