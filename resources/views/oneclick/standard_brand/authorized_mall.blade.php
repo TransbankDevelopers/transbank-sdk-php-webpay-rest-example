@@ -81,6 +81,7 @@
         const challengePollMaxBackoffMs = 30000;
         const challengePollMaxDurationMs = 10 * 60 * 1000;
         const challengePollMaxConsecutiveErrors = 10;
+        const challengePollRequestTimeoutMs = 15000;
 
         function clearChallengeMonitor() {
             if (challengeMonitorTimeoutId) {
@@ -210,6 +211,8 @@
             const buyOrder = buyOrderInput.value;
             const csrfToken = csrfTokenInput.value;
             const pollUrl = '/oneclick/standard_brand/mall/transactionStatus/poll';
+            const controller = new AbortController();
+            const requestTimeoutId = window.setTimeout(() => controller.abort(), challengePollRequestTimeoutMs);
 
             try {
                 challengeStatusPollPromise = fetch(pollUrl, {
@@ -221,7 +224,8 @@
                     },
                     body: JSON.stringify({
                         buy_order: buyOrder
-                    })
+                    }),
+                    signal: controller.signal
                 });
 
                 const response = await challengeStatusPollPromise;
@@ -269,6 +273,7 @@
             } catch (error) {
                 registerNetworkFailure();
             } finally {
+                clearTimeout(requestTimeoutId);
                 challengeStatusPollPromise = null;
                 scheduleChallengeMonitor();
             }
