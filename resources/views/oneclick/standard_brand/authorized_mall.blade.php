@@ -189,6 +189,10 @@
             document.getElementById('challengeStatusMessage').textContent = `No fue posible conectar para consultar el status. Revisa tu conexión. Se reintentará en ${nextRetrySeconds} segundos.`;
         }
 
+        function shouldStopPollingResultHandling() {
+            return statusRequestSubmitted || challengePollingStopped || !challengeWindow || challengeWindow.closed;
+        }
+
         async function pollChallengeStatus() {
             if (challengeStatusPollPromise || statusRequestSubmitted || challengePollingStopped) {
                 return;
@@ -222,12 +226,20 @@
 
                 const response = await challengeStatusPollPromise;
 
+                if (shouldStopPollingResultHandling()) {
+                    return;
+                }
+
                 if (!response.ok) {
                     registerPollFailure('No fue posible consultar el status.');
                     return;
                 }
 
                 const data = await response.json();
+
+                if (shouldStopPollingResultHandling()) {
+                    return;
+                }
 
                 if (!data || typeof data.is_initialized !== 'boolean') {
                     registerPollFailure('Respuesta inválida del servidor.');
