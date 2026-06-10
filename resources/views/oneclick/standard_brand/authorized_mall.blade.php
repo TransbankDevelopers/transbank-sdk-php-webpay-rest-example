@@ -195,8 +195,16 @@
             }
 
             const statusMessage = document.getElementById('challengeStatusMessage');
-            const buyOrder = document.getElementById('challengeStatusBuyOrder').value;
-            const csrfToken = document.querySelector('#challengeStatusCheckForm input[name="_token"]').value;
+            const buyOrderInput = document.getElementById('challengeStatusBuyOrder');
+            const csrfTokenInput = document.querySelector('#challengeStatusCheckForm input[name="_token"]');
+
+            if (!buyOrderInput || !buyOrderInput.value || !csrfTokenInput || !csrfTokenInput.value) {
+                stopChallengePolling('No fue posible iniciar la consulta de status. Faltan datos requeridos en la página.');
+                return;
+            }
+
+            const buyOrder = buyOrderInput.value;
+            const csrfToken = csrfTokenInput.value;
             const pollUrl = '/oneclick/standard_brand/mall/transactionStatus/poll';
 
             try {
