@@ -138,6 +138,57 @@ class OneclickStandardBrandController extends Controller
         return view('oneclick/standard_brand/mall_transaction_status', ["req" => $req, "resp" => $resp]);
     }
 
+    public function pollTransactionStatus(Request $request)
+    {
+        $validated = $request->validate([
+            'buy_order' => 'required|string|max:26',
+        ]);
+        $buyOrder = $validated['buy_order'];
+
+        try {
+            $resp = $this->standardBrandService->status($buyOrder);
+        } catch (\Exception $e) {
+            $statusCode = (int) $e->getCode();
+
+            if ($statusCode >= 400 && $statusCode < 500) {
+                return response()->json(['error' => 'Unable to retrieve transaction status'], 400);
+            }
+
+            if ($statusCode === 0 || $statusCode >= 500) {
+                return response()->json(['error' => 'Transaction status service unavailable'], 503);
+            }
+
+            return response()->json(['error' => 'Unable to retrieve transaction status'], 500);
+        }
+
+        $status = $this->getStatusFromResponse($resp);
+
+        if ($status === null) {
+            return response()->json(['error' => 'Invalid response format'], 500);
+        }
+
+        return response()->json([
+            'is_initialized' => $status === 'INITIALIZED',
+        ]);
+    }
+
+    private function getStatusFromResponse(array $resp): ?string
+    {
+        if (!isset($resp['details']) || !is_array($resp['details'])) {
+            return null;
+        }
+
+        if (empty($resp['details']) || !is_array($resp['details'][0])) {
+            return null;
+        }
+
+        if (!isset($resp['details'][0]['status']) || !is_string($resp['details'][0]['status'])) {
+            return null;
+        }
+
+        return $resp['details'][0]['status'];
+    }
+
     public function refund(Request $request)
     {
         $req = $request->except('_token');
