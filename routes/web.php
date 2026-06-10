@@ -282,7 +282,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/mall/direct-authorize', 'OneclickStandardBrandController@showDirectAuthorize');
         Route::post('/mall/challenge-popup', 'OneclickStandardBrandController@showChallengePopup');
         Route::post('/mall/authorizeTransaction', 'OneclickStandardBrandController@authorizeMall');
-        Route::post('/mall/transactionStatus/poll', 'OneclickStandardBrandController@pollTransactionStatus');
+        Route::post('/mall/transactionStatus/poll', 'OneclickStandardBrandController@pollTransactionStatus')->middleware('throttle:60,1');
         Route::post('/mall/transactionStatus', 'OneclickStandardBrandController@transactionStatus');
         Route::post('/mall/refund', 'OneclickStandardBrandController@refund');
     });
