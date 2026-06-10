@@ -71,7 +71,7 @@
     <script>
         let challengeWindow = null;
         let challengeMonitorTimeoutId = null;
-        let challengeStatusPollInProgress = false;
+        let challengeStatusPollPromise = null;
         let statusRequestSubmitted = false;
         let challengePollingStopped = false;
         let challengeStartedAt = null;
@@ -173,11 +173,9 @@
         }
 
         async function pollChallengeStatus() {
-            if (challengeStatusPollInProgress || statusRequestSubmitted || challengePollingStopped) {
+            if (challengeStatusPollPromise || statusRequestSubmitted || challengePollingStopped) {
                 return;
             }
-
-            challengeStatusPollInProgress = true;
 
             const statusMessage = document.getElementById('challengeStatusMessage');
             const buyOrder = document.getElementById('challengeStatusBuyOrder').value;
@@ -185,7 +183,7 @@
             const pollUrl = '/oneclick/standard_brand/mall/transactionStatus/poll';
 
             try {
-                const response = await fetch(pollUrl, {
+                challengeStatusPollPromise = fetch(pollUrl, {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -196,6 +194,8 @@
                         buy_order: buyOrder
                     })
                 });
+
+                const response = await challengeStatusPollPromise;
 
                 if (!response.ok) {
                     registerPollFailure('No fue posible consultar el status.');
@@ -224,7 +224,7 @@
             } catch (error) {
                 registerPollFailure('No fue posible consultar el status.');
             } finally {
-                challengeStatusPollInProgress = false;
+                challengeStatusPollPromise = null;
                 scheduleChallengeMonitor();
             }
         }
