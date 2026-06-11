@@ -186,6 +186,18 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/account-verify', 'TransaccionCompletaStandardBrandController@accountVerify');
     });
 
+    # Transaccion completa standard brand without cvv
+    Route::prefix('/transaccion_completa/standard_brand_without_cvv')->group(function () {
+        Route::get('/create', 'TransaccionCompletaStandardBrandWithoutCvvController@showCreate');
+        Route::post('/create', 'TransaccionCompletaStandardBrandWithoutCvvController@createTransaction');
+        Route::post('/installments', 'TransaccionCompletaStandardBrandWithoutCvvController@installments');
+        Route::post('/commit', 'TransaccionCompletaStandardBrandWithoutCvvController@commit');
+        Route::post('/status', 'TransaccionCompletaStandardBrandWithoutCvvController@status');
+        Route::post('/refund', 'TransaccionCompletaStandardBrandWithoutCvvController@refund');
+        Route::get('/account-verify', 'TransaccionCompletaStandardBrandWithoutCvvController@showAccountVerify');
+        Route::post('/account-verify', 'TransaccionCompletaStandardBrandWithoutCvvController@accountVerify');
+    });
+
     # Patpass comercio
 
     Route::get('/patpass_comercio/create-form', function () {
