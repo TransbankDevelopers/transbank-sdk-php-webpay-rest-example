@@ -63,7 +63,7 @@
             <h3 class="font-bold mb-3">Comercio</h3>
             <div class="tbk-field">
                 <label for="commerce_code">Código de comercio</label>
-                <input id="commerce_code" class="w-full" type="text" name="commerce_code" value="{{ $childCommerceCodes[0] }}" />
+                <input id="commerce_code" class="w-full" type="text" name="commerce_code" value="{{ $childCommerceCodes[0] ?? '' }}" />
             </div>
         </div>
 

@@ -50,7 +50,7 @@
 
                 <div class="tbk-field">
                     <label for="details_commerce_code">Código de comercio</label>
-                    <input id="details_commerce_code" class="w-full" type="text" name="details[0][commerce_code]" value="{{ $childCommerceCodes[0] }}" required />
+                    <input id="details_commerce_code" class="w-full" type="text" name="details[0][commerce_code]" value="{{ $childCommerceCodes[0] ?? '' }}" required />
                 </div>
 
                 <div class="tbk-field">

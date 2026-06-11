@@ -260,6 +260,6 @@ class TransaccionCompletaStandardBrandWithoutCvvController extends Controller
             return array_map('trim', explode(',', $codes));
         }
 
-        return ['597038367138'];
+        return [];
     }
 }
