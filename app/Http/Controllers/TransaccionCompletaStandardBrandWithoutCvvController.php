@@ -193,13 +193,13 @@ class TransaccionCompletaStandardBrandWithoutCvvController extends Controller
     {
         $validated = $request->validate([
             'card_number' => ['required', 'string', 'regex:/^\d{12,19}$/'],
-            'card_expiration_date' => ['required', 'string', 'regex:/^(0[1-9]|1[0-2])\/\d{2}$/'],
+            'card_expiration_date' => ['required', 'string', 'regex:/^\d{2}\/(0[1-9]|1[0-2])$/'],
             'cvv' => 'required|string|max:4',
-            'eci' => 'required|in:01,02,05,06',
-            'authentication_value' => 'required|string|max:255',
-            'trans_status' => 'required|in:C,Y,A,N,R,D,U,I',
-            'message_version' => 'required|string|max:255',
-            'ds_trans_id' => 'required|string|max:255',
+            'eci' => 'nullable|in:01,02,05,06',
+            'authentication_value' => 'nullable|string|max:255',
+            'trans_status' => 'nullable|in:C,Y,A,N,R,D,U,I',
+            'message_version' => 'nullable|string|max:255',
+            'ds_trans_id' => 'nullable|string|max:255',
             'commerce_code' => 'required|string|max:12',
         ]);
 
@@ -209,13 +209,14 @@ class TransaccionCompletaStandardBrandWithoutCvvController extends Controller
                 'card_expiration_date' => $validated['card_expiration_date'],
                 'cvv' => $validated['cvv'],
             ],
-            'eci' => $validated['eci'],
-            'authentication_value' => $validated['authentication_value'],
-            'trans_status' => $validated['trans_status'],
-            'message_version' => $validated['message_version'],
-            'ds_trans_id' => $validated['ds_trans_id'],
             'commerce_code' => $validated['commerce_code'],
         ];
+
+        foreach (['eci', 'authentication_value', 'trans_status', 'message_version', 'ds_trans_id'] as $field) {
+            if (isset($validated[$field]) && $validated[$field] !== '') {
+                $payload[$field] = $validated[$field];
+            }
+        }
 
         try {
             $resp = $this->standardBrandService->accountVerify($payload);
