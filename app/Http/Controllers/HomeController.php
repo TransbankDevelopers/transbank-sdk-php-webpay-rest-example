@@ -38,6 +38,9 @@ class HomeController extends Controller
             'transaccion_completa_standard_brand_credentials_present' =>
             config('services.transbank.transacction_completa_mall_standard_brand_cc') != null
                 && config('services.transbank.transacction_completa_mall_standard_brand_api_key') != null,
+            'transaccion_completa_standard_brand_without_cvv_credentials_present' =>
+            config('services.transbank.transaccion_completa_mall_standard_brand_without_cvv_cc') != null
+                && config('services.transbank.transaccion_completa_mall_standard_brand_without_cvv_api_key') != null,
             'patpass_comercio_credentials_present' =>
             config('services.transbank.patpass_comercio_cc') != null && config('services.transbank.patpass_comercio_api_key') != null
         );

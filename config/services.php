@@ -98,6 +98,9 @@ return [
         'transacction_completa_mall_standard_brand_cc' => env('TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_CC'),
         'transacction_completa_mall_standard_brand_child_cc' => env('TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_CHILD_CC'),
         'transacction_completa_mall_standard_brand_api_key' => env('TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_API_KEY'),
+        'transaccion_completa_mall_standard_brand_without_cvv_cc' => env('TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_WITHOUT_CVV_CC'),
+        'transaccion_completa_mall_standard_brand_without_cvv_child_cc' => env('TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_WITHOUT_CVV_CHILD_CC'),
+        'transaccion_completa_mall_standard_brand_without_cvv_api_key' => env('TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_WITHOUT_CVV_API_KEY'),
 
     ]
 ];
