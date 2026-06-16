@@ -60,6 +60,7 @@
         <input id="tid" name="details[0][tid]" value=""/>
 
         <h1 class="mt-4">Datos del navegador</h1>
+        <p class="text-sm text-gray-600">Estos datos solo se requieren cuando se solicita autenticación 3DS, de lo contrario se enviarán vacíos.</p>
 
         <label for="browserAcceptHeader">Cabecera Accept del navegador</label>
         <input id="browserAcceptHeader" name="details[0][browserAcceptHeader]"
@@ -69,7 +70,7 @@
         <input id="browserUserAgent" name="details[0][browserUserAgent]" value="{{ $metaData['user_agent'] }}"/>
 
         <label for="browserIP">IP del navegador</label>
-        <input id="browserIP" name="details[0][browserIP]" value="{{ $metaData['ip_address'] }}" placeholder="Cargando..."/>
+        <input id="browserIP" name="details[0][browserIP]" value="{{ $metaData['ip_address'] }}"/>
 
         <label for="browserJavaEnabled">Java habilitado</label>
         <input id="browserJavaEnabled" name="details[0][browserJavaEnabled]" value=""/>
@@ -89,27 +90,5 @@
         <button type="submit">Enviar</button>
     </form>
 
-    <script>
-        async function getTransactionDetails() {
-            const details = {
-                browserJavaEnabled: navigator.javaEnabled ? navigator.javaEnabled() : 'false',
-                browserScreenHeight: window.screen.height.toString(),
-                browserScreenWidth: window.screen.width.toString(),
-                browserTZ: String(new Date().getTimezoneOffset()),
-                browserJavascriptEnabled: true
-            };
-
-            return details;
-        }
-
-        document.addEventListener('DOMContentLoaded', async function() {
-            const details = await getTransactionDetails();
-
-            document.getElementById('browserJavaEnabled').value = details.browserJavaEnabled;
-            document.getElementById('browserScreenHeight').value = details.browserScreenHeight;
-            document.getElementById('browserScreenWidth').value = details.browserScreenWidth;
-            document.getElementById('browserTZ').value = details.browserTZ;
-            document.getElementById('browserJavascriptEnabled').value = details.browserJavascriptEnabled;
-        });
-    </script>
+    @include('oneclick.standard_brand.partials.browser_fields_3ds_script')
 @endsection
