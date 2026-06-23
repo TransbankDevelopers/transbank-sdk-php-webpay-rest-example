@@ -12,6 +12,12 @@ class TransactionDetailsDTO
     private $status;
 
     /** @var string */
+    private $glosa;
+
+    /** @var string */
+    private $responseCodeReference;
+
+    /** @var string */
     private $tid;
 
     /** @var string */
@@ -41,6 +47,8 @@ class TransactionDetailsDTO
     public function __construct(
         $amount,
         string $status,
+        string $glosa,
+        string $responseCodeReference,
         string $tid,
         string $authorizationCode,
         string $paymentTypeCode,
@@ -53,6 +61,8 @@ class TransactionDetailsDTO
     ) {
         $this->amount = $amount;
         $this->status = $status;
+        $this->glosa = $glosa;
+        $this->responseCodeReference = $responseCodeReference;
         $this->tid = $tid;
         $this->authorizationCode = $authorizationCode;
         $this->paymentTypeCode = $paymentTypeCode;
@@ -69,6 +79,8 @@ class TransactionDetailsDTO
         return new self(
             $data['amount'],
             $data['status'],
+            $data['glosa'],
+            $data['response_code_reference'],
             $data['tid'],
             $data['authorization_code'],
             $data['payment_type_code'],
@@ -89,6 +101,16 @@ class TransactionDetailsDTO
     public function getStatus(): string
     {
         return $this->status;
+    }
+
+    public function getGlosa(): string
+    {
+        return $this->glosa;
+    }
+
+    public function getResponseCodeReference(): string
+    {
+        return $this->responseCodeReference;
     }
 
     public function getTid(): string
