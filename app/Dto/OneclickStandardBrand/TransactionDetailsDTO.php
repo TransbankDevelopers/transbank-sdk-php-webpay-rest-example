@@ -44,7 +44,7 @@ class TransactionDetailsDTO
     /** @var string */
     private $pmntInd;
 
-    public function __construct(
+    private function __construct(
         $amount,
         string $status,
         ?string $glosa,
