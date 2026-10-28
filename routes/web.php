@@ -73,6 +73,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/webpayplus/mallRefund', 'WebpayPlusMallController@refundMallTransaction');
     Route::post('/webpayplus/mallTransactionStatus', 'WebpayPlusMallController@getMallTransactionStatus');
 
+    # Webpay Plus Mall Monotienda - Bines
+    Route::get('/webpayplus/mall/monotienda-bines/create', 'WebpayPlusMallMonotiendaBinesController@createMall');
+    Route::post('/webpayplus/mall/monotienda-bines/create', 'WebpayPlusMallMonotiendaBinesController@createdMallTransaction');
+    Route::any('/webpayplus/mall/monotienda-bines/returnUrl', 'WebpayPlusMallMonotiendaBinesController@commitMallTransaction');
+    Route::get('/webpayplus/mall/monotienda-bines/refund', 'WebpayPlusMallMonotiendaBinesController@showMallRefund');
+    Route::post('/webpayplus/mall/monotienda-bines/refund', 'WebpayPlusMallMonotiendaBinesController@refundMallTransaction');
+    Route::post('/webpayplus/mall/monotienda-bines/transactionStatus', 'WebpayPlusMallMonotiendaBinesController@getMallTransactionStatus');
+
     # Webpay Plus Cuotas QR
 
     Route::get('/webpayplusduesqr/createMall', 'WebpayPlusMallDuesQrController@createMall');

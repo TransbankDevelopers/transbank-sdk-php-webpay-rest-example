@@ -12,6 +12,13 @@ class HomeController extends Controller
             config('services.transbank.webpay_plus_cc') !=  null && config('services.transbank.webpay_plus_api_key') != null,
             'webpay_plus_mall_credentials_present' =>
             config('services.transbank.webpay_plus_mall_cc') != null && config('services.transbank.webpay_plus_mall_api_key') != null,
+            'webpay_plus_mall_monotienda_bines_credentials_present' =>
+            config('services.transbank.webpay_plus_mall_monotienda_bines_cc') != null
+                && config('services.transbank.webpay_plus_mall_monotienda_bines_api_key') != null
+                && count(array_merge(
+                    config('services.transbank.webpay_plus_mall_monotienda_bines_child_cc'),
+                    config('services.transbank.webpay_plus_mall_monotienda_bines_child_3ds')
+                )) > 0,
             'webpay_plus_mall_qr_dues_credentials_present' =>
             config('services.transbank.webpay_plus_mall_dues_qr_cc') != null
                 && config('services.transbank.webpay_plus_mall_dues_qr_api_key') != null,

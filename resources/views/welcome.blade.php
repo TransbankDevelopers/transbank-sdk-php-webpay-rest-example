@@ -38,6 +38,17 @@
             </div>
         @endif
 
+        @if (!$data['production'] || ($data['production'] && $data['webpay_plus_mall_monotienda_bines_credentials_present']))
+            <div class="examples_container">
+                <span class="operation_title">
+                    Webpay Mall Monotienda - Bines
+                </span>
+                <span class="operation_link">
+                    <a href="webpayplus/mall/monotienda-bines/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                </span>
+            </div>
+        @endif
+
         @if ($data['production'] && $data['webpay_plus_mall_qr_dues_credentials_present'])
             <div class="examples_container">
                 <span class="operation_title">

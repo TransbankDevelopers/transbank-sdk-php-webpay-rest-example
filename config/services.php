@@ -55,6 +55,10 @@ return [
         'webpay_plus_mall_child_cc' => explode(',', env('WEBPAY_PLUS_MALL_CHILD_CC')),
         'webpay_plus_mall_child_3ds' => explode(',', env('WEBPAY_PLUS_MALL_CHILD_3DS')),
         'webpay_plus_mall_api_key' => env('WEBPAY_PLUS_MALL_API_KEY'),
+        'webpay_plus_mall_monotienda_bines_cc' => env('WEBPAY_PLUS_MALL_MONOTIENDA_BINES_CC'),
+        'webpay_plus_mall_monotienda_bines_api_key' => env('WEBPAY_PLUS_MALL_MONOTIENDA_BINES_API_KEY'),
+        'webpay_plus_mall_monotienda_bines_child_cc' => array_filter(array_map('trim', explode(',', env('WEBPAY_PLUS_MALL_MONOTIENDA_BINES_CHILD_CC', '')))),
+        'webpay_plus_mall_monotienda_bines_child_3ds' => array_filter(array_map('trim', explode(',', env('WEBPAY_PLUS_MALL_MONOTIENDA_BINES_CHILD_3DS', '')))),
 
         'webpay_plus_mall_dues_qr_cc' => env('WEBPAY_PLUS_MALL_DUES_QR_CC'),
         'webpay_plus_mall_dues_qr_child_cc' => explode(',', env('WEBPAY_PLUS_MALL_DUES_QR_CHILD_CC')),
