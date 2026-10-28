@@ -22,23 +22,9 @@ class WebpayPlusMallMonotiendaBinesController extends Controller
 
     public function createMall()
     {
-        $childCommerceCodeNormal = config('services.transbank.webpay_plus_mall_monotienda_bines_child_cc');
-        $childCommerceCode3ds = config('services.transbank.webpay_plus_mall_monotienda_bines_child_3ds');
-        $commerceCodeList = [];
+        $childCommerceCode = config('services.transbank.webpay_plus_mall_monotienda_bines_child_cc');
 
-        foreach ($childCommerceCodeNormal as $child) {
-            if ($child !== '') {
-                $commerceCodeList[] = ['commerce_code' => trim($child), 'type_child' => 'normal'];
-            }
-        }
-
-        foreach ($childCommerceCode3ds as $child) {
-            if ($child !== '') {
-                $commerceCodeList[] = ['commerce_code' => trim($child), 'type_child' => '3DS'];
-            }
-        }
-
-        return view('webpayplus/mall_monotienda_bines/create', compact('commerceCodeList'));
+        return view('webpayplus/mall_monotienda_bines/create', compact('childCommerceCode'));
     }
 
     public function createdMallTransaction(Request $request)
