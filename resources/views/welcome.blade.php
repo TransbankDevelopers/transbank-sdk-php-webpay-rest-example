@@ -16,6 +16,17 @@
             </div>
         @endif
 
+        @if (!$data['production'] || ($data['production'] && $data['webpay_plus_bines_credentials_present']))
+            <div class="examples_container">
+                <span class="operation_title">
+                    Webpay Plus - Bines
+                </span>
+                <span class="operation_link">
+                    <a href="webpayplus/bines/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                </span>
+            </div>
+        @endif
+
         @if (!$data['production'] || ($data['production'] && $data['webpay_plus_deferred_credentials_present']))
             <div class="examples_container">
                 <span class="operation_title">

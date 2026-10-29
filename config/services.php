@@ -51,6 +51,8 @@ return [
     'transbank' => [
         'webpay_plus_cc' => env('WEBPAY_PLUS_CC'),
         'webpay_plus_api_key' => env('WEBPAY_PLUS_API_KEY'),
+        'webpay_plus_bines_cc' => env('WEBPAY_PLUS_BINES_CC'),
+        'webpay_plus_bines_api_key' => env('WEBPAY_PLUS_BINES_API_KEY'),
         'webpay_plus_mall_cc' => env('WEBPAY_PLUS_MALL_CC'),
         'webpay_plus_mall_child_cc' => explode(',', env('WEBPAY_PLUS_MALL_CHILD_CC')),
         'webpay_plus_mall_child_3ds' => explode(',', env('WEBPAY_PLUS_MALL_CHILD_3DS')),
