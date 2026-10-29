@@ -7,7 +7,7 @@ ENV SHELL=/bin/zsh
 # Remover repositorio de Yarn con clave GPG expirada
 RUN rm -f /etc/apt/sources.list.d/yarn.list
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-upgrade \
     ca-certificates \
     git \
     locales \
