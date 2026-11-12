@@ -54,23 +54,21 @@ class OneclickController extends Controller
         session_start();
         $req = $request->except('_token');
 
-        $userName = $req["username"];
-        $tbkUser = $req["tbk_user"];
-        $parentBuyOrder = $req["buy_order"];
-        $childBuyOrder = $req["details"][0]["buy_order"];
-        $amount = $req["details"][0]["amount"];
-        $installmentsNumber = $req["details"][0]["installments_number"];
-        $childCommerceCode = $req["details"][0]["commerce_code"];
+        $validated = $request->validate([
+            'username' => 'required|string',
+            'tbk_user' => 'required|string',
+            'buy_order' => 'required|string|max:26',
+            'details' => 'required|array|min:1',
+            'details.*.commerce_code' => 'required|string',
+            'details.*.buy_order' => 'required|string|max:26|distinct',
+            'details.*.amount' => 'required|integer|min:1',
+            'details.*.installments_number' => 'required|integer|min:1|max:6',
+        ]);
 
-        $details = [
-            [
-                "commerce_code" => $childCommerceCode,
-                "buy_order" => $childBuyOrder,
-                "amount" => $amount,
-                "installments_number" => $installmentsNumber
-            ]
-        ];
-
+        $userName = $validated['username'];
+        $tbkUser = $validated['tbk_user'];
+        $parentBuyOrder = $validated['buy_order'];
+        $details = array_values($validated['details']);
 
         $resp = (new MallTransaction)->authorize($userName, $tbkUser, $parentBuyOrder, $details);
 

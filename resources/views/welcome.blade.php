@@ -107,7 +107,7 @@
                     Oneclick Mall
                 </span>
                 <span class="operation_link">
-                    <a href="oneclick/startInscription">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="oneclick">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
 
             </div>

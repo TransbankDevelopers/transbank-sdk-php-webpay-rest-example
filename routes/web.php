@@ -255,6 +255,10 @@ Route::middleware(['auth'])->group(function () {
 
     # Oneclick Mall
 
+    Route::get('/oneclick', function () {
+        return view('oneclick/index');
+    });
+
     Route::get('/oneclick/startInscription', function () {
         return view('oneclick/start_inscription');
     });
@@ -262,12 +266,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('/oneclick/inscription', 'OneclickController@deleteInscription');
     Route::get('/oneclick/inscription', 'OneclickController@deleteInscription');
+    Route::post('/oneclick/inscription', 'OneclickController@deleteInscription');
 
     Route::any('/oneclick/responseUrl', 'OneclickController@finishInscription');
 
     Route::get('/oneclick/mall/authorizeTransaction', function () {
-
-        return view('/oneclick/authorize_mall');
+        return view('oneclick/authorize_mall');
     });
     Route::post('/oneclick/mall/authorizeTransaction', 'OneclickController@authorizeMall');
 

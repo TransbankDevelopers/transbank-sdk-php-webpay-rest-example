@@ -266,14 +266,14 @@ pre {
     margin-bottom: 10px;
 }
 
-.webpayplus-home {
+.operations-home {
     color: #202938;
     font-size: 16px;
     line-height: 1.5;
     max-width: 760px;
 }
 
-.webpayplus-home__title {
+.operations-home__title {
     color: #172033;
     font-size: 28px;
     font-weight: 600;
@@ -281,21 +281,21 @@ pre {
     margin: 0 0 8px;
 }
 
-.webpayplus-home__intro,
-.webpayplus-home__description {
+.operations-home__intro,
+.operations-home__description {
     color: #4b5563;
     font-size: 15px;
     line-height: 1.5;
     margin: 0;
 }
 
-.webpayplus-home__section {
+.operations-home__section {
     border-top: 1px solid #e2e8f0;
     margin-top: 22px;
     padding-top: 18px;
 }
 
-.webpayplus-home__section-title {
+.operations-home__section-title {
     color: #263449;
     font-size: 18px;
     font-weight: 600;
@@ -303,25 +303,25 @@ pre {
     margin: 0 0 8px;
 }
 
-.webpayplus-home__description {
+.operations-home__description {
     margin-bottom: 10px;
 }
 
-.webpayplus-home__form {
+.operations-home__form {
     display: flex;
     flex-direction: column;
     gap: 7px;
     max-width: 430px;
 }
 
-.webpayplus-home__form label {
+.operations-home__form label {
     color: #374151;
     font-size: 14px;
     font-weight: 500;
     line-height: 1.4;
 }
 
-.webpayplus-home__form input {
+.operations-home__form input {
     box-sizing: border-box;
     font-size: 16px;
     min-width: 0;
@@ -329,14 +329,14 @@ pre {
     width: 100%;
 }
 
-.webpayplus-home__form input:focus {
+.operations-home__form input:focus {
     border-color: #1a5b9f;
     outline: none;
     box-shadow: 0 0 0 3px rgba(26, 91, 159, 0.16);
 }
 
-.webpayplus-home__form button,
-.webpayplus-home__primary-action {
+.operations-home__form button,
+.operations-home__primary-action {
     align-self: flex-start;
     font-size: 14px;
     font-weight: 600;
@@ -344,21 +344,110 @@ pre {
     padding: 8px 16px;
 }
 
-.webpayplus-home__primary-action {
+.operations-home__primary-action {
     margin-top: 0;
 }
 
+.operations-home__submit {
+    margin-top: 10px;
+}
+
+.operations-home__actions {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.oneclick-details {
+    margin: 16px 0 4px;
+}
+
+.oneclick-details h3 {
+    color: #263449;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px;
+}
+
+.oneclick-details__description {
+    color: #596579;
+    font-size: 13px;
+    line-height: 1.45;
+    margin: 0 0 12px;
+    max-width: 52ch;
+}
+
+.oneclick-details__row {
+    background: #fbfcfe;
+    border: 1px solid #d8dee8;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 0 0 12px;
+    min-width: 0;
+    padding: 12px;
+}
+
+.oneclick-details__row legend {
+    color: #263449;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 5px;
+}
+
+.oneclick-details__remove {
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid #d8dee8;
+    color: #596579;
+    font-size: 13px;
+    margin-top: 4px;
+    padding: 6px 10px;
+}
+
+.oneclick-details__remove:hover:not(:disabled) {
+    background: #f1f4f8;
+    color: #263449;
+}
+
+.oneclick-details__remove:disabled {
+    color: #9aa4b2;
+    cursor: not-allowed;
+}
+
+.oneclick-details__add {
+    background: #eef5ff;
+    border: 1px solid #c8d9f0;
+    color: #1a4f88;
+    font-size: 13px;
+    margin-top: 0;
+    padding: 7px 12px;
+}
+
+.oneclick-details__add:hover {
+    background: #e2edfb;
+}
+
+.oneclick-details__add:focus-visible,
+.oneclick-details__remove:focus-visible,
+.operations-home__submit:focus-visible {
+    outline: 3px solid rgba(26, 91, 159, 0.28);
+    outline-offset: 2px;
+}
+
 @media (max-width: 640px) {
-    .webpayplus-home__title {
+    .operations-home__title {
         font-size: 25px;
     }
 
-    .webpayplus-home__section {
+    .operations-home__section {
         margin-top: 18px;
         padding-top: 15px;
     }
 
-    .webpayplus-home__form {
+    .operations-home__form {
         max-width: none;
     }
 }

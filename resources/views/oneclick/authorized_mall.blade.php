@@ -20,20 +20,22 @@
 
 
 <h2>Reembolso de la transacción</h2>
-<form method="post" action="/oneclick/mall/refund">
-    @csrf
-    <label>Buy order padre</label>
-    <input name="parent_buy_order" value="{{ $resp->getBuyOrder() }}">
+@foreach ($resp->getDetails() as $detail)
+    <form method="post" action="/oneclick/mall/refund" style="display: flex; flex-direction:column; width:50%;font-size: 16px; margin-bottom: 24px;">
+        @csrf
+        <label>Buy order padre</label>
+        <input name="parent_buy_order" value="{{ $resp->getBuyOrder() }}" readonly>
 
-    <label>Commerce code hijo</label>
-    <input name="commerce_code" value="{{ $resp->getDetails()[0]->getCommerceCode() }}">
+        <label>Commerce code hijo</label>
+        <input name="commerce_code" value="{{ $detail->getCommerceCode() }}" readonly>
 
-    <label>Buy order hijo</label>
-    <input name="child_buy_order" value="{{ $resp->getDetails()[0]->getBuyOrder() }}">
+        <label>Buy order hijo</label>
+        <input name="child_buy_order" value="{{ $detail->getBuyOrder() }}" readonly>
 
-    <label>Monto</label>
-    <input name="amount" value="{{ $resp->getDetails()[0]->getAmount() }}"/>
+        <label>Monto</label>
+        <input name="amount" type="number" min="1" step="1" value="{{ $detail->getAmount() }}" required>
 
-    <button type="submit">Enviar</button>
-</form>
+        <button type="submit">Reembolsar este comercio</button>
+    </form>
+@endforeach
 @endsection
