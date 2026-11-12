@@ -11,7 +11,7 @@
                     Webpay Plus
                 </span>
                 <span class="operation_link">
-                    <a href="webpayplus/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="webpayplus">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif

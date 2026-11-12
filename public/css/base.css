@@ -265,3 +265,100 @@ pre {
 .tbk-field {
     margin-bottom: 10px;
 }
+
+.webpayplus-home {
+    color: #202938;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 760px;
+}
+
+.webpayplus-home__title {
+    color: #172033;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 8px;
+}
+
+.webpayplus-home__intro,
+.webpayplus-home__description {
+    color: #4b5563;
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.webpayplus-home__section {
+    border-top: 1px solid #e2e8f0;
+    margin-top: 22px;
+    padding-top: 18px;
+}
+
+.webpayplus-home__section-title {
+    color: #263449;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0 0 8px;
+}
+
+.webpayplus-home__description {
+    margin-bottom: 10px;
+}
+
+.webpayplus-home__form {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    max-width: 430px;
+}
+
+.webpayplus-home__form label {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.webpayplus-home__form input {
+    box-sizing: border-box;
+    font-size: 16px;
+    min-width: 0;
+    padding: 9px 11px;
+    width: 100%;
+}
+
+.webpayplus-home__form input:focus {
+    border-color: #1a5b9f;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 91, 159, 0.16);
+}
+
+.webpayplus-home__form button,
+.webpayplus-home__primary-action {
+    align-self: flex-start;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 8px 16px;
+}
+
+.webpayplus-home__primary-action {
+    margin-top: 0;
+}
+
+@media (max-width: 640px) {
+    .webpayplus-home__title {
+        font-size: 25px;
+    }
+
+    .webpayplus-home__section {
+        margin-top: 18px;
+        padding-top: 15px;
+    }
+
+    .webpayplus-home__form {
+        max-width: none;
+    }
+}

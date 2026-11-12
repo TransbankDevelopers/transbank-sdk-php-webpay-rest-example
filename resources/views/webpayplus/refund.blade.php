@@ -6,10 +6,10 @@
     <form method="post" action="refund">
         @csrf
         <label for="amount">Monto de la reversa</label>
-        <input id="amount" name="amount" value="1000">
+        <input id="amount" name="amount" type="number" min="1" step="1" required>
 
         <label for="token">Token</label>
-        <input id="token" name="token" value="e229435b68a3f1c048121d68cc4ccb0b8765abd82d61d01e6cd2334db1473375">
+        <input id="token" name="token" type="text" required autocomplete="off">
 
         <button type="submit">Enviar datos</button>
 

@@ -50,6 +50,11 @@ class WebpayPlusController extends Controller
         return view('webpayplus/refund');
     }
 
+    public function showGetStatus()
+    {
+        return view('webpayplus/transaction_status_form');
+    }
+
     public function refundTransaction(Request $request)
     {
         $error = false;

@@ -24,6 +24,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@welcome');
 
     # Webpay Plus
+    Route::get('/webpayplus', function () {
+        return view('webpayplus/index');
+    });
+
     Route::get('/webpayplus/create', function () {
         return view('webpayplus/create');
     });
