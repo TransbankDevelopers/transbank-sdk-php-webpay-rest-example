@@ -55,6 +55,7 @@
                 "php.validate.executablePath": "/usr/local/bin/php",
                 "intelephense.files.maxSize": 5000000,
                 "intelephense.environment.includePaths": ["./"],
+                "todo-tree.ripgrep.ripgrep": "/usr/bin/rg",
                 "[php]": {
                     "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
                 }

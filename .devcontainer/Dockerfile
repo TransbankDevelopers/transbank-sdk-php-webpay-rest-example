@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-upgrade \
     ca-certificates \
     git \
     locales \
+    ripgrep \
     zsh \
     && rm -rf /var/lib/apt/lists/*
 
