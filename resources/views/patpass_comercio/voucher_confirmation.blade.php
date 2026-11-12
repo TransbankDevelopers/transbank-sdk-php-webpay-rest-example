@@ -7,5 +7,5 @@
     El voucher fue generado exitosamente
 </pre>
 
-<a href="/">&laquo; Volver a index</a>
+<a href="/home">&laquo; Volver a index</a>
 @endsection

@@ -45,7 +45,7 @@
     <div class="container min-h-screen mx-auto flex items-center justify-center">
         <div class="box shadow-lg p-10 bg-white" style="min-width: 50%;">
             <nav class="border-b w-full mb-5 py-1">
-                <a class="text-gray-800 no-underline" href="{{ url('/') }}"><i class="fa fa-home"></i> Inicio</a>
+                <a class="text-gray-800 no-underline" href="{{ url('/home') }}"><i class="fa fa-home"></i> Inicio</a>
                 @stack('nav')
                 <a class="text-gray-800 no-underline float-right" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
