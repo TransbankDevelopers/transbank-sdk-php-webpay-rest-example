@@ -65,7 +65,7 @@ class WebpayPlusMallController extends Controller
         }
 
         //Timeout
-        return view('webpayplus/mall_transaction_timeout', ["resp" => $request->all()]);
+        return view('webpayplus/transaction_timeout', ["resp" => $request->all()]);
 
     }
 

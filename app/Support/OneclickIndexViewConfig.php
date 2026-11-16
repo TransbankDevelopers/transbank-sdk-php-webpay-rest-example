@@ -28,8 +28,7 @@ class OneclickIndexViewConfig
         return [
             'title' => 'Oneclick Mall Diferido',
             'inscriptionUrl' => '/oneclick/diferido/startInscription',
-            // GET /oneclick/mall/diferido/authorizeTransaction apunta a una vista inexistente;
-            // en este producto se autoriza al terminar la inscripción.
+            // En este producto se autoriza al terminar la inscripción (no hay página para autorizar aparte).
             'authorizeUrl' => null,
             'statusUrl' => '/oneclick/mall/diferido/transaction_status',
             'refundUrl' => '/oneclick/mall/diferido/refund',

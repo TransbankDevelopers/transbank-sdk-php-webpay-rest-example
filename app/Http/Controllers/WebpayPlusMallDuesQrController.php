@@ -66,7 +66,7 @@ class WebpayPlusMallDuesQrController extends Controller
         }
 
         //Timeout
-        return view('webpayplus/mall_dues_qr/mall_transaction_timeout', ["resp" => $request->all()]);
+        return view('webpayplus/transaction_timeout', ["resp" => $request->all()]);
 
     }
 

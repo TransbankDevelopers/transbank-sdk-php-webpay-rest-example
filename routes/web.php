@@ -69,7 +69,7 @@ Route::middleware(['auth'])->group(function () {
     Route::any('/webpayplus/diferido/returnUrl', 'WebpayPlusDeferredController@commitDiferidoTransaction');
 
     Route::get('/webpayplus/diferido/capture', function () {
-        return view('webpayplus/diferido/diferido');
+        return view('webpayplus/diferido/capture');
     });
     Route::post('/webpayplus/diferido/capture', 'WebpayPlusDeferredController@captureDiferido');
 
@@ -293,7 +293,9 @@ Route::middleware(['auth'])->group(function () {
     Route::any('/webpayplus/mall/diferido/returnUrl', 'WebpayPlusMallDeferredController@commitMallDiferido');
 
     Route::get('/webpayplus/mall/diferido/capture', function () {
-        return view('webpayplus/mall/diferido/capture');
+        return view('webpayplus/mall/diferido/capture', [
+            'childCommerceCodes' => \App\Support\WebpayPlusMallIndexViewConfig::deferred()['childCommerceCodes'],
+        ]);
     });
     Route::post('/webpayplus/mall/diferido/capture', 'WebpayPlusMallDeferredController@captureMallDiferido');
 
@@ -347,9 +349,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::any('/oneclick/diferido/responseUrl', 'OneclickDeferredController@finishInscription');
 
+    // Oneclick Diferido autoriza al terminar la inscripción; esta URL lleva a su pantalla intermedia.
     Route::get('/oneclick/mall/diferido/authorizeTransaction', function () {
-
-        return view('/oneclick/diferido/authorize_mall');
+        return redirect(url('/oneclick/diferido'));
     });
     Route::post('/oneclick/mall/diferido/authorizeTransaction', 'OneclickDeferredController@authorizeMall');
 
@@ -372,8 +374,9 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/inscription', 'OneclickStandardBrandController@deleteInscription');
         Route::get('/inscription', 'OneclickStandardBrandController@deleteInscription');
         Route::any('/responseUrl', 'OneclickStandardBrandController@finishInscription');
+        // La autorización con una inscripción existente vive en /mall/direct-authorize.
         Route::get('/mall/authorizeTransaction', function () {
-            return view('/authorize_mall');
+            return redirect(url('/oneclick/standard_brand/mall/direct-authorize'));
         });
         Route::get('/mall/direct-authorize', 'OneclickStandardBrandController@showDirectAuthorize');
         Route::post('/mall/challenge-popup', 'OneclickStandardBrandController@showChallengePopup');
