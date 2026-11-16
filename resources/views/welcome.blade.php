@@ -44,7 +44,7 @@
                     Webpay Plus Mall
                 </span>
                 <span class="operation_link">
-                    <a href="webpayplus/createMall">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="webpayplus/mall">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif
@@ -55,7 +55,7 @@
                     Webpay Mall Monotienda - Bines
                 </span>
                 <span class="operation_link">
-                    <a href="webpayplus/mall/monotienda-bines/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="webpayplus/mall/monotienda-bines">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif
@@ -78,7 +78,7 @@
                     Webpay Mall - Test QR
                 </span>
                 <span class="operation_link">
-                    <a href="webpayplusqr/createMall">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="webpayplusqr">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif
@@ -90,7 +90,7 @@
                     Webpay Plus Mall Captura Diferida
                 </span>
                 <span class="operation_link">
-                    <a href="webpayplus/mall/diferido/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="webpayplus/mall/diferido">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
 
             </div>

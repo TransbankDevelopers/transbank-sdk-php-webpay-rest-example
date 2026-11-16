@@ -86,7 +86,11 @@ Route::middleware(['auth'])->group(function () {
 
     # Webpay Plus Mall
 
-    Route::get('/webpayplus/createMall', 'WebpayPlusMallController@createMall');
+    Route::get('/webpayplus/mall', function () {
+        return view('webpayplus/mall_index', \App\Support\WebpayPlusMallIndexViewConfig::mall());
+    });
+
+    Route::get('/webpayplus/createMall','WebpayPlusMallController@createMall');
     Route::post('/webpayplus/createMall', 'WebpayPlusMallController@createdMallTransaction');
 
     Route::any('/webpayplus/mallReturnUrl', 'WebpayPlusMallController@commitMallTransaction');
@@ -96,6 +100,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/webpayplus/mallTransactionStatus', 'WebpayPlusMallController@getMallTransactionStatus');
 
     # Webpay Plus Mall Monotienda - Bines
+    Route::get('/webpayplus/mall/monotienda-bines', function () {
+        return view('webpayplus/mall_index', \App\Support\WebpayPlusMallIndexViewConfig::monotiendaBines());
+    });
     Route::get('/webpayplus/mall/monotienda-bines/create', 'WebpayPlusMallMonotiendaBinesController@createMall');
     Route::post('/webpayplus/mall/monotienda-bines/create', 'WebpayPlusMallMonotiendaBinesController@createdMallTransaction');
     Route::any('/webpayplus/mall/monotienda-bines/returnUrl', 'WebpayPlusMallMonotiendaBinesController@commitMallTransaction');
@@ -115,6 +122,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/webpayplusduesqr/mallTransactionStatus', 'WebpayPlusMallDuesQrController@getMallTransactionStatus');
 
     # Webpay Plus Mall QR
+
+    Route::get('/webpayplusqr', function () {
+        return view('webpayplus/mall_index', \App\Support\WebpayPlusMallIndexViewConfig::qr());
+    });
 
     Route::get('/webpayplusqr/createMall', 'WebpayPlusMallQrController@createMall');
     Route::post('/webpayplusqr/createMall', 'WebpayPlusMallQrController@createdMallTransaction');
@@ -243,6 +254,10 @@ Route::middleware(['auth'])->group(function () {
 
 
     # Webpay Plus Mall diferido
+    Route::get('/webpayplus/mall/diferido', function () {
+        return view('webpayplus/mall_index', \App\Support\WebpayPlusMallIndexViewConfig::deferred());
+    });
+
     Route::get('/webpayplus/mall/diferido/create', function () {
         return view('webpayplus/mall/diferido/create');
     });
