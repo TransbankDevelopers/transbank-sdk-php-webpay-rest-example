@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\TransaccionCompletaStandardBrandService;
+use App\Support\TransaccionCompletaIndexViewConfig;
 
 class TransaccionCompletaStandardBrandController extends Controller
 {
@@ -19,9 +20,10 @@ class TransaccionCompletaStandardBrandController extends Controller
 
     public function index()
     {
-        return view('transaccion_completa/standard_brand/index', [
-            'childCommerceCodes' => $this->getChildCommerceCodes(),
-        ]);
+        return view(
+            'transaccion_completa/operations_index',
+            TransaccionCompletaIndexViewConfig::standardBrand($this->getChildCommerceCodes())
+        );
     }
 
     public function showCreate()

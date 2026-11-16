@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TransaccionCompletaStandardBrandWithoutCvv\CreateRequest;
 use Illuminate\Http\Request;
 use App\Services\TransaccionCompletaStandardBrandService;
+use App\Support\TransaccionCompletaIndexViewConfig;
 
 class TransaccionCompletaStandardBrandWithoutCvvController extends Controller
 {
@@ -20,9 +21,10 @@ class TransaccionCompletaStandardBrandWithoutCvvController extends Controller
 
     public function index()
     {
-        return view('transaccion_completa/standard_brand_without_cvv/index', [
-            'childCommerceCodes' => $this->getChildCommerceCodes(),
-        ]);
+        return view(
+            'transaccion_completa/operations_index',
+            TransaccionCompletaIndexViewConfig::standardBrandWithoutCvv($this->getChildCommerceCodes())
+        );
     }
 
     public function showCreate()

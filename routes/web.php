@@ -138,6 +138,10 @@ Route::middleware(['auth'])->group(function () {
 
 
     # Transaccion Completa
+    Route::get('/transaccion_completa', function () {
+        return view('transaccion_completa/operations_index', \App\Support\TransaccionCompletaIndexViewConfig::simultaneous());
+    });
+
     Route::get('/transaccion_completa/create', function () {
         return view('transaccion_completa/create');
     });
@@ -161,6 +165,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaccion_completa/refund', 'TransaccionCompletaController@refund');
 
     # Transacción completa diferido.
+    Route::get('/transaccion_completa/diferido', function () {
+        return view('transaccion_completa/operations_index', \App\Support\TransaccionCompletaIndexViewConfig::deferred());
+    });
+
     Route::get('/transaccion_completa/diferido/create', function () {
         return view('transaccion_completa/diferido/create', \App\Support\TransaccionCompletaDeferredViewConfig::sdk());
     })->name("completa.diferido.index");
@@ -180,6 +188,10 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/transaccion_completa/diferido/1_3')
         ->name('completa.deferred.1_3.')
         ->group(function () {
+            Route::get('/', function () {
+                return view('transaccion_completa/operations_index', \App\Support\TransaccionCompletaIndexViewConfig::deferred13());
+            });
+
             Route::get('/create', function () {
                 return view('transaccion_completa/diferido/create', \App\Support\TransaccionCompletaDeferredViewConfig::api());
             })->name('index');
@@ -198,6 +210,17 @@ Route::middleware(['auth'])->group(function () {
         });
 
     # Transaccion completa mall
+    Route::get('/transaccion_completa/mall', function () {
+        return view('transaccion_completa/operations_index', \App\Support\TransaccionCompletaIndexViewConfig::mall());
+    });
+
+    // Permite consultar el estado desde un formulario: redirige al GET que recibe el token en la ruta.
+    Route::post('/transaccion_completa/mall_status', function (\Illuminate\Http\Request $request) {
+        $token = $request->validate(['token' => 'required|string|max:64'])['token'];
+
+        return redirect(url('/transaccion_completa/mall_status/' . rawurlencode($token)));
+    });
+
     Route::get('/transaccion_completa/mall_create', 'TransaccionCompletaMallController@showMallCreate');
 
 

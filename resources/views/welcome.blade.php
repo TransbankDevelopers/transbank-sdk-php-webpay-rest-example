@@ -147,7 +147,7 @@
                     Transacción Completa Captura Simultánea
                 </span>
                 <span class="operation_link">
-                    <a href="transaccion_completa/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="transaccion_completa">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif
@@ -158,7 +158,7 @@
                     Transacción Completa Captura Diferida
                 </span>
                 <span class="operation_link">
-                    <a href="transaccion_completa/diferido/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="transaccion_completa/diferido">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif
@@ -169,7 +169,7 @@
                     Transacción Completa Captura Diferida 1.3
                 </span>
                 <span class="operation_link">
-                    <a href="transaccion_completa/diferido/1_3/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="transaccion_completa/diferido/1_3">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif
@@ -180,7 +180,7 @@
                     Transacción Completa Mall
                 </span>
                 <span class="operation_link">
-                    <a href="transaccion_completa/mall_create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="transaccion_completa/mall">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif
