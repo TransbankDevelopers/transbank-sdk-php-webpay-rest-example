@@ -1,223 +1,86 @@
 @extends('layout')
 @section('content')
-    <div class="main_content home">
-        <h2 class="header">
-            Webpay Plus
-        </h2>
+    @php
+        // Cada producto se muestra en integración, o en producción solo si tiene sus credenciales configuradas.
+        $groups = [
+            [
+                'title' => 'Webpay Plus',
+                'description' => 'El cliente paga en el formulario de Webpay y vuelve al comercio.',
+                'products' => [
+                    ['Webpay Plus', 'webpayplus', 'webpay_plus_credentials_present'],
+                    ['Webpay Plus - Bines', 'webpayplus/bines', 'webpay_plus_bines_credentials_present'],
+                    ['Webpay Plus Captura Diferida', 'webpayplus/diferido', 'webpay_plus_deferred_credentials_present'],
+                    ['Webpay Plus Mall', 'webpayplus/mall', 'webpay_plus_mall_credentials_present'],
+                    ['Webpay Mall Monotienda - Bines', 'webpayplus/mall/monotienda-bines', 'webpay_plus_mall_monotienda_bines_credentials_present'],
+                    ['Webpay Plus Mall - Prueba Cuotas QR', 'webpayplusduesqr', 'webpay_plus_mall_qr_dues_credentials_present'],
+                    ['Webpay Mall - Test QR', 'webpayplusqr', 'webpay_plus_mall_qr_credentials_present'],
+                    ['Webpay Plus Mall Captura Diferida', 'webpayplus/mall/diferido', 'webpay_plus_mall_deferred_credentials_present'],
+                ],
+            ],
+            [
+                'title' => 'Webpay Oneclick',
+                'description' => 'El cliente inscribe su tarjeta una vez y luego paga sin volver a ingresarla.',
+                'products' => [
+                    ['Oneclick Mall', 'oneclick', 'oneclick_mall_credentials_present'],
+                    ['Oneclick Mall Diferido', 'oneclick/diferido', 'oneclick_mall_deferred_credentials_present'],
+                    ['Oneclick Mall Estándar Marca', 'oneclick/standard_brand', 'oneclick_mall_standard_brand_credentials_present'],
+                ],
+            ],
+            [
+                'title' => 'Transacción Completa',
+                'description' => 'El comercio pide los datos de la tarjeta en su propio formulario.',
+                'products' => [
+                    ['Transacción Completa Captura Simultánea', 'transaccion_completa', 'transaccion_completa_credentials_present'],
+                    ['Transacción Completa Captura Diferida', 'transaccion_completa/diferido', 'transaccion_completa_deferred_credentials_present'],
+                    ['Transacción Completa Captura Diferida 1.3', 'transaccion_completa/diferido/1_3', 'transaccion_completa_deferred_1_3_credentials_present'],
+                    ['Transacción Completa Mall', 'transaccion_completa/mall', 'transaccion_completa_mall_credentials_present'],
+                    ['Transacción Completa Mall Estándar Marca', 'transaccion_completa/standard_brand', 'transaccion_completa_standard_brand_credentials_present'],
+                    ['Transacción Completa Mall Estándar Marca sin CVV', 'transaccion_completa/standard_brand_without_cvv', 'transaccion_completa_standard_brand_without_cvv_credentials_present'],
+                ],
+            ],
+            [
+                'title' => 'Patpass',
+                'description' => 'Inscripción de tarjetas para cargos recurrentes.',
+                'products' => [
+                    ['Patpass Comercio', 'patpass_comercio/create-form', 'patpass_comercio_credentials_present'],
+                ],
+            ],
+        ];
 
-        @if (!$data['production'] || ($data['production'] && $data['webpay_plus_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Webpay Plus
-                </span>
-                <span class="operation_link">
-                    <a href="webpayplus">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
+        foreach ($groups as $i => $group) {
+            $groups[$i]['products'] = array_values(array_filter($group['products'], function ($product) use ($data) {
+                return !$data['production'] || !empty($data[$product[2]]);
+            }));
+        }
+        $groups = array_values(array_filter($groups, function ($group) {
+            return count($group['products']) > 0;
+        }));
+    @endphp
 
-        @if (!$data['production'] || ($data['production'] && $data['webpay_plus_bines_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Webpay Plus - Bines
-                </span>
-                <span class="operation_link">
-                    <a href="webpayplus/bines">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
+    <div class="home-catalog">
+        <header class="home-catalog__header">
+            <h1 class="home-catalog__title">Ejemplos Webpay REST</h1>
+            <p class="home-catalog__intro">Elige un producto para recorrer su flujo completo con el SDK de PHP.</p>
+        </header>
 
-        @if (!$data['production'] || ($data['production'] && $data['webpay_plus_deferred_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Webpay Plus Captura Diferida
-                </span>
-                <span class="operation_link">
-                    <a href="/webpayplus/diferido">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
+        @forelse ($groups as $group)
+            <section class="home-catalog__group" aria-labelledby="group-{{ $loop->index }}">
+                <h2 class="home-catalog__group-title" id="group-{{ $loop->index }}">{{ $group['title'] }}</h2>
+                <p class="home-catalog__group-description">{{ $group['description'] }}</p>
 
-        @if (!$data['production'] || ($data['production'] && $data['webpay_plus_mall_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Webpay Plus Mall
-                </span>
-                <span class="operation_link">
-                    <a href="webpayplus/mall">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
-
-        @if (!$data['production'] || ($data['production'] && $data['webpay_plus_mall_monotienda_bines_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Webpay Mall Monotienda - Bines
-                </span>
-                <span class="operation_link">
-                    <a href="webpayplus/mall/monotienda-bines">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
-
-        @if (!$data['production'] || ($data['production'] && $data['webpay_plus_mall_qr_dues_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Webpay Plus Mall - Prueba Cuotas QR
-                </span>
-                <span class="operation_link">
-                    <a href="webpayplusduesqr">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
-
-        @if (!$data['production'] || ($data['production'] && $data['webpay_plus_mall_qr_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Webpay Mall - Test QR
-                </span>
-                <span class="operation_link">
-                    <a href="webpayplusqr">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
-
-
-        @if (!$data['production'] || ($data['production'] && $data['webpay_plus_mall_deferred_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Webpay Plus Mall Captura Diferida
-                </span>
-                <span class="operation_link">
-                    <a href="webpayplus/mall/diferido">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-
-            </div>
-        @endif
-
-
-        <h2 class="header">
-            Webpay OneClick
-        </h2>
-
-        @if (!$data['production'] || ($data['production'] && $data['oneclick_mall_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Oneclick Mall
-                </span>
-                <span class="operation_link">
-                    <a href="oneclick">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-
-            </div>
-        @endif
-
-        @if (!$data['production'] || ($data['production'] && $data['oneclick_mall_deferred_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Oneclick Mall Diferido
-                </span>
-                <span class="operation_link">
-                    <a href="oneclick/diferido">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-
-            </div>
-        @endif
-
-        @if (!$data['production'] || ($data['production'] && $data['oneclick_mall_standard_brand_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Oneclick mall Estándar Marca
-                </span>
-                <span class="operation_link">
-                    <a href="oneclick/standard_brand">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-
-            </div>
-        @endif
-
-        <h2 class="header">
-            Transacción Completa
-        </h2>
-
-        @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Transacción Completa Captura Simultánea
-                </span>
-                <span class="operation_link">
-                    <a href="transaccion_completa">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
-
-        @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_deferred_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Transacción Completa Captura Diferida
-                </span>
-                <span class="operation_link">
-                    <a href="transaccion_completa/diferido">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
-
-        @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_deferred_1_3_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Transacción Completa Captura Diferida 1.3
-                </span>
-                <span class="operation_link">
-                    <a href="transaccion_completa/diferido/1_3">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
-
-        @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_mall_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Transacción Completa Mall
-                </span>
-                <span class="operation_link">
-                    <a href="transaccion_completa/mall">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
-
-        @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_standard_brand_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Transacción Completa Mall Estándar Marca
-                </span>
-                <span class="operation_link">
-                    <a href="transaccion_completa/standard_brand">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
-
-        @if (!$data['production'] || ($data['production'] && $data['transaccion_completa_standard_brand_without_cvv_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">
-                    Transacción Completa Mall Estándar Marca sin CVV
-                </span>
-                <span class="operation_link">
-                    <a href="transaccion_completa/standard_brand_without_cvv">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
-
-        <h2 class="header">
-            Patpass
-        </h2>
-
-        @if (!$data['production'] || ($data['production'] && $data['patpass_comercio_credentials_present']))
-            <div class="examples_container">
-                <span class="operation_title">Patpass Comercio</span>
-
-                <span class="operation_link">
-                    <a href="patpass_comercio/create-form">Iniciar <i class="fa fa-arrow-right"></i></a>
-                </span>
-            </div>
-        @endif
+                <ul class="home-catalog__list">
+                    @foreach ($group['products'] as [$name, $path])
+                        <li>
+                            <a class="home-catalog__item" href="{{ url($path) }}">
+                                <span class="home-catalog__name">{{ $name }}</span>
+                                <span class="home-catalog__cta">Iniciar <i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </section>
+        @empty
+            <p class="home-catalog__empty">No hay productos con credenciales configuradas en este ambiente.</p>
+        @endforelse
     </div>
 @endsection
