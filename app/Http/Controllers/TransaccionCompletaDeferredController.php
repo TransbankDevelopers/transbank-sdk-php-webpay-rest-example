@@ -162,6 +162,7 @@ class TransaccionCompletaDeferredController extends Controller
             'status' => $status,
             'message' => $e->getMessage(),
             'req' => $req,
+            'exception' => $e,
         ], $status);
     }
 }

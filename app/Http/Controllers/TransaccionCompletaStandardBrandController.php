@@ -203,6 +203,7 @@ class TransaccionCompletaStandardBrandController extends Controller
             'status' => $status,
             'message' => $e->getMessage(),
             'req' => $req,
+            'exception' => $e,
         ], $status);
     }
 

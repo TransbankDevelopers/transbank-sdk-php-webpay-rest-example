@@ -2,8 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Support\ExceptionViewData;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Transbank\Webpay\Exceptions\TransbankException;
+use Transbank\Webpay\Exceptions\WebpayException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +49,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // Errores del SDK de Transbank (Webpay Plus, Oneclick, Transacción Completa, Patpass):
+        // en esta app de prueba se muestran completos en una pantalla legible, también en producción.
+        if (($exception instanceof WebpayException || $exception instanceof TransbankException) && !$request->expectsJson()) {
+            $data = ExceptionViewData::from($exception, [
+                'action' => $request->method() . ' /' . ltrim($request->path(), '/'),
+                'req' => $request->except(['_token', '_method']),
+            ]);
+
+            return response()->view('errors/exception', $data, $data['status']);
+        }
+
         return parent::render($request, $exception);
     }
 }

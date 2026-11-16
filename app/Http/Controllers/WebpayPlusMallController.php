@@ -82,12 +82,8 @@ class WebpayPlusMallController extends Controller
     {
         $req = $request->except('_token');
         $token = $req["token"];
-        try {
-            $resp = (new WebpayPlus\MallTransaction)->refund($token, $req["buy_order"],$req["commerce_code"], $req["amount"]);
-        } catch (WebpayPlus\Exceptions\TransactionRefundException $e) {
-            dd($e);
-        }
-
+        // Si falla, la excepción se muestra completa en errors/exception (App\Exceptions\Handler).
+        $resp = (new WebpayPlus\MallTransaction)->refund($token, $req["buy_order"],$req["commerce_code"], $req["amount"]);
 
         return view('webpayplus/mall_refund_success', ["req" => $req,"resp" => $resp]);
     }

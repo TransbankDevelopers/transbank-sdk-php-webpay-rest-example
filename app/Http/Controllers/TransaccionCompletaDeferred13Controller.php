@@ -169,6 +169,7 @@ class TransaccionCompletaDeferred13Controller extends Controller
             'status' => $status,
             'message' => $e->getMessage(),
             'req' => $req,
+            'exception' => $e,
         ], $status);
     }
 
