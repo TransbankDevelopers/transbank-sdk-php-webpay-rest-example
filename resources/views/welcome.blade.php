@@ -191,7 +191,7 @@
                     Transacción Completa Mall Estándar Marca
                 </span>
                 <span class="operation_link">
-                    <a href="transaccion_completa/standard_brand/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="transaccion_completa/standard_brand">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif
@@ -202,7 +202,7 @@
                     Transacción Completa Mall Estándar Marca sin CVV
                 </span>
                 <span class="operation_link">
-                    <a href="transaccion_completa/standard_brand_without_cvv/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="transaccion_completa/standard_brand_without_cvv">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif

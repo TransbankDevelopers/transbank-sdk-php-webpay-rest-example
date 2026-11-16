@@ -18,6 +18,13 @@ class TransaccionCompletaStandardBrandWithoutCvvController extends Controller
         );
     }
 
+    public function index()
+    {
+        return view('transaccion_completa/standard_brand_without_cvv/index', [
+            'childCommerceCodes' => $this->getChildCommerceCodes(),
+        ]);
+    }
+
     public function showCreate()
     {
         $childCommerceCodes = $this->getChildCommerceCodes();

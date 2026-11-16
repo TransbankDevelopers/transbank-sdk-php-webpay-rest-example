@@ -17,6 +17,13 @@ class TransaccionCompletaStandardBrandController extends Controller
         );
     }
 
+    public function index()
+    {
+        return view('transaccion_completa/standard_brand/index', [
+            'childCommerceCodes' => $this->getChildCommerceCodes(),
+        ]);
+    }
+
     public function showCreate()
     {
         $childCommerceCodes = $this->getChildCommerceCodes();

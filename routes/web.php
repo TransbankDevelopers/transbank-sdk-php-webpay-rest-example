@@ -198,6 +198,7 @@ Route::middleware(['auth'])->group(function () {
 
     # Transaccion completa standard brand
     Route::prefix('/transaccion_completa/standard_brand')->group(function () {
+        Route::get('/', 'TransaccionCompletaStandardBrandController@index');
         Route::get('/create', 'TransaccionCompletaStandardBrandController@showCreate');
         Route::post('/create', 'TransaccionCompletaStandardBrandController@createTransaction');
         Route::post('/installments', 'TransaccionCompletaStandardBrandController@installments');
@@ -210,6 +211,7 @@ Route::middleware(['auth'])->group(function () {
 
     # Transaccion completa standard brand without cvv
     Route::prefix('/transaccion_completa/standard_brand_without_cvv')->group(function () {
+        Route::get('/', 'TransaccionCompletaStandardBrandWithoutCvvController@index');
         Route::get('/create', 'TransaccionCompletaStandardBrandWithoutCvvController@showCreate');
         Route::post('/create', 'TransaccionCompletaStandardBrandWithoutCvvController@createTransaction');
         Route::post('/installments', 'TransaccionCompletaStandardBrandWithoutCvvController@installments');

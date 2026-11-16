@@ -321,7 +321,8 @@ pre {
     line-height: 1.4;
 }
 
-.operations-home__form input {
+.operations-home__form input,
+.operations-home__form select {
     box-sizing: border-box;
     font-size: 16px;
     min-width: 0;
@@ -329,7 +330,8 @@ pre {
     width: 100%;
 }
 
-.operations-home__form input:focus {
+.operations-home__form input:focus,
+.operations-home__form select:focus {
     border-color: #1a5b9f;
     outline: none;
     box-shadow: 0 0 0 3px rgba(26, 91, 159, 0.16);
