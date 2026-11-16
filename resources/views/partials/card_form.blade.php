@@ -17,7 +17,7 @@
     $formatLabel = $format === 'YY/MM' ? 'AA/MM' : 'MM/AA';
     $expirationPattern = $format === 'YY/MM' ? '^\d{2}\/(0[1-9]|1[0-2])$' : '^(0[1-9]|1[0-2])\/\d{2}$';
 @endphp
-<link rel="stylesheet" href="{{ asset('css/card-form.css') }}">
+<link rel="stylesheet" href="{{ \App\Support\AssetVersion::url('css/card-form.css') }}">
 
 <div class="tbk-card-wrap">
 <div class="tbk-card" data-card-form data-exp-format="{{ $format }}">
@@ -124,4 +124,4 @@
 </div>
 </div>
 
-<script src="{{ asset('js/card-form.js') }}" defer></script>
+<script src="{{ \App\Support\AssetVersion::url('js/card-form.js') }}" defer></script>

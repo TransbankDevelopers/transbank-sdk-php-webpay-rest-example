@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto de Ejemplo SDK PHP</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ \App\Support\AssetVersion::url('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="bg-light d-flex align-items-center justify-content-center">
 
