@@ -306,6 +306,9 @@ Route::middleware(['auth'])->group(function () {
 
 
     # Oneclick Mall diferido
+    Route::get('/oneclick/diferido', function () {
+        return view('oneclick/index', ['config' => \App\Support\OneclickIndexViewConfig::deferred()]);
+    });
 
     Route::get('/oneclick/diferido/startInscription', function () {
         return view('oneclick/mall_diferido/start_inscription');
@@ -332,6 +335,9 @@ Route::middleware(['auth'])->group(function () {
     # Oneclick Mall Standard Brand
 
     Route::prefix('/oneclick/standard_brand')->group(function () {
+        Route::get('/', function () {
+            return view('oneclick/index', ['config' => \App\Support\OneclickIndexViewConfig::standardBrand()]);
+        });
         Route::get('/startInscription', function () {
             return view('oneclick/standard_brand/start_inscription');
         });

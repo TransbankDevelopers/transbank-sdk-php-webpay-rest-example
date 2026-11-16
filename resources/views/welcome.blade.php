@@ -119,7 +119,7 @@
                     Oneclick Mall Diferido
                 </span>
                 <span class="operation_link">
-                    <a href="oneclick/diferido/startInscription">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="oneclick/diferido">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
 
             </div>
@@ -131,7 +131,7 @@
                     Oneclick mall Estándar Marca
                 </span>
                 <span class="operation_link">
-                    <a href="oneclick/standard_brand/startInscription">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="oneclick/standard_brand">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
 
             </div>
