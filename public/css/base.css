@@ -604,7 +604,12 @@ pre {
     }
 }
 
-/* Formulario mall con comercios hijos seleccionables (webpayplus/mall_dues_qr/mall_create) */
+/* Formularios de creación (webpayplus/partials/*, oneclick/partials/start_inscription, patpass_comercio/create_form) */
+
+.mall-builder {
+    /* La caja del layout se ajusta al contenido; un ancho fijo mantiene las grillas en columnas. */
+    width: min(760px, calc(100vw - 96px));
+}
 
 .mall-builder__grid {
     display: grid;
@@ -689,9 +694,18 @@ pre {
     color: #263449;
     cursor: pointer;
     display: inline-flex;
+    flex-wrap: wrap;
     font-size: 14px;
     font-weight: 600;
-    gap: 8px;
+    gap: 2px 8px;
+}
+
+.mall-child__toggle span {
+    white-space: nowrap;
+}
+
+span.mall-child__toggle {
+    cursor: default;
 }
 
 .mall-child__toggle input {

@@ -1,84 +1,66 @@
 @extends('layout')
 @section('content')
-<h1>Patpass Comercio</h1>
-<form class="webpay_form" action="create-form" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
-    @csrf
-    <label for="url">
-        URL
-    </label>
-    <input id="url" name="url" value="{{ url('/') }}/patpass_comercio/returnUrl"/>
+    @php
+        // [name, etiqueta, valor por defecto, tipo, ancho completo]
+        $groups = [
+            'Titular' => [
+                ['nombre', 'Nombre', 'Pepito', 'text', false],
+                ['pApellido', 'Apellido paterno', 'Perez', 'text', false],
+                ['sApellido', 'Apellido materno', 'Perez', 'text', false],
+                ['rut', 'RUT', '18439979-2', 'text', false],
+            ],
+            'Contacto' => [
+                ['correoPersona', 'Correo del titular', 'pepito@continuum.cl', 'email', false],
+                ['telefonoCelular', 'Teléfono celular', '+56900000000', 'tel', false],
+                ['telefonoFijo', 'Teléfono fijo', '+5622000000', 'tel', false],
+                ['direccion', 'Dirección', 'huerfanos 101', 'text', false],
+                ['ciudad', 'Ciudad', 'Santiago', 'text', false],
+            ],
+            'Suscripción PAT' => [
+                ['nombrePatPass', 'Nombre Patpass', 'Test patpass', 'text', false],
+                ['serviceId', 'Service Id (RUT con dígito verificador, sin puntos ni guión)', '184399792', 'text', false],
+                ['montoMaximo', 'Monto máximo', '1000', 'number', false],
+                ['correoComercio', 'Correo del comercio', 'comercio@continuum.cl', 'email', false],
+            ],
+            'URLs' => [
+                ['url', 'URL de retorno', url('/') . '/patpass_comercio/returnUrl', 'url', true],
+                ['finalUrl', 'URL final', url('/') . '/patpass_comercio/voucherUrl', 'url', true],
+            ],
+        ];
+    @endphp
+    <div class="w-full max-w-none">
+        <h1 class="mb-2">Patpass Comercio</h1>
+        <p class="text-gray-700 mb-6">Inscribe una tarjeta para cargos recurrentes. Los datos del titular y del PAT se envían a Patpass, que guía al usuario por la inscripción.</p>
 
-    <label for="nombre">
-        Nombre
-    </label>
-    <input id="nombre" name="nombre" value="Pepito" />
+        <form action="{{ url('/patpass_comercio/create-form') }}" method="post" class="tbk-form-stack-lg mall-builder">
+            @csrf
 
-    <label for="pApellido">
-        Apellido Paterno
-    </label>
-    <input id="pApellido" name="pApellido" value="Perez"/>
+            @foreach ($groups as $group => $fields)
+                <div class="bg-white border border-gray-200 rounded-lg p-4">
+                    <h3 class="font-bold mb-3">{{ $group }}</h3>
+                    <div class="mall-builder__grid">
+                        @foreach ($fields as [$name, $label, $value, $type, $wide])
+                            <div class="mall-builder__field {{ $wide ? 'mall-builder__field--wide' : '' }}">
+                                <label for="{{ $name }}">{{ $label }}</label>
+                                <input
+                                    id="{{ $name }}"
+                                    name="{{ $name }}"
+                                    type="{{ $type }}"
+                                    value="{{ $value }}"
+                                    @if ($type === 'number') min="1" step="1" inputmode="numeric" @endif
+                                    required
+                                    autocomplete="off"
+                                >
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
 
-    <label for="sApellido">
-        Apellido Materno
-    </label>
-    <input id="sApellido" name="sApellido" value="Perez"/>
-
-    <label for="rut">
-        RUT
-    </label>
-    <input id="rut" name="rut" value="18439979-2"/>
-
-    <label for="serviceId">
-        Service Id (rut con digito verificador, sin puntos ni guión)
-    </label>
-    <input id="serviceId" name="serviceId" value="{{ '184399792' }}"/>
-
-    <label for="finalUrl">
-        URL Final
-    </label>
-    <input id="finalUrl" name="finalUrl" value="{{ url('/') }}/patpass_comercio/voucherUrl" />
-
-    <label for="montoMaximo">
-        Monto Máximo
-    </label>
-    <input id="montoMaximo" name="montoMaximo" value="1000" />
-
-    <label for="telefonoFijo">
-        Teléfono Fijo
-    </label>
-    <input id="telefonoFijo" name="telefonoFijo" value="+5622000000" />
-
-    <label for="telefonoCelular">
-        Teléfono Celular
-    </label>
-    <input id="telefonoCelular" name="telefonoCelular" value="+56900000000" />
-
-    <label for="nombrePatPass">
-        Nombre Patpass
-    </label>
-    <input id="nombrePatPass" name="nombrePatPass" value="Test patpass" />
-
-    <label for="correoPersona">
-        Correo Persona
-    </label>
-    <input id="correoPersona" name="correoPersona" value="pepito@continuum.cl" />
-
-    <label for="correoComercio">
-        Correo Comercio
-    </label>
-    <input id="correoComercio" name="correoComercio" value="comercio@continuum.cl" />
-
-    <label for="direccion">
-        Dirección
-    </label>
-    <input id="direccion" name="direccion" value="huerfanos 101" />
-
-    <label for="ciudad">
-        Ciudad
-    </label>
-    <input id="ciudad" name="ciudad" value="Santiago" />
-
-
-    <button type="submit">Aceptar</button>
-</form>
+            <div class="mall-builder__footer">
+                <span></span>
+                <button type="submit" class="mall-builder__submit">Iniciar inscripción</button>
+            </div>
+        </form>
+    </div>
 @endsection

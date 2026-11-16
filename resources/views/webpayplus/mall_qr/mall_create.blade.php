@@ -1,116 +1,26 @@
 @extends('layout')
 @section('content')
-<h1>Ejemplo Webpay Plus Transaccion Mall QR</h1>
-
-<form class="webpay_form" action="createMall" method="post" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
-    @csrf
-
-    @if (app()->environment('production'))
-        <table>
-        <tr>
-            <th>Activo</th>
-            <th>Comercio</th>
-            <th>Orden Compra</th>
-            <th>Monto</th>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" id="cbox1" name="detail[0][active]" checked value="1">
-            </td>
-            <td>
-                <input id="merchant_1_commerce_code" name="detail[0][commerce_code]" value="{{ config('services.transbank.webpay_plus_mall_child1_qr_cc') }}">
-            </td>
-            <td>
-                <input id="merchant_1_buy_order" name="detail[0][buy_order]" value="buyorder_{{Str::random(10)}}">
-            </td>
-            <td>
-                <input id="merchant_1_amount" name="detail[0][amount]" value="1000">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" id="cbox2" name="detail[1][active]" checked value="1">
-            </td>
-            <td>
-                <input id="merchant_2_commerce_code" name="detail[1][commerce_code]" value="{{ config('services.transbank.webpay_plus_mall_child2_qr_cc') }}">
-            </td>
-            <td>
-                <input id="merchant_2_buy_order" name="detail[1][buy_order]" value="buyorder_{{Str::random(10)}}">
-            </td>
-            <td>
-                <input id="merchant_2_amount" name="detail[1][amount]" value="1000">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" id="cbox3" name="detail[2][active]" checked value="1">
-            </td>
-            <td>
-                <input id="merchant_3_commerce_code" name="detail[2][commerce_code]" value="{{ config('services.transbank.webpay_plus_mall_child3_qr_cc') }}">
-            </td>
-            <td>
-                <input id="merchant_3_buy_order" name="detail[2][buy_order]" value="buyorder_{{Str::random(10)}}">
-            </td>
-            <td>
-                <input id="merchant_3_amount" name="detail[2][amount]" value="1000">
-            </td>
-        </tr>
-        </table> 
-    @else
-        <table>
-        <tr>
-            <th>Activo</th>
-            <th>Comercio</th>
-            <th>Orden Compra</th>
-            <th>Monto</th>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" id="cbox1" name="detail[0][active]" checked value="1">
-            </td>
-            <td>
-                <input id="merchant_1_commerce_code" name="detail[0][commerce_code]" value="597055555536">
-            </td>
-            <td>
-                <input id="merchant_1_buy_order" name="detail[0][buy_order]" value="buyorder_{{Str::random(10)}}">
-            </td>
-            <td>
-                <input id="merchant_1_amount" name="detail[0][amount]" value="1000">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" id="cbox2" name="detail[1][active]" checked value="1">
-            </td>
-            <td>
-                <input id="merchant_2_commerce_code" name="detail[1][commerce_code]" value="597055555537">
-            </td>
-            <td>
-                <input id="merchant_2_buy_order" name="detail[1][buy_order]" value="buyorder_{{Str::random(10)}}">
-            </td>
-            <td>
-                <input id="merchant_2_amount" name="detail[1][amount]" value="1000">
-            </td>
-        </tr>
-
-        </table> 
-    @endif
-
-
-    <label for="parent_merchant_buy_order">Orden de compra comercio Padre</label>
-    <input id="parent_merchant_buy_order" name="buy_order" value="buyorder_{{Str::random(10)}}"/>
-
-    <label for="session_id_parent">
-        Session id comercio padre
-    </label>
-    <input id="session_id_parent" name="session_id" value="{{Str::random(20)}}">
-
-
-    <label for="return_url">
-        URL de retorno
-    </label>
-    <input id="return_url" name="return_url" value="{{ url('/') }}/webpayplusqr/mallReturnUrl"/>
-
-    <button type="submit">Aceptar</button>
-</form>
+    @php
+        $codes = app()->environment('production')
+            ? [
+                config('services.transbank.webpay_plus_mall_child1_qr_cc'),
+                config('services.transbank.webpay_plus_mall_child2_qr_cc'),
+                config('services.transbank.webpay_plus_mall_child3_qr_cc'),
+            ]
+            : ['597055555536', '597055555537'];
+        $children = array_map(function ($code) {
+            return ['code' => $code, 'buyOrder' => 'buyorder_' . Str::random(10), 'amount' => 1000];
+        }, $codes);
+    @endphp
+    {{-- El controlador descarta los comercios sin detail[i][active], así que aquí se pueden desmarcar. --}}
+    @include('webpayplus.partials.mall_create', [
+        'title' => 'Webpay Mall - Test QR',
+        'intro' => 'Crea una transacción mall para probar el pago con QR. Elige qué comercios hijos participan y el monto de cada uno.',
+        'action' => '/webpayplusqr/createMall',
+        'buyOrder' => 'buyorder_' . Str::random(10),
+        'sessionId' => Str::random(20),
+        'returnUrl' => url('/') . '/webpayplusqr/mallReturnUrl',
+        'children' => $children,
+        'selectable' => true,
+    ])
 @endsection
