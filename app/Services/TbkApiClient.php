@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Exceptions\TbkApiException;
+
 class TbkApiClient
 {
     protected string $apiKeyId;
@@ -46,7 +48,11 @@ class TbkApiClient
         $rawResponse = curl_exec($ch);
 
         if (curl_errno($ch)) {
-            throw new \Exception('cURL error: ' . curl_error($ch));
+            throw new TbkApiException('cURL error: ' . curl_error($ch), 0, [
+                'method' => $method,
+                'url' => $url,
+                'payload' => $payload,
+            ]);
         }
 
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -54,6 +60,7 @@ class TbkApiClient
 
         return [
             'status'   => $status,
+            'method' => $method,
             'url' => $url,
             'payload' => $payload,
             'encoded_payload' => $encodedPayload ?? null,

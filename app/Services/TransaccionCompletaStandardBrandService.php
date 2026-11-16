@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\TbkApiException;
 use Symfony\Component\HttpFoundation\Response;
 
 class TransaccionCompletaStandardBrandService
@@ -21,7 +22,7 @@ class TransaccionCompletaStandardBrandService
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error creating Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error creating Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response);
         }
 
         return $response['response'];
@@ -33,7 +34,7 @@ class TransaccionCompletaStandardBrandService
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error requesting installments for Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error requesting installments for Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response);
         }
 
         return $response['response'];
@@ -45,7 +46,7 @@ class TransaccionCompletaStandardBrandService
         $response = $this->apiClient->request('PUT', $this->baseUrl, $endpoint, $payload);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error committing Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error committing Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response);
         }
 
         return $response['response'];
@@ -57,7 +58,7 @@ class TransaccionCompletaStandardBrandService
         $response = $this->apiClient->request('GET', $this->baseUrl, $endpoint, []);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error getting status for Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error getting status for Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response);
         }
 
         return $response['response'];
@@ -69,7 +70,7 @@ class TransaccionCompletaStandardBrandService
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error refunding Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error refunding Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response);
         }
 
         return $response['response'];
@@ -81,7 +82,7 @@ class TransaccionCompletaStandardBrandService
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error verifying account for Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error verifying account for Transacción Completa Estándar Marca: ' . json_encode($response['response']), $response);
         }
 
         return $response['response'];

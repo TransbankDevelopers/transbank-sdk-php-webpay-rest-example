@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\TbkApiException;
 use App\Dto\OneclickStandardBrand\ChallengeResponseDTO;
 use App\Dto\OneclickStandardBrand\AuthorizeResponseDTO;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +30,7 @@ class OneClickStandardBrandService
         $endpoint = 'rswebpaytransaction/api/oneclick/v1.4/inscriptions';
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error starting Oneclick brand inscription: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error starting Oneclick brand inscription: ' . json_encode($response['response']), $response);
         }
         return $response['response'];
     }
@@ -39,7 +40,7 @@ class OneClickStandardBrandService
         $endpoint = 'rswebpaytransaction/api/oneclick/v1.4/inscriptions/' . $token;
         $response = $this->apiClient->request('PUT', $this->baseUrl, $endpoint, []);
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error finishing Oneclick brand inscription: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error finishing Oneclick brand inscription: ' . json_encode($response['response']), $response);
         }
         return $response['response'];
     }
@@ -52,7 +53,7 @@ class OneClickStandardBrandService
             'username' => $username
         ]);
         if ($response['status'] !== Response::HTTP_NO_CONTENT) {
-            throw new \Exception('Error deleting Oneclick brand inscription: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error deleting Oneclick brand inscription: ' . json_encode($response['response']), $response);
         }
         return $response['response'];
     }
@@ -80,7 +81,7 @@ class OneClickStandardBrandService
         $endpoint = 'rswebpaytransaction/api/oneclick/v1.4/transactions';
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error authorizing Oneclick brand transaction: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error authorizing Oneclick brand transaction: ' . json_encode($response['response']), $response);
         }
         if (isset($response['response']['challenge_data']))
             return ChallengeResponseDTO::fromArray($response['response']);
@@ -93,7 +94,7 @@ class OneClickStandardBrandService
         $endpoint = 'rswebpaytransaction/api/oneclick/v1.4/transactions/' . $buyOrder;
         $response = $this->apiClient->request('GET', $this->baseUrl, $endpoint, []);
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error getting Oneclick brand transaction status: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error getting Oneclick brand transaction status: ' . json_encode($response['response']), $response);
         }
         return $response['response'];
     }
@@ -108,7 +109,7 @@ class OneClickStandardBrandService
         ];
         $response = $this->apiClient->request('POST', $this->baseUrl, $endpoint, $payload);
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception('Error refunding Oneclick brand transaction: ' . json_encode($response['response']), $response['status']);
+            throw TbkApiException::fromResponse('Error refunding Oneclick brand transaction: ' . json_encode($response['response']), $response);
         }
         return $response['response'];
     }

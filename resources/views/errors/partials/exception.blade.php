@@ -12,16 +12,16 @@
         <span class="exception-page__badge">Error {{ $status }}</span>
     </p>
     <h1 class="exception-page__title">{{ $title }}</h1>
-    @if ($action)
+    @if (!empty($action))
         <p class="exception-page__action">Operación: <code>{{ $action }}</code></p>
     @endif
 
     <div class="exception-page__message" role="alert">
-        <span class="exception-page__label">Mensaje de la excepción</span>
+        <span class="exception-page__label">{{ $messageLabel ?? 'Mensaje de la excepción' }}</span>
         <p class="exception-page__message-text">{{ $message }}</p>
     </div>
 
-    @if ($failedRequest)
+    @if (!empty($failedRequest))
         <section class="exception-page__section">
             <h2 class="exception-page__section-title">Petición a Transbank</h2>
             <p class="exception-page__request-line"><code>{{ $failedRequest['method'] }} {{ $failedRequest['url'] }}</code></p>

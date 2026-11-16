@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use App\Exceptions\TbkApiException;
 use Throwable;
 use Transbank\Webpay\Exceptions\WebpayRequestException;
 
@@ -41,6 +42,10 @@ class ExceptionViewData
 
     private static function failedRequest(?Throwable $exception): ?array
     {
+        if ($exception instanceof TbkApiException) {
+            return $exception->getRequest();
+        }
+
         if (!$exception instanceof WebpayRequestException || $exception->getFailedRequest() === null) {
             return null;
         }

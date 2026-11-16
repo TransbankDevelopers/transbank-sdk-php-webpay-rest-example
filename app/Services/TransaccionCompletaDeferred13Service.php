@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\TbkApiException;
 use Symfony\Component\HttpFoundation\Response;
 
 class TransaccionCompletaDeferred13Service
@@ -56,9 +57,9 @@ class TransaccionCompletaDeferred13Service
         $response = $this->apiClient->request($method, $this->getBaseUrl(), $endpoint, $payload);
 
         if ($response['status'] !== Response::HTTP_OK) {
-            throw new \Exception(
+            throw TbkApiException::fromResponse(
                 'Error ' . $action . ' Transacción Completa Diferida 1.3: ' . json_encode($response['response']),
-                $response['status']
+                $response
             );
         }
 
