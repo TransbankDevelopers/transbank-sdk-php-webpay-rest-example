@@ -43,6 +43,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/webpayplus/transactionStatus', 'WebpayPlusController@getTransactionStatus');
 
     # Webpay Plus - Bines
+    Route::get('/webpayplus/bines', function () {
+        return view('webpayplus/bines/index');
+    });
+
     Route::get('/webpayplus/bines/create', function () {
         return view('webpayplus/bines/create');
     });
@@ -53,6 +57,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/webpayplus/bines/transactionStatus', 'WebpayPlusBinesController@getTransactionStatus');
 
     # Webpay Plus Diferido
+    Route::get('/webpayplus/diferido', function () {
+        return view('webpayplus/diferido/index');
+    });
+
     Route::get('/webpayplus/diferido/create', function () {
         return view('webpayplus/diferido/create');
     });

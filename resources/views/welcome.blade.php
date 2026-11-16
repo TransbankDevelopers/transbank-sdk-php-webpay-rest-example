@@ -22,7 +22,7 @@
                     Webpay Plus - Bines
                 </span>
                 <span class="operation_link">
-                    <a href="webpayplus/bines/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="webpayplus/bines">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif
@@ -33,7 +33,7 @@
                     Webpay Plus Captura Diferida
                 </span>
                 <span class="operation_link">
-                    <a href="/webpayplus/diferido/create">Iniciar <i class="fa fa-arrow-right"></i></a>
+                    <a href="/webpayplus/diferido">Iniciar <i class="fa fa-arrow-right"></i></a>
                 </span>
             </div>
         @endif
