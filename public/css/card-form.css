@@ -1,0 +1,406 @@
+/* Formulario de tarjeta interactivo: resources/views/partials/card_form.blade.php */
+
+/* Separación dentro de los formularios angostos (create normal y diferido) */
+.tbk-card-slot {
+    margin: 8px 0 4px;
+    /* Esos formularios ocupan la mitad de la caja; la tarjeta necesita un mínimo para leerse. */
+    width: max(100%, min(360px, 100vw - 96px));
+}
+
+/* El formulario angosto toma el ancho de la tarjeta para que todos los inputs y el botón queden alineados */
+.tbk-form-narrow:has(.tbk-card-slot) {
+    width: min(100%, max(50%, 360px));
+}
+
+.tbk-form-narrow:has(.tbk-card-slot) > input,
+.tbk-form-narrow:has(.tbk-card-slot) > button {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100%;
+}
+
+.tbk-form-narrow:has(.tbk-card-slot) .tbk-card-slot {
+    width: 100%;
+}
+
+.tbk-card {
+    --card-ink: #f4f6fb;
+    --card-ink-muted: rgba(228, 234, 246, 0.72);
+    --card-base: #1f2b40;
+    --field-border: #c9d2e3;
+    --field-border-hover: #9fb4d8;
+    --field-focus: #1a5b9f;
+    --label: #374151;
+
+    color: #202938;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 360px;
+    width: 100%;
+}
+
+.tbk-card-wrap {
+    container-type: inline-size;
+}
+
+/* Con espacio suficiente, la tarjeta queda a la izquierda y sus campos a la derecha */
+@container (min-width: 620px) {
+    .tbk-card {
+        align-items: center;
+        flex-direction: row;
+        gap: 32px;
+        max-width: 760px;
+    }
+
+    .tbk-card__stage {
+        flex: 0 0 340px;
+    }
+
+    .tbk-card__fields {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+}
+
+.tbk-card[data-brand="visa"] { --card-base: #173a72; }
+.tbk-card[data-brand="mastercard"] { --card-base: #2e2a28; }
+.tbk-card[data-brand="amex"] { --card-base: #18535a; }
+.tbk-card[data-brand="diners"] { --card-base: #343c4a; }
+.tbk-card[data-brand="jcb"] { --card-base: #1c4a3a; }
+
+/* Vista previa */
+
+.tbk-card__stage {
+    container-type: inline-size;
+    perspective: 1100px;
+    width: 100%;
+}
+
+.tbk-card__inner {
+    aspect-ratio: 1.586 / 1;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+}
+
+.tbk-card.is-flipped .tbk-card__inner {
+    transform: rotateY(180deg);
+}
+
+.tbk-card__face {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background-color: var(--card-base);
+    background-image:
+        radial-gradient(120% 90% at 100% 0%, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 55%),
+        radial-gradient(90% 70% at 0% 100%, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0) 60%);
+    border-radius: 14px;
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.18),
+        0 14px 28px -10px rgba(15, 23, 42, 0.45);
+    box-sizing: border-box;
+    color: var(--card-ink);
+    inset: 0;
+    overflow: hidden;
+    position: absolute;
+    transition: background-color 0.45s ease;
+}
+
+.tbk-card__face--front {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 18px 20px 16px;
+    padding: 5.5cqw 6cqw 5cqw;
+}
+
+.tbk-card__face--back {
+    transform: rotateY(180deg);
+}
+
+.tbk-card__top {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tbk-card__chip {
+    display: block;
+    height: auto;
+    width: 40px;
+    width: clamp(28px, 12cqw, 44px);
+}
+
+.tbk-card__brand {
+    align-items: center;
+    display: flex;
+    height: 30px;
+    height: clamp(22px, 9cqw, 32px);
+    justify-content: flex-end;
+}
+
+.tbk-card__brand > * {
+    animation: tbk-card-brand-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Marcas dibujadas como wordmark/SVG para que se integren con el color de la tarjeta */
+.tbk-card__mark {
+    color: #fff;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.tbk-card__mark--visa {
+    font-size: 24px;
+    font-size: clamp(17px, 7.4cqw, 26px);
+    font-style: italic;
+    letter-spacing: 0.02em;
+}
+
+.tbk-card__mark--amex {
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    border-radius: 3px;
+    font-size: 13px;
+    font-size: clamp(10px, 4cqw, 14px);
+    letter-spacing: 0.12em;
+    padding: 4px 6px 3px;
+}
+
+.tbk-card__mark--diners {
+    font-size: 14px;
+    font-size: clamp(11px, 4.4cqw, 15px);
+    font-style: italic;
+    font-weight: 700;
+}
+
+.tbk-card__mark--jcb {
+    font-size: 20px;
+    font-size: clamp(15px, 6.2cqw, 22px);
+    letter-spacing: 0.04em;
+}
+
+.tbk-card__mark-mc {
+    display: block;
+    height: 100%;
+    width: auto;
+}
+
+@keyframes tbk-card-brand-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: none; }
+}
+
+.tbk-card__number,
+.tbk-card__value,
+.tbk-card__cvv {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-variant-numeric: tabular-nums;
+}
+
+.tbk-card__number {
+    font-size: 19px;
+    font-size: clamp(13px, 5.7cqw, 20px);
+    letter-spacing: 0.06em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+    white-space: nowrap;
+}
+
+.tbk-card__bottom {
+    align-items: flex-end;
+    display: flex;
+    gap: 24px;
+}
+
+.tbk-card__slot {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.tbk-card__slot--front-cvv {
+    display: none;
+}
+
+.tbk-card[data-brand="amex"] .tbk-card__slot--front-cvv {
+    display: flex;
+}
+
+.tbk-card__caption {
+    color: var(--card-ink-muted);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.tbk-card__caption--dark {
+    color: #4b5563;
+}
+
+.tbk-card__value {
+    font-size: 15px;
+    font-size: clamp(11px, 4.6cqw, 16px);
+    letter-spacing: 0.04em;
+}
+
+/* Marca el dato que se está editando */
+.tbk-card__number,
+.tbk-card__slot,
+.tbk-card__cvv {
+    border-radius: 6px;
+    margin: -4px -6px;
+    padding: 4px 6px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tbk-card[data-focus="number"] [data-card-slot="number"],
+.tbk-card[data-focus="exp"] [data-card-slot="exp"],
+.tbk-card[data-focus="cvv"] [data-card-slot="cvv-front"] {
+    background-color: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+}
+
+.tbk-card[data-focus="cvv"] [data-card-slot="cvv"] {
+    box-shadow: inset 0 0 0 2px var(--field-focus);
+}
+
+.tbk-card__stripe {
+    background: #0d1320;
+    height: 22%;
+    margin-top: 9%;
+}
+
+.tbk-card__signature {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    margin: 7% 20px 0;
+}
+
+.tbk-card__signature-lines {
+    background: repeating-linear-gradient(
+        -8deg,
+        #eef1f6 0,
+        #eef1f6 6px,
+        #e1e6ee 6px,
+        #e1e6ee 12px
+    );
+    border-radius: 3px;
+    flex: 1;
+    height: 34px;
+}
+
+.tbk-card__cvv {
+    align-items: flex-end;
+    background: #f8fafc;
+    color: #172033;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    margin: 0;
+    min-width: 56px;
+}
+
+/* Campos */
+
+.tbk-card__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.tbk-card__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 12px;
+}
+
+.tbk-card__row > .tbk-card__field {
+    flex: 1 1 140px;
+    /* Si alguna etiqueta crece, los inputs siguen alineados en la misma línea base */
+    justify-content: flex-end;
+}
+
+.tbk-card__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.tbk-card__field label {
+    color: var(--label);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tbk-card__hint {
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.tbk-card__field input {
+    background: #fff;
+    border: 1px solid var(--field-border);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(20, 36, 60, 0.06);
+    box-sizing: border-box;
+    color: #172033;
+    font-size: 16px;
+    font-variant-numeric: tabular-nums;
+    min-width: 0;
+    padding: 9px 11px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    width: 100%;
+}
+
+.tbk-card__field input::placeholder {
+    color: #8a94a6;
+}
+
+.tbk-card__field input:hover {
+    border-color: var(--field-border-hover);
+}
+
+.tbk-card__field input:focus {
+    border-color: var(--field-focus);
+    box-shadow: 0 0 0 3px rgba(26, 91, 159, 0.18);
+    outline: none;
+}
+
+.tbk-card__field input:not(:placeholder-shown):not(:focus):invalid {
+    border-color: #c2410c;
+}
+
+.tbk-card__sr {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tbk-card__inner,
+    .tbk-card__face,
+    .tbk-card__number,
+    .tbk-card__slot,
+    .tbk-card__cvv {
+        transition: none;
+    }
+
+    .tbk-card__brand > * {
+        animation: none;
+    }
+}

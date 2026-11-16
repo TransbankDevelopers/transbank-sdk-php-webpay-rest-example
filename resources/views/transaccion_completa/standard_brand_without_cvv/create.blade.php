@@ -10,32 +10,21 @@
         @csrf
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">
-            <h3 class="font-bold mb-3">Datos generales</h3>
+            <h3 class="font-bold mb-3">Datos de tarjeta</h3>
+            @include('partials.card_form', ['format' => 'YY/MM', 'withCvv' => false, 'required' => true])
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+            <h3 class="font-bold mb-3">Datos de transacción</h3>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div>
-                    <h4 class="font-bold mb-2">Datos de transacción</h4>
-                    <div class="tbk-field">
-                        <label for="buy_order">Orden de compra</label>
-                        <input id="buy_order" class="w-full" type="text" name="buy_order" value="{{ '123456' . rand(1,1000) }}" required />
-                    </div>
-
-                    <div class="tbk-field">
-                        <label for="session_id">Id de sesión</label>
-                        <input id="session_id" class="w-full" type="text" name="session_id" value="{{ $sessionId ?? '' }}" required />
-                    </div>
+                <div class="tbk-field">
+                    <label for="buy_order">Orden de compra</label>
+                    <input id="buy_order" class="w-full" type="text" name="buy_order" value="{{ '123456' . rand(1,1000) }}" required />
                 </div>
-                <div>
-                    <h4 class="font-bold mb-2">Datos de tarjeta</h4>
-                    <div class="tbk-field">
-                        <label for="card_number">Número de tarjeta</label>
-                        <input id="card_number" class="w-full" type="text" name="card_number" required />
-                    </div>
 
-                    <div class="tbk-field">
-                        <label for="card_expiration_date">Fecha expiración tarjeta</label>
-                        <input id="card_expiration_date" class="w-full" type="text" name="card_expiration_date" placeholder="YY/MM" maxlength="5" pattern="^\d{2}\/(0[1-9]|1[0-2])$" title="Usa formato YY/MM" inputmode="numeric" required />
-                    </div>
-
+                <div class="tbk-field">
+                    <label for="session_id">Id de sesión</label>
+                    <input id="session_id" class="w-full" type="text" name="session_id" value="{{ $sessionId ?? '' }}" required />
                 </div>
             </div>
         </div>
@@ -172,18 +161,4 @@
         <a class="tbk-btn-link" href="/transaccion_completa/standard_brand_without_cvv/account-verify">Verificación de cuenta</a>
     </div>
 </div>
-
-<script>
-    (function() {
-        var expirationInput = document.getElementById('card_expiration_date');
-        if (!expirationInput) return;
-        expirationInput.addEventListener('input', function(e) {
-            var value = e.target.value.replace(/\D/g, '').slice(0, 4);
-            if (value.length >= 3) {
-                value = value.slice(0, 2) + '/' + value.slice(2);
-            }
-            e.target.value = value;
-        });
-    })();
-</script>
 @endsection

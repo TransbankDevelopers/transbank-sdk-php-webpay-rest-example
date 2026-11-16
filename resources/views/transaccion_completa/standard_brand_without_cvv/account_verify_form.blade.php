@@ -11,22 +11,7 @@
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">
             <h3 class="font-bold mb-3">Datos de tarjeta</h3>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div class="tbk-field">
-                    <label for="card_number">Número de tarjeta</label>
-                    <input id="card_number" class="w-full" type="text" name="card_number" required />
-                </div>
-
-                <div class="tbk-field">
-                    <label for="card_expiration_date">Fecha de expiración (YY/MM)</label>
-                    <input id="card_expiration_date" class="w-full" type="text" name="card_expiration_date" placeholder="YY/MM" maxlength="5" pattern="^\d{2}\/(0[1-9]|1[0-2])$" title="Usa formato YY/MM" required />
-                </div>
-
-                <div class="tbk-field">
-                    <label for="cvv">CVV</label>
-                    <input id="cvv" class="w-full" type="text" name="cvv" required />
-                </div>
-            </div>
+            @include('partials.card_form', ['format' => 'YY/MM', 'required' => true])
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">
