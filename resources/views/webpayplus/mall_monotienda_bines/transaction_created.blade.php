@@ -4,13 +4,13 @@
 
 <h3>Parametros recibidos:</h3>
 <pre>
-    {{ print_r($params) }}
+    {{ print_r($params, true) }}
 </pre>
 
 
 <h3>Respuesta:</h3>
 <pre>
-    {{ print_r($response)  }}
+    {{ print_r($response, true)  }}
 </pre>
 
 <form method="post" action={{  $response->getUrl() }}>
