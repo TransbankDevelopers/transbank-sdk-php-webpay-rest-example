@@ -112,7 +112,11 @@ Route::middleware(['auth'])->group(function () {
 
     # Webpay Plus Cuotas QR
 
-    Route::get('/webpayplusduesqr/createMall', 'WebpayPlusMallDuesQrController@createMall');
+    Route::get('/webpayplusduesqr', function () {
+        return view('webpayplus/mall_index', \App\Support\WebpayPlusMallIndexViewConfig::duesQr());
+    });
+
+    Route::get('/webpayplusduesqr/createMall','WebpayPlusMallDuesQrController@createMall');
     Route::post('/webpayplusduesqr/createMall', 'WebpayPlusMallDuesQrController@createdMallTransaction');
 
     Route::any('/webpayplusduesqr/mallReturnUrl', 'WebpayPlusMallDuesQrController@commitMallTransaction')->name('webpayplusduesqr.commit');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\WebpayPlusMallIndexViewConfig;
 use Illuminate\Http\Request;
 use Transbank\Webpay\WebpayPlus;
 
@@ -18,16 +19,9 @@ class WebpayPlusMallDuesQrController extends Controller
 
     public function createMall(Request $request)
     {
-        $childCommerceCodeNormal = config('services.transbank.webpay_plus_mall_dues_qr_child_cc');
-
-        $commerceCodeList = [];
-        foreach ($childCommerceCodeNormal as $childNormal){
-            if ($childNormal != ""){
-                $commerceCodeList[] = ['commerce_code' => $childNormal, 'type_child'=> 'normal'];
-            }
-        }
-
-        return view('webpayplus/mall_dues_qr/mall_create', compact('commerceCodeList'));
+        return view('webpayplus/mall_dues_qr/mall_create', [
+            'childCommerceCodes' => WebpayPlusMallIndexViewConfig::duesQr()['childCommerceCodes'],
+        ]);
     }
 
     public function createdMallTransaction(Request $request)

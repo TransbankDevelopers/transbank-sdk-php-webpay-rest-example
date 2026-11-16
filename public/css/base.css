@@ -453,3 +453,178 @@ pre {
         max-width: none;
     }
 }
+
+/* Formulario mall con comercios hijos seleccionables (webpayplus/mall_dues_qr/mall_create) */
+
+.mall-builder__grid {
+    display: grid;
+    gap: 14px 16px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.mall-builder__grid--three {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.mall-builder__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.mall-builder__field--wide {
+    grid-column: 1 / -1;
+}
+
+.mall-builder__field label {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.mall-builder__field input {
+    background: #fff;
+    border: 1px solid #c9d2e3;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(20, 36, 60, 0.06);
+    box-sizing: border-box;
+    color: #172033;
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+    min-width: 0;
+    padding: 8px 11px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    width: 100%;
+}
+
+.mall-builder__field input:hover {
+    border-color: #9fb4d8;
+}
+
+.mall-builder__field input:focus {
+    border-color: #1a5b9f;
+    box-shadow: 0 0 0 3px rgba(26, 91, 159, 0.18);
+    outline: none;
+}
+
+.mall-builder__hint {
+    color: #596579;
+    font-size: 14px;
+    line-height: 1.45;
+    margin: 0 0 14px;
+}
+
+.mall-child {
+    background: #fbfcfe;
+    border: 1px solid #d8dee8;
+    border-radius: 8px;
+    margin: 0 0 12px;
+    min-width: 0;
+    padding: 6px 14px 14px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.mall-child:last-of-type {
+    margin-bottom: 0;
+}
+
+.mall-child__legend {
+    padding: 0 6px;
+}
+
+.mall-child__toggle {
+    align-items: center;
+    color: #263449;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 600;
+    gap: 8px;
+}
+
+.mall-child__toggle input {
+    accent-color: #1a5b9f;
+    height: 16px;
+    min-width: 0;
+    width: 16px;
+}
+
+.mall-child__code {
+    color: #596579;
+    font-variant-numeric: tabular-nums;
+    font-weight: 400;
+}
+
+.mall-child.is-inactive {
+    background: #f4f6f9;
+    border-style: dashed;
+}
+
+.mall-child.is-inactive .mall-builder__grid {
+    opacity: 0.45;
+}
+
+.mall-builder__empty {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 8px;
+    color: #9a3412;
+    font-size: 14px;
+    margin: 0;
+    padding: 12px 14px;
+}
+
+.mall-builder__footer {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    justify-content: space-between;
+}
+
+.mall-builder__total {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    margin: 0;
+}
+
+.mall-builder__total-label {
+    color: #596579;
+    font-size: 14px;
+}
+
+.mall-builder__total-amount {
+    color: #172033;
+    font-size: 22px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}
+
+.mall-builder__total-count {
+    color: #596579;
+    font-size: 13px;
+}
+
+.mall-builder__error {
+    color: #b42318;
+    flex-basis: 100%;
+    font-size: 14px;
+    margin: 0;
+    order: 3;
+}
+
+.mall-builder__submit {
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 0;
+    padding: 9px 20px;
+}
+
+.mall-builder__submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}

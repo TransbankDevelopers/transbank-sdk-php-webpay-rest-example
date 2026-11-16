@@ -61,6 +61,21 @@ class WebpayPlusMallIndexViewConfig
         ];
     }
 
+    public static function duesQr(): array
+    {
+        return [
+            'title' => 'Webpay Plus Mall - Prueba Cuotas QR',
+            'createUrl' => '/webpayplusduesqr/createMall',
+            'statusUrl' => '/webpayplusduesqr/mallTransactionStatus',
+            'refundUrl' => '/webpayplusduesqr/mallRefund',
+            'buyOrderField' => 'buy_order',
+            'commerceCodeField' => 'commerce_code',
+            'childCommerceCodes' => self::isProduction()
+                ? self::codes((array) config('services.transbank.webpay_plus_mall_dues_qr_child_cc'))
+                : [WebpayPlus::DEFAULT_MALL_CHILD_COMMERCE_CODE_1, WebpayPlus::DEFAULT_MALL_CHILD_COMMERCE_CODE_2],
+        ];
+    }
+
     public static function deferred(): array
     {
         return [
