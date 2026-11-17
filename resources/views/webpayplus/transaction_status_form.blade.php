@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
     <h1>Consultar estado de una transacción Webpay Plus</h1>
     <form class="sb-form" method="post" action="{{ url('/webpayplus/transactionStatus') }}">

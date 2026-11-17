@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
     <h1>Ejemplo transacción completa mall Reembolso de la transacción</h1>
 

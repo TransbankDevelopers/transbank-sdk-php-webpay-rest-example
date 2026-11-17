@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
 <div class="w-full max-w-none">
     <h1 class="mb-2">Cuotas consultadas Transacción Completa Estándar Marca sin CVV</h1>

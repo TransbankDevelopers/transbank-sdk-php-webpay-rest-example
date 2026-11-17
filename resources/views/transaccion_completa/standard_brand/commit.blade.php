@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
 <div class="w-full max-w-none">
     <h1 class="mb-2">Transacción Completa Estándar Marca confirmada</h1>

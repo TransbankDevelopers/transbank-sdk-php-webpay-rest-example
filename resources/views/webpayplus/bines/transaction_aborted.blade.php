@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
     <h1>Transacción Webpay Plus - Bines abortada</h1>
 

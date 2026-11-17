@@ -604,6 +604,181 @@ pre {
     }
 }
 
+/*
+ * Páginas de resultado (transacción creada, confirmada, estado, reembolso...): @section('pageClass', 'result-page').
+ * Solo cambia la presentación; el contenido de cada vista se mantiene tal cual.
+ * Los márgenes y la grilla de formularios aplican a elementos sin clase para no alterar los paneles de Tailwind.
+ */
+
+.result-page {
+    color: #202938;
+    max-width: 860px;
+}
+
+.result-page h1 {
+    color: #172033;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.result-page h1:not([class]) {
+    margin: 0 0 12px;
+}
+
+.result-page h2:not([class]),
+.result-page h2.text-lg,
+.result-page h2.text-xl {
+    color: #263449;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 24px 0 10px;
+}
+
+.result-page h3:not([class]),
+.result-page h3.text-lg {
+    color: #263449;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 16px 0 8px;
+}
+
+.result-page p:not([class]) {
+    color: #4b5563;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.result-page hr {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 24px 0;
+}
+
+.result-page pre {
+    background: #f7f9fc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    color: #1f2a3a;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0 0 12px;
+    overflow: auto;
+    overflow-wrap: anywhere;
+    padding: 12px 14px;
+    white-space: pre-wrap;
+}
+
+.result-page .response {
+    border-top: 0;
+    margin-top: 8px;
+    padding-top: 0;
+}
+
+/* Ejemplo de código de redirección: un solo bloque, sin el borde doble de <code> + <pre>. */
+.result-page code {
+    background: #f1f4f8;
+    border: 0;
+    border-radius: 4px;
+    font-size: 13px;
+    padding: 1px 5px;
+}
+
+.result-page code.block {
+    background: none;
+    display: block;
+    padding: 0;
+}
+
+.result-page .example p {
+    color: #4b5563;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+/* Aprobada / rechazada como badge */
+.result-page .text-green-700.font-bold,
+.result-page .text-red-700.font-bold {
+    border-radius: 999px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 4px 0 12px;
+    padding: 4px 12px;
+}
+
+.result-page .text-green-700.font-bold {
+    background: #e7f6ec;
+    color: #1b7a3a;
+}
+
+.result-page .text-red-700.font-bold {
+    background: #fdecec;
+    color: #b42318;
+}
+
+/*
+ * Formularios de siguiente paso sin clase: en una columna. Los textos sueltos ("Token:", "Monto:")
+ * quedan como etiqueta sobre su campo sin cambiar el markup.
+ */
+.result-page form:not([class]):not([id]) {
+    color: #374151;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 6px;
+    margin: 0 0 16px;
+    max-width: 520px;
+}
+
+.result-page form:not([class]):not([id]) label {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.result-page form:not([class]):not([id]) input:not([type=checkbox]):not([type=radio]):not([type=hidden]) {
+    width: 100%;
+}
+
+.result-page form:not([class]):not([id]) button {
+    margin-top: 6px !important;
+}
+
+.result-page input:not([type=checkbox]):not([type=radio]):not([type=hidden]) {
+    background: #fff;
+    border: 1px solid #c9d2e3;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #172033;
+    font-size: 15px;
+    min-width: 0;
+    padding: 8px 11px;
+}
+
+.result-page input[readonly] {
+    background: #f4f6f9;
+    color: #4b5563;
+}
+
+.result-page input:focus {
+    border-color: #1a5b9f;
+    box-shadow: 0 0 0 3px rgba(26, 91, 159, 0.18);
+    outline: none;
+}
+
+.result-page form:not([class]):not([id]) button {
+    align-self: flex-start;
+    flex: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 0;
+    padding: 8px 16px;
+}
+
 /* Formularios de creación (webpayplus/partials/*, oneclick/partials/start_inscription, patpass_comercio/create_form) */
 
 .mall-builder {

@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
 
     <h1>Webpay Mall Monotienda - Bines Reembolso exitoso</h1>

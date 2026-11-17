@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
     <h1>El pago fue anulado por tiempo de espera</h1>
 

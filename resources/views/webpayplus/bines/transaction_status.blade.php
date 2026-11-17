@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
     <a href="#" onclick="window.history.back()"><i class="fa fa-arrow-left"></i> Volver</a>
 

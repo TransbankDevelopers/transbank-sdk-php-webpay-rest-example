@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
     <h1>Webpay Mall Monotienda - Bines Transacción confirmada</h1>
 
@@ -31,7 +32,7 @@
         <h2 class="text-xl font-bold mt-5">Reembolsar una transacción</h2>
         @foreach($response->getDetails() as $key => $detail)
         <h3 class="text-lg mt-1">Transacción #{{ $key + 1 }}</h3>
-        <form method="post" action="/webpayplus/mall/monotienda-bines/refund" style="display: flex; flex-direction: column; width: 20%;">
+        <form method="post" action="/webpayplus/mall/monotienda-bines/refund">
             @csrf
             <input type="text" name="token" value="{{ $params["token_ws"] }}">
 

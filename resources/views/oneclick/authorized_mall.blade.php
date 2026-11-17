@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
 <h1>Request</h1>
 <pre> {{  print_r($req, true) }} </pre>
@@ -21,7 +22,7 @@
 
 <h2>Reembolso de la transacción</h2>
 @foreach ($resp->getDetails() as $detail)
-    <form method="post" action="/oneclick/mall/refund" style="display: flex; flex-direction:column; width:50%;font-size: 16px; margin-bottom: 24px;">
+    <form method="post" action="/oneclick/mall/refund">
         @csrf
         <label>Buy order padre</label>
         <input name="parent_buy_order" value="{{ $resp->getBuyOrder() }}" readonly>

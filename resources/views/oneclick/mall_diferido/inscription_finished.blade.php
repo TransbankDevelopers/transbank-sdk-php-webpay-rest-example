@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
     <h1> Oneclick mall inscripción finalizada</h1>
 
@@ -9,7 +10,7 @@
 <pre>{{ print_r($resp, true) }}</pre>
 
 <h2>Autorizar transacción</h2>
-<form method="post" action="/oneclick/mall/diferido/authorizeTransaction" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
+<form method="post" action="/oneclick/mall/diferido/authorizeTransaction">
     @csrf
 
     <label for="username">Nombre de usuario</label>
@@ -54,7 +55,7 @@
 </form>
 
 <h2>Eliminar inscripcion</h2>
-<form method="delete" action="/oneclick/diferido/inscription" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
+<form method="delete" action="/oneclick/diferido/inscription">
 
     <label>Nombre de usuario</label>
     <input name="user_name" value="{{ isset($_SESSION["user_name"]) ? $_SESSION["user_name"] : ''}}"/>

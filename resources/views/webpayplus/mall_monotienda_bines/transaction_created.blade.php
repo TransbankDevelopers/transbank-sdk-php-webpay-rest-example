@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
 <h1> Ejemplo Webpay Mall Monotienda - Bines</h1>
 

@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
     <h1>Webpay Plus - Bines: pago anulado por tiempo de espera</h1>
 

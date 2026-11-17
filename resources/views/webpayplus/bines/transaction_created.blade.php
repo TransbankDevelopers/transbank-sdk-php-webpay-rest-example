@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
 <h1> Webpay Plus - Bines: transacción creada. </h1>
 <p class="-mt-4 mb-4">Ahora, con los datos recibidos se debe redirigir al usuario a webpay a la url indicada y con el token recibidos</p>

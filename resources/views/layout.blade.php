@@ -57,7 +57,10 @@
                     @csrf
                 </form>
             </nav>
-            @yield('content')
+            {{-- Las vistas pueden marcar su tipo de página (p. ej. result-page) para recibir estilos acotados. --}}
+            <div class="@yield('pageClass')">
+                @yield('content')
+            </div>
         </div>
     </div>
 

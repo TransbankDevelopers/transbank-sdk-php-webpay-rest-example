@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
     <h1> Oneclick mall inscripción finalizada</h1>
 
@@ -36,7 +37,7 @@
     </div>
 
     <h2>Eliminar inscripcion</h2>
-    <form method="delete" action="/oneclick/inscription" style="display: flex; flex-direction:column; width:50%;font-size: 20px;">
+    <form method="delete" action="/oneclick/inscription">
 
         <label>Nombre de usuario</label>
         <input name="user_name" value="{{ $username}}"/>

@@ -1,4 +1,5 @@
 @extends('layout')
+@section('pageClass', 'result-page')
 @section('content')
     <h1>Webpay plus Mall Transacción diferida capturada</h1>
 
@@ -10,7 +11,7 @@
 
 
     <h2>Reembolsar la transacción</h2>
-    <form method="post" action="/webpayplus/mall/diferido/refund" style="display: flex; flex-direction: column; width: 20%;">
+    <form method="post" action="/webpayplus/mall/diferido/refund">
         @csrf
         <input type="text" name="token" value="{{ $req["token"] }}">
 
