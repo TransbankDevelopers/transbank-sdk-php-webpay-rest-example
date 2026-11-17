@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\TransaccionCompletaStandardBrandService;
+use App\Support\CardExpiration;
 use App\Support\TransaccionCompletaIndexViewConfig;
 
 class TransaccionCompletaStandardBrandController extends Controller
@@ -39,6 +40,10 @@ class TransaccionCompletaStandardBrandController extends Controller
     public function createTransaction(Request $request)
     {
         $req = $request->except('_token');
+        // El formulario pide MM/AA; la API espera AA/MM.
+        if (isset($req['card_expiration_date'])) {
+            $req['card_expiration_date'] = CardExpiration::toApi($req['card_expiration_date']);
+        }
         try {
             $resp = $this->standardBrandService->createTransaction($req);
 
@@ -164,7 +169,7 @@ class TransaccionCompletaStandardBrandController extends Controller
         $payload = [
             'card_detail' => [
                 'card_number' => $req['card_number'],
-                'card_expiration_date' => $req['card_expiration_date'],
+                'card_expiration_date' => CardExpiration::toApi($req['card_expiration_date']),
                 'cvv' => $req['cvv'],
             ],
             'eci' => $req['eci'],

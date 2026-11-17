@@ -11,7 +11,7 @@
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">
             <h3 class="font-bold mb-3">Datos de tarjeta</h3>
-            @include('partials.card_form', ['format' => 'YY/MM', 'required' => true])
+            @include('partials.card_form', ['format' => 'MM/YY', 'required' => true])
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">

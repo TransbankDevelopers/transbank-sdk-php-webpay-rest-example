@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\TransaccionCompletaStandardBrandWithoutCvv;
 
+use App\Support\CardExpiration;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateRequest extends FormRequest
@@ -17,7 +18,8 @@ class CreateRequest extends FormRequest
             'buy_order' => 'required|string|max:26',
             'session_id' => 'required|string|max:255',
             'card_number' => ['required', 'string', 'regex:/^\d{12,19}$/'],
-            'card_expiration_date' => ['required', 'string', 'regex:/^\d{2}\/(0[1-9]|1[0-2])$/'],
+            // MM/AA (formato chileno); el controlador lo convierte a AA/MM para la API.
+            'card_expiration_date' => ['required', 'string', 'regex:' . CardExpiration::FORM_REGEX],
             'details.0.amount' => 'required|integer|min:1',
             'details.0.commerce_code' => 'required|string|max:12',
             'details.0.buy_order' => 'required|string|max:26',

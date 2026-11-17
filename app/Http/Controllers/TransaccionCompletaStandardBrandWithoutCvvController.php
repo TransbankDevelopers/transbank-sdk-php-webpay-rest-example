@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TransaccionCompletaStandardBrandWithoutCvv\CreateRequest;
 use Illuminate\Http\Request;
 use App\Services\TransaccionCompletaStandardBrandService;
+use App\Support\CardExpiration;
 use App\Support\TransaccionCompletaIndexViewConfig;
 
 class TransaccionCompletaStandardBrandWithoutCvvController extends Controller
@@ -46,7 +47,8 @@ class TransaccionCompletaStandardBrandWithoutCvvController extends Controller
             'buy_order' => $validated['buy_order'],
             'session_id' => $validated['session_id'],
             'card_number' => $validated['card_number'],
-            'card_expiration_date' => $validated['card_expiration_date'],
+            // El formulario pide MM/AA; la API espera AA/MM.
+            'card_expiration_date' => CardExpiration::toApi($validated['card_expiration_date']),
             'details' => [
                 [
                     'amount' => (int) $detail['amount'],
@@ -202,7 +204,7 @@ class TransaccionCompletaStandardBrandWithoutCvvController extends Controller
     {
         $validated = $request->validate([
             'card_number' => ['required', 'string', 'regex:/^\d{12,19}$/'],
-            'card_expiration_date' => ['required', 'string', 'regex:/^\d{2}\/(0[1-9]|1[0-2])$/'],
+            'card_expiration_date' => ['required', 'string', 'regex:' . CardExpiration::FORM_REGEX],
             'cvv' => 'required|string|max:4',
             'eci' => 'nullable|in:01,02,05,06',
             'authentication_value' => 'nullable|string|max:255',
@@ -215,7 +217,7 @@ class TransaccionCompletaStandardBrandWithoutCvvController extends Controller
         $payload = [
             'card_detail' => [
                 'card_number' => $validated['card_number'],
-                'card_expiration_date' => $validated['card_expiration_date'],
+                'card_expiration_date' => CardExpiration::toApi($validated['card_expiration_date']),
                 'cvv' => $validated['cvv'],
             ],
             'commerce_code' => $validated['commerce_code'],
