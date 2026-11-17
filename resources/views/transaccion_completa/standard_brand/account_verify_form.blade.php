@@ -11,7 +11,8 @@
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">
             <h3 class="font-bold mb-3">Datos de tarjeta</h3>
-            @include('partials.card_form', ['format' => 'MM/YY'])
+            {{-- La API de Estándar Marca solo acepta el vencimiento como AA/MM (p. ej. 30/06); MM/AA responde 422. --}}
+            @include('partials.card_form', ['format' => 'YY/MM'])
         </div>
 
         <div class="bg-white border border-gray-200 rounded-lg p-4">
